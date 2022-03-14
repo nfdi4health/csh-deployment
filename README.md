@@ -13,19 +13,20 @@ This README describes how to administrate a CSH instance.
 1. `docker-compose down`
 2. `docker-compose  up --no-start  seek db solr`
 ### Load/Overwrite filesystem
-Requires a backup of the filesystem  and a backup of the database.
+Requires a backup of the filesystem  and a backup of the database. In case of strange errors, create new volumes!
 1. Load mysql
    1. Adapt the file mount (`-v $(pwd)/$(date +"%Y-%m-%d")_SEEK-mysql-fs.tar:/backup/seek-mysql-db.tar`)
-      - e.g `export FP=/Users/johannesdarms/2022-03-10_SEEK-mysql-fs.tar:/backup/seek-mysql-db.tar`
+      - e.g `export FP=/home/darms/2022-03-10_SEEK-mysql-fs.tar:/backup/seek-mysql-db.tar`
    2. Adapt the volumes-from (`--volumes-from `)
-      - e.g. `export VF=nfdi4health-csh-deployment-db-1`
-   3. `docker run --rm --volumes-from $VF  -v $FP alpine sh -c "tar xfv /backup/seek-mysql-db.tar"`
+      - e.g. `export VF=seek-mysql`
+      1. `docker run --rm --volumes-from $VF  -v $FP alpine sh -c "tar xfv /backup/seek-mysql-db.tar"`
+      - or load an mysql dump
+         `docker-compose  exec -T db /usr/bin/mysql -u root --password=seek_root seek_docker < 2022-03-10_SEEK_mysql-dump.sql`
 2. Load file store
    1. Adapt the file mount (`$(pwd)/$(date +"%Y-%m-%d")_SEEK-filestore.tar:/backup/seek-filestore.tar`)
-      - e.g `export FP=/Users/johannesdarms/2022-03-10SEEK-filestore.tar:/backup/seek-filestore.tar`
+      - e.g `export FP=/home/darms/2022-03-10SEEK-filestore.tar:/backup/seek-filestore.tar`
    2. Adapt the volumes-from (`--volumes-from`)
-      - e.g. `export VF=nfdi4health-csh-deployment-seek-1`
-   
+      - e.g. `export VF=seek`
    3. `docker run --rm --volumes-from $VF -v $FP alpine sh -c "tar xfv /backup/seek-filestore.tar"` 
    
 ### Start the instances
