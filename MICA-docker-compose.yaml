@@ -1,0 +1,88 @@
+version: '3.7'
+
+services:
+  mica:
+    image: obiba/mica:4.5
+    ports:
+      - "8845:8445"
+      - "8882:8082"
+    links:
+      - mongo
+      - opal
+      - agate
+    environment:
+      - JAVA_OPTS=-Xms1G -Xmx2G -XX:+UseG1GC
+      - MICA_ADMINISTRATOR_PASSWORD=password
+      - MICA_ANONYMOUS_PASSWORD=password
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - AGATE_HOST=agate
+      - AGATE_PORT=8444
+      - OPAL_HOST=opal
+      - OPAL_PORT=8443
+    #volumes:
+      #- data-mica:/srv
+      # override templates dir, however the startup script only copy files if /src/conf does not exist
+      # as a consequence this directory must also set the config file
+      #- data-mica-template:/srv/conf/templates
+    depends_on:
+      - mongo
+      - agate
+      - opal
+  opal:
+    image: obiba/opal:4.1
+    ports:
+      - "8843:8443"
+      - "8880:8080"
+    links:
+      - mongo
+      - agate
+    environment:
+      - JAVA_OPTS=-Xms2G -Xmx4G -XX:+UseG1GC
+      - OPAL_ADMINISTRATOR_PASSWORD=password
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - AGATE_PORT_8444_TCP_ADDR=agate
+      - AGATE_PORT_8444_TCP_PORT=8444
+    volumes:
+      - data-opal:/srv
+    depends_on:
+      - agate
+      - mongo
+  # Exposes SSO (OIDC/OAuth2) + Notification + Ticket??? Server
+  # Can be split notification from Authentication? If yes, we could use keycloak as Auth!
+  agate:
+    image: obiba/agate:2.3
+    ports:
+      - "8844:8444"
+      - "8881:8081"
+    links:
+      - mongo
+    environment:
+      - JAVA_OPTS=-Xms1G -Xmx2G -XX:+UseG1GC
+      - AGATE_ADMINISTRATOR_PASSWORD=password
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+#      - RECAPTCHA_SITE_KEY=6Lfo7gYTAAAAAOyl8_MHuH-AVBzRDtpIuJrjL3Pb
+#      - RECAPTCHA_SECRET_KEY=6Lfo7gYTAAAAADym-vSDvPBeBCXaxIprA0QXLk_b
+    volumes:
+      - data-agate:/srv
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - JAVA_OPTS=-Xms1G -Xmx2G -XX:+UseG1GC
+    volumes:
+      - data-mongo-db:/data/db
+      - data-mongo-config:/data/configdb
+volumes:
+  data-mongo-db:
+  data-mongo-config:
+  data-agate:
+  data-opal:
+  data-mica:
+  data-mica-template:
+    external: true

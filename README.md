@@ -77,17 +77,30 @@ with `rmi` also the images are removed. Hence, this argument can be omitted.
 1. `docker-compose -f SEEK-docker-compose.yaml down -v   --remove-orphans  --rmi all`
 
 ## MICA
+### Update the  instance
+1. Create template volume
+   - `docker volume create data-mica-template`
+2. Create helper to copy template to volume
+   - `docker run -v data-mica-template:/data --name helper busybox tr`
+3. copy all templates to dir 
+   - `docker cp ~/PycharmProjects/mica-templates/. helper:/data`
+4. COPY DEFAULT CONFIG!!!
+5. Remove helper 
+   - `docker rm helper`
+### After start of opal
+login into UI and configure a Data database 
+http://localhost:8880/ui/index.html#!admin/!databases
+
 
 ## UI
-### Update the  instance
-1. Create a backup just to be safe.
-2. Stop the instances
+### Update the  instances
+1. Stop the instances
    1. `docker-compose -f UI-docker-compose.yaml down`
-3. Update the docker-compose-file
+2. Update the docker-compose-file
    1. Update image version
       1. Line 21 and 21
-4. Pull new images   
+3. Pull new images   
    1. `docker-compose -f UI-docker-compose.yaml pull`
-5. Start the instances
+4. Start the instances
    - `docker-compose -f UI-docker-compose.yaml up -d`
-6. Reindex the data cf. etl-pipeline
+5. Reindex the data (cf. etl-pipeline)
