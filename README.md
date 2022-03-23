@@ -1,18 +1,23 @@
 This README describes how to administrate a CSH instance.
 
-# SEEK 
-## Create a new instance
+# Domain and SSL
+Done by ZB MED. Configuration of HAproxy.
+
+## Subcomponents
+
+## SEEK 
+### Create a new instance
 1. with existing data
    1. Follow the Load SEEK Backup process but do not start the instance
    2. Continue with step 5 of the update SEEK instance guide
 2. blank instance
    1. `docker-compose up`
 
-## Load a SEEK backup
-### Stop the instance
+### Load a SEEK backup
+#### Stop the instance
 1. `docker-compose down`
 2. `docker-compose  up --no-start  seek db solr`
-### Load/Overwrite filesystem
+#### Load/Overwrite filesystem
 Requires a backup of the filesystem  and a backup of the database. In case of strange errors, create new volumes!
 1. Load mysql
    1. Adapt the file mount (`-v $(pwd)/$(date +"%Y-%m-%d")_SEEK-mysql-fs.tar:/backup/seek-mysql-db.tar`)
@@ -29,13 +34,13 @@ Requires a backup of the filesystem  and a backup of the database. In case of st
       - e.g. `export VF=seek`
    3. `docker run --rm --volumes-from $VF -v $FP alpine sh -c "tar xfv /backup/seek-filestore.tar"` 
    
-### Start the instances
+#### Start the instances
 1. `docker-compose down`
 2. `docker-compose up -d`
    - Start up takes a long time ca. 5 minutes. Assets need to be compiled on each startup, since they are relative to
      the URL which is configured via an ENV property.
 
-## Create a SEEK backup
+### Create a SEEK backup
 1. Create a backup of the filesystem (i.e. user uploads)
    1. `docker run --rm --volumes-from seek -v $(pwd):/backup ubuntu tar cvf /backup/$(date +"%Y-%m-%d")_SEEK-filestore.tar /seek/filestore`
 2. Create a copy of the database
@@ -44,7 +49,7 @@ Requires a backup of the filesystem  and a backup of the database. In case of st
    2. Alternatively one can dump the DB
       - `docker-compose  exec db /usr/bin/mysqldump -u root --password=seek_root seek_docker > $(date +"%Y-%m-%d")_SEEK_mysql-dump.sql`
 
-## Update the SEEK instance
+### Update the SEEK instance
 1. Create a backup just to be safe.
 3. Stop the instances
    1. `docker-compose down`
@@ -67,10 +72,10 @@ Requires a backup of the filesystem  and a backup of the database. In case of st
 9. Start the instances
    1. `docker-compose up -d`
 
-## Delete an instance
+### Delete an instance
 with `rmi` also the images are removed. Hence, this argument can be omitted. 
 1. `docker-compose down -v   --remove-orphans  --rmi all`
 
-# MICA
+## MICA
 
-# UI
+## UI
