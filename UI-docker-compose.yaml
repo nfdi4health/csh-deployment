@@ -1,0 +1,46 @@
+version: "2.2"
+services:
+  elasticsearch:
+    image: "elasticsearch:7.9.3"
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health?wait_for_status=green&timeout=60s || exit 1" ]
+      interval: 30s
+      timeout: 90s
+      retries: 3
+    volumes:
+      - el-data:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+    expose:
+      - "9200"
+      - "9300"
+    ports:
+      - "4001:9200"
+  frontend:
+    image: gitlab.zbmed.de:5050/nfdi4health/csh-ui/frontend:fad49df4e59c657e02e458237082a658096766b0
+    restart: always
+    environment:
+      - API_PASS="http://backend:5000"
+    ports:
+      - 4000:80
+    links:
+      - "backend:backend"
+    depends_on:
+      - backend
+  backend:
+    image: gitlab.zbmed.de:5050/nfdi4health/csh-ui/frontend:fad49df4e59c657e02e458237082a658096766b0
+    restart: always
+    environment:
+      - ELASTIC_URL=http://elasticsearch:9200
+      - ELASTIC_INDEX=test
+    expose:
+      - "5000"
+    links:
+      - "elasticsearch:elasticsearch"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+volumes:
+  el-data:
