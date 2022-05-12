@@ -1,0 +1,25 @@
+stages:
+  - deploy
+deploy_production:
+  tags:
+    - shell1
+  stage: deploy
+#  image: alpine
+  environment:
+        name: production
+        url: http://$DEPLOYMENT_HOST_IP:$DEPLOYMENT_PRODUCTION_HOST_PORT
+  before_script:
+#    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - ssh-add - <<< "${KEY_PROD}"
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    - scp UI-docker-compose.yaml $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP:studyhub_prod_docker-compose.yaml
+    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker-compose -p studyhub_production -f studyhub_prod_docker-compose.yaml pull"
+    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker-compose -p studyhub_production -f studyhub_prod_docker-compose.yaml up -d"
+
+  when: manual
+  only:
+    - main
