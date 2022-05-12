@@ -29,7 +29,7 @@ services:
     depends_on:
       - backend
   backend:
-    image: gitlab.zbmed.de:5050/nfdi4health/csh-ui/frontend:198e8e20194b3150f612a2ee07d4854f5e6feca8
+    image: gitlab.zbmed.de:5050/nfdi4health/csh-ui/backend:198e8e20194b3150f612a2ee07d4854f5e6feca8
     restart: always
     environment:
       - ELASTIC_URL=http://elasticsearch:9200
