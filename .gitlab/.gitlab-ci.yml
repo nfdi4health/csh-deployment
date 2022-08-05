@@ -16,10 +16,10 @@ deploy_production:
     - chmod 700 ~/.ssh
   script:
     - scp UI-docker-compose.yaml $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP:studyhub_prod_docker-compose.yaml
+    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP  "rm -rf studyhub_production.env; echo CSH_MDR_TOKEN=CSH_MDR_TOKEN >> studyhub_production.env;"
     - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
-    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker-compose -p studyhub_production -f studyhub_prod_docker-compose.yaml pull"
-    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker-compose -p studyhub_production -f studyhub_prod_docker-compose.yaml up -d"
-
+    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker-compose -p studyhub_production --env-file studyhub_production.env -f studyhub_prod_docker-compose.yaml pull"
+    - ssh $DEPLOYMENT_ACCOUNT@$DEPLOYMENT_HOST_IP "docker-compose -p studyhub_production --env-file studyhub_production.env -f studyhub_prod_docker-compose.yaml up -d"
   when: manual
   only:
     - master
