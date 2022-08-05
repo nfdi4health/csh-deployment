@@ -18,7 +18,7 @@ services:
     ports:
       - 8082:9200
   frontend:
-    image: gitlab.zbmed.de:5050/nfdi4health/csh-ui/frontend:9172a07ddd55916afab3dc3137390a74ea0d0d57
+    image: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/frontend:9172a07ddd55916afab3dc3137390a74ea0d0d57
     restart: always
     environment:
       - API_PASS="http://backend:5000"
@@ -29,7 +29,7 @@ services:
     depends_on:
       - backend
   backend:
-    image: gitlab.zbmed.de:5050/nfdi4health/csh-ui/backend:9172a07ddd55916afab3dc3137390a74ea0d0d57
+    image: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/backend:9172a07ddd55916afab3dc3137390a74ea0d0d57
     restart: always
     environment:
       - ELASTIC_URL=http://elasticsearch:9200
