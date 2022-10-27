@@ -11,7 +11,7 @@ services:
       - seek-mysql-db:/var/lib/mysql
 
   seek: # The SEEK application
-    image: gitlab.zbmed.de:5050/nfdi4health/registersearch/seek-nfdi4health:da90c422faf5473c2a0e00afba023d50c194cdba
+    image: ghcr.io/nfdi4health/seek:csh@sha256:6c86f3783548ecee10afac9ef0ce2dc086272ef011c686f4c6a30458fedbab64
     command: docker/entrypoint.sh
     restart: always
     environment:
@@ -35,7 +35,7 @@ services:
       - solr
 
   seek_workers: # The SEEK delayed job workers
-      image: gitlab.zbmed.de:5050/nfdi4health/registersearch/seek-nfdi4health:da90c422faf5473c2a0e00afba023d50c194cdba
+      image: ghcr.io/nfdi4health/seek:csh@sha256:6c86f3783548ecee10afac9ef0ce2dc086272ef011c686f4c6a30458fedbab64
       command: docker/start_workers.sh
       restart: always
       environment:
