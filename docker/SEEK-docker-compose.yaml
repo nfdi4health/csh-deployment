@@ -6,7 +6,7 @@ services:
     restart: always
     stop_grace_period: 1m30s
     env_file:
-      - ../db.env
+      - db.env
     volumes:
       - seek-mysql-db:/var/lib/mysql
 
@@ -21,7 +21,7 @@ services:
       SOLR_HOST: solr
       NO_ENTRYPOINT_WORKERS: 1
     env_file:
-      - ../db.env
+      - db.env
     volumes:
       - seek-filestore:/seek/filestore
       - seek-cache:/seek/tmp/cache
@@ -43,7 +43,7 @@ services:
         SOLR_PORT: 8983
         SOLR_HOST: solr
       env_file:
-        - ../db.env
+        - db.env
       volumes:
         - seek-filestore:/seek/filestore
         - seek-cache:/seek/tmp/cache
