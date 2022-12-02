@@ -42,7 +42,7 @@ Requires a backup of the filesystem  and a backup of the database. In case of st
 
 ### Create a SEEK backup
 1. Create a backup of the filesystem (i.e. user uploads)
-   1. `docker run --rm --volumes-from seek -v $(pwd):/backup ubuntu tar cvf /backup/$(date +"%Y-%m-%d")_SEEK-filestore.tar /seek/filestore`
+   1. `docker run --rm --volumes-from seek -v $(pwd):/backup ubuntu tar cvf backup/$(date +"%Y-%m-%d")_SEEK-filestore.tar /seek/filestore`
 2. Create a copy of the database
    1. The SEEK documentation recommends copying the file systeme
       - `docker run --rm --volumes-from seek-mysql -v $(pwd):/backup ubuntu tar -cvf /backup/$(date +"%Y-%m-%d")_SEEK-mysql-fs.tar /var/lib/mysql`

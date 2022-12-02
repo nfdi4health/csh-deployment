@@ -1,0 +1,20 @@
+#https://github.com/zalando/postgres-operator/blob/master/docs/quickstart.md
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: keycloack-postgres-cluster
+  namespace: default
+spec:
+  teamId: "keycloack"
+  volume:
+    size: 1Gi
+  numberOfInstances: 2
+  users:
+    keycloack:  # database owner
+    - superuser
+    - createdb
+  databases:
+    keycloack: keycloack  # dbname: owner
+  postgresql:
+    version: "14"
+---

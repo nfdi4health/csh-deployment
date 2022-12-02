@@ -1,0 +1,14 @@
+api:
+  default_token: Token No4165XVglm4rGwo4SAdwC7P_ZcGktk_GLoNjLII
+  default_project: 2
+ingress:
+  #dns: "csh.qa.km.k8s.zbmed.de"
+  enableSSL: false
+  certIssuer: "letsencrypt-prod"
+oidc:
+  clientid: csh-ui
+  authority: https://keycloak.qa.km.k8s.zbmed.de/realms/nfdi4health
+images:
+  backend: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/backend:0f801046f2b27a7db75a90d0a0b5f3052ee39151
+  frontend: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/frontend:0f801046f2b27a7db75a90d0a0b5f3052ee39151
+  seek: ghcr.io/nfdi4health/seek:csh@sha256:6c86f3783548ecee10afac9ef0ce2dc086272ef011c686f4c6a30458fedbab64

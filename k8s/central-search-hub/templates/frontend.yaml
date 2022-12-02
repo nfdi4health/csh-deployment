@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-frontend
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-frontend
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: {{ .Values.images.frontend }}
+        env:
+          - name: API_PASS
+            value: http://{{ .Release.Name }}-backend:5000
+          - name: KEYCLOAK_URL
+            value: {{ .Values.oidc.authority }}
+          - name: KEYCLOAK_CLIENTID
+            value: {{ .Values.oidc.clientid }}
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-frontend
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 80
+  selector:
+    name: {{ .Release.Name }}-frontend

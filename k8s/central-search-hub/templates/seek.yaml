@@ -1,0 +1,307 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-seek-solr
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-seek-solr
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-seek-solr
+    spec:
+      containers:
+      - image: fairdom/seek-solr:8.11
+        name: solr
+        env:
+          - name: SOLR_JAVA_MEM
+            value: -Xms512m -Xmx1024m
+        ports:
+          - containerPort: 8983
+        volumeMounts:
+          - mountPath: /var/solr/
+            name: {{ .Release.Name }}-seek-solr-data-container
+        command: [ "/bin/sh" ]
+        args: [ "-c", "docker-entrypoint.sh solr-precreate seek /opt/solr/server/solr/configsets/seek_config" ]
+      securityContext:
+        fsGroup: 8983
+      volumes:
+        - name: {{ .Release.Name }}-seek-solr-data-container
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-seek-solr-data-container
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-seek-solr
+spec:
+  ports:
+    - name: "8983"
+      port: 8983
+      targetPort: 8983
+  selector:
+    name: {{ .Release.Name }}-seek-solr
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-seek-solr-data-container
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace "{{ .Release.Name }}-seek-secret") -}}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-seek-secret
+type: Opaque
+{{ if $secret -}}
+data:
+  MYSQL_ROOT_PASSWORD: {{ $secret.data.MYSQL_ROOT_PASSWORD }}
+  MYSQL_USER: {{ $secret.data.MYSQL_USER }}
+  MYSQL_PASSWORD: {{ $secret.data.MYSQL_PASSWORD }}
+{{ else -}}
+data:
+  MYSQL_ROOT_PASSWORD: {{ uuidv4 |b64enc| quote }}
+  MYSQL_USER: {{ uuidv4 |b64enc| quote }}
+  MYSQL_PASSWORD: {{ uuidv4 |b64enc| quote }}
+{{ end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-seek-mysql
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-seek-mysql
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-seek-mysql
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: mysql
+        env:
+          - name: MYSQL_HOST
+            value: db
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-seek-secret
+                key: MYSQL_ROOT_PASSWORD
+                optional: false
+          - name: MYSQL_DATABASE
+            value: seek_docker
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-seek-secret
+                key: MYSQL_USER
+                optional: false
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-seek-secret
+                key: MYSQL_PASSWORD
+                optional: false
+        ports:
+          - containerPort: 3306
+        volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: {{ .Release.Name }}-seek-mysql-data-container
+        args: [ "--character-set-server=utf8mb4","--collation-server=utf8mb4_unicode_ci","--ignore-db-dir=lost+found" ]
+      volumes:
+        - name: {{ .Release.Name }}-seek-mysql-data-container
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-seek-mysql-data-container
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-seek-mysql
+spec:
+  ports:
+    - name: "3306"
+      port: 3306
+      targetPort: 3306
+  selector:
+    name: {{ .Release.Name }}-seek-mysql
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-seek-mysql-data-container
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-seek-backend
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-seek-backend
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-seek-backend
+    spec:
+      containers:
+      - image:  {{ .Values.images.seek }}
+        name: backend
+        env:
+          - name: RAILS_ENV
+            value: "production"
+          - name: RAILS_RELATIVE_URL_ROOT
+            value: "/mdr"
+          - name: SOLR_PORT
+            value: "8983"
+          - name: SOLR_HOST
+            value: "{{ .Release.Name}}-seek-solr"
+          - name: NO_ENTRYPOINT_WORKERS
+            value: "1"
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-seek-secret
+                key: MYSQL_USER
+                optional: false
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-seek-secret
+                key: MYSQL_PASSWORD
+                optional: false
+          - name: MYSQL_HOST
+            value: "{{ .Release.Name}}-seek-mysql"
+          - name: MYSQL_DATABASE
+            value: "seek_docker"
+        ports:
+          - containerPort: 3000
+        volumeMounts:
+          - mountPath: /seek/filestore
+            name: "{{ .Release.Name }}-seek-backend-file-data-container"
+            subPath: "prod"
+          - mountPath: /seek/backup
+            name: "{{ .Release.Name }}-seek-backend-file-data-container"
+            subPath: "backup"
+          - mountPath: /seek/tmp/cache
+            name: "{{ .Release.Name }}-seek-backend-cache-data-container"
+      securityContext:
+        fsGroup: 33
+      volumes:
+        - name: "{{ .Release.Name }}-seek-backend-file-data-container"
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-seek-backend-file-data-container"
+        - name: "{{ .Release.Name }}-seek-backend-cache-data-container"
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-seek-backend-cache-data-container"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-seek-backend
+spec:
+  ports:
+    - name: "3000"
+      port: 3000
+      targetPort: 3000
+  selector:
+    name: {{ .Release.Name }}-seek-backend
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-seek-backend-file-data-container
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-seek-backend-cache-data-container
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-seek-worker
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-seek-worker
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-seek-worker
+    spec:
+      containers:
+      - image:  {{ .Values.images.seek }}
+        name: backend
+        env:
+          - name: RAILS_ENV
+            value: "production"
+          - name: RAILS_RELATIVE_URL_ROOT
+            value: "/mdr"
+          - name: SOLR_PORT
+            value: "8983"
+          - name: SOLR_HOST
+            value: "{{ .Release.Name}}-seek-solr"
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-seek-secret
+                key: MYSQL_USER
+                optional: false
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-seek-secret
+                key: MYSQL_PASSWORD
+                optional: false
+          - name: MYSQL_HOST
+            value: "{{ .Release.Name}}-seek-mysql"
+          - name: MYSQL_DATABASE
+            value: "seek_docker"
+        command: ["/bin/sh"]
+        args: ["-c","docker/start_workers.sh"]
+        ports:
+          - containerPort: 3000
+        volumeMounts:
+          - mountPath: /seek/filestore
+            name: "{{ .Release.Name }}-seek-backend-file-data-container"
+            readOnly: true
+            subPath: "prod"
+          - mountPath: /seek/tmp/cache
+            name: "{{ .Release.Name }}-seek-backend-cache-data-container"
+            readOnly: true
+      securityContext:
+        fsGroup: 33
+      volumes:
+        - name: "{{ .Release.Name }}-seek-backend-file-data-container"
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-seek-backend-file-data-container"
+        - name: "{{ .Release.Name }}-seek-backend-cache-data-container"
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-seek-backend-cache-data-container"

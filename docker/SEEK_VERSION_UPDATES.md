@@ -21,6 +21,10 @@
 # Update October 2023
 1. `docker-compose -f SEEK-docker-compose.yaml exec seek bundle exec rake seek_dev_nfdi4health:update_language_attribute_types`
 
+# Update November 2023
+1. `docker-compose -f SEEK-docker-compose.yaml exec seek bundle exec rake seek_dev_nfdi4health_update_to_MDS_v2_1:update_sample_controlled_vocab_terms`
+2. `docker-compose -f SEEK-docker-compose.yaml exec seek bundle exec rake seek_dev_nfdi4health_update_to_MDS_v2_1:data_migration_to_MDS_2_1`
+
 
 # Update Rights.
 Open the shell can execute the loop below.

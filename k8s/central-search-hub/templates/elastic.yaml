@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-elastic
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-elastic
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-elastic
+    spec:
+      containers:
+          - name: elasticsearch
+            image: elasticsearch:7.9.3
+            env:
+              - name: discovery.type
+                value: single-node
+              - name: network.host
+                value: 0.0.0.0
+            ports:
+              - containerPort: 9200
+            resources: { }
+            volumeMounts:
+              - mountPath: /usr/share/elasticsearch/data
+                name: {{ .Release.Name }}-elastic-data-container
+      securityContext:
+        fsGroup: 1000
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Release.Name }}-elastic-data-container
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-elastic-data-container
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-elastic
+spec:
+  ports:
+    - name: "9200"
+      port: 9200
+      targetPort: 9200
+  selector:
+    name: {{ .Release.Name }}-elastic
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-elastic-data-container
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+

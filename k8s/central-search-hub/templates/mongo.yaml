@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mongo
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-mongo
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo
+          env:
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongo-secret
+                  key: password
+                  optional: false
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongo-secret
+                  key: username
+                  optional: false
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: /data/db
+              name: {{ .Release.Name }}-mongo-data-container
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Release.Name }}-mongo-data-container
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-mongo-data-container
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mongo
+spec:
+  ports:
+    - name: "27017"
+      port: 27017
+      targetPort: 27017
+  selector:
+    name: {{ .Release.Name }}-mongo
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-mongo-data-container
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-mongo-secret
+type: Opaque
+data:
+  username: cm9vdAo=
+  password: ZXhhbXBsZQo=
+
