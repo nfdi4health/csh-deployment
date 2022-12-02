@@ -28,3 +28,10 @@ spec:
               name: {{ .Release.Name }}-frontend
               port:
                 number: 80
+        - path: /mdr
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Release.Name }}-seek-backend
+              port:
+                number: 3000
