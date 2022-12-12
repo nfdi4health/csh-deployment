@@ -9,8 +9,10 @@
 1) Copy the filestore backup into the volume into the path `/seek/backup/`
 `kubectl cp ~/2022-12-01_SEEK-filestore.tar  $POD:/seek/backup/2022-12-01_SEEK-filestore.tar`
 2) Login into the container and extract the tar file
-`kubectl exec -it $POD -- /bin/sh -c "tar xfv backup/2022-12-01_SEEK-filestore.tar`
+`kubectl exec -it $POD -- /bin/sh -c "tar xfv /seek/backup/2022-12-01_SEEK-filestore.tar -C / --no-same-permissions --no-same-owner --no-overwrite-dir"`
 3) Connect with the msql server and execute the 
+`kubectl get secret/{{. Release.Name }}-seek-secret -o 'jsonpath={.data.MYSQL_PASSWORD}' | base64 -d`
+`kubectl get secret/{{. Release.Name }}-seek-secret -o 'jsonpath={data.MYSQL_USER}' | base64 -d`
 
 ## Fill the search index
 Forward `localhost:9200` connections to the elastic search instance of a specific release

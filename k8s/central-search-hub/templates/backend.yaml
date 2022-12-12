@@ -15,11 +15,26 @@ spec:
       - image: {{ .Values.images.backend }}
         name: backend
         env:
-          - name: API_HOST
-            # @TODO: Also use the secret here.
-            value: mongodb://root:example@{{ .Release.Name }}-mongo:27017/resources?authSource=admin
+          - name: MONGO_HOST
+            value: "{{ .Release.Name }}-mongo"
+          - name: MONGO_PORT
+            value: "27017"
+          - name: MONGO_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mongo-secret
+                key: username
+                optional: false
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mongo-secret
+                key: password
+                optional: false
           - name: API_PROJECT
             value: "{{ .Values.api.default_project }}"
+          - name: API_HOST_SEEK
+            value: "http://{{ .Release.Name }}-seek-backend:3000/mdr"
           - name: API_TOKEN
             valueFrom:
               secretKeyRef:

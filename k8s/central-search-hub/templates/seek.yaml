@@ -67,9 +67,9 @@ data:
   MYSQL_PASSWORD: {{ $secret.data.MYSQL_PASSWORD }}
 {{ else -}}
 data:
-  MYSQL_ROOT_PASSWORD: {{ uuidv4 |b64enc| quote }}
-  MYSQL_USER: {{ uuidv4 |b64enc| quote }}
-  MYSQL_PASSWORD: {{ uuidv4 |b64enc| quote }}
+  MYSQL_ROOT_PASSWORD: {{ randAlphaNum 20  |b64enc| quote }}
+  MYSQL_USER: {{ randAlphaNum 10  |b64enc| quote }}
+  MYSQL_PASSWORD: {{ randAlphaNum 20  |b64enc| quote }}
 {{ end }}
 ---
 apiVersion: apps/v1
@@ -89,8 +89,6 @@ spec:
       - image: mysql:5.7
         name: mysql
         env:
-          - name: MYSQL_HOST
-            value: db
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:

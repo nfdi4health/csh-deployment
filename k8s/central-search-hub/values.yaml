@@ -9,6 +9,6 @@ oidc:
   clientid: csh-ui
   authority: https://keycloak.qa.km.k8s.zbmed.de/realms/nfdi4health
 images:
-  backend: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/backend:0f801046f2b27a7db75a90d0a0b5f3052ee39151
-  frontend: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/frontend:0f801046f2b27a7db75a90d0a0b5f3052ee39151
-  seek: ghcr.io/nfdi4health/seek:csh@sha256:6c86f3783548ecee10afac9ef0ce2dc086272ef011c686f4c6a30458fedbab64
+  backend: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/backend:44ee5cad07d5fbc44df4cd1e2a29eae878d95390
+  frontend: gitlab.zbmed.de:5050/km/nfdi4health/csh-ui/frontend:44ee5cad07d5fbc44df4cd1e2a29eae878d95390
+  seek: ghcr.io/nfdi4health/seek:csh@sha256:d093d6112ed2b310bba52d9bc37a75e5b7192d8f7df277c5f90fab5acde9e3cf
