@@ -54,23 +54,17 @@ spec:
     requests:
       storage: 100Mi
 ---
-{{- $secret := (lookup "v1" "Secret" .Release.Namespace "{{ .Release.Name }}-seek-secret") -}}
 apiVersion: v1
 kind: Secret
 metadata:
   name: {{ .Release.Name }}-seek-secret
+  annotations:
+    "helm.sh/resource-policy": keep
 type: Opaque
-{{ if $secret -}}
-data:
-  MYSQL_ROOT_PASSWORD: {{ $secret.data.MYSQL_ROOT_PASSWORD }}
-  MYSQL_USER: {{ $secret.data.MYSQL_USER }}
-  MYSQL_PASSWORD: {{ $secret.data.MYSQL_PASSWORD }}
-{{ else -}}
 data:
   MYSQL_ROOT_PASSWORD: {{ randAlphaNum 20  |b64enc| quote }}
   MYSQL_USER: {{ randAlphaNum 10  |b64enc| quote }}
   MYSQL_PASSWORD: {{ randAlphaNum 20  |b64enc| quote }}
-{{ end }}
 ---
 apiVersion: apps/v1
 kind: Deployment

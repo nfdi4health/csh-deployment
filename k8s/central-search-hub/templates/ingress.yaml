@@ -44,18 +44,14 @@ spec:
               port:
                 number: 3000
 ---
-{{ if .Values.ingress.enableHtacess }}
-{{- $secret := (lookup "v1" "Secret" .Release.Namespace "{{ .Release.Name }}-ingress-secret") -}}
+{{- if .Values.ingress.enableHtacess }}
 apiVersion: v1
 kind: Secret
 metadata:
   name: {{ .Release.Name }}-ingress-secret
+  annotations:
+    "helm.sh/resource-policy": keep
 type: Opaque
-{{ if $secret -}}
-data:
-  auth: {{ $secret.token }}
-{{ else -}}
 data:
   auth: {{ default "" "nfdi4health:$apr1$tSv9N0ac$9Iw3ILGTllJM.0v9fsmCP/" | b64enc | quote }}
-{{ end }}
-{{ end }}
+{{- end }}
