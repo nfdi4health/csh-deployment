@@ -18,6 +18,7 @@ metadata:
     # message to display with an appropriate context why the authentication is required
     nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - nfdi4health'
     {{ end }}
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 12k
 spec:
   {{ if .Values.ingress.enableSSL }}
   tls:
