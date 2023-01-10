@@ -1,5 +1,7 @@
 
-# Installs the central search hub
+# Install the central search hub
+
+`helm install my-test ./central-seach-hub`
 
 ## Load a backup
 
@@ -13,7 +15,8 @@
 3) Connect with the msql server and execute the 
 `kubectl get secret/{{. Release.Name }}-seek-secret -o 'jsonpath={.data.MYSQL_PASSWORD}' | base64 -d`
 `kubectl get secret/{{. Release.Name }}-seek-secret -o 'jsonpath={data.MYSQL_USER}' | base64 -d`
-
+`kubectl port-forward svc/{{. Release.Name }}-seek-mysql  3306:3306`
+Import the sql dump
 ## Fill the search index
 Forward `localhost:9200` connections to the elastic search instance of a specific release
 `kubectl port-forward svc/{{. Release.Name }}-elastic  9200:9200` 

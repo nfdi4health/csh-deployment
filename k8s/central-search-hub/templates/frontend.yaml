@@ -18,9 +18,9 @@ spec:
           - name: API_PASS
             value: http://{{ .Release.Name }}-backend:5000
           - name: KEYCLOAK_URL
-            value: {{ .Values.oidc.authority }}
+            value: {{ .Values.oidc.frontend.authority }}
           - name: KEYCLOAK_CLIENTID
-            value: {{ .Values.oidc.clientid }}
+            value: {{ .Values.oidc.frontend.clientid }}
         ports:
           - containerPort: 80
 ---

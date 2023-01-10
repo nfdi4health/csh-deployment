@@ -61,12 +61,19 @@ spec:
     requests:
       storage: 100Mi
 ---
+{{- $name := printf "%s-%s" .Release.Name "mongo-secret" }}
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace $name) }}
 apiVersion: v1
 kind: Secret
 metadata:
   name: {{ .Release.Name }}-mongo-secret
 type: Opaque
 data:
+  {{ if $secret -}}
+  username: {{ $secret.data.username }}
+  password: {{ $secret.data.password }}
+  {{ else -}}
   username: cm9vdAo=
   password: ZXhhbXBsZQo=
+  {{ end -}}
 

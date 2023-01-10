@@ -44,6 +44,12 @@ spec:
             value: test
           - name: ELASTIC_URL
             value: http://{{ .Release.Name }}-elastic:9200
+          - name: CLIENT_ID
+            value: {{ .Values.oidc.backend.clientid }}
+          - name: CLIENT_SECRET
+            value: {{ .Values.oidc.backend.secret }}
+          - name: INTROSPECT_URL
+            value: {{ .Values.oidc.backend.introspect }}
         ports:
           - containerPort: 5000
 ---
