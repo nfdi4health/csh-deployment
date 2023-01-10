@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-mongo
 spec:
+  serviceName: {{ .Release.Name }}-mongo
   selector:
     matchLabels:
       name: {{ .Release.Name }}-mongo

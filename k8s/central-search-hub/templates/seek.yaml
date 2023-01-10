@@ -75,10 +75,11 @@ data:
   {{- end }}
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-seek-mysql
 spec:
+  serviceName: {{ .Release.Name }}-seek-mysql
   selector:
     matchLabels:
       name: {{ .Release.Name }}-seek-mysql
@@ -151,10 +152,11 @@ spec:
       storage: 100Mi
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-seek-backend
 spec:
+  serviceName: {{ .Release.Name }}-seek-backend
   selector:
     matchLabels:
       name: {{ .Release.Name }}-seek-backend
@@ -254,10 +256,11 @@ spec:
       storage: 100Mi
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-seek-worker
 spec:
+  serviceName: {{ .Release.Name }}-seek-worker
   selector:
     matchLabels:
       name: {{ .Release.Name }}-seek-worker
