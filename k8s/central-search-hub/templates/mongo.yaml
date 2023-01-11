@@ -79,7 +79,7 @@ data:
   username: {{ $secret.data.username }}
   password: {{ $secret.data.password }}
   {{ else -}}
-  username: cm9vdAo=
-  password: ZXhhbXBsZQo=
+  username: {{ randAlphaNum 20  |b64enc| quote }}
+  password: {{ randAlphaNum 20  |b64enc| quote }}
   {{ end -}}
 
