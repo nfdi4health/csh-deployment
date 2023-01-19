@@ -15,6 +15,6 @@ oidc:
     secret:
     introspect:
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/backend:cc55228ba4de299e592ac61d6667183d4355f123
-  frontend: ghcr.io/nfdi4health/csh-ui/frontend:cc55228ba4de299e592ac61d6667183d4355f123
+  backend: ghcr.io/nfdi4health/csh-ui/backend:8c62c15242f2cd59585a596de7c6b55530910567
+  frontend: ghcr.io/nfdi4health/csh-ui/frontend:8c62c15242f2cd59585a596de7c6b55530910567
   seek: ghcr.io/nfdi4health/seek:csh@sha256:fedc171f84c37a00620823dcb5962442088d80adc6125915cedf7712d759d075
