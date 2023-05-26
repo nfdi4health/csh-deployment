@@ -10,14 +10,6 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/issuer: {{ .Values.ingress.certIssuer | quote}}
     {{ end }}
-    {{ if .Values.ingress.enableHtacess }}
-    # type of authentication
-    nginx.ingress.kubernetes.io/auth-type: basic
-    # name of the secret that contains the user/password definitions
-    nginx.ingress.kubernetes.io/auth-secret: "{{ .Release.Name }}-ingress-secret"
-    # message to display with an appropriate context why the authentication is required
-    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - nfdi4health'
-    {{ end }}
     nginx.ingress.kubernetes.io/proxy-buffer-size: 12k
 spec:
   {{ if .Values.ingress.enableSSL }}
@@ -27,7 +19,7 @@ spec:
       secretName: {{ .Release.Name }}-ssl-secret
   {{ end }}
   rules:
-    - host: {{ .Release.Name }}.qa.km.k8s.zbmed.de
+    - host: {{ .Values.ingress.dns }}
       http:
         paths:
         - path: /
@@ -37,22 +29,3 @@ spec:
               name: {{ .Release.Name }}-frontend
               port:
                 number: 80
-        - path: /mdr
-          pathType: Prefix
-          backend:
-            service:
-              name: {{ .Release.Name }}-seek-backend
-              port:
-                number: 3000
----
-{{- if .Values.ingress.enableHtacess }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ .Release.Name }}-ingress-secret
-  annotations:
-    "helm.sh/resource-policy": keep
-type: Opaque
-data:
-  auth: {{ default "" "nfdi4health:$apr1$tSv9N0ac$9Iw3ILGTllJM.0v9fsmCP/" | b64enc | quote }}
-{{- end }}

@@ -1,11 +1,11 @@
 api:
-  default_token:
-  default_project:
+  backend_mode:
+  dataverse_oidc_id:
+  dataverse_host:
 ingress:
-  #dns: "csh.qa.km.k8s.zbmed.de"
+  dns:
   enableSSL: false
-  enableHtacess: false
-  certIssuer: "letsencrypt-prod"
+  certIssuer:
 oidc:
   frontend:
     clientid:
@@ -15,6 +15,5 @@ oidc:
     secret:
     introspect:
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/backend:8c62c15242f2cd59585a596de7c6b55530910567
-  frontend: ghcr.io/nfdi4health/csh-ui/frontend:8c62c15242f2cd59585a596de7c6b55530910567
-  seek: ghcr.io/nfdi4health/seek:csh@sha256:fedc171f84c37a00620823dcb5962442088d80adc6125915cedf7712d759d075
+  backend: ghcr.io/nfdi4health/csh-ui/backend:dd54d34a33307e996407c426993b35fd44e08fb7
+  frontend: ghcr.io/nfdi4health/csh-ui/frontend:dd54d34a33307e996407c426993b35fd44e08fb7

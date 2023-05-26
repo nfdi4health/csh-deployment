@@ -20,6 +20,12 @@ spec:
           requests:
             memory: 100Mi
         env:
+          - name: DATAVERSE_HOST
+            value: {{ .Values.api.dataverse_host }}
+          - name: DATAVERSE_OIDC_ID
+            value: {{ .Values.api.dataverse_oidc_id }}
+          - name: backend_mode
+            value: {{ .Values.api.backend_mode }}
           - name: MONGO_HOST
             value: "{{ .Release.Name }}-mongo"
           - name: MONGO_PORT
@@ -36,10 +42,6 @@ spec:
                 name: {{ .Release.Name }}-mongo-secret
                 key: password
                 optional: false
-          - name: API_PROJECT
-            value: "{{ .Values.api.default_project }}"
-          - name: API_HOST_SEEK
-            value: "http://{{ .Release.Name }}-seek-backend:3000/mdr"
           - name: API_TOKEN
             valueFrom:
               secretKeyRef:
