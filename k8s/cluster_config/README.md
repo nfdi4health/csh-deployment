@@ -1,5 +1,38 @@
 # Setup k8s cluster for our usage
 
+## Verknüpfung von GitHub und Kubernets
+Annahme es existiert ein Nutzeraccount in Github und kubernetes soll in die Lage gebracht werden alle Images, auf die Nutzer zugreifen kann,
+zuzugreifen. 
+1. Create Personal Access Token (PAT) with GitHub
+
+2. Username und Token als base64 kodieren. 
+
+   `echo -n "$USERNAME:$TOKEN" | base64 `
+
+3. dockerconfig Erstellen
+
+    ```
+    {
+        "auths": {
+            "ghcr.io": {
+                "auth": "$TOKEN"
+            }
+        }
+    }
+    ```
+
+4. Kubernetes Secret erstellen
+
+    ```
+    kubectl create secret generic regcred \                                                                            
+    --from-file=.dockerconfigjson=.dockerconfig.json \
+    --type=kubernetes.io/dockerconfigjson
+    ```
+   
+5. Secret als default setzten
+
+   `kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "regcred"}]}'`
+
 ## Verknüpfung von GitLab und Kubernets
 Annahme es existiert eine Gruppe in Gitlab und kubernetes soll in die Lage gebracht werden
 alle Images im Scope der Gruppe zu lesen. Beispiel: k8s soll alle container images der Gruppe `km` lesen können.
@@ -31,6 +64,24 @@ alle Images im Scope der Gruppe zu lesen. Beispiel: k8s soll alle container imag
 5. Secret als default setzten
 
    `kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "regcred"}]}'`
+
+## Betrieb von gleichzeitigem Zugriff auf GitHub und Gitlab
+Vorgehen wie bei einzelnem nur in Schritt 3 (Erstellen der docker config) beide Section erstellen.
+Beispiel:
+```
+     {
+        "auths": {
+            "ghcr.io": {
+                "auth": ""
+            },
+            "gitlab.zbmed.de:5050": {
+                "auth": ""
+            }
+        }
+    }
+     
+```
+
 # Konfiguration ingress controller (Zugriff auf Dienste via Domain)
 https://kubernetes.github.io/ingress-nginx/
 1. Installation ingress-nginx
@@ -44,8 +95,8 @@ helm upgrade --install ingress-nginx ingress-nginx \
 `kubectl get service ingress-nginx-controller --namespace=ingress-nginx`
 
 3. Ask IT to create a DSN A record that points to the `EXTERNAL-IP`.
-   Next to specific public DNS record, I always configure a wildcard e.g. `*.qa.km.zbmed.de`.
-   That allows to quickly expose services without another contact with IT. (Alternatively, to strip manually step the IT could allow the cluster to manage a DNS Zone :)
+   Next to specific public DNS record, I suggest to configure a wildcard e.g. `*.qa.km.zbmed.de`.
+   That allows to quickly expose services without another contact with IT. (Alternatively, to strip manually step the IT department we could allow the clustermanager (gardner) to manage a DNS Zone :)
 4. Check that IP points to correct IP
 `dig $DOMAN`
 
@@ -73,7 +124,6 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    # Staging API
     server: https://acme-v02.api.letsencrypt.org/directory
     email: km-bonn@zbmed.de
     privateKeySecretRef:
@@ -103,11 +153,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - csh.qa.km.k8s.zbmed.de
+        - example.qa.km.k8s.zbmed.de
       # Secret to store private-key for this domain
       secretName: csh-key-staging 
   rules:
-    - host: "csh.qa.km.k8s.zbmed.de"
+    - host: "example.qa.km.k8s.zbmed.de"
       http:
         paths:
         - path: /
