@@ -1,0 +1,174 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-dataverse-svc
+  labels:
+    app.kubernetes.io/name: dataverse
+    app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/component: dataverse
+    app.kubernetes.io/part-of: dataverse
+spec:
+  ports:
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+    - name: "4848"
+      port: 4848
+      targetPort: 4848
+    - name: "9009"
+      port: 9009
+      targetPort: 9009
+    - name: "8686"
+      port: 8686
+      targetPort: 8686
+  selector:
+    app.kubernetes.io/name: dataverse
+    app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/component: dataverse
+    app.kubernetes.io/part-of: dataverse
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-dataverse
+  labels:
+    app.kubernetes.io/name: dataverse
+    app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/component: dataverse
+    app.kubernetes.io/part-of: dataverse
+spec:
+  serviceName:  {{ .Release.Name }}-dataverse
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: dataverse
+      app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+      app.kubernetes.io/version: "5.13"
+      app.kubernetes.io/component: dataverse
+      app.kubernetes.io/part-of: dataverse
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: dataverse
+        app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+        app.kubernetes.io/version: "5.13"
+        app.kubernetes.io/component: dataverse
+        app.kubernetes.io/part-of: dataverse
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - image: {{ .Values.images.backend}}
+          name: dataverse
+          env:
+            - name: DATAVERSE_SITEURL
+              value: {{.Values.ingress.dns }}
+            - name: CT_DATAVERSE_FQDN
+              value: {{.Values.ingress.dns }}
+            # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
+            - name: _CT_DATAVERSE_SITEURL
+              value: {{.Values.ingress.dns }}
+            - name: _CT_DATAVERSE_FQDN
+              value: {{.Values.ingress.dns }}
+            - name: DATAVERSE_FEATURE_API_BEARER_AUTH
+              value: "1"
+            - name: DATAVERSE_DB_HOST
+              value: {{ .Release.Name }}-dataverse-postgres
+            - name: DATAVERSE_DB_NAME
+              value: dataverse
+            - name: DATAVERSE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: DATAVERSE_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
+                  key: username
+            # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
+            - name: _CT_DATAVERSE_SOLR_HOST
+              value: {{ .Release.Name }}-dataverse-solr-svc
+            - name: DATAVERSE_SOLR_HOST
+              value: {{ .Release.Name }}-dataverse-solr-svc
+            - name: DATAVERSE_SOLR_PORT
+              value: "8983"
+          ports:
+            - containerPort: 8080
+            - containerPort: 4848
+            - containerPort: 9009
+            - containerPort: 8686
+          resources:
+            limits:
+              memory: "2147483648"
+          volumeMounts:
+            - mountPath: /dv
+              name: dev-dataverse-claim0
+            - mountPath: /secrets
+              name: dev-dataverse-claim1
+      restartPolicy: Always
+      initContainers:
+        - name: check-db-ready
+          image: postgres:9.6
+          env:
+            - name: DATAVERSE_DB_HOST
+              value: {{ .Release.Name }}-dataverse-postgres
+            - name: DATAVERSE_DB_NAME
+              value: dataverse
+            - name: DATAVERSE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: DATAVERSE_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
+                  key: username
+          command: [ 'sh', '-c',
+            'until pg_isready -h "${DATAVERSE_DB_HOST}";
+            do echo waiting for database "${DATAVERSE_DB_HOST}" ; sleep 3; done;
+            until PGPASSWORD="${DATAVERSE_DB_PASSWORD}" psql -h "${DATAVERSE_DB_HOST}" -d "${DATAVERSE_DB_NAME}" -U "${DATAVERSE_DB_USER}";
+            do echo waiting for auth "${DATAVERSE_DB_HOST}" ; sleep 3; done; echo DB available!;
+            ' ]
+        - name: check-solr-ready
+          image: giantswarm/tiny-tools
+          env:
+            - name: DATAVERSE_SOLR_HOST
+              value: {{ .Release.Name }}-dataverse-solr-svc
+            - name: DATAVERSE_SOLR_PORT
+              value: "8983"
+          command: [ 'sh', '-c',
+            'until curl -sS -f "http://${DATAVERSE_SOLR_HOST}:${DATAVERSE_SOLR_PORT}/solr/collection1/admin/ping" 2>&1 | grep "status.:.OK";
+            do echo waiting for solr; sleep 3; done;echo SOLR available!' ]
+      volumes:
+        - name: dev-dataverse-claim0
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-dataverse-claim0
+        - name: dev-dataverse-claim1
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-dataverse-claim1
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-dataverse-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-dataverse-claim1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-dataverse-solr-svc
+spec:
+  ports:
+    - port: 8983
+      name: "8983"
+      targetPort: 8983
+  selector:
+      app.kubernetes.io/name: solr
+      app.kubernetes.io/instance: solr-{{ .Release.Name }}
+      app.kubernetes.io/version: "8.11.2"
+      app.kubernetes.io/component: solr
+      app.kubernetes.io/part-of: dataverse
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-dataverse-solr-data
+  labels:
+    app.kubernetes.io/name: solr
+    app.kubernetes.io/instance: solr-{{ .Release.Name }}
+    app.kubernetes.io/version: "8.11.2"
+    app.kubernetes.io/component: solr
+    app.kubernetes.io/part-of: dataverse
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-dataverse-solr
+  labels:
+    app.kubernetes.io/name: solr
+    app.kubernetes.io/instance: solr-{{ .Release.Name }}
+    app.kubernetes.io/version: "8.11.2"
+    app.kubernetes.io/component: solr
+    app.kubernetes.io/part-of: dataverse
+spec:
+  serviceName: {{ .Release.Name }}-dataverse-solr
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: solr
+      app.kubernetes.io/instance: solr-{{ .Release.Name }}
+      app.kubernetes.io/version: "8.11.2"
+      app.kubernetes.io/component: solr
+      app.kubernetes.io/part-of: dataverse
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: solr
+        app.kubernetes.io/instance: solr-{{ .Release.Name }}
+        app.kubernetes.io/version: "8.11.2"
+        app.kubernetes.io/component: solr
+        app.kubernetes.io/part-of: dataverse
+    spec:
+      securityContext:
+        fsGroup: 8983
+      containers:
+      - name: solr
+        image: solr:8.11.2
+        command: ["/bin/bash", "-c"]
+        # if /var/solr/data does not exist precreate-core fails. We need to precrate a core otherwise the default configset is not present in container
+        args: ["mkdir -p /var/solr/data; precreate-core setup;mkdir -p /tmp/conf; cp -R -n /opt/solr-8.11.2/server/solr/configsets/_default/conf /tmp;cp /tmp/schema.xml /tmp/conf/schema.xml;cp /tmp/solrconfig.xml /tmp/conf/solrconfig.xml;precreate-core collection1 /tmp/conf; solr-foreground -Djetty.host=0.0.0.0"]
+        env:
+          - name: SOLR_JETTY_HOST
+            value: "0.0.0.0"
+          - name: SOLR_OPTS
+            value: "-Dsolr.jetty.request.header.size=65535"
+        ports:
+          - containerPort: 8983
+        volumeMounts:
+          - mountPath: /var/solr
+            name: solr-data
+          - mountPath: /tmp/schema.xml
+            name: cfgmap
+            subPath: schema.xml
+          - mountPath: /tmp/solrconfig.xml
+            name: cfgmap
+            subPath: solrconfig.xml
+          - mountPath: /tmp/update-fields.sh
+            name: cfgmap
+            subPath: update-fields.sh
+      restartPolicy: Always
+      volumes:
+        - name: solr-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-dataverse-solr-data
+        - name: cfgmap
+          configMap:
+            name: {{ .Release.Name }}-dataverse-solr-config

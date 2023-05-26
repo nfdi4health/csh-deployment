@@ -1,0 +1,25 @@
+#https://github.com/zalando/postgres-operator/blob/master/docs/quickstart.md
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name:  {{ .Release.Name }}-dataverse-postgres
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/instance: postgres-{{ .Release.Name }}
+    app.kubernetes.io/version: "14"
+    app.kubernetes.io/component: postgres
+    app.kubernetes.io/part-of: dataverse
+spec:
+  teamId:  {{ .Release.Name }}
+  volume:
+    size: 1Gi
+  numberOfInstances: 2
+  users:
+    dataverse:  # database owner
+    - superuser
+    - createdb
+  databases:
+    dataverse: dataverse  # dbname: owner
+  postgresql:
+    version: "14"
+---
