@@ -24,7 +24,7 @@ spec:
             value: {{ .Values.api.dataverse_host }}
           - name: DATAVERSE_OIDC_ID
             value: {{ .Values.api.dataverse_oidc_id }}
-          - name: backend_mode
+          - name: BACKEND_MODE
             value: {{ .Values.api.backend_mode }}
           - name: MONGO_HOST
             value: "{{ .Release.Name }}-mongo"
