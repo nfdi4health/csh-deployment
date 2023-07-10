@@ -5,6 +5,7 @@ metadata:
   name: keycloack-postgres-cluster
   namespace: default
 spec:
+  enableLogicalBackup: true
   teamId: "keycloack"
   volume:
     size: 1Gi

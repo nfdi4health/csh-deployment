@@ -1,8 +1,6 @@
-
-# Install Postgres Operator
-
-https://github.com/zalando/postgres-operator/blob/master/docs/quickstart.md#helm-chart
-
+# Prerequisite
+- `postgres operator`
+- 
 # Install Keycloak Operator
 https://www.keycloak.org/operator/installation
 Follow the  "Installing by using kubectl without Operator Lifecycle Manager" Guide
