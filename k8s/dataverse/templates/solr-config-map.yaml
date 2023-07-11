@@ -13,5 +13,3 @@ data:
 {{ (.Files.Get "solr/schema.xml") | indent 4}}
   solrconfig.xml: >
 {{ (.Files.Get "solr/solrconfig.xml") | indent 4 }}
-  update-fields.sh: |-
-{{ (.Files.Get "solr/update-fields.sh") | indent 4 -}}

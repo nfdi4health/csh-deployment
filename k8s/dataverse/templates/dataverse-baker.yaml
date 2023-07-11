@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-dataverse-bootstrap
+  labels:
+    app.kubernetes.io/name: dataverse
+    app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/component: bootstrap
+    app.kubernetes.io/part-of: dataverse
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-delete-policy": hook-succeeded
+    "helm.sh/hook-weight": "-5"
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: dataverse
+        app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+        app.kubernetes.io/version: "5.13"
+        app.kubernetes.io/component: bootstrap
+        app.kubernetes.io/part-of: dataverse
+    spec:
+      containers:
+        - image:  gdcc/configbaker:unstable
+          name: dataverse-configbaker
+          command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","dev" ]
+      restartPolicy: Never
+      initContainers:
+        - name: check-dataverse-ready
+          image: giantswarm/tiny-tools
+          env:
+            - name: DATAVERSE_HOSTNAME
+              value: {{ .Release.Name }}-dataverse-svc
+          command: [ "/bin/sh","-c" ]
+          args: [ 'while [ $(curl -ksw "%{http_code}" http://$DATAVERSE_HOSTNAME:8080/api/info/version -o /dev/null) -ne 200 ]; do sleep 5; echo "health check failed . Waiting for the service..."; done' ]
+
