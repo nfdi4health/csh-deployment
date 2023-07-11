@@ -31,4 +31,15 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/central-search-hub-0.2.4/central-search-hub-0.2.4.tgz
     version: 0.2.4
-generated: "2023-06-15T08:47:45.56006119Z"
+  dataverse:
+  - apiVersion: v2
+    appVersion: 5.13.0
+    created: "2023-07-11T14:15:46.344841964Z"
+    description: A Helm chart to deploy the dataversse
+    digest: c5c90441e768e8885eccec35ce9496970361c9bdf7298833525909f8a616dca7
+    name: dataverse
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/dataverse-0.1.2/dataverse-0.1.2.tgz
+    version: 0.1.2
+generated: "2023-07-11T14:15:46.344854664Z"
