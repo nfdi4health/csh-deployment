@@ -57,6 +57,10 @@ spec:
             value: {{ .Values.oidc.backend.secret }}
           - name: INTROSPECT_URL
             value: {{ .Values.oidc.backend.introspect }}
+          - name: USER_URL
+            value: {{ .Values.oidc.backend.user_url }}
+          - name: OIDC_CONNECT_URL
+            value: {{ .Values.oidc.backend.oidc_connect_url }}
         ports:
           - containerPort: 5000
 ---
