@@ -1,0 +1,8 @@
+{
+  "alias": "ds_perm_admin2",
+  "name": "Dataset Permissions Admin",
+  "description": "A person who can manage the permissions of a dataset.",
+  "permissions": [
+    "ManageDatasetPermissions"
+  ]
+}
