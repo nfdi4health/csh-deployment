@@ -7,7 +7,7 @@
 # Configure custom schema
 ## Enable admin api via localhost port forwarding
 ### Allow all API calls
-`export DATAVERSE_POD="my-dataverse-dataverse-solr-0"`
+`export DATAVERSE_POD="my-dataverse-dataverse-0"`
 
 `kubectl port-forward pods/${DATAVERSE_POD} 8080:8080`
 
