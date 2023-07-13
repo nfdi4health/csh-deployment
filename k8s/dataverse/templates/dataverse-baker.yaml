@@ -8,10 +8,10 @@ metadata:
     app.kubernetes.io/version: "5.13"
     app.kubernetes.io/component: bootstrap
     app.kubernetes.io/part-of: dataverse
-{{/*  annotations:*/}}
-{{/*    "helm.sh/hook": post-install*/}}
-{{/*    "helm.sh/hook-delete-policy": hook-succeeded*/}}
-{{/*    "helm.sh/hook-weight": "-5"*/}}
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-delete-policy": hook-succeeded
+    "helm.sh/hook-weight": "-5"
 spec:
   template:
     metadata:
