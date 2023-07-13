@@ -8,10 +8,10 @@ metadata:
     app.kubernetes.io/version: "5.13"
     app.kubernetes.io/component: bootstrap
     app.kubernetes.io/part-of: dataverse
-  annotations:
-    "helm.sh/hook": post-install
-    "helm.sh/hook-delete-policy": hook-succeeded
-    "helm.sh/hook-weight": "-5"
+{{/*  annotations:*/}}
+{{/*    "helm.sh/hook": post-install*/}}
+{{/*    "helm.sh/hook-delete-policy": hook-succeeded*/}}
+{{/*    "helm.sh/hook-weight": "-5"*/}}
 spec:
   template:
     metadata:
@@ -25,7 +25,31 @@ spec:
       containers:
         - image:  gdcc/configbaker:unstable
           name: dataverse-configbaker
-          command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","dev" ]
+          command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","nfdi4health" ]
+
+          env:
+            - name: METADATABLOCKS_PATH
+              value: "/metadatablocks"
+            - name: LICENCE_PATH
+              value: "/licence"
+          volumeMounts:
+            - name: script
+              mountPath: "/scripts/bootstrap/nfdi4health"
+            - name: metadatablocks
+              mountPath: "/metadatablocks"
+            - name: licence
+              mountPath: "/licence"
+      volumes:
+        - name: script
+          configMap:
+            name: {{ .Release.Name }}-dataverse-bootstrap-configmap
+            defaultMode: 0500
+        - name: metadatablocks
+          configMap:
+            name: {{ .Release.Name }}-dataverse-bootstrap-metadatablocks
+        - name: licence
+          configMap:
+            name: {{ .Release.Name }}-dataverse-bootstrap-licences
       restartPolicy: Never
       initContainers:
         - name: check-dataverse-ready
@@ -35,4 +59,33 @@ spec:
               value: {{ .Release.Name }}-dataverse-svc
           command: [ "/bin/sh","-c" ]
           args: [ 'while [ $(curl -ksw "%{http_code}" http://$DATAVERSE_HOSTNAME:8080/api/info/version -o /dev/null) -ne 200 ]; do sleep 5; echo "health check failed . Waiting for the service..."; done' ]
-
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dataverse-bootstrap-metadatablocks
+data:
+{{ (.Files.Glob "persona/nfdi4health/metadatablocks/*").AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dataverse-bootstrap-licences
+data:
+{{ (.Files.Glob "persona/nfdi4health/licence/*").AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dataverse-bootstrap-configmap
+data:
+{{ (.Files.Glob "persona/nfdi4health/*").AsConfig | indent 2 }}
+  keycloak.json: |
+    {
+      "id": "oidc-keycloak",
+      "factoryAlias": "oidc",
+      "title": "SSO OIDC",
+      "subtitle": "SSO OIDC",
+      "factoryData": "type: oidc | issuer: {{.Values.dataverse.oidc.issuer}}| clientId: {{.Values.dataverse.oidc.cliedid}} | clientSecret: {{.Values.dataverse.oidc.clientsecret}}",
+      "enabled": true
+    }

@@ -1,0 +1,1171 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI
+	MDS_V3_0		MDS_V3_0	
+#datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	collection				text	0		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	resource_identifier	ID of the [RESOURCE]	Unique identifier of the resource used for identification within the NFDI4Health.		text	1		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_0
+	resource_classification	Classification of the resource within the predefined categories	Group of items providing Information about classification of the resource within the predefined categories.		none	2		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_0	
+	resource_type	Type of the resource	A term describing the resource. You can register a study, a study protocol, a questionnaire, etc.		text	3		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_classification	MDS_V3_0	
+	resource_classification_resource_type_general	In what form is the resource available?	Specific information about the form in which the resource is available. You can select "Text" for most of the study documents, e.g. for questionnaires, informed consent forms, case report forms, etc.		text	4		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_classification	MDS_V3_0	
+	resource_titles	Title(s)/name(s) of the [RESOURCE]	Group of items providing Information about title(s)/name(s) of the resource.		none	5		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	resource_titles_text	Title/name	Scientific unabbreviated title or name of the resource. Please provide at least one title/name of the resource. If the original title is not in English, please also provide an English translation of the original title.		text	6		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_titles	MDS_V3_0	
+	resource_titles_language	Language of the title/name	Language of the title/name.		text	7		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_titles	MDS_V3_0	
+	resource_acronyms	Acronym(s) of the [RESOURCE]	Group of items providing Information about acronym(s) of the resource.		none	8		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	resource_acronyms_text	Acronym	If existing, acronym(s) of the [RESOURCE]. Apply placeholder everywhere The property refers primarily to studies which often have an acronym. For other types of resources, a short title (preferably up to 5 words) can be provided, e.g. "NAKO-COVID Questionnaire".		text	9		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_acronyms	MDS_V3_0	
+	resource_acronyms_language	Language of the acronym	Language of the acronym.		text	10		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_acronyms	MDS_V3_0	
+	resource_description_english	English description of the [RESOURCE]	Group of items with an English description of the resource.		none	11		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_0	
+	resource_description_english_text	English description of the [RESOURCE]	A short plain text summary describing the resource in English.		text	12		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_description_english	MDS_V3_0	
+	resource_description_english_language	Language of the description	Language of the description text.		text	13		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	resource_description_english	MDS_V3_0	
+	resource_descriptions_non_english	Non-English description(s) of the [RESOURCE]	Group of items with description(s) of the resource written not in English.		none	14		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	resource_descriptions_non_english_text	Description	Short plain text summary of the resource other than in English.		text	15		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_descriptions_non_english	MDS_V3_0	
+	resource_descriptions_non_english_language	Language of the description	Language of the description text.		text	16		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_descriptions_non_english	MDS_V3_0	
+	resource_keywords	Keyword(s) describing the [RESOURCE]	Group of items providing Information about keywords describing the resource.		none	17		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	resource_keywords_label	Keyword	Keyword(s) describing the resource. Preferably, use terms from SNOMED CT.	SARS-CoV-2	text	18		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_keywords	MDS_V3_0	
+	resource_keywords_label_code	Code of the keyword	If known, the code of the keyword in a classification/vocabulary. If found, the code from the classification/vocabulary used.	http://id.nlm.nih.gov/mesh/D000086402	text	19		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_keywords	MDS_V3_0	
+	resource_languages	Language(s) of the [RESOURCE]	Language(s) in which the [RESOURCE] is conducted/provided. Select all that apply.		text	20		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		MDS_V3_0	
+	resource_web_page	Web page of the [RESOURCE]	If existing, a link to the web page directly relevant to the [RESOURCE].		text	21		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_0	
+	resource_non_study_details	Detailed information about the [RESOURCE]	Group of items applicable only to the resources which are not a study/substudy.		none	22		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_0	
+	resource_version	Version of the [RESOURCE]	If applicable, the version number of the [RESOURCE].		text	23		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_non_study_details	MDS_V3_0	
+	resource_format	Format of the [RESOURCE]	The file format of the [RESOURCE] (E.g., XML, PDF, XLSX, etc.).	PDF	text	24		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_non_study_details	MDS_V3_0	
+	resource_use_rights	Information about the rights to (re-)use the [RESOURCE]	Group of items providing Information about the rights to (re-)use the resource.		none	25		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_non_study_details	MDS_V3_0	
+	resource_use_rights_label	License	License defining the rights to (re-)use the [RESOURCE]. Select one value from the list. If “Other” is selected, an explanation of the (re-)use terms and conditions has to be provided in the field “Additional information about use rights”.		text	26		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_use_rights	MDS_V3_0	
+	resource_use_rights_confirmations	Important information about licensing, if a Creative Commons license is selected.	Group of items applicable if a Creative Commons license is selected.		none	27		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	resource_use_rights	MDS_V3_0	
+	resource_use_rights_confirmation_authority	Do you confirm that the authors have authority to license the [RESOURCE]?	Confirmation that the authors have authority to license the resource.		text	28		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_use_rights_confirmations	MDS_V3_0	
+	resource_use_rights_confirmation_terms	Do you confirm that the authors have read and understood the terms of the chosen license?	Confirmation that the authors have read and understand the terms of the chosen license.		text	29		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_use_rights_confirmations	MDS_V3_0	
+	resource_use_rights_confirmation_irrevocability	Do you confirm that the authors understand that Creative Commons (CC) licensing is irrevocable?	Confirmation that the authors understand that Creative Commons (CC) licensing is not revocable.		text	30		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_use_rights_confirmations	MDS_V3_0	
+	resource_use_rights_support_by_licensing	Do you confirm that the authors allow NFDI4Health to license the document?	Confirmation that NFDI4Health is allowed to license the document, i.e. to mark the resource with the license information.		text	31		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource_use_rights_confirmations	MDS_V3_0	
+	resource_use_rights_description	Additional information about use rights	Any additional descriptive information explaining terms and conditions to (re-)use the resource.		text	32		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource_use_rights	MDS_V3_0	
+	roles	Role(s)	Group of items providing information about person(s), group(s) of persons or institution(s)/organisation(s) contributing to the resource.		none	33		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	role_name_type	Type of the name	Personal or organisational/group type of the name. Personal or organisational/group name?		text	34		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	roles	MDS_V3_0	
+	role_name_organisational_group	Details about the organisation/institution/group/etc.	Group of items providing information about group(s) of persons, institution(s) or organisation(s) contributing to the resource. Organisational name can be used to denote a research group or an institution.		none	35		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	roles	MDS_V3_0	
+	role_name_organisational_group_type	Type of the role	Type of the role an organisation, institution or group fulllfils. For example, this can be a sponsor of the study or a group of authors of the document. Which role does the organisation/institution/group/etc. fulllfil? Select one value from the list.		text	36		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	role_name_organisational_group	MDS_V3_0	
+	role_name_organisational_group_type_funding_id	Funding identifier	Identifier assigned by a funder to the resource. If available, you can enter a funding identifier		text	37		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_name_organisational_group	MDS_V3_0	
+	role_name_organisational_group_name	Name of the organisation/institution/group	Name of the organisation, institution or group.		text	38		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_name_organisational_group	MDS_V3_0	
+	role_name_personal	Details about the person	Group of items providing information about person(s) contributing to the resource.		none	39		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	roles	MDS_V3_0	
+	role_name_personal_type	Type of the role	Type of the role a person fulllfils. For example, this can be a principal investigator of a study or an author of a document. Which role does the person fulllfil? Select one value from the list.		text	40		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	role_name_personal	MDS_V3_0	
+	role_name_personal_given_name	Given name of the person	Given name of the person.		text	41		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_name_personal	MDS_V3_0	
+	role_name_personal_family_name	Family name of the person	Family name of the person.		text	42		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_name_personal	MDS_V3_0	
+	role_name_personal_title	Title of the person	Title of the person.		text	43		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	role_name_personal	MDS_V3_0	
+	role_name_identifiers	Digital identifier(s) of the person	Group of items providing information about digital identifiers of the person.		none	44		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	role_name_personal	MDS_V3_0	
+	role_name_identifiers_identifier	Identifier	Digital identifier of the person according to a definite scheme. Preferably, provide an ORCID (https://orcid.org/).	0000-0003-1379-7023	text	45		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_name_identifiers	MDS_V3_0	
+	role_name_identifiers_scheme	Which type of identifer is reported?	Type of the identifier scheme.	ORCID	text	46		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	role_name_identifiers	MDS_V3_0	
+	role_email	Email address	Email address of the person, group of persons or institution/organisation.		text	47		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	roles	MDS_V3_0	
+	role_phone	Phone number	Phone number of the person, group of persons or institution/organisation. Please, use the International ITU-T E.164-number structure for geographic areas, e.g. +49 (0)153 1112233.	+49 (0)153 1112233	text	48		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	roles	MDS_V3_0	
+	role_affiliations	Further information about organisation(s) associated with the role	Group of items providing further information about the organisation(s) associated with the role.		none	49		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	roles	MDS_V3_0	
+	role_affiliation_name	Name of the organisation	Name of the organisation associated with the role. If you are have already entered the name of the organistion in the property "Name of the organisation/institution/group", please repeat it here.		text	50		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_affiliations	MDS_V3_0	
+	role_affiliation_address	Address of the organisation	Address of the organisation associated with the role.		text	51		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_affiliations	MDS_V3_0	
+	role_affiliation_web_page	Web page of the organisation	Web page of the organisation associated with the role.		text	52		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_affiliations	MDS_V3_0	
+	role_affiliation_identifiers	Digital identifier(s) of the organisation	Group of items providing information about identifiers of the organisation.		none	53		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	role_affiliations	MDS_V3_0	
+	role_affiliation_identifiers_identifier	Identifier	Digital identifier of the organisation according to a definite scheme. Preferably, provide an identifier from ROR (https://ror.org/search).	0259fwx54	text	54		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	role_affiliation_identifiers	MDS_V3_0	
+	role_affiliation_identifiers_scheme	Identifier scheme	Type of the identifier scheme. Which type of identifer is reported?	ROR	text	55		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	role_affiliation_identifiers	MDS_V3_0	
+	ids_alternative	Alternative identifiers	Group of items providing information about identifiers (IDs) assigned to the given resource by another registering systems, e.g. a register of clinical trials or a data repository. If the [RESOURCE] is registered in other systems (e.g. a register of clinical trials or a data repository), you can provide corresponding identifier(s) here.		none	56		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	ids_alternative_type	Type of the register	Type/name of the system where the given resource is already registered.	DRKS	text	57		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ids_alternative	MDS_V3_0	
+	ids_alternative_identifier	Identifier	Identifier (ID) assigned to the given resource by another registering system, e.g. by a register of clinical trials or a data repository. E. g., DRKS00021273, NCT04327505, etc.		text	58		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	ids_alternative	MDS_V3_0	
+	ids	Related publications, datasets, study documents, web pages, etc.	Group of items providing information about identifiers (IDs) of the resources related to the given resource, e.g. DOIs of publications, datasets, study documents or links to web pages. If existing, you can specify identifier(s) of any related resources, e.g. DOIs of publications, datasets, study documents, links to web pages, etc.		none	59		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	ids_identifier	Identifier of the related resource	Identifier (ID) related to, or associated with, the resource being registered. These can be IDs of related publications, datasets, study documents, web pages, etc. a) Publications like journal articles usually have a DOI, e.g. 10.3238/arztebl.2020.0861. b) A link (URL) starting with "http(s)://" to a web page with any additional information can also be provided here.	10.4126/FRL01-006431467	text	60		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	ids	MDS_V3_0	
+	ids_type	Type of the identifier	Type of the identifier of the related resource. Select one value from the list.	DOI	text	61		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ids	MDS_V3_0	
+	date	Date of ID assignment	Date when the identifier of the related resource was assigned.		text	62		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	ids	MDS_V3_0	
+	ids_relation_type	Relationship between this [RESOURCE] (A) and the related resource (B)?	Relationship between the resource being registered (A) and the related resource (B). Select one value from the list.	A is part of B	text	63		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ids	MDS_V3_0	
+	ids_resource_type_general	Type of the related resource	Type of the related resource, e.g. journal article, dataset, text, etc. Select one value from the list. For example,. a journal article, dataset, text, etc.	Text	text	64		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ids	MDS_V3_0	
+	ids_nfdi4health	Related (sub-)studies, study documents, etc. registered on this portal	Group of items providing information about related resources registered on this portal. Does the [RESOURCE] have any related resources registered on this portal?		none	65		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_0	
+	ids_nfdi4health_identifier	Identifier of the related resource	Identifier (ID) of the related resource assigned on this portal.	39	text	66		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	ids_nfdi4health	MDS_V3_0	
+	ids_nfdi4health_relation_type	Relationship between this [RESOURCE] (A) and the related resource (B)?	Relationship between the resource being registered (A) and the related resource (B).		text	67		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ids_nfdi4health	MDS_V3_0	
+	nutritional_data	Nutritional data collected?	Indication whether nutritional data was collected by the resource.		text	68		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_0	
+	chronic_diseases	Chronic diseases included?	Indication whether chronic diseases were addressed by the resource.		text	69		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_0	
+	record_linkage_possible	Is record linkage with other data sources possible?	Indication if record linkage is possible.		text	70		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_0	
+	study_design	Characteristics of the [RESOURCE]	Group of items providing information about the characteristics of a study or a substudy.		none	71		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_0	
+	study_primary_design	Is it an interventional or non-interventional study?	Non-interventional study design refers to a study that does not aim to alter study outcomes of interest. Interventional study design refers to a study that aims to alter study outcomes of interest. Select between non-interventional and interventional study design.		text	72		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_type	Specification of study type	Group of items providing information about the study type.		none	73		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_design	MDS_V3_0	
+	study_type_interventional	Specification of study type	The strategy for assigning interventions to participants. Select all that apply. If "Other" is selected, you can specify the study type in the field "Additional information about the study".		text	74		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_type	MDS_V3_0	
+	study_type_non_interventional	Specification of study type	The primary strategy for participant identification and follow-up. Select all that apply. If "Other" is selected, you can specify the study type in the field "Additional information about the study".		text	75		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_type	MDS_V3_0	
+	study_conditions	Primary health condition(s), disease(s) or focus of the study	Group of items providing information about primary health condition(s) or disease(s) considered in the study, or the focus of the study (e.g. medication, food, therapy, device, etc.).		none	76		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_conditions_label	Name of the primary health condition, disease or focus of the study	Name of primary health condition or disease considered in the study, or the focus of the study (e.g. medication, food, therapy, device, etc.). Preferably, use terms from SNOMED CT (https://browser.ihtsdotools.org).	SARS-CoV-2	text	77		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_conditions	MDS_V3_0	
+	study_conditions_classification	Terminology/classification	Terminology/classification used for the health condition, diesease or focus. If used, name of the terminology/classification.	SNOMED CT	text	78		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_conditions	MDS_V3_0	
+	study_conditions_classification_code	Code ---- If known, code of the health condition, disease or focus in the terminology/classification used	Code of the health condition, disease, focus in the terminology/classification used. If found, the code from the terminology/classification used.	http://snomed.info/id/840533007	text	79		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_conditions	MDS_V3_0	
+	study_groups_of_diseases	Which groups of diseases or conditions were the data collected on?	Group of items providing information about groups of diseases or conditions on which the data were collected in the study.		none	80		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_groups_of_diseases_generally	Which groups of diseases or conditions were the data collected on?	'Groups of diseases or conditions on which the data were collected in the study. Select all that apply. For more information about the groups of diseases/conditions, visit the WHO''s ICD-10 homepage: https://icd.who.int/en.'		text	81		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_groups_of_diseases	MDS_V3_0	
+	study_diseases_conditions	On which other diseases or conditions were the data collected?	'Other diseases or conditions on which the data were collected in the study. Select all that apply. For more information about the groups of diseases/conditions, visit the WHO''s ICD-10 homepage: https://icd.who.int/en.'	Values are based on lower level ICD-10	text	82		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_groups_of_diseases	MDS_V3_0	
+	mortality_data	Were mortality data collected?	Mortality data.		text	83		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_ethics_committee_approval	Status of the ethics committee approval	Status of the study approval from the (leading) ethics committee.		text	84		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_status	Overall study status	Overall status of the study. Select one value from the list.		text	85		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_status_when_intervention	Do participants receive an intervention?	Specification whether study participants receive intervention or have completed it but are still being followed according to the primary objective of the study. Select one value from the list.		text	86		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_status_halted_stage	At what stage was the study stopped?	If the study was stopped prematurely, specification of the stage at what it was halted. Select one value from the list.		text	87		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_status_halted_reason	Reason why the study was stopped	If the study was stopped prematurely, specification of the reason(s) why it was halted. E.g., accrual goal met / closed due to toxicity / closed due to lack of study progress / temporarily-closed per study design /etc.		text	88		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_status_enrolling_by_invitation	Are participants enrolled by invitation?	Specification whether study participants have been selected from a predetermined population or enrolled by invitation.		text	89		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_recruitment_status_register	Overall recruitment status of the study from the register of clinical trials	Overall recruitment status of the study as indicated in the corresponding register of clinical trials.		text	90		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	study_design	MDS_V3_0	
+	study_start_date	Start date of data collection for the study	Start date of data collection for the study. In case of a planned study, it is the intended start date; in case of an ongoing study — the actual start date.		text	91		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_end_date	End date of data collection for the study	In case of studies with patients or other participants, it is the date when the last participant is examined or receives an intervention, or the date of the last participant’s last visit. In case of a planned or ongoing study, it is the intended end date; in case of a completed study — the actual end date.		text	92		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_countries	Country(ies) where the study takes place	Country or countries where the study takes place. Select all that apply.		text	93		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_region	Regions and/or cities within a country where the study takes place	If applicable, region(s) and/or city(ies) within a country where the study takes place.		text	94		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_centers	Is it a mono- or multicentric study?	Specification whether a study is conducted at one study center or at more than one study center.		text	95		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_centers_number	Number of study centers	Number of centers involved in the study.		int	96		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_subject	Primary study subject	Primary study subject, i.e. a person, an animal or some other type of the subject. Select one value from the list.		text	97		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_sampling	Sampling method	Group of items providing information about the applied sampling method. Select one value from the list.		none	98		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_design	MDS_V3_0	
+	study_sampling_method	Applied sampling method	Type of the sampling method applied for the selection of study participants. Select one value from the list.		text	99		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_sampling	MDS_V3_0	
+	study_sampling_method_probability	Specific type of probability sampling	Specific type of the probability sampling method applied for the selection of study participants. If known, select one value from the list.		text	100		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_sampling	MDS_V3_0	
+	study_sampling_method_non_probability	Specific type of non-probability sampling	Specific type of the probability sampling method applied for the selection of study participants. If known, select one value from the list.		text	101		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_sampling	MDS_V3_0	
+	study_data_source	Data sources from which study data are generated or extracted.	Group of items providing information about data sources from which study data are generated or extracted.		none	102		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_design	MDS_V3_0	
+	study_data_sources_general	Data sources for the study (e.g. biosamples, registries, questionnaires, etc.)	Different types of data sources from which study data are generated or extracted. Select all that apply.		text	103		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_data_source	MDS_V3_0	
+	study_data_sources_biosamples	Biosamples collected in the study	Specification of biosamples collected in the study.		text	104		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_data_source	MDS_V3_0	
+	study_data_sources_imaging	Imaging data collected in the study	Specification of imaging data collected in the study.		text	105		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_data_source	MDS_V3_0	
+	study_data_sources_omics	Omics technology used in the study	Specification of omics technology applied in the study.		text	106		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_data_source	MDS_V3_0	
+	study_data_source_description	Additional information about data sources	If needed, additional descriptive information about study data sources, e.g. indication of the data source(s) not listed in the property „Data sources for the study” or more detailed description of the selected data sources. E.g., indication of the data source(s) not listed in the field „Data sources for the study” or more detailed description of the selected data sources.		text	107		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_data_source	MDS_V3_0	
+	study_primary_purpose	Primary purpose of the study	Specification of the main purpose of the study. Foremost for interventional studies, please specify the primary purpose why the study was conducted. For non-interventional studies, this field may be "Not appplicable" as multiple purposes may be defined as primary ones.		text	108		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_eligibility_criteria	Eligibility criteria for study participants	Group of items providing information about eligibility criteria for study participants.		none	109		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_eligibility_age_min	Eligibility criteria: Minimum age	Group of items providing information about the minimum eligible age of study participants.		none	110		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_eligibility_criteria	MDS_V3_0	
+	study_eligibility_age_min_number	Minimum eligible age	Numerical value of the minimum age of potential participants eligible to participate in the study.		int	111		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_eligibility_age_min	MDS_V3_0	
+	study_eligibility_age_min_time_unit	Unit of time	Unit of time.		text	112		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_eligibility_age_min	MDS_V3_0	
+	study_eligibility_age_max	Eligibility criteria: Maximum age	Group of items providing information about the maximum eligible age of study participants.		none	113		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_eligibility_criteria	MDS_V3_0	
+	study_eligibility_age_max_number	Maximum eligible age	Numerical value of the maximum age of potential participants eligible to participate in the study.		int	114		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_eligibility_age_max	MDS_V3_0	
+	study_eligibility_age_max_time_unit	Unit of time	Unit of time.		text	115		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_eligibility_age_max	MDS_V3_0	
+	study_eligibility_genders	Eligible gender	Gender of potential participants eligible to participate in the study. Select all that apply.		text	116		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_eligibility_criteria	MDS_V3_0	
+	study_eligibility_inclusion_criteria	Inclusion criteria	Inclusion criteria for participation in the study. If possible, use an enumerated or bulleted list for each criterion.		text	117		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_eligibility_criteria	MDS_V3_0	
+	study_eligibility_exclusion_criteria	Exclusion criteria	Exclusion criteria for participation in the study. If possible, use an enumerated or bulleted list for each criterion.		text	118		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_eligibility_criteria	MDS_V3_0	
+	study_population	Description of study population	Additional descriptive information providing more details about study population. Any information important for the given study population can be specified here.		text	119		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_target_sample_size	Target sample size	Intended number of observational units for the whole study (e.g. intended number of study participants at all study sites). Enter “-1” if target sample size was not set or is unknown.		int	120		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_obtained_sample_size	Obtained sample size	Obtained number of observational units for the whole study (e.g. obtained number of study participants at all study sites). The value is only available after the end of recruitment. Enter “-1” if obtained sample size is unknown.		int	121		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_age_min_examined	Actual minimum age of participants	Group of items providing information about the actual minimum age of study participants at the time of examination.		none	122		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_design	MDS_V3_0	
+	study_age_min_examined_number	Actual minimum age of participants	Numerical value of the minimum age of study participants at the time of examination.		int	123		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_age_min_examined	MDS_V3_0	
+	study_age_min_examined_time_unit	Unit of time	Unit of time.		text	124		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_age_min_examined	MDS_V3_0	
+	study_age_max_examined	Actual maximum age of participants	Group of items providing information about the actual maximum age of study participants at the time of examination.		none	125		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_design	MDS_V3_0	
+	study_age_max_examined_number	Actual maximum age of participants	Numerical value of the maximum age of study participants at the time of examination.		int	126		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_age_max_examined	MDS_V3_0	
+	study_age_max_examined_time_unit	Unit of time	Unit of time.		text	127		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_age_max_examined	MDS_V3_0	
+	study_hypothesis	Research questions and/or hypothesis underlying the study	Statement of the research questions and/or hypotheses underlying the study.		text	128		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_arms_groups	Arms or groups/cohorts of the study	Group of items providing information about arms or groups/cohorts of the study.		none	129		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_arm_group_label	Name of the arm/group	Short name used to identify the arm/group.		text	130		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_arms_groups	MDS_V3_0	
+	study_arm_group_type	Role of the arm	Role of the given arm in the study. Select one value from the list.		text	131		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_arms_groups	MDS_V3_0	
+	study_arm_group_description	Additional information about the arm/group	Additional descriptive information about the given arm/group.		text	132		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_arms_groups	MDS_V3_0	
+	study_interventions	Interventions/exposures of the study	Group of items providing information about study interventions or exposures.		none	133		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_intervention_name	Name of the intervention/exposure	A short descriptive name of the intervention/exposure. If the same intervention/exposure is associated with more than one arm or group, provide the information once and use the field "Name of the associated study arm/group" to associate it with more than one arm/group.		text	134		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_interventions	MDS_V3_0	
+	study_intervention_type	Type of the intervention/exposure	General type of the given intervention/exposure.		text	135		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_interventions	MDS_V3_0	
+	study_intervention_description	Additional information about the intervention/exposure	If needed, additional descriptive information about the given intervention/exposure.		text	136		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_interventions	MDS_V3_0	
+	study_intervention_arms_groups_label	Name of the arm/group associated with the given intervention	Name of the study arm associated with the given intervention.		text	137		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_interventions	MDS_V3_0	
+	study_outcomes	Outcome measure(s)	Group of items providing information about outcome measure(s).		none	138		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_outcome_title	Name of the outcome measure	Name of the outcome measure. For non-interventional studies, this can be the name of specific measurement(s) or observation(s) used to describe patterns of diseases or traits or associations with exposures, risk factors or treatment. For non-interventional studies, this can be specific measurement(s) or observation(s) used to describe patterns of diseases or traits or associations with exposures, risk factors or treatment.		text	139		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_outcomes	MDS_V3_0	
+	study_outcome_description	Description of the outcome measure	Additional descriptive information about the given outcome		text	140		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_outcomes	MDS_V3_0	
+	study_outcome_type	Type of the outcome measure	Type of the outcome measure. Primary or secondary outcome measure?		text	141		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_outcomes	MDS_V3_0	
+	study_outcome_time_frame	Time point(s) of assessment	Description of the time point(s) at which the measurement for the outcome is assessed, e.g. the specific duration of time over which each participant is assessed.		text	142		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_outcomes	MDS_V3_0	
+	study_design_comment	Any additional information about the study	Any additional information about specific aspects of the study that cannot be captured by other properties. Any additional information about specific aspects of the study that cannot be captured by other properties.		text	143		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_assessments	Further assessments/measurements included in the study	Assessments/measurements included in the study		text	144		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_data_sharing_plan	Information about data sharing	Group of items providing information about the data sharing strategy of the study.		none	145		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_data_sharing_plan_generally	Is it planned to share the data?	Indication whether there is a plan to make data collected in the study available. In case of studies with patients or other individuals, this refers to individual participant data (IPD). Select one value from the list.		text	146		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_data_sharing_plan	MDS_V3_0	
+	study_data_sharing_plan_supporting_information	Supporting documents available in addition to the data	Supporting information/documents which will be made available in addition to the study data. Select all that apply.		text	147		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_data_sharing_plan	MDS_V3_0	
+	study_data_sharing_plan_time_frame	When and for how long will the data be available?	Indication when the data and, if applicable, supporting documents will become available and for how long.		text	148		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_data_sharing_plan	MDS_V3_0	
+	study_data_sharing_plan_access_criteria	Criteria for the data access	Indication by what access criteria data will be shared, including: a) with whom, b) for what types of analyses, and c) by what mechanism. E.g., with whom, for what types of analyses and by what mechanism the data will be shared.		text	149		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_data_sharing_plan	MDS_V3_0	
+	study_data_sharing_plan_description	Additional information about data sharing	Additional descriptive information providing more details about the data sharing, e.g. indication what data in particular will be shared or why the data will not be shared or why it is not yet decided. E.g., indication what data in particular will be shared or why the data will not be shared or why it is not yet decided		text	150		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_data_sharing_plan	MDS_V3_0	
+	study_data_sharing_plan_datashield	Is the DataSHIELD/Opal infrastructure available?	Indication, whether the DataSHIELD/Opal infrastructure is available.		text	151		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_data_sharing_plan	MDS_V3_0	
+	study_data_sharing_plan_url	Web page with additional information about data sharing	If existing, a link to the web page where additional information about data sharing can be found.		text	152		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_data_sharing_plan	MDS_V3_0	
+	study_design_non_interventional	Information about specific aspects of non-interventional studies/substudies	Group of items providing information about specific aspects of interventional studies or substudies.		none	153		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_time_perspectives	Temporal design of the study	Temporal design of the study, i.e. the relationship of observation period to time of participant enrollment. Is it a retrospective, prospective or cross-sectional study?		text	154		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_design_non_interventional	MDS_V3_0	
+	study_target_followup_duration	Target follow-up duration	If applicable, anticipated time period over which each participant is to be followed, provided in years. The value must be provided in years.		float	155		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design_non_interventional	MDS_V3_0	
+	study_biospecimen_retention	Which biosamples are retained in a biorepository?	Indication whether samples of biomaterial from study participants are retained in a biorepository. Select all that apply.		text	156		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_design_non_interventional	MDS_V3_0	
+	study_biospecimen_description	Specific types of retained biosamples	Additional information about biosamples to be retained, i.e. which specific types of biospecimens will be retained (e.g. blood, serum, urine, etc.). Which specific types of biosamples will be retained (e.g. blood, serum, urine, etc.)?		text	157		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design_non_interventional	MDS_V3_0	
+	study_design_interventional	Information about specific aspects of interventional studies/substudies	Group of items providing information about specific aspects of interventional studies or substudies.		none	158		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design	MDS_V3_0	
+	study_phase	Numerical phase of the study	If applicable, numerical phase of the study. Select one value from the list.		text	159		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design_interventional	MDS_V3_0	
+	study_masking	Information about masking of intervention(s) assignment	Group of items providing information about the masking of intervention(s) assignment.		none	160		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	study_design_interventional	MDS_V3_0	
+	study_masking_general	Is masking of intervention(s) assignment implemented?	Indication, whether a masking (or blinding) of intervention(s) assignment is implemented (i.e., whether someone is prevented from having knowledge of the interventions assigned to individual participants).		text	161		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_masking	MDS_V3_0	
+	study_masking_roles	Who is masked?	If masking is implemented, the party(ies) who are masked. Select all that apply.		text	162		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	study_masking	MDS_V3_0	
+	study_masking_description	Additional information about masking	If needed, additional descriptive information about masking (e.g. information about other parties who may be masked). If needed, additional information about masking, e.g. other parties who may be masked.		text	163		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	study_masking	MDS_V3_0	
+	study_allocation	Type of allocation of participants to an arm	Type of allocation/assignment of individual study participants to an arm. Select one value from the list.		text	164		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design_interventional	MDS_V3_0	
+	study_off_label_use	Off-label use of a drug product	Unapproved (off-label) use of a drug product. Select "Yes" or "No" only for drug studies and "Not applicable” for all other studies.		text	165		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design_interventional	MDS_V3_0	
+	provenance	Information about provenance aspects of the data entry	Group of items providing information about provenance aspects of the data entry on the portal.		none	166		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_0	
+	data_source	Source of information about the [RESOURCE]	Source of information about the resource and the way it was uploaded/collected.		text	167		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	provenance	MDS_V3_0	
+	verification_date	Verfication date	Date on which the responsible party last verified the information about the resource, even if no additional or updated information is being submitted.		text	168		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	provenance	MDS_V3_0	
+	verification_date_user	User who last verified the [RESOURCE]	User who last verified the information about the resource.		text	169		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	provenance	MDS_V3_0	
+	resource_first_submitted_date	Date when the [RESOURCE] was first submitted for publication	Date when the resource was first submitted for publication.		text	170		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	provenance	MDS_V3_0	
+	resource_first_submitted_user	User who first submitted the [RESOURCE] for publication	User who first submitted the [RESOURCE] for publication.		text	171		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	provenance	MDS_V3_0	
+	resource_first_posted_date	Date when the [RESOURCE] was first posted/published	Date when the resource was first posted/published.		text	172		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	provenance	MDS_V3_0	
+	resource_first_posted_user	User who first posted/published the [RESOURCE]	User who first posted/published the resource.		text	173		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	provenance	MDS_V3_0	
+	last_update_submitted_date	Date when the last update of the [RESOURCE] was submitted for publication	Date when the last update of the resource was submitted for publication.		text	174		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	provenance	MDS_V3_0	
+	last_update_submitted_user	User who submitted the last update of the [RESOURCE]	User who submitted the last update of the resource.		text	175		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	provenance	MDS_V3_0	
+	last_update_posted_date	Date when the last update of the [RESOURCE] was posted/published	Date when the last update of the resource was posted/published.		text	176		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	provenance	MDS_V3_0	
+	last_update_posted_user	User who posted/published the last update	User who posted/published the last update.		text	177		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	provenance	MDS_V3_0	
+	provenance_resource_version	Version number of the resource within the portal/system	Version number of the resource within the portal/system.		text	178		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	provenance	MDS_V3_0	
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder
+	resource_type	Study	RT_0	0
+	resource_type	Substudy/Data collection event	RT_1	1
+	resource_type	Registry	RT_2	2
+	resource_type	Secondary data source	RT_3	3
+	resource_type	Dataset	RT_4	4
+	resource_type	Study protocol	RT_5	5
+	resource_type	Protocol amendment	RT_6	6
+	resource_type	Data dictionary	RT_7	7
+	resource_type	Informed consent form	RT_8	8
+	resource_type	Patient information sheet	RT_9	9
+	resource_type	Manual of operations (SOPs)	RT_10	10
+	resource_type	Statistical analysis plan	RT_11	11
+	resource_type	Data management plan	RT_12	12
+	resource_type	Case report form	RT_13	13
+	resource_type	Code book	RT_14	14
+	resource_type	Questionnaire	RT_15	15
+	resource_type	Interview scheme and themes	RT_16	16
+	resource_type	Observation guide	RT_17	17
+	resource_type	Discussion guide	RT_18	18
+	resource_type	Participant tasks	RT_19	19
+	resource_type	Other data collection instrument	RT_20	20
+	resource_type	Other study document	RT_21	21
+	resource_type	Other	RT_22	22
+	resource_classification_resource_type_general	Audiovisual	RCRTG_0	0
+	resource_classification_resource_type_general	Book	RCRTG_1	1
+	resource_classification_resource_type_general	Book chapter	RCRTG_2	2
+	resource_classification_resource_type_general	Collection	RCRTG_3	3
+	resource_classification_resource_type_general	Computational notebook	RCRTG_4	4
+	resource_classification_resource_type_general	Conference paper	RCRTG_5	5
+	resource_classification_resource_type_general	Conference proceeding	RCRTG_6	6
+	resource_classification_resource_type_general	Data paper	RCRTG_7	7
+	resource_classification_resource_type_general	Dataset	RCRTG_8	8
+	resource_classification_resource_type_general	Dissertation	RCRTG_9	9
+	resource_classification_resource_type_general	Event	RCRTG_10	10
+	resource_classification_resource_type_general	Image	RCRTG_11	11
+	resource_classification_resource_type_general	Interactive resource	RCRTG_12	12
+	resource_classification_resource_type_general	Journal	RCRTG_13	13
+	resource_classification_resource_type_general	Journal article	RCRTG_14	14
+	resource_classification_resource_type_general	Model	RCRTG_15	15
+	resource_classification_resource_type_general	Output management plan	RCRTG_16	16
+	resource_classification_resource_type_general	Peer review	RCRTG_17	17
+	resource_classification_resource_type_general	Physical object	RCRTG_18	18
+	resource_classification_resource_type_general	Preprint	RCRTG_19	19
+	resource_classification_resource_type_general	Report	RCRTG_20	20
+	resource_classification_resource_type_general	Service	RCRTG_21	21
+	resource_classification_resource_type_general	Software	RCRTG_22	22
+	resource_classification_resource_type_general	Sound	RCRTG_23	23
+	resource_classification_resource_type_general	Standard	RCRTG_24	24
+	resource_classification_resource_type_general	Text	RCRTG_25	25
+	resource_classification_resource_type_general	Workflow	RCRTG_26	26
+	resource_classification_resource_type_general	Other	RCRTG_27	27
+	resource_titles_language	EN (English)	RTL_0	0
+	resource_titles_language	DE (German)	RTL_1	1
+	resource_titles_language	ES (Spanish)	RTL_2	2
+	resource_titles_language	FR (French)	RTL_3	3
+	resource_titles_language	Other	RTL_4	4
+	resource_acronyms_language	EN (English)	RAL_0	0
+	resource_acronyms_language	DE (German)	RAL_1	1
+	resource_acronyms_language	ES (Spanish)	RAL_2	2
+	resource_acronyms_language	FR (French)	RAL_3	3
+	resource_acronyms_language	Other	RAL_4	4
+	resource_description_english_language	EN (English)	RDEL_0	0
+	resource_descriptions_non_english_language	DE (German)	RDNEL_0	0
+	resource_descriptions_non_english_language	ES (Spanish)	RDNEL_1	1
+	resource_descriptions_non_english_language	FR (French)	RDNEL_2	2
+	resource_descriptions_non_english_language	Other	RDNEL_3	3
+	resource_languages	AA (Afar)	RL_0	0
+	resource_languages	AB (Abkhaz)	RL_1	1
+	resource_languages	AE (Avestan)	RL_2	2
+	resource_languages	AF (Afrikaans)	RL_3	3
+	resource_languages	AK (Akan)	RL_4	4
+	resource_languages	AM (Amharic)	RL_5	5
+	resource_languages	AN (Aragonese)	RL_6	6
+	resource_languages	AR (Arabic)	RL_7	7
+	resource_languages	AS (Assamese)	RL_8	8
+	resource_languages	AV (Avaric)	RL_9	9
+	resource_languages	AY (Aymara)	RL_10	10
+	resource_languages	AZ (Azerbaijani)	RL_11	11
+	resource_languages	BA (Bashkir)	RL_12	12
+	resource_languages	BE (Belarusian)	RL_13	13
+	resource_languages	BG (Bulgarian)	RL_14	14
+	resource_languages	BI (Bislama)	RL_15	15
+	resource_languages	BM (Bambara)	RL_16	16
+	resource_languages	BN (Bengali)	RL_17	17
+	resource_languages	BO (Tibetan)	RL_18	18
+	resource_languages	BR (Breton)	RL_19	19
+	resource_languages	BS (Bosnian)	RL_20	20
+	resource_languages	CA (Catalan)	RL_21	21
+	resource_languages	CE (Chechen)	RL_22	22
+	resource_languages	CH (Chamorro)	RL_23	23
+	resource_languages	CO (Corsican)	RL_24	24
+	resource_languages	CR (Cree)	RL_25	25
+	resource_languages	CS (Czech)	RL_26	26
+	resource_languages	CU (Old Church Slavonic)	RL_27	27
+	resource_languages	CV (Chuvash)	RL_28	28
+	resource_languages	CY (Welsh)	RL_29	29
+	resource_languages	DA (Danish)	RL_30	30
+	resource_languages	DE (German)	RL_31	31
+	resource_languages	DV (Divehi)	RL_32	32
+	resource_languages	DZ (Dzongkha)	RL_33	33
+	resource_languages	EE (Ewe)	RL_34	34
+	resource_languages	EL (Greek)	RL_35	35
+	resource_languages	EN (English)	RL_36	36
+	resource_languages	EO (Esperanto)	RL_37	37
+	resource_languages	ES (Spanish)	RL_38	38
+	resource_languages	ET (Estonian)	RL_39	39
+	resource_languages	EU (Basque)	RL_40	40
+	resource_languages	FA (Persian)	RL_41	41
+	resource_languages	FF (Fula)	RL_42	42
+	resource_languages	FI (Finnish)	RL_43	43
+	resource_languages	FJ (Fijian)	RL_44	44
+	resource_languages	FO (Faroese)	RL_45	45
+	resource_languages	FR (French)	RL_46	46
+	resource_languages	FY (Western Frisian)	RL_47	47
+	resource_languages	GA (Irish)	RL_48	48
+	resource_languages	GD (Scottish Gaelic)	RL_49	49
+	resource_languages	GL (Galician)	RL_50	50
+	resource_languages	GN (Guaraní)	RL_51	51
+	resource_languages	GU (Gujarati)	RL_52	52
+	resource_languages	GV (Manx)	RL_53	53
+	resource_languages	HA (Hausa)	RL_54	54
+	resource_languages	HE (Hebrew)	RL_55	55
+	resource_languages	HI (Hindi)	RL_56	56
+	resource_languages	HO (Hiri Motu)	RL_57	57
+	resource_languages	HR (Croatian)	RL_58	58
+	resource_languages	HT (Haitian)	RL_59	59
+	resource_languages	HU (Hungarian)	RL_60	60
+	resource_languages	HY (Armenian)	RL_61	61
+	resource_languages	HZ (Herero)	RL_62	62
+	resource_languages	IA (Interlingua)	RL_63	63
+	resource_languages	ID (Indonesian)	RL_64	64
+	resource_languages	IE (Interlingue)	RL_65	65
+	resource_languages	IG (Igbo)	RL_66	66
+	resource_languages	II (Nuosu)	RL_67	67
+	resource_languages	IK (Inupiaq)	RL_68	68
+	resource_languages	IO (Ido)	RL_69	69
+	resource_languages	IS (Icelandic)	RL_70	70
+	resource_languages	IT (Italian)	RL_71	71
+	resource_languages	IU (Inuktitut)	RL_72	72
+	resource_languages	JA (Japanese)	RL_73	73
+	resource_languages	JV (Javanese)	RL_74	74
+	resource_languages	KA (Georgian)	RL_75	75
+	resource_languages	KG (Kongo)	RL_76	76
+	resource_languages	KI (Kikuyu)	RL_77	77
+	resource_languages	KJ (Kwanyama)	RL_78	78
+	resource_languages	KK (Kazakh)	RL_79	79
+	resource_languages	KL (Kalaallisut)	RL_80	80
+	resource_languages	KM (Khmer)	RL_81	81
+	resource_languages	KN (Kannada)	RL_82	82
+	resource_languages	KO (Korean)	RL_83	83
+	resource_languages	KR (Kanuri)	RL_84	84
+	resource_languages	KS (Kashmiri)	RL_85	85
+	resource_languages	KU (Kurdish)	RL_86	86
+	resource_languages	KV (Komi)	RL_87	87
+	resource_languages	KW (Cornish)	RL_88	88
+	resource_languages	KY (Kyrgyz)	RL_89	89
+	resource_languages	LA (Latin)	RL_90	90
+	resource_languages	LB (Luxembourgish)	RL_91	91
+	resource_languages	LG (Ganda)	RL_92	92
+	resource_languages	LI (Limburgish)	RL_93	93
+	resource_languages	LN (Lingala)	RL_94	94
+	resource_languages	LO (Lao)	RL_95	95
+	resource_languages	LT (Lithuanian)	RL_96	96
+	resource_languages	LU (Luba-Katanga)	RL_97	97
+	resource_languages	LV (Latvian)	RL_98	98
+	resource_languages	MG (Malagasy)	RL_99	99
+	resource_languages	MH (Marshallese)	RL_100	100
+	resource_languages	MI (Māori)	RL_101	101
+	resource_languages	MK (Macedonian)	RL_102	102
+	resource_languages	ML (Malayalam)	RL_103	103
+	resource_languages	MN (Mongolian)	RL_104	104
+	resource_languages	MR (Marathi)	RL_105	105
+	resource_languages	MS (Malay)	RL_106	106
+	resource_languages	MT (Maltese)	RL_107	107
+	resource_languages	MY (Burmese)	RL_108	108
+	resource_languages	NA (Nauru)	RL_109	109
+	resource_languages	NB (Norwegian Bokmål)	RL_110	110
+	resource_languages	ND (Northern Ndebele)	RL_111	111
+	resource_languages	NE (Nepali)	RL_112	112
+	resource_languages	NG (Ndonga)	RL_113	113
+	resource_languages	NL (Dutch)	RL_114	114
+	resource_languages	NN (Norwegian Nynorsk)	RL_115	115
+	resource_languages	NO (Norwegian)	RL_116	116
+	resource_languages	NR (Southern Ndebele)	RL_117	117
+	resource_languages	NV (Navajo)	RL_118	118
+	resource_languages	NY (Chichewa)	RL_119	119
+	resource_languages	OC (Occitan)	RL_120	120
+	resource_languages	OJ (Ojibwe)	RL_121	121
+	resource_languages	OM (Oromo)	RL_122	122
+	resource_languages	OR (Oriya)	RL_123	123
+	resource_languages	OS (Ossetian)	RL_124	124
+	resource_languages	PA (Panjabi)	RL_125	125
+	resource_languages	PI (Pāli)	RL_126	126
+	resource_languages	PL (Polish)	RL_127	127
+	resource_languages	PS (Pashto)	RL_128	128
+	resource_languages	PT (Portuguese)	RL_129	129
+	resource_languages	QU (Quechua)	RL_130	130
+	resource_languages	RM (Romansh)	RL_131	131
+	resource_languages	RN (Kirundi)	RL_132	132
+	resource_languages	RO (Romanian)	RL_133	133
+	resource_languages	RU (Russian)	RL_134	134
+	resource_languages	RW (Kinyarwanda)	RL_135	135
+	resource_languages	SA (Sanskrit)	RL_136	136
+	resource_languages	SC (Sardinian)	RL_137	137
+	resource_languages	SD (Sindhi)	RL_138	138
+	resource_languages	SE (Northern Sami)	RL_139	139
+	resource_languages	SG (Sango)	RL_140	140
+	resource_languages	SI (Sinhala)	RL_141	141
+	resource_languages	SK (Slovak)	RL_142	142
+	resource_languages	SL (Slovenian)	RL_143	143
+	resource_languages	SM (Samoan)	RL_144	144
+	resource_languages	SN (Shona)	RL_145	145
+	resource_languages	SO (Somali)	RL_146	146
+	resource_languages	SQ (Albanian)	RL_147	147
+	resource_languages	SR (Serbian)	RL_148	148
+	resource_languages	SS (Swati)	RL_149	149
+	resource_languages	ST (Southern Sotho)	RL_150	150
+	resource_languages	SU (Sundanese)	RL_151	151
+	resource_languages	SV (Swedish)	RL_152	152
+	resource_languages	SW (Swahili)	RL_153	153
+	resource_languages	TA (Tamil)	RL_154	154
+	resource_languages	TE (Telugu)	RL_155	155
+	resource_languages	TG (Tajik)	RL_156	156
+	resource_languages	TH (Thai)	RL_157	157
+	resource_languages	TI (Tigrinya)	RL_158	158
+	resource_languages	TK (Turkmen)	RL_159	159
+	resource_languages	TL (Tagalog)	RL_160	160
+	resource_languages	TN (Tswana)	RL_161	161
+	resource_languages	TO (Tonga)	RL_162	162
+	resource_languages	TR (Turkish)	RL_163	163
+	resource_languages	TS (Tsonga)	RL_164	164
+	resource_languages	TT (Tatar)	RL_165	165
+	resource_languages	TW (Twi)	RL_166	166
+	resource_languages	TY (Tahitian)	RL_167	167
+	resource_languages	UG (Uyghur)	RL_168	168
+	resource_languages	UK (Ukrainian)	RL_169	169
+	resource_languages	UR (Urdu)	RL_170	170
+	resource_languages	UZ (Uzbek)	RL_171	171
+	resource_languages	VE (Venda)	RL_172	172
+	resource_languages	VI (Vietnamese)	RL_173	173
+	resource_languages	VO (Volapük)	RL_174	174
+	resource_languages	WA (Walloon)	RL_175	175
+	resource_languages	WO (Wolof)	RL_176	176
+	resource_languages	XH (Xhosa)	RL_177	177
+	resource_languages	YI (Yiddish)	RL_178	178
+	resource_languages	YO (Yoruba)	RL_179	179
+	resource_languages	ZA (Zhuang)	RL_180	180
+	resource_languages	ZH (Chinese)	RL_181	181
+	resource_languages	ZU (Zulu)	RL_182	182
+	resource_use_rights_label	CC0 1.0 (Creative Commons Zero v1.0 Universal)	RURL_0	0
+	resource_use_rights_label	CC BY 4.0 (Creative Commons Attribution 4.0 International)	RURL_1	1
+	resource_use_rights_label	CC BY-NC 4.0 (Creative Commons Attribution Non Commercial 4.0 International)	RURL_2	2
+	resource_use_rights_label	CC BY-SA 4.0 (Creative Commons Attribution Share Alike 4.0 International)	RURL_3	3
+	resource_use_rights_label	CC BY-NC-SA 4.0 (Creative Commons Attribution Non Commercial Share Alike 4.0 International)	RURL_4	4
+	resource_use_rights_label	All rights reserved	RURL_5	5
+	resource_use_rights_label	Other	RURL_6	6
+	resource_use_rights_label	Not applicable	RURL_7	7
+	resource_use_rights_label	Unknown	RURL_8	8
+	resource_use_rights_confirmation_authority	Yes	RURCA_0	0
+	resource_use_rights_confirmation_authority	No	RURCA_1	1
+	resource_use_rights_confirmation_terms	Yes	RURCT_0	0
+	resource_use_rights_confirmation_terms	No	RURCT_1	1
+	resource_use_rights_confirmation_irrevocability	Yes	RURCI_0	0
+	resource_use_rights_confirmation_irrevocability	No	RURCI_1	1
+	resource_use_rights_support_by_licensing	Yes	RURSBL_0	0
+	resource_use_rights_support_by_licensing	No	RURSBL_1	1
+	role_name_type	Personal	RNT_0	0
+	role_name_type	Organisational	RNT_1	1
+	role_name_organisational_group_type	Contact	RNOGT_0	0
+	role_name_organisational_group_type	Creator/Author	RNOGT_1	1
+	role_name_organisational_group_type	Funder (public)	RNOGT_2	2
+	role_name_organisational_group_type	Funder (private)	RNOGT_3	3
+	role_name_organisational_group_type	Sponsor (primary)	RNOGT_4	4
+	role_name_organisational_group_type	Sponsor (secondary)	RNOGT_5	5
+	role_name_organisational_group_type	Sponsor-Investigator	RNOGT_6	6
+	role_name_organisational_group_type	Research group	RNOGT_7	7
+	role_name_organisational_group_type	Data collector	RNOGT_8	8
+	role_name_organisational_group_type	Data curator	RNOGT_9	9
+	role_name_organisational_group_type	Data manager	RNOGT_10	10
+	role_name_organisational_group_type	Distributor	RNOGT_11	11
+	role_name_organisational_group_type	Hosting institution	RNOGT_12	12
+	role_name_organisational_group_type	Producer	RNOGT_13	13
+	role_name_organisational_group_type	Publisher	RNOGT_14	14
+	role_name_organisational_group_type	Registration agency	RNOGT_15	15
+	role_name_organisational_group_type	Registration authority	RNOGT_16	16
+	role_name_organisational_group_type	Rights holder	RNOGT_17	17
+	role_name_organisational_group_type	Supervisor	RNOGT_18	18
+	role_name_organisational_group_type	Other	RNOGT_19	19
+	role_name_personal_type	Contact	RNPT_0	0
+	role_name_personal_type	Principal investigator	RNPT_1	1
+	role_name_personal_type	Creator/Author	RNPT_2	2
+	role_name_personal_type	Sponsor (primary)	RNPT_3	3
+	role_name_personal_type	Sponsor (secondary)	RNPT_4	4
+	role_name_personal_type	Sponsor-Investigator	RNPT_5	5
+	role_name_personal_type	Data collector	RNPT_6	6
+	role_name_personal_type	Data curator	RNPT_7	7
+	role_name_personal_type	Data manager	RNPT_8	8
+	role_name_personal_type	Editor	RNPT_9	9
+	role_name_personal_type	Producer	RNPT_10	10
+	role_name_personal_type	Project leader	RNPT_11	11
+	role_name_personal_type	Project manager	RNPT_12	12
+	role_name_personal_type	Project member	RNPT_13	13
+	role_name_personal_type	Related person	RNPT_14	14
+	role_name_personal_type	Researcher	RNPT_15	15
+	role_name_personal_type	Rights holder	RNPT_16	16
+	role_name_personal_type	Supervisor	RNPT_17	17
+	role_name_personal_type	Work package leader	RNPT_18	18
+	role_name_personal_type	Other	RNPT_19	19
+	role_name_personal_title	Mr.	RNPT_1_0	0
+	role_name_personal_title	Ms.	RNPT_1_1	1
+	role_name_personal_title	Dr.	RNPT_1_2	2
+	role_name_personal_title	Prof. Dr.	RNPT_1_3	3
+	role_name_personal_title	Other	RNPT_1_4	4
+	role_name_identifiers_scheme	ORCID	RNIS_0	0
+	role_name_identifiers_scheme	ROR	RNIS_1	1
+	role_name_identifiers_scheme	GRID	RNIS_2	2
+	role_name_identifiers_scheme	ISNI	RNIS_3	3
+	role_affiliation_identifiers_scheme	ROR	RAIS_0	0
+	role_affiliation_identifiers_scheme	GRID	RAIS_1	1
+	role_affiliation_identifiers_scheme	ISNI	RAIS_2	2
+	ids_alternative_type	DRKS	IAT_0	0
+	ids_alternative_type	NCT (ClinicalTrials.gov)	IAT_1	1
+	ids_alternative_type	ISRCTN	IAT_2	2
+	ids_alternative_type	EudraCT	IAT_3	3
+	ids_alternative_type	EUDAMED	IAT_4	4
+	ids_alternative_type	UTN	IAT_5	5
+	ids_alternative_type	KonsortSWD	IAT_6	6
+	ids_alternative_type	MDM Portal	IAT_7	7
+	ids_alternative_type	Other	IAT_8	8
+	ids_type	DOI	IT_0	0
+	ids_type	URL	IT_1	1
+	ids_type	arXiv	IT_2	2
+	ids_type	EAN13	IT_3	3
+	ids_type	EISSN	IT_4	4
+	ids_type	Handle	IT_5	5
+	ids_type	ISBN	IT_6	6
+	ids_type	ISSN	IT_7	7
+	ids_type	ISTC	IT_8	8
+	ids_type	LISSN	IT_9	9
+	ids_type	LSID	IT_10	10
+	ids_type	PMID	IT_11	11
+	ids_type	PURL	IT_12	12
+	ids_type	URN	IT_13	13
+	ids_type	w3id	IT_14	14
+	ids_type	Other	IT_15	15
+	ids_relation_type	A is cited by B	IRT_0	0
+	ids_relation_type	A cites B	IRT_1	1
+	ids_relation_type	A is supplement to B	IRT_2	2
+	ids_relation_type	A is supplemented by B	IRT_3	3
+	ids_relation_type	A is continued by B	IRT_4	4
+	ids_relation_type	A continues B	IRT_5	5
+	ids_relation_type	A is described by B	IRT_6	6
+	ids_relation_type	A describes B	IRT_7	7
+	ids_relation_type	A has metadata B	IRT_8	8
+	ids_relation_type	A is metadata for B	IRT_9	9
+	ids_relation_type	A has version B	IRT_10	10
+	ids_relation_type	A is version of B	IRT_11	11
+	ids_relation_type	A is new version of B	IRT_12	12
+	ids_relation_type	A is previous version of B	IRT_13	13
+	ids_relation_type	A is part of B	IRT_14	14
+	ids_relation_type	A has part B	IRT_15	15
+	ids_relation_type	A is referenced by B	IRT_16	16
+	ids_relation_type	A references B	IRT_17	17
+	ids_relation_type	A is documented by B	IRT_18	18
+	ids_relation_type	A documents B	IRT_19	19
+	ids_relation_type	A is compiled by B	IRT_20	20
+	ids_relation_type	A compiles B	IRT_21	21
+	ids_relation_type	A is variant form of B	IRT_22	22
+	ids_relation_type	A is original form of B	IRT_23	23
+	ids_relation_type	A is identical to B	IRT_24	24
+	ids_relation_type	A is reviewed by B	IRT_25	25
+	ids_relation_type	A reviews B	IRT_26	26
+	ids_relation_type	A is derived from B	IRT_27	27
+	ids_relation_type	A is source of B	IRT_28	28
+	ids_relation_type	A is required by B	IRT_29	29
+	ids_relation_type	A requires B	IRT_30	30
+	ids_relation_type	A is obsoleted by B	IRT_31	31
+	ids_relation_type	A obsoletes B	IRT_32	32
+	ids_resource_type_general	Audiovisual	IRTG_0	0
+	ids_resource_type_general	Book	IRTG_1	1
+	ids_resource_type_general	Book chapter	IRTG_2	2
+	ids_resource_type_general	Collection	IRTG_3	3
+	ids_resource_type_general	Computational notebook	IRTG_4	4
+	ids_resource_type_general	Conference paper	IRTG_5	5
+	ids_resource_type_general	Conference proceeding	IRTG_6	6
+	ids_resource_type_general	Data paper	IRTG_7	7
+	ids_resource_type_general	Dataset	IRTG_8	8
+	ids_resource_type_general	Dissertation	IRTG_9	9
+	ids_resource_type_general	Event	IRTG_10	10
+	ids_resource_type_general	Image	IRTG_11	11
+	ids_resource_type_general	Interactive resource	IRTG_12	12
+	ids_resource_type_general	Journal	IRTG_13	13
+	ids_resource_type_general	Journal article	IRTG_14	14
+	ids_resource_type_general	Model	IRTG_15	15
+	ids_resource_type_general	Output management plan	IRTG_16	16
+	ids_resource_type_general	Peer review	IRTG_17	17
+	ids_resource_type_general	Physical object	IRTG_18	18
+	ids_resource_type_general	Preprint	IRTG_19	19
+	ids_resource_type_general	Report	IRTG_20	20
+	ids_resource_type_general	Service	IRTG_21	21
+	ids_resource_type_general	Software	IRTG_22	22
+	ids_resource_type_general	Sound	IRTG_23	23
+	ids_resource_type_general	Standard	IRTG_24	24
+	ids_resource_type_general	Text	IRTG_25	25
+	ids_resource_type_general	Workflow	IRTG_26	26
+	ids_resource_type_general	Other	IRTG_27	27
+	ids_nfdi4health_relation_type	A is part of B	INRT_0	0
+	ids_nfdi4health_relation_type	A has part B	INRT_1	1
+	ids_nfdi4health_relation_type	A is supplement to B	INRT_2	2
+	ids_nfdi4health_relation_type	A is supplemented by B	INRT_3	3
+	ids_nfdi4health_relation_type	A is continued by B	INRT_4	4
+	ids_nfdi4health_relation_type	A continues B	INRT_5	5
+	ids_nfdi4health_relation_type	A is described by B	INRT_6	6
+	ids_nfdi4health_relation_type	A describes B	INRT_7	7
+	ids_nfdi4health_relation_type	A has version B	INRT_8	8
+	ids_nfdi4health_relation_type	A is version of B	INRT_9	9
+	ids_nfdi4health_relation_type	A is new version of B	INRT_10	10
+	ids_nfdi4health_relation_type	A is previous version of B	INRT_11	11
+	ids_nfdi4health_relation_type	A is variant form of B	INRT_12	12
+	ids_nfdi4health_relation_type	A is original form of B	INRT_13	13
+	ids_nfdi4health_relation_type	A is identical to B	INRT_14	14
+	ids_nfdi4health_relation_type	A is derived from B	INRT_15	15
+	ids_nfdi4health_relation_type	A is source of B	INRT_16	16
+	ids_nfdi4health_relation_type	A is obsoleted by B	INRT_17	17
+	ids_nfdi4health_relation_type	A obsoletes B	INRT_18	18
+	nutritional_data	Yes	ND_0	0
+	nutritional_data	No	ND_1	1
+	chronic_diseases	Yes	CD_0	0
+	chronic_diseases	No	CD_1	1
+	record_linkage_possible	Yes	RLP_0	0
+	record_linkage_possible	No	RLP_1	1
+	study_primary_design	Non-interventional	SPD_0	0
+	study_primary_design	Interventional	SPD_1	1
+	study_type_interventional	Crossover	STI_0	0
+	study_type_interventional	Factorial	STI_1	1
+	study_type_interventional	Other	STI_2	2
+	study_type_interventional	Parallel	STI_3	3
+	study_type_interventional	RCT	STI_4	4
+	study_type_interventional	Sequential	STI_5	5
+	study_type_interventional	Single group	STI_6	6
+	study_type_interventional	Unknown	STI_7	7
+	study_type_non_interventional	Birth cohort	STNI_0	0
+	study_type_non_interventional	Case-cohort	STNI_1	1
+	study_type_non_interventional	Case-control	STNI_2	2
+	study_type_non_interventional	Case-crossover	STNI_3	3
+	study_type_non_interventional	Case-only	STNI_4	4
+	study_type_non_interventional	Cohort	STNI_5	5
+	study_type_non_interventional	Cross-section	STNI_6	6
+	study_type_non_interventional	Cross-section ad-hoc follow-up	STNI_7	7
+	study_type_non_interventional	Ecologic or community studies	STNI_8	8
+	study_type_non_interventional	Family-based	STNI_9	9
+	study_type_non_interventional	Longitudinal	STNI_10	10
+	study_type_non_interventional	Nested case-control	STNI_11	11
+	study_type_non_interventional	Other	STNI_12	12
+	study_type_non_interventional	Panel	STNI_13	13
+	study_type_non_interventional	Quality control	STNI_14	14
+	study_type_non_interventional	Registry	STNI_15	15
+	study_type_non_interventional	Time series	STNI_16	16
+	study_type_non_interventional	Trend	STNI_17	17
+	study_type_non_interventional	Twin study	STNI_18	18
+	study_type_non_interventional	Unknown	STNI_19	19
+	study_conditions_classification	MeSH	SCC_0	0
+	study_conditions_classification	ICD-10	SCC_1	1
+	study_conditions_classification	MedDRA	SCC_2	2
+	study_conditions_classification	SNOMED CT	SCC_3	3
+	study_conditions_classification	Other vocabulary	SCC_4	4
+	study_conditions_classification	Free text	SCC_5	5
+	study_groups_of_diseases_generally	Certain conditions originating in the perinatal period (19)	SGODG_0	0
+	study_groups_of_diseases_generally	Certain infectious or parasitic diseases (01)	SGODG_1	1
+	study_groups_of_diseases_generally	Conditions related to sexual health (17)	SGODG_2	2
+	study_groups_of_diseases_generally	Developmental anomalies (20)	SGODG_3	3
+	study_groups_of_diseases_generally	Diseases of the blood or blood-forming organs (03)	SGODG_4	4
+	study_groups_of_diseases_generally	Diseases of the circulatory system (11)	SGODG_5	5
+	study_groups_of_diseases_generally	Diseases of the digestive system (13)	SGODG_6	6
+	study_groups_of_diseases_generally	Diseases of the ear or mastoid process (10)	SGODG_7	7
+	study_groups_of_diseases_generally	Diseases of the genitourinary system (16)	SGODG_8	8
+	study_groups_of_diseases_generally	Diseases of the immune system (04)	SGODG_9	9
+	study_groups_of_diseases_generally	Diseases of the musculoskeletal system or connective tissue (15)	SGODG_10	10
+	study_groups_of_diseases_generally	Diseases of the nervous system (08)	SGODG_11	11
+	study_groups_of_diseases_generally	Diseases of the respiratory system (12)	SGODG_12	12
+	study_groups_of_diseases_generally	Diseases of the skin (14)	SGODG_13	13
+	study_groups_of_diseases_generally	Diseases of the visual system (09)	SGODG_14	14
+	study_groups_of_diseases_generally	Endocrine, nutritional or metabolic diseases (05)	SGODG_15	15
+	study_groups_of_diseases_generally	External causes of morbidity or mortality (23)	SGODG_16	16
+	study_groups_of_diseases_generally	Factors influencing health status or contact with health services (24)	SGODG_17	17
+	study_groups_of_diseases_generally	Injury, poisoning or certain other consequences of external causes (22)	SGODG_18	18
+	study_groups_of_diseases_generally	Mental, behavioural or neurodevelopmental disorders (06)	SGODG_19	19
+	study_groups_of_diseases_generally	Neoplasms (02)	SGODG_20	20
+	study_groups_of_diseases_generally	Not applicable	SGODG_21	21
+	study_groups_of_diseases_generally	Other	SGODG_22	22
+	study_groups_of_diseases_generally	Pregnancy, childbirth or the puerperium (18)	SGODG_23	23
+	study_groups_of_diseases_generally	Sleep-wake disorders (07)	SGODG_24	24
+	study_groups_of_diseases_generally	Symptoms, signs or clinical findings, not elsewhere classified (21)	SGODG_25	25
+	study_groups_of_diseases_generally	Unknown	SGODG_26	26
+	study_diseases_conditions	Cholera (1A00)	SDC_0	0
+	study_diseases_conditions	Intestinal infection due to other Vibrio (1A01)	SDC_1	1
+	study_diseases_conditions	Intestinal infections due to Shigella (1A02)	SDC_2	2
+	mortality_data	Yes, vital status only (cause of death missing)	MD_0	0
+	mortality_data	Yes, with cause of death	MD_1	1
+	mortality_data	No	MD_2	2
+	study_ethics_committee_approval	Request for approval not yet submitted	SECA_0	0
+	study_ethics_committee_approval	Request for approval submitted, approval pending	SECA_1	1
+	study_ethics_committee_approval	Request for approval submitted, approval granted	SECA_2	2
+	study_ethics_committee_approval	Request for approval submitted, exempt granted	SECA_3	3
+	study_ethics_committee_approval	Request for approval submitted, approval denied	SECA_4	4
+	study_ethics_committee_approval	Approval not required	SECA_5	5
+	study_ethics_committee_approval	Study withdrawn prior to decision on approval	SECA_6	6
+	study_ethics_committee_approval	Unknown status of request approval	SECA_7	7
+	study_status	At the planning stage	SS_0	0
+	study_status	Ongoing (I): Recruitment ongoing, but data collection not yet started	SS_1	1
+	study_status	Ongoing (II): Recruitment and data collection ongoing	SS_2	2
+	study_status	Ongoing (III): Recruitment completed, but data collection ongoing	SS_3	3
+	study_status	Ongoing (IV): Recruitment and data collection completed, but data quality management ongoing	SS_4	4
+	study_status	Suspended: Recruitment, data collection, or data quality management, halted, but potentially will resume	SS_5	5
+	study_status	Terminated: Recruitment, data collection, data and quality management halted prematurely and will not resume	SS_6	6
+	study_status	Completed: Recruitment, data collection, and data quality management completed normally	SS_7	7
+	study_status	Other	SS_8	8
+	study_status_when_intervention	Intervention ongoing	SSWI_0	0
+	study_status_when_intervention	Intervention completed, follow-up ongoing	SSWI_1	1
+	study_status_halted_stage	At the planning stage	SSHS_0	0
+	study_status_halted_stage	Ongoing (I): Recruitment ongoing, but data collection not yet started	SSHS_1	1
+	study_status_halted_stage	Ongoing (II): Recruitment and data collection ongoing	SSHS_2	2
+	study_status_halted_stage	Ongoing (III): Recruitment completed, but data collection ongoing	SSHS_3	3
+	study_status_halted_stage	Ongoing (IV): Recruitment and data collection completed, but data quality management ongoing	SSHS_4	4
+	study_status_enrolling_by_invitation	Yes	SSEBI_0	0
+	study_status_enrolling_by_invitation	No	SSEBI_1	1
+	study_status_enrolling_by_invitation	Not applicable	SSEBI_2	2
+	study_recruitment_status_register	Not yet recruiting	SRSR_0	0
+	study_recruitment_status_register	Recruiting	SRSR_1	1
+	study_recruitment_status_register	Enrolling by invitation	SRSR_2	2
+	study_recruitment_status_register	Active, not recruiting	SRSR_3	3
+	study_recruitment_status_register	Completed	SRSR_4	4
+	study_recruitment_status_register	Suspended	SRSR_5	5
+	study_recruitment_status_register	Terminated	SRSR_6	6
+	study_recruitment_status_register	Withdrawn	SRSR_7	7
+	study_recruitment_status_register	Other	SRSR_8	8
+	study_countries	Afghanistan	SC_0	0
+	study_countries	Albania	SC_1	1
+	study_countries	Algeria	SC_2	2
+	study_countries	American Samoa	SC_3	3
+	study_countries	Andorra	SC_4	4
+	study_countries	Angola	SC_5	5
+	study_countries	Anguilla	SC_6	6
+	study_countries	Antarctica	SC_7	7
+	study_countries	Antigua and Barbuda	SC_8	8
+	study_countries	Argentina	SC_9	9
+	study_countries	Armenia	SC_10	10
+	study_countries	Aruba	SC_11	11
+	study_countries	Australia	SC_12	12
+	study_countries	Austria	SC_13	13
+	study_countries	Azerbaijan	SC_14	14
+	study_countries	Bahamas	SC_15	15
+	study_countries	Bahrain	SC_16	16
+	study_countries	Bangladesh	SC_17	17
+	study_countries	Barbados	SC_18	18
+	study_countries	Belarus	SC_19	19
+	study_countries	Belgium	SC_20	20
+	study_countries	Belize	SC_21	21
+	study_countries	Benin	SC_22	22
+	study_countries	Bermuda	SC_23	23
+	study_countries	Bhutan	SC_24	24
+	study_countries	Bolivia, Plurinational State of	SC_25	25
+	study_countries	Bonaire, Sint Eustatius and Saba	SC_26	26
+	study_countries	Bosnia and Herzegovina	SC_27	27
+	study_countries	Botswana	SC_28	28
+	study_countries	Bouvet Island	SC_29	29
+	study_countries	Brazil	SC_30	30
+	study_countries	British Indian Ocean Territory	SC_31	31
+	study_countries	Brunei Darussalam	SC_32	32
+	study_countries	Bulgaria	SC_33	33
+	study_countries	Burkina Faso	SC_34	34
+	study_countries	Burundi	SC_35	35
+	study_countries	Cabo Verde	SC_36	36
+	study_countries	Cambodia	SC_37	37
+	study_countries	Cameroon	SC_38	38
+	study_countries	Canada	SC_39	39
+	study_countries	Cayman Islands	SC_40	40
+	study_countries	Central African Republic	SC_41	41
+	study_countries	Chad	SC_42	42
+	study_countries	Chile	SC_43	43
+	study_countries	China	SC_44	44
+	study_countries	Christmas Island	SC_45	45
+	study_countries	Cocos (Keeling) Islands	SC_46	46
+	study_countries	Colombia	SC_47	47
+	study_countries	Comoros	SC_48	48
+	study_countries	Congo	SC_49	49
+	study_countries	Congo, Democratic Republic of the	SC_50	50
+	study_countries	Cook Islands	SC_51	51
+	study_countries	Costa Rica	SC_52	52
+	study_countries	Croatia	SC_53	53
+	study_countries	Cuba	SC_54	54
+	study_countries	Curaçao	SC_55	55
+	study_countries	Cyprus	SC_56	56
+	study_countries	Czechia	SC_57	57
+	study_countries	Côte d'Ivoire	SC_58	58
+	study_countries	Denmark	SC_59	59
+	study_countries	Djibouti	SC_60	60
+	study_countries	Dominica	SC_61	61
+	study_countries	Dominican Republic	SC_62	62
+	study_countries	Ecuador	SC_63	63
+	study_countries	Egypt	SC_64	64
+	study_countries	El Salvador	SC_65	65
+	study_countries	Equatorial Guinea	SC_66	66
+	study_countries	Eritrea	SC_67	67
+	study_countries	Estonia	SC_68	68
+	study_countries	Eswatini	SC_69	69
+	study_countries	Ethiopia	SC_70	70
+	study_countries	Falkland Islands (Malvinas)	SC_71	71
+	study_countries	Faroe Islands	SC_72	72
+	study_countries	Fiji	SC_73	73
+	study_countries	Finland	SC_74	74
+	study_countries	France	SC_75	75
+	study_countries	French Guiana	SC_76	76
+	study_countries	French Polynesia	SC_77	77
+	study_countries	French Southern Territories	SC_78	78
+	study_countries	Gabon	SC_79	79
+	study_countries	Gambia	SC_80	80
+	study_countries	Georgia	SC_81	81
+	study_countries	Germany	SC_82	82
+	study_countries	Ghana	SC_83	83
+	study_countries	Gibraltar	SC_84	84
+	study_countries	Greece	SC_85	85
+	study_countries	Greenland	SC_86	86
+	study_countries	Grenada	SC_87	87
+	study_countries	Guadeloupe	SC_88	88
+	study_countries	Guam	SC_89	89
+	study_countries	Guatemala	SC_90	90
+	study_countries	Guernsey	SC_91	91
+	study_countries	Guinea	SC_92	92
+	study_countries	Guinea-Bissau	SC_93	93
+	study_countries	Guyana	SC_94	94
+	study_countries	Haiti	SC_95	95
+	study_countries	Heard Island and McDonald Islands	SC_96	96
+	study_countries	Holy See	SC_97	97
+	study_countries	Honduras	SC_98	98
+	study_countries	Hong Kong	SC_99	99
+	study_countries	Hungary	SC_100	100
+	study_countries	Iceland	SC_101	101
+	study_countries	India	SC_102	102
+	study_countries	Indonesia	SC_103	103
+	study_countries	Iran, Islamic Republic of	SC_104	104
+	study_countries	Iraq	SC_105	105
+	study_countries	Ireland	SC_106	106
+	study_countries	Isle of Man	SC_107	107
+	study_countries	Israel	SC_108	108
+	study_countries	Italy	SC_109	109
+	study_countries	Jamaica	SC_110	110
+	study_countries	Japan	SC_111	111
+	study_countries	Jersey	SC_112	112
+	study_countries	Jordan	SC_113	113
+	study_countries	Kazakhstan	SC_114	114
+	study_countries	Kenya	SC_115	115
+	study_countries	Kiribati	SC_116	116
+	study_countries	Korea, Democratic People's Republic of	SC_117	117
+	study_countries	Korea, Republic of	SC_118	118
+	study_countries	Kuwait	SC_119	119
+	study_countries	Kyrgyzstan	SC_120	120
+	study_countries	Lao People's Democratic Republic	SC_121	121
+	study_countries	Latvia	SC_122	122
+	study_countries	Lebanon	SC_123	123
+	study_countries	Lesotho	SC_124	124
+	study_countries	Liberia	SC_125	125
+	study_countries	Libya	SC_126	126
+	study_countries	Liechtenstein	SC_127	127
+	study_countries	Lithuania	SC_128	128
+	study_countries	Luxembourg	SC_129	129
+	study_countries	Macao	SC_130	130
+	study_countries	Madagascar	SC_131	131
+	study_countries	Malawi	SC_132	132
+	study_countries	Malaysia	SC_133	133
+	study_countries	Maldives	SC_134	134
+	study_countries	Mali	SC_135	135
+	study_countries	Malta	SC_136	136
+	study_countries	Marshall Islands	SC_137	137
+	study_countries	Martinique	SC_138	138
+	study_countries	Mauritania	SC_139	139
+	study_countries	Mauritius	SC_140	140
+	study_countries	Mayotte	SC_141	141
+	study_countries	Mexico	SC_142	142
+	study_countries	Micronesia, Federated States of	SC_143	143
+	study_countries	Moldova, Republic of	SC_144	144
+	study_countries	Monaco	SC_145	145
+	study_countries	Mongolia	SC_146	146
+	study_countries	Montenegro	SC_147	147
+	study_countries	Montserrat	SC_148	148
+	study_countries	Morocco	SC_149	149
+	study_countries	Mozambique	SC_150	150
+	study_countries	Myanmar	SC_151	151
+	study_countries	Namibia	SC_152	152
+	study_countries	Nauru	SC_153	153
+	study_countries	Nepal	SC_154	154
+	study_countries	Netherlands	SC_155	155
+	study_countries	New Caledonia	SC_156	156
+	study_countries	New Zealand	SC_157	157
+	study_countries	Nicaragua	SC_158	158
+	study_countries	Niger	SC_159	159
+	study_countries	Nigeria	SC_160	160
+	study_countries	Niue	SC_161	161
+	study_countries	Norfolk Island	SC_162	162
+	study_countries	North Macedonia	SC_163	163
+	study_countries	Northern Mariana Islands	SC_164	164
+	study_countries	Norway	SC_165	165
+	study_countries	Oman	SC_166	166
+	study_countries	Pakistan	SC_167	167
+	study_countries	Palau	SC_168	168
+	study_countries	Palestine, State of	SC_169	169
+	study_countries	Panama	SC_170	170
+	study_countries	Papua New Guinea	SC_171	171
+	study_countries	Paraguay	SC_172	172
+	study_countries	Peru	SC_173	173
+	study_countries	Philippines	SC_174	174
+	study_countries	Pitcairn	SC_175	175
+	study_countries	Poland	SC_176	176
+	study_countries	Portugal	SC_177	177
+	study_countries	Puerto Rico	SC_178	178
+	study_countries	Qatar	SC_179	179
+	study_countries	Romania	SC_180	180
+	study_countries	Russian Federation	SC_181	181
+	study_countries	Rwanda	SC_182	182
+	study_countries	Réunion	SC_183	183
+	study_countries	Saint Barthélemy	SC_184	184
+	study_countries	Saint Helena, Ascension and Tristan da Cunha	SC_185	185
+	study_countries	Saint Kitts and Nevis	SC_186	186
+	study_countries	Saint Lucia	SC_187	187
+	study_countries	Saint Martin, (French part)	SC_188	188
+	study_countries	Saint Pierre and Miquelon	SC_189	189
+	study_countries	Saint Vincent and the Grenadines	SC_190	190
+	study_countries	Samoa	SC_191	191
+	study_countries	San Marino	SC_192	192
+	study_countries	Sao Tome and Principe	SC_193	193
+	study_countries	Saudi Arabia	SC_194	194
+	study_countries	Senegal	SC_195	195
+	study_countries	Serbia	SC_196	196
+	study_countries	Seychelles	SC_197	197
+	study_countries	Sierra Leone	SC_198	198
+	study_countries	Singapore	SC_199	199
+	study_countries	Sint Maarten, (Dutch part)	SC_200	200
+	study_countries	Slovakia	SC_201	201
+	study_countries	Slovenia	SC_202	202
+	study_countries	Solomon Islands	SC_203	203
+	study_countries	Somalia	SC_204	204
+	study_countries	South Africa	SC_205	205
+	study_countries	South Georgia and the South Sandwich Islands	SC_206	206
+	study_countries	South Sudan	SC_207	207
+	study_countries	Spain	SC_208	208
+	study_countries	Sri Lanka	SC_209	209
+	study_countries	Sudan	SC_210	210
+	study_countries	Suriname	SC_211	211
+	study_countries	Svalbard and Jan Mayen	SC_212	212
+	study_countries	Sweden	SC_213	213
+	study_countries	Switzerland	SC_214	214
+	study_countries	Syrian Arab Republic	SC_215	215
+	study_countries	Taiwan, Province of China	SC_216	216
+	study_countries	Tajikistan	SC_217	217
+	study_countries	Tanzania, United Republic of	SC_218	218
+	study_countries	Thailand	SC_219	219
+	study_countries	Timor-Leste	SC_220	220
+	study_countries	Togo	SC_221	221
+	study_countries	Tokelau	SC_222	222
+	study_countries	Tonga	SC_223	223
+	study_countries	Trinidad and Tobago	SC_224	224
+	study_countries	Tunisia	SC_225	225
+	study_countries	Turkmenistan	SC_226	226
+	study_countries	Turks and Caicos Islands	SC_227	227
+	study_countries	Tuvalu	SC_228	228
+	study_countries	Türkiye	SC_229	229
+	study_countries	Uganda	SC_230	230
+	study_countries	Ukraine	SC_231	231
+	study_countries	United Arab Emirates	SC_232	232
+	study_countries	United Kingdom of Great Britain and Northern Ireland	SC_233	233
+	study_countries	United States Minor Outlying Islands	SC_234	234
+	study_countries	United States of America	SC_235	235
+	study_countries	Uruguay	SC_236	236
+	study_countries	Uzbekistan	SC_237	237
+	study_countries	Vanuatu	SC_238	238
+	study_countries	Venezuela, Bolivarian Republic of	SC_239	239
+	study_countries	Viet Nam	SC_240	240
+	study_countries	Virgin Islands, British	SC_241	241
+	study_countries	Virgin Islands, U.S.	SC_242	242
+	study_countries	Wallis and Futuna	SC_243	243
+	study_countries	Western Sahara	SC_244	244
+	study_countries	Yemen	SC_245	245
+	study_countries	Zambia	SC_246	246
+	study_countries	Zimbabwe	SC_247	247
+	study_countries	Åland Islands	SC_248	248
+	study_centers	Monocentric	SC_1_0	0
+	study_centers	Multicentric	SC_1_1	1
+	study_subject	Person	SS_1_0	0
+	study_subject	Animal	SS_1_1	1
+	study_subject	Other	SS_1_2	2
+	study_subject	Unknown	SS_1_3	3
+	study_sampling_method	Probability	SSM_0	0
+	study_sampling_method	Non-probability	SSM_1	1
+	study_sampling_method	Mixed probability and non-probability	SSM_2	2
+	study_sampling_method	Total universe/Complete enumeration	SSM_3	3
+	study_sampling_method	Other	SSM_4	4
+	study_sampling_method	Unknown	SSM_5	5
+	study_sampling_method	Not applicable	SSM_6	6
+	study_sampling_method_probability	Simple random	SSMP_0	0
+	study_sampling_method_probability	Systematic random	SSMP_1	1
+	study_sampling_method_probability	Stratified	SSMP_2	2
+	study_sampling_method_probability	Stratified: Proportional	SSMP_3	3
+	study_sampling_method_probability	Stratified: Disproportional	SSMP_4	4
+	study_sampling_method_probability	Cluster	SSMP_5	5
+	study_sampling_method_probability	Cluster: Simple random	SSMP_6	6
+	study_sampling_method_probability	Cluster: Stratified random	SSMP_7	7
+	study_sampling_method_probability	Multistage	SSMP_8	8
+	study_sampling_method_non_probability	Availability	SSMNP_0	0
+	study_sampling_method_non_probability	Purposive	SSMNP_1	1
+	study_sampling_method_non_probability	Quota	SSMNP_2	2
+	study_sampling_method_non_probability	Respondent-assisted	SSMNP_3	3
+	study_data_sources_general	Administrative databases	SDSG_0	0
+	study_data_sources_general	Biological samples	SDSG_1	1
+	study_data_sources_general	Cognitive measurements	SDSG_2	2
+	study_data_sources_general	Genealogical records	SDSG_3	3
+	study_data_sources_general	Imaging data	SDSG_4	4
+	study_data_sources_general	Interview	SDSG_5	5
+	study_data_sources_general	Medical records	SDSG_6	6
+	study_data_sources_general	Omics technology	SDSG_7	7
+	study_data_sources_general	Other	SDSG_8	8
+	study_data_sources_general	Physiological/Biochemical measurements	SDSG_9	9
+	study_data_sources_general	Questionnaire	SDSG_10	10
+	study_data_sources_general	Registries	SDSG_11	11
+	study_data_sources_biosamples	Blood	SDSB_0	0
+	study_data_sources_biosamples	Buccal cells	SDSB_1	1
+	study_data_sources_biosamples	Cord blood	SDSB_2	2
+	study_data_sources_biosamples	DNA	SDSB_3	3
+	study_data_sources_biosamples	Faeces	SDSB_4	4
+	study_data_sources_biosamples	Hair	SDSB_5	5
+	study_data_sources_biosamples	Immortalized cell lines	SDSB_6	6
+	study_data_sources_biosamples	Isolated pathogen	SDSB_7	7
+	study_data_sources_biosamples	Nail	SDSB_8	8
+	study_data_sources_biosamples	Other biological samples	SDSB_9	9
+	study_data_sources_biosamples	Plasma	SDSB_10	10
+	study_data_sources_biosamples	RNA	SDSB_11	11
+	study_data_sources_biosamples	Saliva	SDSB_12	12
+	study_data_sources_biosamples	Serum	SDSB_13	13
+	study_data_sources_biosamples	Tissue (FFPE)	SDSB_14	14
+	study_data_sources_biosamples	Tissue (frozen)	SDSB_15	15
+	study_data_sources_biosamples	Urine	SDSB_16	16
+	study_data_sources_imaging	Computed tomography (CT)	SDSI_0	0
+	study_data_sources_imaging	Magnetic resonance imaging (MRI)	SDSI_1	1
+	study_data_sources_imaging	Other imaging data	SDSI_2	2
+	study_data_sources_imaging	Radiography (x-ray)	SDSI_3	3
+	study_data_sources_imaging	Ultrasound	SDSI_4	4
+	study_data_sources_omics	Biomarkers	SDSO_0	0
+	study_data_sources_omics	Genomics	SDSO_1	1
+	study_data_sources_omics	Metabolomics	SDSO_2	2
+	study_data_sources_omics	Other omics technology	SDSO_3	3
+	study_data_sources_omics	Proteomics	SDSO_4	4
+	study_data_sources_omics	Transcriptomics	SDSO_5	5
+	study_primary_purpose	Treatment	SPP_0	0
+	study_primary_purpose	Prevention	SPP_1	1
+	study_primary_purpose	Prognostic	SPP_2	2
+	study_primary_purpose	Diagnostic	SPP_3	3
+	study_primary_purpose	Supportive care	SPP_4	4
+	study_primary_purpose	Screening	SPP_5	5
+	study_primary_purpose	Health services research	SPP_6	6
+	study_primary_purpose	Basic science/Physiological study	SPP_7	7
+	study_primary_purpose	Device feasibility	SPP_8	8
+	study_primary_purpose	Pharmacogenetics	SPP_9	9
+	study_primary_purpose	Pharmacogenomics	SPP_10	10
+	study_primary_purpose	Health economics	SPP_11	11
+	study_primary_purpose	Not applicable	SPP_12	12
+	study_primary_purpose	Other	SPP_13	13
+	study_eligibility_age_min_time_unit	Years	SEAMTU_0	0
+	study_eligibility_age_min_time_unit	Months	SEAMTU_1	1
+	study_eligibility_age_min_time_unit	Weeks	SEAMTU_2	2
+	study_eligibility_age_min_time_unit	Days	SEAMTU_3	3
+	study_eligibility_age_min_time_unit	Hours	SEAMTU_4	4
+	study_eligibility_age_min_time_unit	Minutes	SEAMTU_5	5
+	study_eligibility_age_min_time_unit	Weeks of gestation	SEAMTU_6	6
+	study_eligibility_age_max_time_unit	Years	SEAMTU_1_0	0
+	study_eligibility_age_max_time_unit	Months	SEAMTU_1_1	1
+	study_eligibility_age_max_time_unit	Weeks	SEAMTU_1_2	2
+	study_eligibility_age_max_time_unit	Days	SEAMTU_1_3	3
+	study_eligibility_age_max_time_unit	Hours	SEAMTU_1_4	4
+	study_eligibility_age_max_time_unit	Minutes	SEAMTU_1_5	5
+	study_eligibility_age_max_time_unit	Weeks of gestation	SEAMTU_1_6	6
+	study_eligibility_genders	Diverse	SEG_0	0
+	study_eligibility_genders	Female	SEG_1	1
+	study_eligibility_genders	Male	SEG_2	2
+	study_eligibility_genders	Not applicable	SEG_3	3
+	study_age_min_examined_time_unit	Years	SAMETU_0	0
+	study_age_min_examined_time_unit	Months	SAMETU_1	1
+	study_age_min_examined_time_unit	Weeks	SAMETU_2	2
+	study_age_min_examined_time_unit	Days	SAMETU_3	3
+	study_age_min_examined_time_unit	Hours	SAMETU_4	4
+	study_age_min_examined_time_unit	Minutes	SAMETU_5	5
+	study_age_min_examined_time_unit	Weeks of gestation	SAMETU_6	6
+	study_age_max_examined_time_unit	Years	SAMETU_1_0	0
+	study_age_max_examined_time_unit	Months	SAMETU_1_1	1
+	study_age_max_examined_time_unit	Weeks	SAMETU_1_2	2
+	study_age_max_examined_time_unit	Days	SAMETU_1_3	3
+	study_age_max_examined_time_unit	Hours	SAMETU_1_4	4
+	study_age_max_examined_time_unit	Minutes	SAMETU_1_5	5
+	study_age_max_examined_time_unit	Weeks of gestation	SAMETU_1_6	6
+	study_arm_group_type	Experimental	SAGT_0	0
+	study_arm_group_type	Active comparator	SAGT_1	1
+	study_arm_group_type	Placebo comparator	SAGT_2	2
+	study_arm_group_type	Sham comparator	SAGT_3	3
+	study_arm_group_type	No intervention	SAGT_4	4
+	study_arm_group_type	Other	SAGT_5	5
+	study_intervention_type	Drug (including placebo)	SIT_0	0
+	study_intervention_type	Device (including sham)	SIT_1	1
+	study_intervention_type	Biological/Vaccine	SIT_2	2
+	study_intervention_type	Procedure/Surgery	SIT_3	3
+	study_intervention_type	Radiation	SIT_4	4
+	study_intervention_type	Behavioral (e.g., psychotherapy, lifestyle counseling)	SIT_5	5
+	study_intervention_type	Genetic (including gene transfer, stem cell and recombinant DNA)	SIT_6	6
+	study_intervention_type	Dietary supplement (e.g., vitamins, minerals)	SIT_7	7
+	study_intervention_type	Combination product (combining a drug and device, a biological product and device; a drug and biological product; or a drug, biological product, and device)	SIT_8	8
+	study_intervention_type	Diagnostic test (e.g., imaging, in-vitro)	SIT_9	9
+	study_intervention_type	Other	SIT_10	10
+	study_outcome_type	Primary	SOT_0	0
+	study_outcome_type	Secondary	SOT_1	1
+	study_outcome_type	Other	SOT_2	2
+	study_assessments	Alcohol consumption	SA_0	0
+	study_assessments	Body Mass Index	SA_1	1
+	study_assessments	Body fat percentage	SA_2	2
+	study_assessments	Body height	SA_3	3
+	study_assessments	Body weight	SA_4	4
+	study_assessments	Diet/Nutrition	SA_5	5
+	study_assessments	Physical activity	SA_6	6
+	study_assessments	Sociodemographic information	SA_7	7
+	study_assessments	Tobacco use	SA_8	8
+	study_assessments	Waist circumference	SA_9	9
+	study_data_sharing_plan_generally	Yes, there is a plan to make data available	SDSPG_0	0
+	study_data_sharing_plan_generally	No, there is no plan to make data available	SDSPG_1	1
+	study_data_sharing_plan_generally	Undecided, it is not yet known if data will be made available	SDSPG_2	2
+	study_data_sharing_plan_supporting_information	Analytic code	SDSPSI_0	0
+	study_data_sharing_plan_supporting_information	Case report form (template)	SDSPSI_1	1
+	study_data_sharing_plan_supporting_information	Clinical study report	SDSPSI_2	2
+	study_data_sharing_plan_supporting_information	Code book	SDSPSI_3	3
+	study_data_sharing_plan_supporting_information	Data dictionary	SDSPSI_4	4
+	study_data_sharing_plan_supporting_information	Informed consent form	SDSPSI_5	5
+	study_data_sharing_plan_supporting_information	Manual of operations (SOP)	SDSPSI_6	6
+	study_data_sharing_plan_supporting_information	Other	SDSPSI_7	7
+	study_data_sharing_plan_supporting_information	Protocol amendment	SDSPSI_8	8
+	study_data_sharing_plan_supporting_information	Questionnaire (template)	SDSPSI_9	9
+	study_data_sharing_plan_supporting_information	Statistical analysis plan	SDSPSI_10	10
+	study_data_sharing_plan_supporting_information	Study protocol	SDSPSI_11	11
+	study_data_sharing_plan_datashield	Yes	SDSPD_0	0
+	study_data_sharing_plan_datashield	No	SDSPD_1	1
+	study_data_sharing_plan_datashield	Pending	SDSPD_2	2
+	study_time_perspectives	Cross-sectional	STP_0	0
+	study_time_perspectives	Other	STP_1	1
+	study_time_perspectives	Prospective	STP_2	2
+	study_time_perspectives	Retrospective	STP_3	3
+	study_biospecimen_retention	None retained	SBR_0	0
+	study_biospecimen_retention	Samples with DNA	SBR_1	1
+	study_biospecimen_retention	Samples without DNA	SBR_2	2
+	study_phase	Early-phase-1	SP_0	0
+	study_phase	Phase-1	SP_1	1
+	study_phase	Phase-1-phase-2	SP_2	2
+	study_phase	Phase-2	SP_3	3
+	study_phase	Phase-2a	SP_4	4
+	study_phase	Phase-2b	SP_5	5
+	study_phase	Phase-2-phase-3	SP_6	6
+	study_phase	Phase-3	SP_7	7
+	study_phase	Phase-3a	SP_8	8
+	study_phase	Phase-3b	SP_9	9
+	study_phase	Phase-4	SP_10	10
+	study_phase	Other	SP_11	11
+	study_phase	Not applicable	SP_12	12
+	study_masking_general	Yes	SMG_0	0
+	study_masking_general	No	SMG_1	1
+	study_masking_roles	Care provider	SMR_0	0
+	study_masking_roles	Investigator	SMR_1	1
+	study_masking_roles	Outcomes assessor	SMR_2	2
+	study_masking_roles	Participant	SMR_3	3
+	study_allocation	Randomized	SA_1_0	0
+	study_allocation	Nonrandomized	SA_1_1	1
+	study_allocation	Not applicable (for single-arm trials)	SA_1_2	2
+	study_off_label_use	Yes	SOLU_0	0
+	study_off_label_use	No	SOLU_1	1
+	study_off_label_use	Not applicable	SOLU_2	2
+	data_source	Automatically uploaded: ClinicalTrials.gov	DS_0	0
+	data_source	Automatically uploaded: DRKS	DS_1	1
+	data_source	Automatically uploaded: ICTRP	DS_2	2
+	data_source	Automatically uploaded: MDM Portal	DS_3	3
+	data_source	Automatically uploaded: Other	DS_4	4
+	data_source	Manually collected	DS_5	5
+	verification_date_user	Names from the list of users	VDU_0	0
+	resource_first_submitted_user	Names from the list of users	RFSU_0	0
+	resource_first_posted_user	Names from the list of users	RFPU_0	0
+	last_update_submitted_user	Names from the list of users	LUSU_0	0
+	last_update_posted_user	Names from the list of users	LUPU_0	0

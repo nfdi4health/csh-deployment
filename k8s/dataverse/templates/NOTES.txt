@@ -1,0 +1,26 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+Here are some tasks to perform :)
+
+## Enable admin api via localhost port forwarding
+### Allow all API calls
+`kubectl port-forward pods/{{ .Release.Name }}-dataverse-0  8080:8080`
+
+`curl -X PUT -d allow http://localhost:8080/api/admin/settings/:BlockedApiPolicy`
+
+## Update SOLR fields with custom metadata info
+
+Login into the solr helper container and execute the update
+`kubectl exec -i -t {{ .Release.Name }}-dataverse-solr-0 --container dataverse-solr-config  -- /bin/sh`
+
+Until the image is fixed, manually add the `ed` package.
+`apk add ed`
+
+`curl "http://${DATAVERSE_HOSTNAME}:8080/api/admin/index/solr/schema" | /scripts/update-fields.sh /template/conf/schema.xml`
+
+`cp /template/conf/schema.xml /var/solr/data/collection1/schema.xml `
+
+`curl "http://localhost:8983/solr/admin/cores?action=RELOAD&core=collection1"`
+

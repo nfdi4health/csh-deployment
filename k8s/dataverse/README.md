@@ -1,5 +1,9 @@
 # Install dataverse
+
+## If you would like to install custom 
 `helm install my-dataverse ./dataverse`
+
+
 # Configure custom schema
 ## Enable admin api via localhost port forwarding
 ### Allow all API calls
@@ -8,10 +12,7 @@
 `kubectl port-forward pods/${DATAVERSE_POD} 8080:8080`
 
 `curl -X PUT -d allow http://localhost:8080/api/admin/settings/:BlockedApiPolicy`
-### Import custom metadata
-Where `customMDS.tsv` is the custom metadata file.
 
-`curl http://localhost:8080/api/admin/datasetfield/load -X POST --data-binary @customMDS.tsv -H "Content-type: text/tab-separated-values" -v`
 ## Update SOLR fields with custom metadata info
 ### Login into the solr helper container and execute the update 
 `export SOLR_POD="my-dataverse-dataverse-solr-0"`

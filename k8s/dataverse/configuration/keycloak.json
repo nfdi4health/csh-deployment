@@ -1,8 +1,0 @@
-{
-    "id":"keycloak_nfdi4health",
-    "factoryAlias":"oidc",
-    "title":"Keycloak | NFDI4Health",
-    "subtitle":"Keycloak authentication service for NFDI4Health",
-    "factoryData":"type: oidc | issuer: X | clientId: X | clientSecret: X",
-    "enabled":true
-}
