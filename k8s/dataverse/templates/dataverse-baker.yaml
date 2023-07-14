@@ -26,7 +26,6 @@ spec:
         - image:  gdcc/configbaker:unstable
           name: dataverse-configbaker
           command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","nfdi4health" ]
-
           env:
             - name: METADATABLOCKS_PATH
               value: "/metadatablocks"

@@ -8,7 +8,7 @@ export DATAVERSE_URL
 SELF_LOCATION=$( dirname "$(readlink -f -- "$0")" )
 
 echo "Running dev setup-all.sh (INSECURE MODE)..."
-#"${BOOTSTRAP_DIR}"/dev/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
+"${BOOTSTRAP_DIR}"/dev/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
 
 echo "Allow all API calls"
 curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy

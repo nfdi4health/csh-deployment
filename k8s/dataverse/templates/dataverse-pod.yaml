@@ -8,7 +8,6 @@ metadata:
     app.kubernetes.io/version: "5.13"
     app.kubernetes.io/component: dataverse
     app.kubernetes.io/part-of: dataverse
-
 spec:
   ports:
     - name: "8080"
@@ -119,6 +118,7 @@ spec:
             limits:
               memory: "2147483648"
           volumeMounts:
+{{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
               name: dev-dataverse-claim0
           readinessProbe:

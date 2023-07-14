@@ -92,7 +92,7 @@ spec:
             value: "8983"
           - name: DATAVERSE_HOSTNAME
             value: {{ .Release.Name }}-dataverse-svc
-        command: [ "/bin/bash", "-c", 'while true; do echo "LOOP;Press CTRL+C to exit"; sleep 600; done']
+        command: [ "/bin/bash", "-c", 'while true; do echo "LOOP and sleep for 600;Press CTRL+C to exit"; sleep 600; done']
         volumeMounts:
           - mountPath: /var/solr
             name: solr-data
