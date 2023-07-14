@@ -8,7 +8,7 @@ export DATAVERSE_URL
 SELF_LOCATION=$( dirname "$(readlink -f -- "$0")" )
 
 echo "Running dev setup-all.sh (INSECURE MODE)..."
-"${BOOTSTRAP_DIR}"/dev/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
+"${BOOTSTRAP_DIR}"/base/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
 
 echo "Allow all API calls"
 curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy
@@ -35,6 +35,9 @@ echo "Create dataverses"
 DATAVERSES_PATH=${SELF_LOCATION}/dataverses
 DATAVERSES=$(find $DATAVERSES_PATH -maxdepth 2 -iname '*.json')
 # Create dataverses
+echo -n "Publishing dataverse root:"
+curl -X POST $DATAVERSE_URL/api/dataverses/root/actions/:publish
+
 while IFS= read -r DATAVERSE; do
   if [[ $(dirname "$DATAVERSE") -ef $DATAVERSES_PATH ]]; then
     PARENT_DATAVERSE="root"
@@ -43,14 +46,16 @@ while IFS= read -r DATAVERSE; do
   fi
 
   DATAVERSE_ID=$(jq -r '.alias' $DATAVERSE)
-  echo -n "Creating $PARENT_DATAVERSE/$DATAVERSE_ID:"
-
+  echo -n "Creating dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$PARENT_DATAVERSE --upload-file $DATAVERSE
 
-  echo -n "Adding dataverseAdmin as admin:"
+  echo -n "Publishing dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+  curl -X POST $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/actions/:publish
+
+  echo -n "Adding dataverseAdmin as admin to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@dataverseAdmin", "role": "admin"}'
 
-  echo -n "Adding :authenticated-users as dataset creators:"
+  echo -n "Adding :authenticated-users as dataset creators to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
 done <<< "${DATAVERSES}"
 
