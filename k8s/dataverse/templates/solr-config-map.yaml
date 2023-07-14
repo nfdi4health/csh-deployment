@@ -10,6 +10,4 @@ metadata:
     app.kubernetes.io/part-of: dataverse
 data:
   schema.xml: >
-{{ (.Files.Get "solr/schema.xml") | indent 4}}
-  solrconfig.xml: >
-{{ (.Files.Get "solr/solrconfig.xml") | indent 4 }}
+{{ (.Files.Get "persona/nfdi4health/schema.xml") | indent 4}}

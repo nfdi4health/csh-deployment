@@ -1,1 +1,0 @@
-Copied from https://github.com/IQSS/dataverse/tree/develop/conf/solr/8.11.1

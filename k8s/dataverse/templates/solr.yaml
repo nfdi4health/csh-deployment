@@ -31,6 +31,23 @@ spec:
     requests:
       storage: 100Mi
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-dataverse-solr-template
+  labels:
+    app.kubernetes.io/name: solr
+    app.kubernetes.io/instance: solr-{{ .Release.Name }}
+    app.kubernetes.io/version: "8.11.2"
+    app.kubernetes.io/component: solr
+    app.kubernetes.io/part-of: dataverse
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Mi
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -62,11 +79,27 @@ spec:
       securityContext:
         fsGroup: 8983
       containers:
+      - image: gdcc/configbaker:unstable
+        name: dataverse-solr-config
+        env:
+          - name: DATAVERSE_SOLR_HOST
+            value: {{ .Release.Name }}-dataverse-solr-svc
+          - name: DATAVERSE_SOLR_PORT
+            value: "8983"
+          - name: DATAVERSE_HOSTNAME
+            value: {{ .Release.Name }}-dataverse-svc
+        command: [ "/bin/bash", "-c", 'mkdir -p /var/solr/data; /scripts/fix-fs-perms.sh solr; if [ -f "/solr-template/SETUP_DONE" ]; then echo "config already exits; no copy!"; else echo "copy template";cp -a /template/* /solr-template;echo "overwrite with configmap"; cp /schema/schema.xml /solr-template/conf/schema.xml; touch /solr-template/SETUP_DONE; fi;while true; do echo "LOOP and sleep for 600;Press CTRL+C to exit"; sleep 600; done' ]
+        volumeMounts:
+          - mountPath: /var/solr
+            name: solr-data
+          - mountPath: /solr-template
+            name: solr-template
+          - mountPath: /schema/
+            name: cfgmap
       - name: solr
         image: solr:8.11.2
-        command: ["/bin/bash", "-c"]
-        # if /var/solr/data does not exist precreate-core fails. We need to precrate a core otherwise the default configset is not present in container
-        args: ["mkdir -p /var/solr/data; precreate-core setup;mkdir -p /tmp/conf; cp -R -n /opt/solr-8.11.2/server/solr/configsets/_default/conf /tmp;cp /tmp/schema.xml /tmp/conf/schema.xml;cp /tmp/solrconfig.xml /tmp/conf/solrconfig.xml;precreate-core collection1 /tmp/conf; solr-foreground -Djetty.host=0.0.0.0"]
+        command: [ "/bin/bash", "-c" ]
+        args: [ "sleep 30; precreate-core collection1 /solr-template; solr-foreground -Djetty.host=0.0.0.0" ]
         env:
           - name: SOLR_JETTY_HOST
             value: "0.0.0.0"
@@ -77,30 +110,17 @@ spec:
         volumeMounts:
           - mountPath: /var/solr
             name: solr-data
-          - mountPath: /tmp/schema.xml
-            name: cfgmap
-            subPath: schema.xml
-          - mountPath: /tmp/solrconfig.xml
-            name: cfgmap
-            subPath: solrconfig.xml
-      - image: gdcc/configbaker:unstable
-        name: dataverse-solr-config
-        env:
-          - name: DATAVERSE_SOLR_HOST
-            value: {{ .Release.Name }}-dataverse-solr-svc
-          - name: DATAVERSE_SOLR_PORT
-            value: "8983"
-          - name: DATAVERSE_HOSTNAME
-            value: {{ .Release.Name }}-dataverse-svc
-        command: [ "/bin/bash", "-c", 'while true; do echo "LOOP and sleep for 600;Press CTRL+C to exit"; sleep 600; done']
-        volumeMounts:
-          - mountPath: /var/solr
-            name: solr-data
+          - mountPath: /solr-template
+            name: solr-template
       restartPolicy: Always
       volumes:
         - name: solr-data
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-dataverse-solr-data
+        - name: solr-template
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-dataverse-solr-template
         - name: cfgmap
           configMap:
             name: {{ .Release.Name }}-dataverse-solr-config
+            defaultMode: 0777
