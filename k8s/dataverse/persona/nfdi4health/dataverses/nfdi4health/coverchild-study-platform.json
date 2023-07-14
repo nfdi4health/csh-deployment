@@ -1,0 +1,12 @@
+{
+  "name": "coverCHILD study platform",
+  "alias": "coverCHILD_study_platform",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "The coverCHILD study platform links studies on the impact of the pandemic on child, youth and family health and well-being in Germany and beyond. It enables researchers to quickly share information about ongoing projects, facilitates exchange between experts, and promotes interdisciplinary collaboration on children’s and adolescents‘ health and well-being during the pandemic. In the future, the collection’s focus will extent to studies related to other crises and their impacts on children, adolescents and their families. More information can be found on [coverchild.de](https://coverchild.de)",
+  "dataverseType": "UNCATEGORIZED"
+}

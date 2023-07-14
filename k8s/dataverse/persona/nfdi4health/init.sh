@@ -30,8 +30,29 @@ done <<< "${TSVS}"
 echo "Add dataset permissions admin role"
 curl -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/roles --upload-file $SELF_LOCATION/dataset-permissions-admin.json
 
-echo "Create user for import client"
-curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/admin/authenticatedUsers --upload-file $SELF_LOCATION/service_account_user.json
+echo "Create dataverses"
+# Find all JSON files
+DATAVERSES_PATH=${SELF_LOCATION}/dataverses
+DATAVERSES=$(find $DATAVERSES_PATH -maxdepth 2 -iname '*.json')
+# Create dataverses
+while IFS= read -r DATAVERSE; do
+  if [[ $(dirname "$DATAVERSE") -ef $DATAVERSES_PATH ]]; then
+    PARENT_DATAVERSE="root"
+  else
+    PARENT_DATAVERSE=$(basename $(dirname "$DATAVERSE"))
+  fi
+
+  DATAVERSE_ID=$(jq -r '.alias' $DATAVERSE)
+  echo -n "Creating $PARENT_DATAVERSE/$DATAVERSE_ID:"
+
+  curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$PARENT_DATAVERSE --upload-file $DATAVERSE
+
+  echo -n "Adding dataverseAdmin as admin:"
+  curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@dataverseAdmin", "role": "admin"}'
+
+  echo -n "Adding :authenticated-users as dataset creators:"
+  curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
+done <<< "${DATAVERSES}"
 
 # Last step as existence of one block is the indicator for a complete bootstrapped installation
 echo "Load custom metadata blocks"

@@ -1,0 +1,12 @@
+{
+  "name": "COVID-19",
+  "alias": "COVID-19",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "",
+  "dataverseType": "UNCATEGORIZED"
+}

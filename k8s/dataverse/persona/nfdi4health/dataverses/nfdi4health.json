@@ -1,0 +1,12 @@
+{
+  "name": "NFDI4Health",
+  "alias": "nfdi4health",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "National Research Data Infrastructure for Personal Health Data",
+  "dataverseType": "UNCATEGORIZED"
+}

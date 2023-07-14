@@ -1,0 +1,12 @@
+{
+  "name": "Robert Koch-Institute",
+  "alias": "Robert_Koch-Institute",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "The Robert Koch-Institute (RKI) is the german government’s central scientific institution in the field of biomedicine. It is one of the most important bodies for the safeguarding of public health in Germany. Its tasks are:\n\n   - Identification, surveillance and prevention of diseases, especially infectious diseases\n   - Monitoring and analysing long-term public health trends in Germany\n   - Epidemiological and medical analyses and evaluation of highly pathogenic and highly contagious diseases which are of great significance to the general public\n   - Providing a scientific basis for health-related political decision-making\n   - Informing and advising political decision-makers, the scientific sector and the general public\n   - Executive tasks defined by special laws, in particular with regard to protection from infection, legislation on stem cell research, and attacks using biological agents\n   - Federal health reporting\n\nFurther reading: [rki.de](https://www.rki.de/EN/Home/homepage_node.html)",
+  "dataverseType": "UNCATEGORIZED"
+}
