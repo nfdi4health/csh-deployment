@@ -46,7 +46,7 @@ echo -n "Publishing dataverse root:"
 curl -H "X-Dataverse-key:$API_TOKEN" -X POST $DATAVERSE_URL/api/dataverses/root/actions/:publish
 
 while IFS= read -r DATAVERSE; do
-  if [[ $(dirname "$DATAVERSE") -ef $DATAVERSES_PATH ]]; then
+  if [[ ${DATAVERSE%%_*} -ne "nfdi4health" ]]; then
     PARENT_DATAVERSE="root"
   else
     PARENT_DATAVERSE= ${DATAVERSE%%_*}
