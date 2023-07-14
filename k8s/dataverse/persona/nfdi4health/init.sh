@@ -12,7 +12,7 @@ echo "Running dev setup-all.sh (INSECURE MODE)..."
 
 echo "Allow all API calls"
 curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy
-curl -X PUT -d "admin,builtin-users,licenses" $DATAVERSE_URL/api/admin/settings/:BlockedApiEndpoints
+#curl -X PUT -d "admin,builtin-users,licenses" $DATAVERSE_URL/api/admin/settings/:BlockedApiEndpoints
 
 echo "Set up OIDC provider"
 curl -X POST -H "Content-type: application/json" --upload-file $SELF_LOCATION/keycloak.json $DATAVERSE_URL/api/admin/authenticationProviders
@@ -32,8 +32,7 @@ curl -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/roles -
 
 echo "Create dataverses"
 # Find all JSON files
-DATAVERSES_PATH=${SELF_LOCATION}/dataverses
-DATAVERSES=$(find $DATAVERSES_PATH -maxdepth 2 -iname '*.json')
+DATAVERSES=$(find $DATAVERSES_PATH -maxdepth 1 -iname '*.json')
 # Create dataverses
 echo -n "Publishing dataverse root:"
 curl -X POST $DATAVERSE_URL/api/dataverses/root/actions/:publish
@@ -42,7 +41,7 @@ while IFS= read -r DATAVERSE; do
   if [[ $(dirname "$DATAVERSE") -ef $DATAVERSES_PATH ]]; then
     PARENT_DATAVERSE="root"
   else
-    PARENT_DATAVERSE=$(basename $(dirname "$DATAVERSE"))
+    PARENT_DATAVERSE= ${DATAVERSE%%_*}
   fi
 
   DATAVERSE_ID=$(jq -r '.alias' $DATAVERSE)

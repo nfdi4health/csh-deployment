@@ -31,6 +31,8 @@ spec:
               value: "/metadatablocks"
             - name: LICENCE_PATH
               value: "/licence"
+            - name: DATAVERSES_PATH
+              value: "/dataverses"
           volumeMounts:
             - name: script
               mountPath: "/scripts/bootstrap/nfdi4health"
@@ -38,6 +40,8 @@ spec:
               mountPath: "/metadatablocks"
             - name: licence
               mountPath: "/licence"
+            - name: dataverses
+              mountPath: "/dataverses"
       volumes:
         - name: script
           configMap:
@@ -49,6 +53,9 @@ spec:
         - name: licence
           configMap:
             name: {{ .Release.Name }}-dataverse-bootstrap-licences
+        - name: dataverses
+          configMap:
+            name: {{ .Release.Name }}-dataverse-bootstrap-dataverses
       restartPolicy: Never
       initContainers:
         - name: check-dataverse-ready
@@ -72,6 +79,13 @@ metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-licences
 data:
 {{ (.Files.Glob "persona/nfdi4health/licence/*").AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dataverse-bootstrap-dataverses
+data:
+{{ (.Files.Glob "persona/nfdi4health/dataverses/*").AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
