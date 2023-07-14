@@ -41,17 +41,19 @@ curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" 
 echo "Create dataverses"
 # Find all JSON files
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
-# parent dataverses are created before child dataverses, e.g. "nfdi4health" is created before "nfdi4health_covid-19".
+# parent dataverses are created before child dataverses, e.g. "nfdi4health.json" is created before
+# "nfdi4health_covid-19.json".
 DATAVERSES=$(find $DATAVERSES_PATH -maxdepth 1 -iname '*.json' | LC_COLLATE=C sort)
 # Create dataverses
 echo -n "Publishing dataverse root:"
 curl -H "X-Dataverse-key:$API_TOKEN" -X POST $DATAVERSE_URL/api/dataverses/root/actions/:publish
 
 while IFS= read -r DATAVERSE; do
-  if [[ ${DATAVERSE%%_*} -ne "nfdi4health" ]]; then
-    PARENT_DATAVERSE="root"
+  if [[ $DATAVERSE == *"_"* ]]; then
+    DATAVERSE_FILE_NAME=$(basename $DATAVERSE .json)
+    PARENT_DATAVERSE=${DATAVERSE_FILE_NAME%%_*}
   else
-    PARENT_DATAVERSE= ${DATAVERSE%%_*}
+    PARENT_DATAVERSE="root"
   fi
 
   DATAVERSE_ID=$(jq -r '.alias' $DATAVERSE)
