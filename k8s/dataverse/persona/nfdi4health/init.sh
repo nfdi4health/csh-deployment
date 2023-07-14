@@ -9,9 +9,17 @@ SELF_LOCATION=$( dirname "$(readlink -f -- "$0")" )
 
 echo "Running dev setup-all.sh (INSECURE MODE)..."
 "${BOOTSTRAP_DIR}"/base/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
+API_TOKEN=$(grep apiToken "/tmp/setup-all.sh.out" | jq ".data.apiToken" | tr -d \")
+export API_TOKEN
 
-echo "Allow all API calls"
-curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy
+echo "Publishing root dataverse..."
+curl -H "X-Dataverse-key:$API_TOKEN" -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
+
+echo "Allowing users to create dataverses and datasets in root..."
+curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" -d "{\"assignee\": \":authenticated-users\",\"role\": \"fullContributor\"}" "${DATAVERSE_URL}/api/dataverses/:root/assignments"
+
+#echo "Allow all API calls"
+##curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy
 #curl -X PUT -d "admin,builtin-users,licenses" $DATAVERSE_URL/api/admin/settings/:BlockedApiEndpoints
 
 echo "Set up OIDC provider"
