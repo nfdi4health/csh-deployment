@@ -56,16 +56,10 @@ while IFS= read -r ROLE; do
 done <<< "${ROLES}"
 
 echo "Create dataverses"
-# Find all JSON files
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
 # parent dataverses are created before child dataverses, e.g. "nfdi4health.json" is created before
 # "nfdi4health_covid-19.json".
 DATAVERSES=$(find $DATAVERSES_PATH -maxdepth 1 -iname '*.json' | LC_COLLATE=C sort)
-# Create dataverses
-echo "Publishing dataverse root:"
-curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST $DATAVERSE_URL/api/dataverses/root/actions/:publish
-echo
-
 while IFS= read -r DATAVERSE; do
   if [[ $DATAVERSE == *"_"* ]]; then
     DATAVERSE_FILE_NAME=$(basename $DATAVERSE .json)
@@ -97,6 +91,7 @@ while IFS= read -r DATAVERSE; do
     # (only curators should be able to publish)
     echo "Adding :authenticated-users as dataset publisher to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
     curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPublisher"}'
+    echo
   else
     # The import client is currently the only automatically configured curator user, all other curators must be added
     # manually
@@ -127,6 +122,6 @@ while IFS= read -r DATAVERSE; do
   echo
 done <<< "${DATAVERSES}"
 
-
-
-echo "\n\n...DONE!"
+echo
+echo
+echo "...DONE!"
