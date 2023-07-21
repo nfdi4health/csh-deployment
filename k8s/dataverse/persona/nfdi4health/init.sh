@@ -13,7 +13,7 @@ API_TOKEN=$(grep apiToken "/tmp/setup-all.sh.out" | jq ".data.apiToken" | tr -d 
 export API_TOKEN
 
 echo -n "Setting DOI provider to FAKE"
-curl -H "X-Dataverse-key:$API_TOKEN" -X PUT -d FAKE DATAVERSE_URL/api/admin/settings/:DoiProvider
+curl -H "X-Dataverse-key:$API_TOKEN" -X PUT -d FAKE $DATAVERSE_URL/api/admin/settings/:DoiProvider
 
 echo -n "Publishing root dataverse"
 curl -H "X-Dataverse-key:$API_TOKEN" -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
