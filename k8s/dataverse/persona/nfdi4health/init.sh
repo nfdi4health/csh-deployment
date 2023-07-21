@@ -87,11 +87,19 @@ echo -n "Load custom metadata blocks"
 #curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_HOST/api/admin/datasetfield/load --upload-file customMDS.tsv
 # Find all TSV files
 TSVS=$(find "${METADATABLOCKS_PATH}" -maxdepth 1 -iname '*.tsv')
+METADATABLOCK_NAMES=("citation")
 # Load metadata blocks
 while IFS= read -r TSV; do
   echo -n "Loading ${TSV}:"
   curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_URL/api/admin/datasetfield/load --upload-file ${TSV}
+  METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk 'NR==2 {print $2}' $TSV)")
 done <<< "${TSVS}"
+
+echo -n "Activating metadata blocks"
+while IFS= read -r DATAVERSE; do
+  DATAVERSE_ID=$(jq -r '.alias' $DATAVERSE)
+  curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/metadatablocks -d $(jq -c -n '$ARGS.positional' --args "${METADATABLOCK_NAMES[@]}")
+done <<< "${DATAVERSES}"
 
 
 
