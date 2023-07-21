@@ -35,10 +35,17 @@ while IFS= read -r TSV; do
   curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type: application/json"  $DATAVERSE_URL/api/licenses --upload-file ${TSV}
 done <<< "${TSVS}"
 
+echo -n "Creating users"
+USERS=$(find USERS_PATH -maxdepth 1 -iname '*.json')
+while IFS= read -r USER; do
+  echo -n "Creating user $(jq -r '.identifier' $USER):"
+  curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/authenticatedUsers --upload-file USER
+done <<< "${USERS}"
+
 echo -n "Creating roles"
 ROLES=$(find $ROLES_PATH -maxdepth 1 -iname '*.json')
 while IFS= read -r ROLE; do
-  echo -n "Creating role $(basename ROLE .json):"
+  echo -n "Creating role $(basename $ROLE .json):"
   curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/roles --upload-file $ROLE
 done <<< "${ROLES}"
 
@@ -67,18 +74,23 @@ while IFS= read -r DATAVERSE; do
   echo -n "Publishing dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -H "X-Dataverse-key:$API_TOKEN" -X POST $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/actions/:publish
 
-  echo -n "Adding dataverseAdmin as admin to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+  echo -n "Adding @dataverseAdmin as admin to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@dataverseAdmin", "role": "admin"}'
 
   echo -n "Adding :authenticated-users as dataset creators to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
 
   if [[ $PARENT_DATAVERSE != "root" ]]; then
-    # We only add it to the sub-dataverses (collection dataverses, e.g. "COVID-19") where no datasets are created so it
-    # can only be used for linking, not publishing
+    # We add the "Publish permission" for all users only to the sub-dataverses (collection dataverses, e.g. "COVID-19")
+    # where no datasets are created so it can only be used for linking, not publishing
     # (only curators should be able to publish)
     echo -n "Adding :authenticated-users as dataset publisher to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
     curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPublisher"}'
+  else
+    # The import client is currently the only automatically configured curator user, all other curators must be added
+    # manually
+    echo -n "Adding @service-account-import_client as curator to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+    curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@service-account-import_client", "role": "curator"}'
   fi
 done <<< "${DATAVERSES}"
 

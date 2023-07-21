@@ -35,6 +35,8 @@ spec:
               value: "/dataverses"
             - name: ROLES_PATH
               value: "/roles"
+            - name: USERS_PATH
+              value: "/users"
           volumeMounts:
             - name: script
               mountPath: "/scripts/bootstrap/nfdi4health"
@@ -46,6 +48,8 @@ spec:
               mountPath: "/dataverses"
             - name: roles
               mountPath: "/roles"
+            - name: users
+              mountPath: "/users"
       volumes:
         - name: script
           configMap:
@@ -63,6 +67,9 @@ spec:
         - name: roles
           configMap:
             name: {{ .Release.Name }}-dataverse-bootstrap-roles
+        - name: users
+          configMap:
+            name: {{ .Release.Name }}-dataverse-bootstrap-users
       restartPolicy: Never
       initContainers:
         - name: check-dataverse-ready
@@ -99,7 +106,14 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-roles
 data:
-  {{ (.Files.Glob "persona/nfdi4health/roles/*").AsConfig | indent 2 }}
+{{ (.Files.Glob "persona/nfdi4health/roles/*").AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dataverse-bootstrap-users
+data:
+{{ (.Files.Glob "persona/nfdi4health/users/*").AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
