@@ -7,16 +7,16 @@ export DATAVERSE_URL
 # get current dir location
 SELF_LOCATION=$( dirname "$(readlink -f -- "$0")" )
 
-echo -n "Running dev setup-all.sh (INSECURE MODE)..."
+echo -n "Running dev setup-all.sh (INSECURE MODE)"
 "${BOOTSTRAP_DIR}"/base/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
 API_TOKEN=$(grep apiToken "/tmp/setup-all.sh.out" | jq ".data.apiToken" | tr -d \")
 export API_TOKEN
 
-echo -n "Publishing root dataverse..."
-curl -H "X-Dataverse-key:$API_TOKEN" -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
+echo -n "Setting DOI provider to FAKE"
+curl -H "X-Dataverse-key:$API_TOKEN" -X PUT -d FAKE DATAVERSE_URL/api/admin/settings/:DoiProvider
 
-echo -n "Allowing users to create dataverses and datasets in root..."
-curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" -d "{\"assignee\": \":authenticated-users\",\"role\": \"fullContributor\"}" "${DATAVERSE_URL}/api/dataverses/:root/assignments"
+echo -n "Publishing root dataverse"
+curl -H "X-Dataverse-key:$API_TOKEN" -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
 
 #echo "Allow all API calls"
 ##curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy
