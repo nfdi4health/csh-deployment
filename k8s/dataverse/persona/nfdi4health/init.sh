@@ -43,7 +43,7 @@ echo "Creating users"
 USERS=$(find $USERS_PATH -maxdepth 1 -iname '*.json')
 while IFS= read -r USER; do
   echo "Creating user $(jq -r '.identifier' $USER):"
-  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/authenticatedUsers --upload-file USER
+  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/authenticatedUsers --upload-file $USER
   echo
 done <<< "${USERS}"
 
