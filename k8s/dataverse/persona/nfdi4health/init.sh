@@ -7,25 +7,25 @@ export DATAVERSE_URL
 # get current dir location
 SELF_LOCATION=$( dirname "$(readlink -f -- "$0")" )
 
-echo "Running dev setup-all.sh (INSECURE MODE)..."
+echo -n "Running dev setup-all.sh (INSECURE MODE)..."
 "${BOOTSTRAP_DIR}"/base/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
 API_TOKEN=$(grep apiToken "/tmp/setup-all.sh.out" | jq ".data.apiToken" | tr -d \")
 export API_TOKEN
 
-echo "Publishing root dataverse..."
+echo -n "Publishing root dataverse..."
 curl -H "X-Dataverse-key:$API_TOKEN" -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
 
-echo "Allowing users to create dataverses and datasets in root..."
+echo -n "Allowing users to create dataverses and datasets in root..."
 curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" -d "{\"assignee\": \":authenticated-users\",\"role\": \"fullContributor\"}" "${DATAVERSE_URL}/api/dataverses/:root/assignments"
 
 #echo "Allow all API calls"
 ##curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy
 #curl -X PUT -d "admin,builtin-users,licenses" $DATAVERSE_URL/api/admin/settings/:BlockedApiEndpoints
 
-echo "Set up OIDC provider"
+echo -n "Set up OIDC provider"
 curl -X POST -H "Content-type: application/json" --upload-file $SELF_LOCATION/keycloak.json $DATAVERSE_URL/api/admin/authenticationProviders
 
-echo "Upload licenses"
+echo -n "Upload licenses"
 #curl -X POST -H "Content-Type: application/json" -H "X-Dataverse-key:$DATAVERSE_API_KEY" $DATAVERSE_HOST/api/licenses --upload-file license-CC0-1.0.json
 # Find all licence files
 TSVS=$(find "${LICENCE_PATH}" -maxdepth 1 -iname 'license-*.json')
@@ -35,10 +35,14 @@ while IFS= read -r TSV; do
   curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type: application/json"  $DATAVERSE_URL/api/licenses --upload-file ${TSV}
 done <<< "${TSVS}"
 
-echo "Add dataset permissions admin role"
-curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/roles --upload-file $SELF_LOCATION/dataset-permissions-admin.json
+echo -n "Creating roles"
+ROLES=$(find $ROLES_PATH -maxdepth 1 -iname '*.json')
+while IFS= read -r ROLE; do
+  echo -n "Creating role $(basename ROLE .json):"
+  curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/roles --upload-file $ROLE
+done <<< "${ROLES}"
 
-echo "Create dataverses"
+echo -n "Create dataverses"
 # Find all JSON files
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
 # parent dataverses are created before child dataverses, e.g. "nfdi4health.json" is created before
@@ -68,10 +72,18 @@ while IFS= read -r DATAVERSE; do
 
   echo -n "Adding :authenticated-users as dataset creators to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
+
+  if [[ $PARENT_DATAVERSE != "root" ]]; then
+    # We only add it to the sub-dataverses (collection dataverses, e.g. "COVID-19") where no datasets are created so it
+    # can only be used for linking, not publishing
+    # (only curators should be able to publish)
+    echo -n "Adding :authenticated-users as dataset publisher to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+    curl -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPublisher"}'
+  fi
 done <<< "${DATAVERSES}"
 
 # Last step as existence of one block is the indicator for a complete bootstrapped installation
-echo "Load custom metadata blocks"
+echo -n "Load custom metadata blocks"
 #curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_HOST/api/admin/datasetfield/load --upload-file customMDS.tsv
 # Find all TSV files
 TSVS=$(find "${METADATABLOCKS_PATH}" -maxdepth 1 -iname '*.tsv')
