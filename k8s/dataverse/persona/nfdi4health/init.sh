@@ -97,10 +97,18 @@ while IFS= read -r DATAVERSE; do
     curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPublisher"}'
     echo
   else
-    # The import client is currently the only automatically configured curator user, all other curators must be added
-    # manually
-    echo "Adding @service-account-import_client as curator to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
-    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@service-account-import_client", "role": "curator"}'
+    # The import client and the admin are currently the only automatically configured curator user, all other curators
+    # must be added manually
+    echo "Creating curator group"
+    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/groups -d '{"description": "Curator users", "displayName": "Curators", "aliasInOwner": "curators"}'
+    echo
+
+    echo "Adding @service-account-import_client and @dataverseAdmin to curator group"
+    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/groups/curators/roleAssignees -d '["@service-account-import_client", "@dataverseAdmin"]'
+    echo
+
+    echo "Adding curator group as curator to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "&explicit/2-curators", "role": "curator"}'
     echo
   fi
 done <<< "${DATAVERSES}"
