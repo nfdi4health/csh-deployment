@@ -40,34 +40,34 @@
 
 <schema name="default-config" version="1.7">
     <!-- attribute "name" is the name of this schema and is only used for display purposes.
-       version="x.y" is Solr's version number for the schema syntax and
+       version="x.y" is Solr's version number for the schema syntax and 
        semantics.  It should not normally be changed by applications.
 
-       1.0: multiValued attribute did not exist, all fields are multiValued
+       1.0: multiValued attribute did not exist, all fields are multiValued 
             by nature
-       1.1: multiValued attribute introduced, false by default
-       1.2: omitTermFreqAndPositions attribute introduced, true by default
+       1.1: multiValued attribute introduced, false by default 
+       1.2: omitTermFreqAndPositions attribute introduced, true by default 
             except for text fields.
        1.3: removed optional field compress feature
        1.4: autoGeneratePhraseQueries attribute introduced to drive QueryParser
-            behavior when a single string produces multiple tokens.  Defaults
+            behavior when a single string produces multiple tokens.  Defaults 
             to off for version >= 1.4
-       1.5: omitNorms defaults to true for primitive field types
+       1.5: omitNorms defaults to true for primitive field types 
             (int, float, boolean, string...)
        1.6: useDocValuesAsStored defaults to true.
     -->
 
     <!-- Valid attributes for fields:
      name: mandatory - the name for the field
-     type: mandatory - the name of a field type from the
+     type: mandatory - the name of a field type from the 
        fieldTypes section
      indexed: true if this field should be indexed (searchable or sortable)
      stored: true if this field should be retrievable
      docValues: true if this field should have doc values. Doc Values is
        recommended (required, if you are using *Point fields) for faceting,
        grouping, sorting and function queries. Doc Values will make the index
-       faster to load, more NRT-friendly and more memory-efficient.
-       They are currently only supported by StrField, UUIDField, all
+       faster to load, more NRT-friendly and more memory-efficient. 
+       They are currently only supported by StrField, UUIDField, all 
        *PointFields, and depending on the field type, they might require
        the field to be single-valued, be required or have a default value
        (check the documentation of the field type you're interested in for
@@ -82,9 +82,9 @@
        given field.
        When using MoreLikeThis, fields used for similarity should be
        stored for best performance.
-     termPositions: Store position information with the term vector.
+     termPositions: Store position information with the term vector.  
        This will increase storage costs.
-     termOffsets: Store offset information with the term vector. This
+     termOffsets: Store offset information with the term vector. This 
        will increase storage costs.
      required: The field is required.  It will throw an error if the
        value does not exist
@@ -102,10 +102,10 @@
     <!-- In this _default configset, only four fields are pre-declared:
          id, _version_, and _text_ and _root_. All other fields will be type guessed and added via the
          "add-unknown-fields-to-the-schema" update request processor chain declared in solrconfig.xml.
-
-         Note that many dynamic fields are also defined - you can use them to specify a
+         
+         Note that many dynamic fields are also defined - you can use them to specify a 
          field's type via field naming conventions - see below.
-
+  
          WARNING: The _text_ catch-all field will significantly increase your index size.
          If you don't need it, consider removing it and the corresponding copyField directive."
     -->
@@ -115,12 +115,12 @@
     <field name="_version_" type="plong" indexed="false" stored="false"/>
     <field name="_root_" type="string" indexed="true" stored="false" docValues="false" />
 
-
-
-
-
-<!-- Start: Dataverse-specific -->
-
+    
+     
+    
+    
+<!-- Start: Dataverse-specific -->    
+    
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
     <!-- Dataverse solr 7.3.0: for some reason the old text wasn't working so switched to _text_ for copyfields -->
@@ -128,8 +128,8 @@
         <field name="_text_" type="text_general" indexed="true" stored="false" multiValued="true"/>
     <!-- catchall text field that indexes tokens both normally and in reverse for efficient
         leading wildcard queries. -->
-    <field name="text_rev" type="text_general_rev" indexed="true" stored="false" multiValued="true"/>
-    <field name="name" type="text_en" indexed="true" stored="true"/>
+    <field name="text_rev" type="text_general_rev" indexed="true" stored="false" multiValued="true"/>    
+    <field name="name" type="text_en" indexed="true" stored="true"/> 
 
 
 
@@ -155,7 +155,7 @@
     <field name="dvCategory" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="categoryOfDataverse" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="identifierOfDataverse" type="string" stored="true" indexed="true" multiValued="false"/>
-
+    
     <field name="publicationDate" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="dsPublicationDate" type="string" stored="true" indexed="true" multiValued="false"/>
 
@@ -164,7 +164,7 @@
     <field name="publicationStatus" type="string" stored="true" indexed="true" multiValued="true"/>
     <field name="externalStatus" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="embargoEndDate" type="long" stored="true" indexed="true" multiValued="false"/>
-
+    
     <field name="subtreePaths" type="string" stored="true" indexed="true" multiValued="true"/>
 
     <field name="fileName" type="text_en" stored="true" indexed="true" multiValued="true"/>
@@ -233,21 +233,18 @@
     <field name="geolocation" type="location_rpt" multiValued="true" stored="true" indexed="true"/>
     <!-- https://solr.apache.org/guide/8_11/spatial-search.html#bboxfield -->
     <field name="boundingBox" type="bbox" multiValued="true" stored="true" indexed="true"/>
-
-    <!-- incomplete datasets issue 8822 -->
-    <field name="datasetValid" type="boolean" stored="true" indexed="true" multiValued="false"/>
-
+    
     <!--
         METADATA SCHEMA FIELDS
         Now following: any fields generated from the metadata schemas loaded into Dataverse.
-
+        
         Note: You can retrieve a list of the following fields from a specific API endpoint of your Dataverse
               installation, available at "http://<your Dataverse host>/api/admin/index/solr/schema".
               See also https://guides.dataverse.org/en/latest/admin/metadatacustomization.html#updating-the-solr-schema
-
+              
         Note: Please see https://guides.dataverse.org/en/latest/admin/metadatacustomization.html for advice on
               how to create your own metadata schemas.
-
+        
         WARNING: Do not remove the following include guards if you intend to use the neat helper scripts we provide.
     -->
     <!-- SCHEMA-FIELDS::BEGIN -->
@@ -409,30 +406,214 @@
     <field name="resolution.Spectral" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resolution.Temporal" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_acronyms" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.acronyms" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_acronyms_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.acronyms.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_acronyms_text" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.acronyms.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.chronicDiseases" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_classification" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.classification" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_classification_resource_type_general" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.classification.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.classification.typeGeneral" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.address" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.identifiers.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.identifiers.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.webpage" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.email" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.nameType" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.organisational" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.organisational.fundingIds" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.organisational.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.organisational.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.familyName" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.givenName" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.identifiers.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.identifiers.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.phone" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_description_english" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.descriptionEnglish" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_description_english_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.descriptionEnglish.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_description_english_text" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.descriptionEnglish.text" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_descriptions_non_english" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.descriptionsNonEnglish" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_descriptions_non_english_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.descriptionsNonEnglish.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_descriptions_non_english_text" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.descriptionsNonEnglish.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_first_posted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_first_posted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_first_submitted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_first_submitted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_format" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_identifier" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.identifier" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.ids" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsAlternative" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsAlternative.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsAlternative.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.date" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsNfdi4health" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsNfdi4health.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsNfdi4health.relationType" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.relationType" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.typeGeneral" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_keywords" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.keywords" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.keywords.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_keywords_label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.keywords.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_keywords_label_code" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_languages" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.languages" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_non_study_details" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.format" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.authority" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.irrevocability" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.supportByLicensing" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.terms" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.link" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.version" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nutritionalData" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.provenance" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.dataSource" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstPostedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstPostedUser" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstSubmittedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstSubmittedUser" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdatePostedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdatePostedUser" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdateSubmittedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdateSubmittedUser" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.provenance.resourceVersion" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.verificationDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.verificationUser" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.arms" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.arms.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.arms.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.arms.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.assessments" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.centers" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.centersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.comment" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.conditions.classification" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.conditions.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.conditions.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.countries" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataProviders" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataProvidersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.accessCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.datashield" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.recordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.supportingInformation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.timeFrame" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSharingPlan.url" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSource" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSource.biosamples" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSource.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSource.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSource.imaging" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.dataSource.omics" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.ageMax" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.ageMax.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.ageMin" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.ageMin.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.exclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.genders" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.eligibilityCriteria.inclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.endDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.ethicsCommitteeApproval" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.exposures" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.exposures.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.exposures.groupsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.exposures.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.exposures.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.groups" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.groups.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.groups.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.groupsOfDiseases" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.groupsOfDiseases.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.groupsOfDiseases.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.hypothesis" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional.allocation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional.masking" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional.masking.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional.masking.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional.masking.roles" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional.offLabelUse" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventional.phase" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventions" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventions.armsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventions.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventions.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.interventions.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.mortalityData" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional.biospecimenDescription" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional.biospecimenRetention" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.frequency" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.nonInterventional.timePerspectives" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.obtainedSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.outcomes" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.outcomes.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.outcomes.timeFrame" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.outcomes.title" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.outcomes.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.population" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.primaryDesign" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.primaryPurpose" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.reasonStopped" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.recruitmentStatusRegister" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.region" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.sampling" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.sampling.method" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.sampling.nonProbabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.sampling.probabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.stageStopped" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.startDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.status" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.statusEnrollingByInvitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.statusWhenIntervention" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.studyType" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.studyType.interventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.studyType.nonInterventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.resourceDesign.targetSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_titles" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.titles" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_titles_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.titles.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_titles_text" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.titles.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_use_rights" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_use_rights_confirmation_authority" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -444,6 +625,7 @@
     <field name="resource_use_rights_support_by_licensing" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource_version" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resource_web_page" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.webpage" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="responseRate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="role_affiliation_address" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="role_affiliation_identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -610,7 +792,7 @@
     <field name="weighting" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="westLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <!-- SCHEMA-FIELDS::END -->
-
+    
 
     <copyField source="description" dest="_text_" maxChars="3000"/>
 
@@ -659,9 +841,9 @@
     <!-- Create a string version of author for faceting -->
     <!-- <copyField source="author" dest="author_s"/> -->
 
-    <!-- Above, multiple source fields are copied to the [text] field.
-        Another way to map multiple source fields to the same
-        destination field is to use the dynamic field syntax.
+    <!-- Above, multiple source fields are copied to the [text] field. 
+        Another way to map multiple source fields to the same 
+        destination field is to use the dynamic field syntax. 
         copyField also supports a maxChars to copy setting.  -->
 
     <!-- <copyField source="*_t" dest="_text_" maxChars="3000"/> -->
@@ -671,21 +853,19 @@
     <!-- <copyField source="*_s" dest="_text_" maxChars="3000"/> -->
     <!-- <copyField source="*_ss" dest="_text_" maxChars="3000"/> -->
     <!-- <copyField source="*_i" dest="_text_" maxChars="3000"/> -->
-
-    <copyField source="datasetValid" dest="_text_" maxChars="3000"/>
-
+    
     <!--
         METADATA SCHEMA FIELDS
         Now following: copyFields to copy the contents of the metadata fields above to a
         catch-all textfield necessary for searching in Dataverse.
-
+        
         Note: You can retrieve a list of the following fields from a specific API endpoint of your Dataverse
               installation, available at "http://<your Dataverse host>/api/admin/index/solr/schema".
               See also https://guides.dataverse.org/en/latest/admin/metadatacustomization.html#updating-the-solr-schema
-
+              
         Note: Please see https://guides.dataverse.org/en/latest/admin/metadatacustomization.html for advice on
               how to create your own metadata schemas.
-
+        
         WARNING: Do not remove the following include guards if you intend to use the neat helper scripts we provide.
     -->
     <!-- SCHEMA-COPY-FIELDS::BEGIN -->
@@ -847,30 +1027,214 @@
     <copyField source="resolution.Spectral" dest="_text_" maxChars="3000"/>
     <copyField source="resolution.Temporal" dest="_text_" maxChars="3000"/>
     <copyField source="resource_acronyms" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.acronyms" dest="_text_" maxChars="3000"/>
     <copyField source="resource_acronyms_language" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.acronyms.language" dest="_text_" maxChars="3000"/>
     <copyField source="resource_acronyms_text" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.acronyms.text" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.chronicDiseases" dest="_text_" maxChars="3000"/>
     <copyField source="resource_classification" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.classification" dest="_text_" maxChars="3000"/>
     <copyField source="resource_classification_resource_type_general" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.classification.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.classification.typeGeneral" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.affiliations" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.affiliations.address" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.affiliations.identifiers" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.affiliations.identifiers.identifier" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.affiliations.identifiers.scheme" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.affiliations.name" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.affiliations.webpage" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.email" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.nameType" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.organisational" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.organisational.fundingIds" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.organisational.name" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.organisational.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.personal" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.personal.familyName" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.personal.givenName" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.personal.identifiers" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.personal.identifiers.identifier" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.personal.identifiers.scheme" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.personal.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.contributors.phone" dest="_text_" maxChars="3000"/>
     <copyField source="resource_description_english" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.descriptionEnglish" dest="_text_" maxChars="3000"/>
     <copyField source="resource_description_english_language" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.descriptionEnglish.language" dest="_text_" maxChars="3000"/>
     <copyField source="resource_description_english_text" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.descriptionEnglish.text" dest="_text_" maxChars="3000"/>
     <copyField source="resource_descriptions_non_english" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.descriptionsNonEnglish" dest="_text_" maxChars="3000"/>
     <copyField source="resource_descriptions_non_english_language" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.descriptionsNonEnglish.language" dest="_text_" maxChars="3000"/>
     <copyField source="resource_descriptions_non_english_text" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.descriptionsNonEnglish.text" dest="_text_" maxChars="3000"/>
     <copyField source="resource_first_posted_date" dest="_text_" maxChars="3000"/>
     <copyField source="resource_first_posted_user" dest="_text_" maxChars="3000"/>
     <copyField source="resource_first_submitted_date" dest="_text_" maxChars="3000"/>
     <copyField source="resource_first_submitted_user" dest="_text_" maxChars="3000"/>
     <copyField source="resource_format" dest="_text_" maxChars="3000"/>
     <copyField source="resource_identifier" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.identifier" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.ids" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.idsAlternative" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.idsAlternative.identifier" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.idsAlternative.scheme" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.ids.date" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.ids.identifier" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.idsNfdi4health" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.idsNfdi4health.identifier" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.idsNfdi4health.relationType" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.ids.relationType" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.ids.scheme" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.ids.typeGeneral" dest="_text_" maxChars="3000"/>
     <copyField source="resource_keywords" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.keywords" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.keywords.code" dest="_text_" maxChars="3000"/>
     <copyField source="resource_keywords_label" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.keywords.label" dest="_text_" maxChars="3000"/>
     <copyField source="resource_keywords_label_code" dest="_text_" maxChars="3000"/>
     <copyField source="resource_languages" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.languages" dest="_text_" maxChars="3000"/>
     <copyField source="resource_non_study_details" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.format" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.confirmations" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.confirmations.authority" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.confirmations.irrevocability" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.confirmations.supportByLicensing" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.confirmations.terms" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.useRights.link" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nonStudyDetails.version" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.nutritionalData" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.dataSource" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.firstPostedDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.firstPostedUser" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.firstSubmittedDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.firstSubmittedUser" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.lastUpdatePostedDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.lastUpdatePostedUser" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.lastUpdateSubmittedDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.lastUpdateSubmittedUser" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.resourceVersion" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.verificationDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.provenance.verificationUser" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.arms" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.arms.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.arms.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.arms.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.assessments" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.centers" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.centersNumber" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.comment" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.conditions" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.conditions.classification" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.conditions.code" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.conditions.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.countries" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataProviders" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataProvidersNumber" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.accessCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.datashield" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.generally" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.recordLinkage" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.supportingInformation" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.timeFrame" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSharingPlan.url" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSource" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSource.biosamples" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSource.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSource.general" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSource.imaging" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.dataSource.omics" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.ageMax" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.ageMax.number" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.ageMin" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.ageMin.number" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.exclusionCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.genders" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.eligibilityCriteria.inclusionCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.endDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.ethicsCommitteeApproval" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.exposures" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.exposures.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.exposures.groupsLabel" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.exposures.name" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.exposures.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.groups" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.groups.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.groups.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.groupsOfDiseases" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.groupsOfDiseases.conditions" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.groupsOfDiseases.generally" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.hypothesis" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional.allocation" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional.masking" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional.masking.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional.masking.general" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional.masking.roles" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional.offLabelUse" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventional.phase" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventions" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventions.armsLabel" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventions.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventions.name" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.interventions.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.mortalityData" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional.biospecimenDescription" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional.biospecimenRetention" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional.targetFollowUpDuration" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.frequency" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.number" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.nonInterventional.timePerspectives" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.obtainedSampleSize" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.outcomes" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.outcomes.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.outcomes.timeFrame" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.outcomes.title" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.outcomes.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.population" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.primaryDesign" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.primaryPurpose" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.reasonStopped" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.recruitmentStatusRegister" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.region" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.sampling" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.sampling.method" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.sampling.nonProbabilityMethod" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.sampling.probabilityMethod" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.stageStopped" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.startDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.status" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.statusEnrollingByInvitation" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.statusWhenIntervention" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.studyType" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.studyType.interventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.studyType.nonInterventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.subject" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.resourceDesign.targetSampleSize" dest="_text_" maxChars="3000"/>
     <copyField source="resource_titles" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.titles" dest="_text_" maxChars="3000"/>
     <copyField source="resource_titles_language" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.titles.language" dest="_text_" maxChars="3000"/>
     <copyField source="resource_titles_text" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.titles.text" dest="_text_" maxChars="3000"/>
     <copyField source="resource_type" dest="_text_" maxChars="3000"/>
     <copyField source="resource_use_rights" dest="_text_" maxChars="3000"/>
     <copyField source="resource_use_rights_confirmation_authority" dest="_text_" maxChars="3000"/>
@@ -882,6 +1246,7 @@
     <copyField source="resource_use_rights_support_by_licensing" dest="_text_" maxChars="3000"/>
     <copyField source="resource_version" dest="_text_" maxChars="3000"/>
     <copyField source="resource_web_page" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.webpage" dest="_text_" maxChars="3000"/>
     <copyField source="responseRate" dest="_text_" maxChars="3000"/>
     <copyField source="role_affiliation_address" dest="_text_" maxChars="3000"/>
     <copyField source="role_affiliation_identifiers" dest="_text_" maxChars="3000"/>
@@ -1048,7 +1413,7 @@
     <copyField source="weighting" dest="_text_" maxChars="3000"/>
     <copyField source="westLongitude" dest="_text_" maxChars="3000"/>
     <!-- SCHEMA-COPY-FIELDS::END -->
-
+    
     <!-- This can be enabled, in case the client does not know what fields may be searched. It isn't enabled by default
          because it's very expensive to index everything twice. -->
     <!--<copyField source="*" dest="_text_"/>-->
@@ -1057,7 +1422,7 @@
        for fields via the specification of patterns to match field names.
        EXAMPLE:  name="*_i" will match any field ending in _i (like myid_i, z_i)
        RESTRICTION: the glob-like pattern in the name attribute must have a "*" only at the start or the end.  -->
-
+   
     <dynamicField name="*_i"  type="pint"    indexed="true"  stored="true"/>
     <dynamicField name="*_is" type="pints"    indexed="true"  stored="true"/>
     <dynamicField name="*_s"  type="string"  indexed="true"  stored="true" />
@@ -1079,7 +1444,7 @@
     <dynamicField name="*_dts" type="pdate"    indexed="true"  stored="true" multiValued="true"/>
     <dynamicField name="*_p"  type="location" indexed="true" stored="true"/>
     <dynamicField name="*_srpt"  type="location_rpt" indexed="true" stored="true"/>
-
+    
     <!-- payloaded dynamic fields -->
     <dynamicField name="*_dpf" type="delimited_payloads_float" indexed="true"  stored="true"/>
     <dynamicField name="*_dpi" type="delimited_payloads_int" indexed="true"  stored="true"/>
@@ -1134,7 +1499,7 @@
 
 <!-- The format for this date field is of the form 1995-12-31T23:59:59Z, and
         is a more restricted form of the canonical representation of dateTime
-        http://www.w3.org/TR/xmlschema-2/#dateTime
+        http://www.w3.org/TR/xmlschema-2/#dateTime    
         The trailing "Z" designates UTC time and is mandatory.
         Optional fractional seconds are allowed: 1995-12-31T23:59:59.999Z
         All other components are mandatory.
@@ -1149,7 +1514,7 @@
             NOW/DAY+6MONTHS+3DAYS
                 ... 6 months and 3 days in the future from the start of
                     the current day
-
+                    
         Consult the DateField javadocs for more information.
 
         Note: For faster range queries, consider the tdate type
@@ -1177,7 +1542,7 @@
         <filter class="solr.TrimFilterFactory" />
         <!-- The PatternReplaceFilter gives you the flexibility to use
                 Java Regular expression to replace any sequence of characters
-                matching a pattern with an arbitrary replacement string,
+                matching a pattern with an arbitrary replacement string, 
                 which may include back references to portions of the original
                 string matched by the pattern.
 
@@ -1190,8 +1555,8 @@
         <!-- https://redmine.hmdc.harvard.edu/issues/3482#note-11 -->
         <!-- <filter class="solr.PatternReplaceFilterFactory" pattern="([^a-z])" replacement="" replace="all" /> -->
         </analyzer>
-    </fieldType>
-
+    </fieldType>   
+    
     <!-- The StrField type is not analyzed, but indexed/stored verbatim. -->
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true" />
     <fieldType name="strings" class="solr.StrField" sortMissingLast="true" multiValued="true" docValues="true" />
@@ -1208,7 +1573,7 @@
     <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
     <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
     <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
-
+    
     <fieldType name="pints" class="solr.IntPointField" docValues="true" multiValued="true"/>
     <fieldType name="pfloats" class="solr.FloatPointField" docValues="true" multiValued="true"/>
     <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
@@ -1216,7 +1581,7 @@
 
     <!-- The format for this date field is of the form 1995-12-31T23:59:59Z, and
          is a more restricted form of the canonical representation of dateTime
-         http://www.w3.org/TR/xmlschema-2/#dateTime
+         http://www.w3.org/TR/xmlschema-2/#dateTime    
          The trailing "Z" designates UTC time and is mandatory.
          Optional fractional seconds are allowed: 1995-12-31T23:59:59.999Z
          All other components are mandatory.
@@ -1231,12 +1596,12 @@
                NOW/DAY+6MONTHS+3DAYS
                   ... 6 months and 3 days in the future from the start of
                       the current day
-
+                      
       -->
     <!-- KD-tree versions of date fields -->
     <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
     <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
-
+    
     <!--Binary data type. The data should be sent/retrieved in as Base64 encoded Strings -->
     <fieldType name="binary" class="solr.BinaryField"/>
 
@@ -1309,13 +1674,13 @@
                     ignoreCase="true"
                     words="lang/stopwords_en.txt"
                 />
-
+            
             <filter class="solr.LowerCaseFilterFactory"/>
             <filter class="solr.EnglishPossessiveFilterFactory"/>
             <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
-
-            <!-- Solved highlighting breaking after upgrade #4836. Applied to query analyzer below too:
-                https://stackoverflow.com/questions/26287321/solr-stemming-breaks-highlighting
+            
+            <!-- Solved highlighting breaking after upgrade #4836. Applied to query analyzer below too: 
+                https://stackoverflow.com/questions/26287321/solr-stemming-breaks-highlighting 
                 Solution was to ensure original word is kept by stemmer -MAD 4.9.2 -->
             <filter class="solr.KeywordRepeatFilterFactory" />
             <filter class="solr.PorterStemFilterFactory"/>
@@ -1324,16 +1689,16 @@
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.StandardTokenizerFactory"/>
-
-            <!-- MAD 4.9.2: Solr recommends doing synonym expansion at index not query, why do we do it here tho?
-                    https://stackoverflow.com/questions/10185079/
+            
+            <!-- MAD 4.9.2: Solr recommends doing synonym expansion at index not query, why do we do it here tho? 
+                    https://stackoverflow.com/questions/10185079/ 
                     To me it looks like we we copied something that works-->
             <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
             <filter class="solr.StopFilterFactory"
                     ignoreCase="true"
                     words="lang/stopwords_en.txt"
                 />
-
+            
             <filter class="solr.LowerCaseFilterFactory"/>
             <filter class="solr.EnglishPossessiveFilterFactory"/>
             <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
@@ -1455,7 +1820,7 @@
       </analyzer>
     </fieldType>
 
-    <!--
+    <!-- 
       Example of using PathHierarchyTokenizerFactory at index time, so
       queries for paths match documents at that path, or in descendent paths
     -->
@@ -1485,7 +1850,7 @@
 
     <!-- This point type indexes the coordinates as separate fields (subFields)
       If subFieldType is defined, it references a type, and a dynamic field
-      definition is created matching *___<typename>.  Alternately, if
+      definition is created matching *___<typename>.  Alternately, if 
       subFieldSuffix is defined, that is used to create the subFields.
       Example: if subFieldType="double", then the coordinates would be
         indexed in fields myloc_0___double,myloc_1___double.
@@ -1535,7 +1900,7 @@
     <!-- Arabic -->
     <dynamicField name="*_txt_ar" type="text_ar"  indexed="true"  stored="true"/>
     <fieldType name="text_ar" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <!-- for any non-arabic -->
         <filter class="solr.LowerCaseFilterFactory"/>
@@ -1549,27 +1914,27 @@
     <!-- Bulgarian -->
     <dynamicField name="*_txt_bg" type="text_bg"  indexed="true"  stored="true"/>
     <fieldType name="text_bg" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
-        <tokenizer class="solr.StandardTokenizerFactory"/>
+      <analyzer> 
+        <tokenizer class="solr.StandardTokenizerFactory"/> 
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_bg.txt" />
-        <filter class="solr.BulgarianStemFilterFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_bg.txt" /> 
+        <filter class="solr.BulgarianStemFilterFactory"/>       
       </analyzer>
     </fieldType>
-
+    
     <!-- Catalan -->
     <dynamicField name="*_txt_ca" type="text_ca"  indexed="true"  stored="true"/>
     <fieldType name="text_ca" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <!-- removes l', etc -->
         <filter class="solr.ElisionFilterFactory" ignoreCase="true" articles="lang/contractions_ca.txt"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ca.txt" />
-        <filter class="solr.SnowballPorterFilterFactory" language="Catalan"/>
+        <filter class="solr.SnowballPorterFilterFactory" language="Catalan"/>       
       </analyzer>
     </fieldType>
-
+    
     <!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) -->
     <dynamicField name="*_txt_cjk" type="text_cjk"  indexed="true"  stored="true"/>
     <fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100">
@@ -1586,29 +1951,29 @@
     <!-- Czech -->
     <dynamicField name="*_txt_cz" type="text_cz"  indexed="true"  stored="true"/>
     <fieldType name="text_cz" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_cz.txt" />
-        <filter class="solr.CzechStemFilterFactory"/>
+        <filter class="solr.CzechStemFilterFactory"/>       
       </analyzer>
     </fieldType>
-
+    
     <!-- Danish -->
     <dynamicField name="*_txt_da" type="text_da"  indexed="true"  stored="true"/>
     <fieldType name="text_da" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_da.txt" format="snowball" />
-        <filter class="solr.SnowballPorterFilterFactory" language="Danish"/>
+        <filter class="solr.SnowballPorterFilterFactory" language="Danish"/>       
       </analyzer>
     </fieldType>
-
+    
     <!-- German -->
     <dynamicField name="*_txt_de" type="text_de"  indexed="true"  stored="true"/>
     <fieldType name="text_de" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_de.txt" format="snowball" />
@@ -1618,11 +1983,11 @@
         <!-- more aggressive: <filter class="solr.SnowballPorterFilterFactory" language="German2"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Greek -->
     <dynamicField name="*_txt_el" type="text_el"  indexed="true"  stored="true"/>
     <fieldType name="text_el" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <!-- greek specific lowercase for sigma -->
         <filter class="solr.GreekLowerCaseFilterFactory"/>
@@ -1630,11 +1995,11 @@
         <filter class="solr.GreekStemFilterFactory"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Spanish -->
     <dynamicField name="*_txt_es" type="text_es"  indexed="true"  stored="true"/>
     <fieldType name="text_es" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es.txt" format="snowball" />
@@ -1642,18 +2007,18 @@
         <!-- more aggressive: <filter class="solr.SnowballPorterFilterFactory" language="Spanish"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Basque -->
     <dynamicField name="*_txt_eu" type="text_eu"  indexed="true"  stored="true"/>
     <fieldType name="text_eu" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_eu.txt" />
         <filter class="solr.SnowballPorterFilterFactory" language="Basque"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Persian -->
     <dynamicField name="*_txt_fa" type="text_fa"  indexed="true"  stored="true"/>
     <fieldType name="text_fa" class="solr.TextField" positionIncrementGap="100">
@@ -1667,11 +2032,11 @@
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_fa.txt" />
       </analyzer>
     </fieldType>
-
+    
     <!-- Finnish -->
     <dynamicField name="*_txt_fi" type="text_fi"  indexed="true"  stored="true"/>
     <fieldType name="text_fi" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_fi.txt" format="snowball" />
@@ -1679,11 +2044,11 @@
         <!-- less aggressive: <filter class="solr.FinnishLightStemFilterFactory"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- French -->
     <dynamicField name="*_txt_fr" type="text_fr"  indexed="true"  stored="true"/>
     <fieldType name="text_fr" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <!-- removes l', etc -->
         <filter class="solr.ElisionFilterFactory" ignoreCase="true" articles="lang/contractions_fr.txt"/>
@@ -1694,11 +2059,11 @@
         <!-- more aggressive: <filter class="solr.SnowballPorterFilterFactory" language="French"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Irish -->
     <dynamicField name="*_txt_ga" type="text_ga"  indexed="true"  stored="true"/>
     <fieldType name="text_ga" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <!-- removes d', etc -->
         <filter class="solr.ElisionFilterFactory" ignoreCase="true" articles="lang/contractions_ga.txt"/>
@@ -1709,11 +2074,11 @@
         <filter class="solr.SnowballPorterFilterFactory" language="Irish"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Galician -->
     <dynamicField name="*_txt_gl" type="text_gl"  indexed="true"  stored="true"/>
     <fieldType name="text_gl" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_gl.txt" />
@@ -1721,11 +2086,11 @@
         <!-- less aggressive: <filter class="solr.GalicianMinimalStemFilterFactory"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Hindi -->
     <dynamicField name="*_txt_hi" type="text_hi"  indexed="true"  stored="true"/>
     <fieldType name="text_hi" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <!-- normalizes unicode representation -->
@@ -1736,34 +2101,34 @@
         <filter class="solr.HindiStemFilterFactory"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Hungarian -->
     <dynamicField name="*_txt_hu" type="text_hu"  indexed="true"  stored="true"/>
     <fieldType name="text_hu" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_hu.txt" format="snowball" />
         <filter class="solr.SnowballPorterFilterFactory" language="Hungarian"/>
-        <!-- less aggressive: <filter class="solr.HungarianLightStemFilterFactory"/> -->
+        <!-- less aggressive: <filter class="solr.HungarianLightStemFilterFactory"/> -->   
       </analyzer>
     </fieldType>
-
+    
     <!-- Armenian -->
     <dynamicField name="*_txt_hy" type="text_hy"  indexed="true"  stored="true"/>
     <fieldType name="text_hy" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_hy.txt" />
         <filter class="solr.SnowballPorterFilterFactory" language="Armenian"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Indonesian -->
     <dynamicField name="*_txt_id" type="text_id"  indexed="true"  stored="true"/>
     <fieldType name="text_id" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_id.txt" />
@@ -1771,11 +2136,11 @@
         <filter class="solr.IndonesianStemFilterFactory" stemDerivational="true"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Italian -->
   <dynamicField name="*_txt_it" type="text_it"  indexed="true"  stored="true"/>
   <fieldType name="text_it" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <!-- removes l', etc -->
         <filter class="solr.ElisionFilterFactory" ignoreCase="true" articles="lang/contractions_it.txt"/>
@@ -1785,7 +2150,7 @@
         <!-- more aggressive: <filter class="solr.SnowballPorterFilterFactory" language="Italian"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Japanese using morphological analysis (see text_cjk for a configuration using bigramming)
 
          NOTE: If you want to optimize search for precision, use default operator AND in your request
@@ -1836,22 +2201,22 @@
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Latvian -->
     <dynamicField name="*_txt_lv" type="text_lv"  indexed="true"  stored="true"/>
     <fieldType name="text_lv" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_lv.txt" />
         <filter class="solr.LatvianStemFilterFactory"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Dutch -->
     <dynamicField name="*_txt_nl" type="text_nl"  indexed="true"  stored="true"/>
     <fieldType name="text_nl" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_nl.txt" format="snowball" />
@@ -1859,11 +2224,11 @@
         <filter class="solr.SnowballPorterFilterFactory" language="Dutch"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Norwegian -->
     <dynamicField name="*_txt_no" type="text_no"  indexed="true"  stored="true"/>
     <fieldType name="text_no" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_no.txt" format="snowball" />
@@ -1872,11 +2237,11 @@
         <!-- singular/plural: <filter class="solr.NorwegianMinimalStemFilterFactory"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Portuguese -->
   <dynamicField name="*_txt_pt" type="text_pt"  indexed="true"  stored="true"/>
   <fieldType name="text_pt" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_pt.txt" format="snowball" />
@@ -1886,22 +2251,22 @@
         <!-- most aggressive: <filter class="solr.PortugueseStemFilterFactory"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Romanian -->
     <dynamicField name="*_txt_ro" type="text_ro"  indexed="true"  stored="true"/>
     <fieldType name="text_ro" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ro.txt" />
         <filter class="solr.SnowballPorterFilterFactory" language="Romanian"/>
       </analyzer>
     </fieldType>
-
+    
     <!-- Russian -->
     <dynamicField name="*_txt_ru" type="text_ru"  indexed="true"  stored="true"/>
     <fieldType name="text_ru" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ru.txt" format="snowball" />
@@ -1909,11 +2274,11 @@
         <!-- less aggressive: <filter class="solr.RussianLightStemFilterFactory"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Swedish -->
     <dynamicField name="*_txt_sv" type="text_sv"  indexed="true"  stored="true"/>
     <fieldType name="text_sv" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_sv.txt" format="snowball" />
@@ -1921,7 +2286,7 @@
         <!-- less aggressive: <filter class="solr.SwedishLightStemFilterFactory"/> -->
       </analyzer>
     </fieldType>
-
+    
     <!-- Thai -->
     <dynamicField name="*_txt_th" type="text_th"  indexed="true"  stored="true"/>
     <fieldType name="text_th" class="solr.TextField" positionIncrementGap="100">
@@ -1931,11 +2296,11 @@
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_th.txt" />
       </analyzer>
     </fieldType>
-
+    
     <!-- Turkish -->
     <dynamicField name="*_txt_tr" type="text_tr"  indexed="true"  stored="true"/>
     <fieldType name="text_tr" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.TurkishLowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="false" words="lang/stopwords_tr.txt" />
@@ -1944,8 +2309,8 @@
     </fieldType>
 
     <!-- Similarity is the scoring routine for each document vs. a query.
-       A custom Similarity or SimilarityFactory may be specified here, but
-       the default is fine for most applications.
+       A custom Similarity or SimilarityFactory may be specified here, but 
+       the default is fine for most applications.  
        For more info: http://lucene.apache.org/solr/guide/other-schema-elements.html#OtherSchemaElements-Similarity
     -->
     <!--
