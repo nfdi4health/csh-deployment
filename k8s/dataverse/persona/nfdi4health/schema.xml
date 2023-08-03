@@ -417,6 +417,7 @@
     <field name="resource_classification_resource_type_general" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.classification.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.classification.typeGeneral" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.collection" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.affiliations" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.affiliations.address" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -1038,6 +1039,7 @@
     <copyField source="resource_classification_resource_type_general" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.classification.type" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.classification.typeGeneral" dest="_text_" maxChars="3000"/>
+    <copyField source="Resource.collection" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.contributors" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.contributors.affiliations" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.contributors.affiliations.address" dest="_text_" maxChars="3000"/>
