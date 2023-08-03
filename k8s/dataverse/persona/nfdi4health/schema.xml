@@ -263,7 +263,9 @@
     <field name="authorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="characteristicOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="chronic_diseases" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="chronic_diseases_epidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology.commonChronicDiseaseName" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology.dataCollected" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology.informationSources" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="city" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="cleaningOperations" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="collection" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -310,16 +312,29 @@
     <field name="depositor" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="deviationsFromSampleDesign" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="dietary_supplements" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_device" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.device" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.dietarySupplements" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.ffqItemsNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_instrument" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.instrument" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_mode" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.mode" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.portionSizeEstimation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.referencePeriodNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.referencePeriodUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_reliability" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.reliability" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_reliability_reference" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.reliabilityReference" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_repeat" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.repeat" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_repeat_frequency" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.repeatFrequency" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_validity" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.validity" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_validity_reference" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.validityReference" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="distributionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="distributor" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="distributorAbbreviation" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -367,6 +382,11 @@
     <field name="last_update_submitted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="last_update_submitted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="link" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="diet_assessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="chronic_diseases_epidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="mortality_data" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="northLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="notesText" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -394,7 +414,15 @@
     <field name="publicationIDNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationIDType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationURL" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.additionalCosts" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.exampleResources" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.furtherDetails" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.informedConsent" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.legalBasis" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.legalBasisDetails" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="record_linkage_possible" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.responsibleInstitutions" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="redshiftType" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="reference_period_number" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="reference_period_unit" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -885,7 +913,9 @@
     <copyField source="authorName" dest="_text_" maxChars="3000"/>
     <copyField source="characteristicOfSources" dest="_text_" maxChars="3000"/>
     <copyField source="chronic_diseases" dest="_text_" maxChars="3000"/>
-    <copyField source="chronic_diseases_epidemiology" dest="_text_" maxChars="3000"/>
+    <copyField source="ChronicDiseasesEpidemiology.commonChronicDiseaseName" dest="_text_" maxChars="3000"/>
+    <copyField source="ChronicDiseasesEpidemiology.dataCollected" dest="_text_" maxChars="3000"/>
+    <copyField source="ChronicDiseasesEpidemiology.informationSources" dest="_text_" maxChars="3000"/>
     <copyField source="city" dest="_text_" maxChars="3000"/>
     <copyField source="cleaningOperations" dest="_text_" maxChars="3000"/>
     <copyField source="collection" dest="_text_" maxChars="3000"/>
@@ -932,16 +962,29 @@
     <copyField source="depositor" dest="_text_" maxChars="3000"/>
     <copyField source="deviationsFromSampleDesign" dest="_text_" maxChars="3000"/>
     <copyField source="dietary_supplements" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_device" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.device" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.dietarySupplements" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.ffqItemsNumber" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_instrument" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.instrument" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_mode" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.mode" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.portionSizeEstimation" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.referencePeriodNumber" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.referencePeriodUnit" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_reliability" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.reliability" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_reliability_reference" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.reliabilityReference" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_repeat" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.repeat" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_repeat_frequency" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.repeatFrequency" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_validity" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.validity" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_validity_reference" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment.validityReference" dest="_text_" maxChars="3000"/>
     <copyField source="distributionDate" dest="_text_" maxChars="3000"/>
     <copyField source="distributor" dest="_text_" maxChars="3000"/>
     <copyField source="distributorAbbreviation" dest="_text_" maxChars="3000"/>
@@ -989,6 +1032,11 @@
     <copyField source="last_update_submitted_date" dest="_text_" maxChars="3000"/>
     <copyField source="last_update_submitted_user" dest="_text_" maxChars="3000"/>
     <copyField source="link" dest="_text_" maxChars="3000"/>
+    <copyField source="diet_assessment" dest="_text_" maxChars="3000"/>
+    <copyField source="chronic_diseases_epidemiology" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment" dest="_text_" maxChars="3000"/>
+    <copyField source="ChronicDiseasesEpidemiology" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage" dest="_text_" maxChars="3000"/>
     <copyField source="mortality_data" dest="_text_" maxChars="3000"/>
     <copyField source="northLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="notesText" dest="_text_" maxChars="3000"/>
@@ -1016,7 +1064,15 @@
     <copyField source="publicationIDNumber" dest="_text_" maxChars="3000"/>
     <copyField source="publicationIDType" dest="_text_" maxChars="3000"/>
     <copyField source="publicationURL" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.additionalCosts" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.exampleResources" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.furtherDetails" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.identifiers" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.informedConsent" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.legalBasis" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.legalBasisDetails" dest="_text_" maxChars="3000"/>
     <copyField source="record_linkage_possible" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage.responsibleInstitutions" dest="_text_" maxChars="3000"/>
     <copyField source="redshiftType" dest="_text_" maxChars="3000"/>
     <copyField source="reference_period_number" dest="_text_" maxChars="3000"/>
     <copyField source="reference_period_unit" dest="_text_" maxChars="3000"/>
