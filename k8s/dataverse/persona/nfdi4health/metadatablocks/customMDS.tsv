@@ -71,7 +71,7 @@
 	ids_nfdi4health_relation_type	Relationship between this [RESOURCE] (A) and the related resource (B)?	Relationship between the resource being registered (A) and the related resource (B).		text	67		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ids_nfdi4health	MDS_V3_0	
 	nutritional_data	Nutritional data collected?	Indication whether nutritional data was collected by the resource.		text	68		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_0	
 	chronic_diseases	Chronic diseases included?	Indication whether chronic diseases were addressed by the resource.		text	69		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_0	
-	record_linkage_possible	Is record linkage with other data sources possible?	Indication if record linkage is possible.		text	70		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_0	
+	recordLinkage	Is record linkage with other data sources possible?	Indication if record linkage is possible.		text	70		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_0
 	study_design	Characteristics of the [RESOURCE]	Group of items providing information about the characteristics of a study or a substudy.		none	71		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_0	
 	study_primary_design	Is it an interventional or non-interventional study?	Non-interventional study design refers to a study that does not aim to alter study outcomes of interest. Interventional study design refers to a study that aims to alter study outcomes of interest. Select between non-interventional and interventional study design.		text	72		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	study_design	MDS_V3_0	
 	study_type	Specification of study type	Group of items providing information about the study type.		none	73		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	study_design	MDS_V3_0	
@@ -610,8 +610,8 @@
 	nutritional_data	No	ND_1	1
 	chronic_diseases	Yes	CD_0	0
 	chronic_diseases	No	CD_1	1
-	record_linkage_possible	Yes	RLP_0	0
-	record_linkage_possible	No	RLP_1	1
+	recordLinkage	Yes	RLP_0	0
+	recordLinkage	No	RLP_1	1
 	study_primary_design	Non-interventional	SPD_0	0
 	study_primary_design	Interventional	SPD_1	1
 	study_type_interventional	Crossover	STI_0	0
