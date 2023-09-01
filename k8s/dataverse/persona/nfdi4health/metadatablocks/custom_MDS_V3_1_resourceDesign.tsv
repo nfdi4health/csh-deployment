@@ -1,0 +1,652 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI
+	MDS_V3_1_resourceDesign		MDS_V3_1_resourceDesign	
+#datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	Resource.resourceDesign.primaryDesign	Is it an interventional or non-interventional [RESOURCE]?	Non-interventional [RESOURCE] design refers to a [RESOURCE] that does not aim to alter [RESOURCE] outcomes of interest. Interventional [RESOURCE] design refers to a [RESOURCE] that aims to alter [RESOURCE] outcomes of interest. Select between non-interventional and interventional [RESOURCE] design.		text	83		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.studyType	Specification of [RESOURCE] type	Group of items providing information about the [RESOURCE] type.		none	84		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.studyType.interventional	[RESOURCE] type	The strategy for assigning interventions to participants. Select all that apply. If "Other" is selected, please specify the [RESOURCE] type in the field "Additional information about the [RESOURCE]".		text	85		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.studyType	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.studyType.nonInterventional	[RESOURCE] type	The primary strategy for participant identification and follow-up. Select all that apply. If "Other" is selected, you can specify the [RESOURCE] type in the field "Additional information about the [RESOURCE]".		text	86		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.studyType	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.conditions	Primary health condition(s), disease(s) or focus of the [RESOURCE]	Group of items providing information about primary health condition(s) or disease(s) considered in the [RESOURCE], or the focus of the [RESOURCE] (e.g. medication, food, therapy, device, etc.).		none	87		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.conditions.label	Name of the primary health condition, disease or focus of the [RESOURCE]	Name of primary health condition or disease considered in the [RESOURCE], or the focus of the [RESOURCE] (e.g. medication, food, therapy, device, etc.). Preferably, use terms from SNOMED CT (https://browser.ihtsdotools.org).	SARS-CoV-2	text	88		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.conditions	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.conditions.classification	Terminology/classification	Terminology/classification used for the health condition, diesease or focus. If used, name of the terminology/classification.	SNOMED CT	text	89		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.conditions	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.conditions.code	Code ---- If known, code of the health condition, disease or focus in the terminology/classification used	Code of the health condition, disease, focus in the terminology/classification used. If found, the code from the terminology/classification used.	http://snomed.info/id/840533007	text	90		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.conditions	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.groupsOfDiseases	Which groups of diseases or conditions were the data collected on?	Group of items providing information about groups of diseases or conditions on which the data were collected in the [RESOURCE].		none	91		FALSE	FALSE	FALSE	FALSE	TRUE	TRUE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.groupsOfDiseases.generally	Which groups of diseases or conditions were the data collected on?	'Groups of diseases or conditions on which the data were collected in the [RESOURCE]. Select all that apply. For more information about the groups of diseases/conditions, visit the WHO''s ICD-10 homepage: https://icd.who.int/en.'		text	92		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.groupsOfDiseases	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.groupsOfDiseases.conditions	On which other diseases or conditions were the data collected?	'Other diseases or conditions on which the data were collected in the [RESOURCE]. Select all that apply. For more information about the groups of diseases/conditions, visit the WHO''s ICD-10 homepage: https://icd.who.int/en.'	Values are based on lower level ICD-10	text	93		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.groupsOfDiseases	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.mortalityData	Were mortality data collected?	Mortality data.		text	94		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.ethicsCommitteeApproval	Status of the ethics committee approval	Status of the [RESOURCE] approval from the (leading) ethics committee.		text	95		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.status	Overall [RESOURCE] status	Overall status of the [RESOURCE]. Select one value from the list.		text	96		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.statusWhenIntervention	Do participants receive an intervention?	Specification whether [RESOURCE] participants receive intervention or have completed it but are still being followed according to the primary objective of the [RESOURCE]. Select one value from the list.		text	97		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.stageStopped	At what stage was the [RESOURCE] stopped?	If the [RESOURCE] was stopped prematurely, specification of the stage at what it was halted. Select one value from the list.		text	98		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.reasonStopped	Reason why the [RESOURCE] was stopped	If the [RESOURCE] was stopped prematurely, specification of the reason(s) why it was halted. E.g., accrual goal met / closed due to toxicity / closed due to lack of [RESOURCE] progress / temporarily-closed per [RESOURCE] design /etc.		text	99		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.statusEnrollingByInvitation	Are participants enrolled by invitation?	Specification whether [RESOURCE] participants have been selected from a predetermined population or enrolled by invitation.		text	100		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.recruitmentStatusRegister	Overall recruitment status of the [RESOURCE] from the register of clinical trials	Overall recruitment status of the [RESOURCE] as indicated in the corresponding register of clinical trials.		text	101		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.startDate	Start date of data collection for the [RESOURCE]	Start date of data collection for the [RESOURCE]. In case of a planned [RESOURCE], it is the intended start date; in case of an ongoing [RESOURCE] — the actual start date.		text	102		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.endDate	End date of data collection for the [RESOURCE]	In case of a [RESOURCE] with patients or other participants, it is the date when the last participant is examined or receives an intervention, or the date of the last participant’s last visit. In case of a planned or ongoing [RESOURCE], it is the intended end date; in case of a completed [RESOURCE] — the actual end date.		text	103		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.countries	Country(ies) where the [RESOURCE] takes place	Country or countries where the [RESOURCE] takes place. Select all that apply.		text	104		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.region	Regions and/or cities within a country where the [RESOURCE] takes place	If applicable, region(s) and/or city(ies) within a country where the [RESOURCE] takes place.		text	105		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.centers	Is it a mono- or multicentric [RESOURCE]?	Specification whether a [RESOURCE] is conducted at one [RESOURCE] center or at more than one [RESOURCE] center.		text	106		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.centersNumber	Number of [RESOURCE] centers	Number of centers involved in the [RESOURCE].		int	107		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.dataProviders	Is this [RESOURCE] occurring from one or more data providers?	Specification whether this [RESOURCE] is occuring from one data provider or at more than one data provider.		text	108		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.dataProvidersNumber	Number of [RESOURCE] data providers	Number of data providers involved in the [RESOURCE].		int	109		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.subject	Primary [RESOURCE] subject	Primary [RESOURCE] subject, i.e. a person, an animal or some other type of the subject. Select one value from the list.		text	110		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.sampling	Sampling method	Group of items providing information about the applied sampling method. Select one value from the list.		none	111		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.sampling.method	Applied sampling method	Type of the sampling method applied for the selection of [RESOURCE] participants. Select one value from the list.		text	112		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.sampling	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.sampling.probabilityMethod	Specific type of probability sampling	Specific type of the probability sampling method applied for the selection of [RESOURCE] participants. If known, select one value from the list.		text	113		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.sampling	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.sampling.nonProbabilityMethod	Specific type of non-probability sampling	Specific type of the probability sampling method applied for the selection of [RESOURCE] participants. If known, select one value from the list.		text	114		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.sampling	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSource	Data sources from which [RESOURCE] data are generated or extracted.	Group of items providing information about data sources from which [RESOURCE] data are generated or extracted.		none	115		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.dataSource.general	Data sources for the [RESOURCE] (e.g. biosamples, registries, questionnaires, etc.)	Different types of data sources from which [RESOURCE] data are generated or extracted. Select all that apply.		text	116		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSource	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSource.biosamples	Biosamples collected in the [RESOURCE]	Specification of biosamples collected in the [RESOURCE].		text	117		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSource	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSource.imaging	Imaging data collected in the [RESOURCE]	Specification of imaging data collected in the [RESOURCE].		text	118		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSource	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSource.omics	Omics technology used in the [RESOURCE]	Specification of omics technology applied in the [RESOURCE].		text	119		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSource	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSource.description	Additional information about data sources	If needed, additional descriptive information about [RESOURCE] data sources, e.g. indication of the data source(s) not listed in the property „Data sources for the [RESOURCE]” or more detailed description of the selected data sources. E.g., indication of the data source(s) not listed in the field „Data sources for the [RESOURCE]” or more detailed description of the selected data sources.		text	120		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.dataSource	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.primaryPurpose	Primary purpose of the [RESOURCE]	Specification of the main purpose of the [RESOURCE]. Foremost for interventional studies, please specify the primary purpose why the [RESOURCE] was conducted. For non-interventional studies, this field may be "Not appplicable" as multiple purposes may be defined as primary ones.		text	121		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.eligibilityCriteria	Eligibility criteria for [RESOURCE] participants	Group of items providing information about eligibility criteria for [RESOURCE] participants.		none	122		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.eligibilityCriteria.ageMin	Eligibility criteria: Minimum age	Group of items providing information about the minimum eligible age of [RESOURCE] participants.		none	123		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.resourceDesign.eligibilityCriteria	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.ageMin.number	Minimum eligible age	Numerical value of the minimum age of potential participants eligible to participate in the [RESOURCE]. If age is less than 1 year, please indicate a value in months, weeks, days, hours, minutes, or weeks of gestation.		int	124		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.eligibilityCriteria.ageMin	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Unit of age	Unit of measurement used to describe the minimum eligible age.		text	125		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.eligibilityCriteria.ageMin	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.ageMax	Eligibility criteria: Maximum age	Group of items providing information about the maximum eligible age of [RESOURCE] participants.		none	126		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.resourceDesign.eligibilityCriteria	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.ageMax.number	Maximum eligible age	Numerical value of the maximum age of potential participants eligible to participate in the [RESOURCE]. If age is less than 1 year, please indicate a value in months, weeks, days, hours, minutes, or weeks of gestation.		int	127		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.eligibilityCriteria.ageMax	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Unit of age	Unit of measurement used to describe the maximum eligible age.		text	128		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.eligibilityCriteria.ageMax	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.genders	Eligible gender	Gender of potential participants eligible to participate in the [RESOURCE]. Select all that apply.		text	129		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.eligibilityCriteria	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.inclusionCriteria	Inclusion criteria	Inclusion criteria for participation in the [RESOURCE]. If possible, use an enumerated or bulleted list for each criterion.		text	130		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.eligibilityCriteria	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.eligibilityCriteria.exclusionCriteria	Exclusion criteria	Exclusion criteria for participation in the [RESOURCE]. If possible, use an enumerated or bulleted list for each criterion.		text	131		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.eligibilityCriteria	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.population	Description of [RESOURCE] population	Additional descriptive information providing more details about [RESOURCE] population. Any information important for the given [RESOURCE] population can be specified here.		text	132		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.targetSampleSize	Target sample size	Intended number of observational units for the whole [RESOURCE] (e.g. intended number of [RESOURCE] participants at all [RESOURCE] sites). Enter “-1” if target sample size was not set or is unknown.		int	133		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.obtainedSampleSize	Obtained sample size	Obtained number of observational units for the whole [RESOURCE] (e.g. obtained number of [RESOURCE] participants at all [RESOURCE] sites). The value is only available after the end of recruitment. Enter “-1” if obtained sample size is unknown.		int	134		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.hypothesis	Research questions and/or hypothesis underlying the [RESOURCE]	Statement of the research questions and/or hypotheses underlying the [RESOURCE].		text	135		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.arms	Arms of the [RESOURCE]	Group of items providing information about arms of the [RESOURCE].		none	136		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.arms.label	Name of the arm	Short name used to identify the arm.		text	137		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.arms	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.arms.type	Role of the arm	Role of the given arm in the [RESOURCE]. Select one value from the list.		text	138		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.arms	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.arms.description	Additional information about the arm	Additional descriptive information about the given arm.		text	139		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.arms	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.groups	Groups/cohorts of the [RESOURCE]	Group of items providing information about groups/cohorts of the [RESOURCE].		none	140		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.groups.label	Name of the group	Short name used to identify the group.		text	141		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.groups	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.groups.description	Additional information about the group	Additional descriptive information about the given group.		text	142		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.groups	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventions	Interventions of the [RESOURCE]	Group of items providing information about [RESOURCE] interventions.		none	143		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.interventions.name	Name of the intervention	A short descriptive name of the intervention. If the same intervention is associated with more than one arm, provide the information once and use the field "Name of the arm associated with the given intervention" to associate it with more than one arm.		text	144		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.interventions	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventions.type	Type of the intervention	General type of the given intervention.		text	145		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.interventions	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventions.description	Additional information about the intervention	If needed, additional descriptive information about the given intervention.		text	146		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.interventions	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventions.armsLabel	Name of the arm(s) associated with the given intervention	Name of the [RESOURCE] arm(s) associated with the given intervention.		text	147		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.resourceDesign.interventions	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.exposures	Exposures of the [RESOURCE]	Group of items providing information about [RESOURCE] exposures.		none	148		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.exposures.name	Name of the exposure	A short descriptive name of the exposure. If the same exposure is associated with more than one group, provide the information once and use the field "Name of the group associated with the given exposure" to associate it with more than one group.		text	149		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.exposures	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.exposures.type	Type of the exposure	General type of the given exposure.		text	150		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.exposures	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.exposures.description	Additional information about the exposure	If needed, additional descriptive information about the given exposure.		text	151		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.exposures	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.exposures.groupsLabel	Name of the group(s) associated with the given exposure	Name of the [RESOURCE] group(s) associated with the given exposure.		text	152		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.resourceDesign.exposures	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.outcomes	Outcome measure(s)	Group of items providing information about outcome measure(s).		none	153		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.outcomes.title	Name of the outcome measure	Name of the outcome measure. For non-interventional studies, this can be the name of specific measurement(s) or observation(s) used to describe patterns of diseases or traits or associations with exposures, risk factors or treatment. For a non-interventional studies, this can be specific measurement(s) or observation(s) used to describe patterns of diseases or traits or associations with exposures, risk factors or treatment.		text	154		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.outcomes	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.outcomes.description	Description of the outcome measure	Additional descriptive information about the given outcome.		text	155		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.outcomes	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.outcomes.type	Type of the outcome measure	Type of the outcome measure. Primary or secondary outcome measure?		text	156		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.outcomes	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.outcomes.timeFrame	Time point(s) of assessment	Description of the time point(s) at which the measurement for the outcome is assessed, e.g. the specific duration of time over which each participant is assessed.		text	157		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.outcomes	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.comment	Any additional information about the [RESOURCE]	Any additional information about specific aspects of the [RESOURCE] that cannot be captured by other fields. Any additional information about specific aspects of the [RESOURCE] that cannot be captured by other fields.		text	158		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.assessments	Further assessments/measurements included in the [RESOURCE]	Assessments/measurements included in the [RESOURCE].		text	159		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.dataSharingPlan	Information about data sharing	Group of items providing information about the data sharing strategy of the [RESOURCE].		none	160		FALSE	FALSE	FALSE	FALSE	TRUE	TRUE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.dataSharingPlan.generally	Is it planned to share the data?	Indication whether there is a plan to make data collected in the [RESOURCE] available. In case of a [RESOURCE] with patients or other individuals, this refers to individual participant data (IPD). Select one value from the list.		text	161		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Supporting documents available in addition to the data	Supporting information/documents which will be made available in addition to the [RESOURCE] data. Select all that apply.		text	162		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSharingPlan.timeFrame	When and for how long will the data be available?	Indication when the data and, if applicable, supporting documents will become available and for how long.		text	163		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSharingPlan.accessCriteria	Criteria for the data access	Indication by what access criteria data will be shared, including: a) with whom, b) for what types of analyses, and c) by what mechanism. E.g., with whom, for what types of analyses and by what mechanism the data will be shared.		text	164		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSharingPlan.description	Additional information about data sharing	Additional descriptive information providing more details about the data sharing, e.g. indication what data in particular will be shared or why the data will not be shared or why it is not yet decided. E.g., indication what data in particular will be shared or why the data will not be shared or why it is not yet decided		text	165		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSharingPlan.datashield	Is the DataSHIELD/Opal infrastructure available?	Indication, whether the DataSHIELD/Opal infrastructure is available.		text	166		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSharingPlan.url	Web page with additional information about data sharing	If existing, a link to the web page where additional information about data sharing can be found.		text	167		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.dataSharingPlan.recordLinkage	Is record linkage with other data sources possible?	Indication if record linkage is possible.		text	168		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.dataSharingPlan	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.nonInterventional	Information about specific aspects of a non-interventional [RESOURCE]	Group of items providing information about specific aspects of a non-interventional [RESOURCE].		none	169		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.nonInterventional.timePerspectives	Temporal design of the [RESOURCE]	Temporal design of the [RESOURCE], i.e. the relationship of observation period to time of participant enrollment. Is it a retrospective, prospective or cross-sectional [RESOURCE]?		text	170		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.nonInterventional	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration	Target follow-up duration of the [RESOURCE]	If applicable, anticipated time period over which each participant was followed.		none	171		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.nonInterventional	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration.number	Target follow-up duration	Numerical value of the target follow-up duration.		int	172		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.nonInterventional.targetFollowUpDuration	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit	Unit of time	Unit of time.		text	173		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.nonInterventional.targetFollowUpDuration	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration.frequency	How many follow-ups were conducted?	The number of follow-ups conducted within the specified duration.		int	174		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.nonInterventional.targetFollowUpDuration	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.nonInterventional.biospecimenRetention	Which biosamples are retained in a biorepository?	Indication whether samples of biomaterial from [RESOURCE] participants are retained in a biorepository. Select all that apply.		text	175		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.nonInterventional	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.nonInterventional.biospecimenDescription	Specific types of retained biosamples	Additional information about biosamples to be retained, i.e. which specific types of biospecimens will be retained (e.g. blood, serum, urine, etc.). Which specific types of biosamples will be retained (e.g. blood, serum, urine, etc.)?		text	176		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.nonInterventional	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventional	Information about specific aspects of an interventional [RESOURCE]	Group of items providing information about specific aspects of an interventional [RESOURCE].		none	177		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_1_resourceDesign
+	Resource.resourceDesign.interventional.phase	Numerical phase of the [RESOURCE]	If applicable, numerical phase of the [RESOURCE]. Select one value from the list.		text	178		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.interventional	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventional.masking	Information about masking of intervention(s) assignment	Group of items providing information about the masking of intervention(s) assignment.		none	179		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.interventional	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventional.masking.general	Is masking of intervention(s) assignment implemented?	Indication, whether a masking (or blinding) of intervention(s) assignment is implemented (i.e., whether someone is prevented from having knowledge of the interventions assigned to individual participants).		text	180		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.interventional.masking	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventional.masking.roles	Who is masked?	If masking is implemented, the party(ies) who are masked. Select all that apply.		text	181		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Resource.resourceDesign.interventional.masking	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventional.masking.description	Additional information about masking	If needed, additional descriptive information about masking (e.g. information about other parties who may be masked). If needed, additional information about masking, e.g. other parties who may be masked.		text	182		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.resourceDesign.interventional.masking	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventional.allocation	Type of allocation of participants to an arm	Type of allocation/assignment of individual [RESOURCE] participants to an arm. Select one value from the list.		text	183		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.interventional	MDS_V3_1_resourceDesign	
+	Resource.resourceDesign.interventional.offLabelUse	Off-label use of a drug product	Unapproved (off-label) use of a drug product. Select "Yes" or "No" only for a drug [RESOURCE] and "Not applicable” for all other studies.		text	184		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.resourceDesign.interventional	MDS_V3_1_resourceDesign	
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder
+	Resource.resourceDesign.primaryDesign	Non-interventional	RRP_0	0
+	Resource.resourceDesign.primaryDesign	Interventional	RRP_1	1
+	Resource.resourceDesign.studyType.interventional	Crossover	RRSI_0	0
+	Resource.resourceDesign.studyType.interventional	Factorial	RRSI_1	1
+	Resource.resourceDesign.studyType.interventional	Other	RRSI_2	2
+	Resource.resourceDesign.studyType.interventional	Parallel	RRSI_3	3
+	Resource.resourceDesign.studyType.interventional	Sequential	RRSI_4	4
+	Resource.resourceDesign.studyType.interventional	Single group	RRSI_5	5
+	Resource.resourceDesign.studyType.interventional	Unknown	RRSI_6	6
+	Resource.resourceDesign.studyType.nonInterventional	Birth cohort	RRSN_0	0
+	Resource.resourceDesign.studyType.nonInterventional	Case-cohort	RRSN_1	1
+	Resource.resourceDesign.studyType.nonInterventional	Case-control	RRSN_2	2
+	Resource.resourceDesign.studyType.nonInterventional	Case-crossover	RRSN_3	3
+	Resource.resourceDesign.studyType.nonInterventional	Case-only	RRSN_4	4
+	Resource.resourceDesign.studyType.nonInterventional	Cohort	RRSN_5	5
+	Resource.resourceDesign.studyType.nonInterventional	Cross-section	RRSN_6	6
+	Resource.resourceDesign.studyType.nonInterventional	Cross-section ad-hoc follow-up	RRSN_7	7
+	Resource.resourceDesign.studyType.nonInterventional	Ecologic or community studies	RRSN_8	8
+	Resource.resourceDesign.studyType.nonInterventional	Family-based	RRSN_9	9
+	Resource.resourceDesign.studyType.nonInterventional	Longitudinal	RRSN_10	10
+	Resource.resourceDesign.studyType.nonInterventional	Nested case-control	RRSN_11	11
+	Resource.resourceDesign.studyType.nonInterventional	Other	RRSN_12	12
+	Resource.resourceDesign.studyType.nonInterventional	Panel	RRSN_13	13
+	Resource.resourceDesign.studyType.nonInterventional	Quality control	RRSN_14	14
+	Resource.resourceDesign.studyType.nonInterventional	Register studies	RRSN_15	15
+	Resource.resourceDesign.studyType.nonInterventional	Time series	RRSN_16	16
+	Resource.resourceDesign.studyType.nonInterventional	Trend	RRSN_17	17
+	Resource.resourceDesign.studyType.nonInterventional	Twin study	RRSN_18	18
+	Resource.resourceDesign.studyType.nonInterventional	Unknown	RRSN_19	19
+	Resource.resourceDesign.conditions.classification	MeSH	RRCC_0	0
+	Resource.resourceDesign.conditions.classification	ICD-10	RRCC_1	1
+	Resource.resourceDesign.conditions.classification	ICD-11	RRCC_2	2
+	Resource.resourceDesign.conditions.classification	MedDRA	RRCC_3	3
+	Resource.resourceDesign.conditions.classification	SNOMED CT	RRCC_4	4
+	Resource.resourceDesign.conditions.classification	Other vocabulary	RRCC_5	5
+	Resource.resourceDesign.conditions.classification	Free text	RRCC_6	6
+	Resource.resourceDesign.groupsOfDiseases.generally	Certain conditions originating in the perinatal period (XVI)	RRGG_0	0
+	Resource.resourceDesign.groupsOfDiseases.generally	Certain infectious or parasitic diseases (I)	RRGG_1	1
+	Resource.resourceDesign.groupsOfDiseases.generally	Congenital malformations, deformations and chromosomal abnormalities (XVII)	RRGG_2	2
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the blood or blood-forming organs and certain disorders involving the immune mechanism (III)	RRGG_3	3
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the circulatory system (IX)	RRGG_4	4
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the digestive system (XI)	RRGG_5	5
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the ear or mastoid process (VIII)	RRGG_6	6
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the eye and adnexa (VII)	RRGG_7	7
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the genitourinary system (XIV)	RRGG_8	8
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the musculoskeletal system and connective tissue (XIII)	RRGG_9	9
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the nervous system (VI)	RRGG_10	10
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the respiratory system (X)	RRGG_11	11
+	Resource.resourceDesign.groupsOfDiseases.generally	Diseases of the skin and subcutaneous tissue (XII)	RRGG_12	12
+	Resource.resourceDesign.groupsOfDiseases.generally	Endocrine, nutritional and metabolic diseases (IV)	RRGG_13	13
+	Resource.resourceDesign.groupsOfDiseases.generally	External causes of morbidity or mortality (XX)	RRGG_14	14
+	Resource.resourceDesign.groupsOfDiseases.generally	Factors influencing health status and contact with health services (XXI)	RRGG_15	15
+	Resource.resourceDesign.groupsOfDiseases.generally	Injury, poisoning and certain other consequences of external causes (XIX)	RRGG_16	16
+	Resource.resourceDesign.groupsOfDiseases.generally	Mental and behavioural disorders (V)	RRGG_17	17
+	Resource.resourceDesign.groupsOfDiseases.generally	Neoplasms (II)	RRGG_18	18
+	Resource.resourceDesign.groupsOfDiseases.generally	Not applicable	RRGG_19	19
+	Resource.resourceDesign.groupsOfDiseases.generally	Other	RRGG_20	20
+	Resource.resourceDesign.groupsOfDiseases.generally	Pregnancy, childbirth or the puerperium (XV)	RRGG_21	21
+	Resource.resourceDesign.groupsOfDiseases.generally	Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (XVIII)	RRGG_22	22
+	Resource.resourceDesign.groupsOfDiseases.generally	Unknown	RRGG_23	23
+	Resource.resourceDesign.groupsOfDiseases.conditions	Lower level ICD-10 (https://icd.who.int/browse10/2019/en), with autocomplete	RRGC_0	0
+	Resource.resourceDesign.mortalityData	Yes, vital status only (cause of death missing)	RRM_0	0
+	Resource.resourceDesign.mortalityData	Yes, with cause of death	RRM_1	1
+	Resource.resourceDesign.mortalityData	No	RRM_2	2
+	Resource.resourceDesign.ethicsCommitteeApproval	Request for approval not yet submitted	RRE_0	0
+	Resource.resourceDesign.ethicsCommitteeApproval	Request for approval submitted, approval pending	RRE_1	1
+	Resource.resourceDesign.ethicsCommitteeApproval	Request for approval submitted, approval granted	RRE_2	2
+	Resource.resourceDesign.ethicsCommitteeApproval	Request for approval submitted, exempt granted	RRE_3	3
+	Resource.resourceDesign.ethicsCommitteeApproval	Request for approval submitted, approval denied	RRE_4	4
+	Resource.resourceDesign.ethicsCommitteeApproval	Approval not required	RRE_5	5
+	Resource.resourceDesign.ethicsCommitteeApproval	Study withdrawn prior to decision on approval	RRE_6	6
+	Resource.resourceDesign.ethicsCommitteeApproval	Unknown status of request approval	RRE_7	7
+	Resource.resourceDesign.status	At the planning stage	RRS_0	0
+	Resource.resourceDesign.status	Ongoing (I): Recruitment ongoing, but data collection not yet started	RRS_1	1
+	Resource.resourceDesign.status	Ongoing (II): Recruitment and data collection ongoing	RRS_2	2
+	Resource.resourceDesign.status	Ongoing (III): Recruitment completed, but data collection ongoing	RRS_3	3
+	Resource.resourceDesign.status	Ongoing (IV): Recruitment and data collection completed, but data quality management ongoing	RRS_4	4
+	Resource.resourceDesign.status	Suspended: Recruitment, data collection, or data quality management, halted, but potentially will resume	RRS_5	5
+	Resource.resourceDesign.status	Terminated: Recruitment, data collection, data and quality management halted prematurely and will not resume	RRS_6	6
+	Resource.resourceDesign.status	Completed: Recruitment, data collection, and data quality management completed normally	RRS_7	7
+	Resource.resourceDesign.status	Other	RRS_8	8
+	Resource.resourceDesign.statusWhenIntervention	Intervention ongoing	RRS_1_0	0
+	Resource.resourceDesign.statusWhenIntervention	Intervention completed, follow-up ongoing	RRS_1_1	1
+	Resource.resourceDesign.stageStopped	At the planning stage	RRS_2_0	0
+	Resource.resourceDesign.stageStopped	Ongoing (I): Recruitment ongoing, but data collection not yet started	RRS_2_1	1
+	Resource.resourceDesign.stageStopped	Ongoing (II): Recruitment and data collection ongoing	RRS_2_2	2
+	Resource.resourceDesign.stageStopped	Ongoing (III): Recruitment completed, but data collection ongoing	RRS_2_3	3
+	Resource.resourceDesign.stageStopped	Ongoing (IV): Recruitment and data collection completed, but data quality management ongoing	RRS_2_4	4
+	Resource.resourceDesign.statusEnrollingByInvitation	Yes	RRS_3_0	0
+	Resource.resourceDesign.statusEnrollingByInvitation	No	RRS_3_1	1
+	Resource.resourceDesign.statusEnrollingByInvitation	Not applicable	RRS_3_2	2
+	Resource.resourceDesign.recruitmentStatusRegister	Not yet recruiting	RRR_0	0
+	Resource.resourceDesign.recruitmentStatusRegister	Recruiting	RRR_1	1
+	Resource.resourceDesign.recruitmentStatusRegister	Enrolling by invitation	RRR_2	2
+	Resource.resourceDesign.recruitmentStatusRegister	Active, not recruiting	RRR_3	3
+	Resource.resourceDesign.recruitmentStatusRegister	Completed	RRR_4	4
+	Resource.resourceDesign.recruitmentStatusRegister	Suspended	RRR_5	5
+	Resource.resourceDesign.recruitmentStatusRegister	Terminated	RRR_6	6
+	Resource.resourceDesign.recruitmentStatusRegister	Withdrawn	RRR_7	7
+	Resource.resourceDesign.recruitmentStatusRegister	Other	RRR_8	8
+	Resource.resourceDesign.countries	Afghanistan	RRC_0	0
+	Resource.resourceDesign.countries	Albania	RRC_1	1
+	Resource.resourceDesign.countries	Algeria	RRC_2	2
+	Resource.resourceDesign.countries	American Samoa	RRC_3	3
+	Resource.resourceDesign.countries	Andorra	RRC_4	4
+	Resource.resourceDesign.countries	Angola	RRC_5	5
+	Resource.resourceDesign.countries	Anguilla	RRC_6	6
+	Resource.resourceDesign.countries	Antarctica	RRC_7	7
+	Resource.resourceDesign.countries	Antigua and Barbuda	RRC_8	8
+	Resource.resourceDesign.countries	Argentina	RRC_9	9
+	Resource.resourceDesign.countries	Armenia	RRC_10	10
+	Resource.resourceDesign.countries	Aruba	RRC_11	11
+	Resource.resourceDesign.countries	Australia	RRC_12	12
+	Resource.resourceDesign.countries	Austria	RRC_13	13
+	Resource.resourceDesign.countries	Azerbaijan	RRC_14	14
+	Resource.resourceDesign.countries	Bahamas	RRC_15	15
+	Resource.resourceDesign.countries	Bahrain	RRC_16	16
+	Resource.resourceDesign.countries	Bangladesh	RRC_17	17
+	Resource.resourceDesign.countries	Barbados	RRC_18	18
+	Resource.resourceDesign.countries	Belarus	RRC_19	19
+	Resource.resourceDesign.countries	Belgium	RRC_20	20
+	Resource.resourceDesign.countries	Belize	RRC_21	21
+	Resource.resourceDesign.countries	Benin	RRC_22	22
+	Resource.resourceDesign.countries	Bermuda	RRC_23	23
+	Resource.resourceDesign.countries	Bhutan	RRC_24	24
+	Resource.resourceDesign.countries	Bolivia, Plurinational State of	RRC_25	25
+	Resource.resourceDesign.countries	Bonaire, Sint Eustatius and Saba	RRC_26	26
+	Resource.resourceDesign.countries	Bosnia and Herzegovina	RRC_27	27
+	Resource.resourceDesign.countries	Botswana	RRC_28	28
+	Resource.resourceDesign.countries	Bouvet Island	RRC_29	29
+	Resource.resourceDesign.countries	Brazil	RRC_30	30
+	Resource.resourceDesign.countries	British Indian Ocean Territory	RRC_31	31
+	Resource.resourceDesign.countries	Brunei Darussalam	RRC_32	32
+	Resource.resourceDesign.countries	Bulgaria	RRC_33	33
+	Resource.resourceDesign.countries	Burkina Faso	RRC_34	34
+	Resource.resourceDesign.countries	Burundi	RRC_35	35
+	Resource.resourceDesign.countries	Cabo Verde	RRC_36	36
+	Resource.resourceDesign.countries	Cambodia	RRC_37	37
+	Resource.resourceDesign.countries	Cameroon	RRC_38	38
+	Resource.resourceDesign.countries	Canada	RRC_39	39
+	Resource.resourceDesign.countries	Cayman Islands	RRC_40	40
+	Resource.resourceDesign.countries	Central African Republic	RRC_41	41
+	Resource.resourceDesign.countries	Chad	RRC_42	42
+	Resource.resourceDesign.countries	Chile	RRC_43	43
+	Resource.resourceDesign.countries	China	RRC_44	44
+	Resource.resourceDesign.countries	Christmas Island	RRC_45	45
+	Resource.resourceDesign.countries	Cocos (Keeling) Islands	RRC_46	46
+	Resource.resourceDesign.countries	Colombia	RRC_47	47
+	Resource.resourceDesign.countries	Comoros	RRC_48	48
+	Resource.resourceDesign.countries	Congo	RRC_49	49
+	Resource.resourceDesign.countries	Congo, Democratic Republic of the	RRC_50	50
+	Resource.resourceDesign.countries	Cook Islands	RRC_51	51
+	Resource.resourceDesign.countries	Costa Rica	RRC_52	52
+	Resource.resourceDesign.countries	Croatia	RRC_53	53
+	Resource.resourceDesign.countries	Cuba	RRC_54	54
+	Resource.resourceDesign.countries	Curaçao	RRC_55	55
+	Resource.resourceDesign.countries	Cyprus	RRC_56	56
+	Resource.resourceDesign.countries	Czechia	RRC_57	57
+	Resource.resourceDesign.countries	Côte d'Ivoire	RRC_58	58
+	Resource.resourceDesign.countries	Denmark	RRC_59	59
+	Resource.resourceDesign.countries	Djibouti	RRC_60	60
+	Resource.resourceDesign.countries	Dominica	RRC_61	61
+	Resource.resourceDesign.countries	Dominican Republic	RRC_62	62
+	Resource.resourceDesign.countries	Ecuador	RRC_63	63
+	Resource.resourceDesign.countries	Egypt	RRC_64	64
+	Resource.resourceDesign.countries	El Salvador	RRC_65	65
+	Resource.resourceDesign.countries	Equatorial Guinea	RRC_66	66
+	Resource.resourceDesign.countries	Eritrea	RRC_67	67
+	Resource.resourceDesign.countries	Estonia	RRC_68	68
+	Resource.resourceDesign.countries	Eswatini	RRC_69	69
+	Resource.resourceDesign.countries	Ethiopia	RRC_70	70
+	Resource.resourceDesign.countries	Falkland Islands (Malvinas)	RRC_71	71
+	Resource.resourceDesign.countries	Faroe Islands	RRC_72	72
+	Resource.resourceDesign.countries	Fiji	RRC_73	73
+	Resource.resourceDesign.countries	Finland	RRC_74	74
+	Resource.resourceDesign.countries	France	RRC_75	75
+	Resource.resourceDesign.countries	French Guiana	RRC_76	76
+	Resource.resourceDesign.countries	French Polynesia	RRC_77	77
+	Resource.resourceDesign.countries	French Southern Territories	RRC_78	78
+	Resource.resourceDesign.countries	Gabon	RRC_79	79
+	Resource.resourceDesign.countries	Gambia	RRC_80	80
+	Resource.resourceDesign.countries	Georgia	RRC_81	81
+	Resource.resourceDesign.countries	Germany	RRC_82	82
+	Resource.resourceDesign.countries	Ghana	RRC_83	83
+	Resource.resourceDesign.countries	Gibraltar	RRC_84	84
+	Resource.resourceDesign.countries	Greece	RRC_85	85
+	Resource.resourceDesign.countries	Greenland	RRC_86	86
+	Resource.resourceDesign.countries	Grenada	RRC_87	87
+	Resource.resourceDesign.countries	Guadeloupe	RRC_88	88
+	Resource.resourceDesign.countries	Guam	RRC_89	89
+	Resource.resourceDesign.countries	Guatemala	RRC_90	90
+	Resource.resourceDesign.countries	Guernsey	RRC_91	91
+	Resource.resourceDesign.countries	Guinea	RRC_92	92
+	Resource.resourceDesign.countries	Guinea-Bissau	RRC_93	93
+	Resource.resourceDesign.countries	Guyana	RRC_94	94
+	Resource.resourceDesign.countries	Haiti	RRC_95	95
+	Resource.resourceDesign.countries	Heard Island and McDonald Islands	RRC_96	96
+	Resource.resourceDesign.countries	Holy See	RRC_97	97
+	Resource.resourceDesign.countries	Honduras	RRC_98	98
+	Resource.resourceDesign.countries	Hong Kong	RRC_99	99
+	Resource.resourceDesign.countries	Hungary	RRC_100	100
+	Resource.resourceDesign.countries	Iceland	RRC_101	101
+	Resource.resourceDesign.countries	India	RRC_102	102
+	Resource.resourceDesign.countries	Indonesia	RRC_103	103
+	Resource.resourceDesign.countries	Iran, Islamic Republic of	RRC_104	104
+	Resource.resourceDesign.countries	Iraq	RRC_105	105
+	Resource.resourceDesign.countries	Ireland	RRC_106	106
+	Resource.resourceDesign.countries	Isle of Man	RRC_107	107
+	Resource.resourceDesign.countries	Israel	RRC_108	108
+	Resource.resourceDesign.countries	Italy	RRC_109	109
+	Resource.resourceDesign.countries	Jamaica	RRC_110	110
+	Resource.resourceDesign.countries	Japan	RRC_111	111
+	Resource.resourceDesign.countries	Jersey	RRC_112	112
+	Resource.resourceDesign.countries	Jordan	RRC_113	113
+	Resource.resourceDesign.countries	Kazakhstan	RRC_114	114
+	Resource.resourceDesign.countries	Kenya	RRC_115	115
+	Resource.resourceDesign.countries	Kiribati	RRC_116	116
+	Resource.resourceDesign.countries	Korea, Democratic People's Republic of	RRC_117	117
+	Resource.resourceDesign.countries	Korea, Republic of	RRC_118	118
+	Resource.resourceDesign.countries	Kuwait	RRC_119	119
+	Resource.resourceDesign.countries	Kyrgyzstan	RRC_120	120
+	Resource.resourceDesign.countries	Lao People's Democratic Republic	RRC_121	121
+	Resource.resourceDesign.countries	Latvia	RRC_122	122
+	Resource.resourceDesign.countries	Lebanon	RRC_123	123
+	Resource.resourceDesign.countries	Lesotho	RRC_124	124
+	Resource.resourceDesign.countries	Liberia	RRC_125	125
+	Resource.resourceDesign.countries	Libya	RRC_126	126
+	Resource.resourceDesign.countries	Liechtenstein	RRC_127	127
+	Resource.resourceDesign.countries	Lithuania	RRC_128	128
+	Resource.resourceDesign.countries	Luxembourg	RRC_129	129
+	Resource.resourceDesign.countries	Macao	RRC_130	130
+	Resource.resourceDesign.countries	Madagascar	RRC_131	131
+	Resource.resourceDesign.countries	Malawi	RRC_132	132
+	Resource.resourceDesign.countries	Malaysia	RRC_133	133
+	Resource.resourceDesign.countries	Maldives	RRC_134	134
+	Resource.resourceDesign.countries	Mali	RRC_135	135
+	Resource.resourceDesign.countries	Malta	RRC_136	136
+	Resource.resourceDesign.countries	Marshall Islands	RRC_137	137
+	Resource.resourceDesign.countries	Martinique	RRC_138	138
+	Resource.resourceDesign.countries	Mauritania	RRC_139	139
+	Resource.resourceDesign.countries	Mauritius	RRC_140	140
+	Resource.resourceDesign.countries	Mayotte	RRC_141	141
+	Resource.resourceDesign.countries	Mexico	RRC_142	142
+	Resource.resourceDesign.countries	Micronesia, Federated States of	RRC_143	143
+	Resource.resourceDesign.countries	Moldova, Republic of	RRC_144	144
+	Resource.resourceDesign.countries	Monaco	RRC_145	145
+	Resource.resourceDesign.countries	Mongolia	RRC_146	146
+	Resource.resourceDesign.countries	Montenegro	RRC_147	147
+	Resource.resourceDesign.countries	Montserrat	RRC_148	148
+	Resource.resourceDesign.countries	Morocco	RRC_149	149
+	Resource.resourceDesign.countries	Mozambique	RRC_150	150
+	Resource.resourceDesign.countries	Myanmar	RRC_151	151
+	Resource.resourceDesign.countries	Namibia	RRC_152	152
+	Resource.resourceDesign.countries	Nauru	RRC_153	153
+	Resource.resourceDesign.countries	Nepal	RRC_154	154
+	Resource.resourceDesign.countries	Netherlands	RRC_155	155
+	Resource.resourceDesign.countries	New Caledonia	RRC_156	156
+	Resource.resourceDesign.countries	New Zealand	RRC_157	157
+	Resource.resourceDesign.countries	Nicaragua	RRC_158	158
+	Resource.resourceDesign.countries	Niger	RRC_159	159
+	Resource.resourceDesign.countries	Nigeria	RRC_160	160
+	Resource.resourceDesign.countries	Niue	RRC_161	161
+	Resource.resourceDesign.countries	Norfolk Island	RRC_162	162
+	Resource.resourceDesign.countries	North Macedonia	RRC_163	163
+	Resource.resourceDesign.countries	Northern Mariana Islands	RRC_164	164
+	Resource.resourceDesign.countries	Norway	RRC_165	165
+	Resource.resourceDesign.countries	Oman	RRC_166	166
+	Resource.resourceDesign.countries	Pakistan	RRC_167	167
+	Resource.resourceDesign.countries	Palau	RRC_168	168
+	Resource.resourceDesign.countries	Palestine, State of	RRC_169	169
+	Resource.resourceDesign.countries	Panama	RRC_170	170
+	Resource.resourceDesign.countries	Papua New Guinea	RRC_171	171
+	Resource.resourceDesign.countries	Paraguay	RRC_172	172
+	Resource.resourceDesign.countries	Peru	RRC_173	173
+	Resource.resourceDesign.countries	Philippines	RRC_174	174
+	Resource.resourceDesign.countries	Pitcairn	RRC_175	175
+	Resource.resourceDesign.countries	Poland	RRC_176	176
+	Resource.resourceDesign.countries	Portugal	RRC_177	177
+	Resource.resourceDesign.countries	Puerto Rico	RRC_178	178
+	Resource.resourceDesign.countries	Qatar	RRC_179	179
+	Resource.resourceDesign.countries	Romania	RRC_180	180
+	Resource.resourceDesign.countries	Russian Federation	RRC_181	181
+	Resource.resourceDesign.countries	Rwanda	RRC_182	182
+	Resource.resourceDesign.countries	Réunion	RRC_183	183
+	Resource.resourceDesign.countries	Saint Barthélemy	RRC_184	184
+	Resource.resourceDesign.countries	Saint Helena, Ascension and Tristan da Cunha	RRC_185	185
+	Resource.resourceDesign.countries	Saint Kitts and Nevis	RRC_186	186
+	Resource.resourceDesign.countries	Saint Lucia	RRC_187	187
+	Resource.resourceDesign.countries	Saint Martin, (French part)	RRC_188	188
+	Resource.resourceDesign.countries	Saint Pierre and Miquelon	RRC_189	189
+	Resource.resourceDesign.countries	Saint Vincent and the Grenadines	RRC_190	190
+	Resource.resourceDesign.countries	Samoa	RRC_191	191
+	Resource.resourceDesign.countries	San Marino	RRC_192	192
+	Resource.resourceDesign.countries	Sao Tome and Principe	RRC_193	193
+	Resource.resourceDesign.countries	Saudi Arabia	RRC_194	194
+	Resource.resourceDesign.countries	Senegal	RRC_195	195
+	Resource.resourceDesign.countries	Serbia	RRC_196	196
+	Resource.resourceDesign.countries	Seychelles	RRC_197	197
+	Resource.resourceDesign.countries	Sierra Leone	RRC_198	198
+	Resource.resourceDesign.countries	Singapore	RRC_199	199
+	Resource.resourceDesign.countries	Sint Maarten, (Dutch part)	RRC_200	200
+	Resource.resourceDesign.countries	Slovakia	RRC_201	201
+	Resource.resourceDesign.countries	Slovenia	RRC_202	202
+	Resource.resourceDesign.countries	Solomon Islands	RRC_203	203
+	Resource.resourceDesign.countries	Somalia	RRC_204	204
+	Resource.resourceDesign.countries	South Africa	RRC_205	205
+	Resource.resourceDesign.countries	South Georgia and the South Sandwich Islands	RRC_206	206
+	Resource.resourceDesign.countries	South Sudan	RRC_207	207
+	Resource.resourceDesign.countries	Spain	RRC_208	208
+	Resource.resourceDesign.countries	Sri Lanka	RRC_209	209
+	Resource.resourceDesign.countries	Sudan	RRC_210	210
+	Resource.resourceDesign.countries	Suriname	RRC_211	211
+	Resource.resourceDesign.countries	Svalbard and Jan Mayen	RRC_212	212
+	Resource.resourceDesign.countries	Sweden	RRC_213	213
+	Resource.resourceDesign.countries	Switzerland	RRC_214	214
+	Resource.resourceDesign.countries	Syrian Arab Republic	RRC_215	215
+	Resource.resourceDesign.countries	Taiwan, Province of China	RRC_216	216
+	Resource.resourceDesign.countries	Tajikistan	RRC_217	217
+	Resource.resourceDesign.countries	Tanzania, United Republic of	RRC_218	218
+	Resource.resourceDesign.countries	Thailand	RRC_219	219
+	Resource.resourceDesign.countries	Timor-Leste	RRC_220	220
+	Resource.resourceDesign.countries	Togo	RRC_221	221
+	Resource.resourceDesign.countries	Tokelau	RRC_222	222
+	Resource.resourceDesign.countries	Tonga	RRC_223	223
+	Resource.resourceDesign.countries	Trinidad and Tobago	RRC_224	224
+	Resource.resourceDesign.countries	Tunisia	RRC_225	225
+	Resource.resourceDesign.countries	Turkmenistan	RRC_226	226
+	Resource.resourceDesign.countries	Turks and Caicos Islands	RRC_227	227
+	Resource.resourceDesign.countries	Tuvalu	RRC_228	228
+	Resource.resourceDesign.countries	Türkiye	RRC_229	229
+	Resource.resourceDesign.countries	Uganda	RRC_230	230
+	Resource.resourceDesign.countries	Ukraine	RRC_231	231
+	Resource.resourceDesign.countries	United Arab Emirates	RRC_232	232
+	Resource.resourceDesign.countries	United Kingdom of Great Britain and Northern Ireland	RRC_233	233
+	Resource.resourceDesign.countries	United States Minor Outlying Islands	RRC_234	234
+	Resource.resourceDesign.countries	United States of America	RRC_235	235
+	Resource.resourceDesign.countries	Uruguay	RRC_236	236
+	Resource.resourceDesign.countries	Uzbekistan	RRC_237	237
+	Resource.resourceDesign.countries	Vanuatu	RRC_238	238
+	Resource.resourceDesign.countries	Venezuela, Bolivarian Republic of	RRC_239	239
+	Resource.resourceDesign.countries	Viet Nam	RRC_240	240
+	Resource.resourceDesign.countries	Virgin Islands, British	RRC_241	241
+	Resource.resourceDesign.countries	Virgin Islands, U.S.	RRC_242	242
+	Resource.resourceDesign.countries	Wallis and Futuna	RRC_243	243
+	Resource.resourceDesign.countries	Western Sahara	RRC_244	244
+	Resource.resourceDesign.countries	Yemen	RRC_245	245
+	Resource.resourceDesign.countries	Zambia	RRC_246	246
+	Resource.resourceDesign.countries	Zimbabwe	RRC_247	247
+	Resource.resourceDesign.countries	Åland Islands	RRC_248	248
+	Resource.resourceDesign.centers	Monocentric	RRC_1_0	0
+	Resource.resourceDesign.centers	Multicentric	RRC_1_1	1
+	Resource.resourceDesign.dataProviders	One data provider	RRD_0	0
+	Resource.resourceDesign.dataProviders	Several data providers	RRD_1	1
+	Resource.resourceDesign.subject	Person	RRS_4_0	0
+	Resource.resourceDesign.subject	Animal	RRS_4_1	1
+	Resource.resourceDesign.subject	Other	RRS_4_2	2
+	Resource.resourceDesign.subject	Unknown	RRS_4_3	3
+	Resource.resourceDesign.sampling.method	Probability	RRSM_0	0
+	Resource.resourceDesign.sampling.method	Non-probability	RRSM_1	1
+	Resource.resourceDesign.sampling.method	Mixed probability and non-probability	RRSM_2	2
+	Resource.resourceDesign.sampling.method	Total universe/Complete enumeration	RRSM_3	3
+	Resource.resourceDesign.sampling.method	Other	RRSM_4	4
+	Resource.resourceDesign.sampling.method	Unknown	RRSM_5	5
+	Resource.resourceDesign.sampling.method	Not applicable	RRSM_6	6
+	Resource.resourceDesign.sampling.probabilityMethod	Simple random	RRSP_0	0
+	Resource.resourceDesign.sampling.probabilityMethod	Systematic random	RRSP_1	1
+	Resource.resourceDesign.sampling.probabilityMethod	Stratified	RRSP_2	2
+	Resource.resourceDesign.sampling.probabilityMethod	Stratified: Proportional	RRSP_3	3
+	Resource.resourceDesign.sampling.probabilityMethod	Stratified: Disproportional	RRSP_4	4
+	Resource.resourceDesign.sampling.probabilityMethod	Cluster	RRSP_5	5
+	Resource.resourceDesign.sampling.probabilityMethod	Cluster: Simple random	RRSP_6	6
+	Resource.resourceDesign.sampling.probabilityMethod	Cluster: Stratified random	RRSP_7	7
+	Resource.resourceDesign.sampling.probabilityMethod	Multistage	RRSP_8	8
+	Resource.resourceDesign.sampling.nonProbabilityMethod	Availability	RRSN_1_0	0
+	Resource.resourceDesign.sampling.nonProbabilityMethod	Purposive	RRSN_1_1	1
+	Resource.resourceDesign.sampling.nonProbabilityMethod	Quota	RRSN_1_2	2
+	Resource.resourceDesign.sampling.nonProbabilityMethod	Respondent-assisted	RRSN_1_3	3
+	Resource.resourceDesign.dataSource.general	Administrative databases	RRDG_0	0
+	Resource.resourceDesign.dataSource.general	Biological samples	RRDG_1	1
+	Resource.resourceDesign.dataSource.general	Cognitive measurements	RRDG_2	2
+	Resource.resourceDesign.dataSource.general	Genealogical records	RRDG_3	3
+	Resource.resourceDesign.dataSource.general	Imaging data	RRDG_4	4
+	Resource.resourceDesign.dataSource.general	Interview	RRDG_5	5
+	Resource.resourceDesign.dataSource.general	Medical records	RRDG_6	6
+	Resource.resourceDesign.dataSource.general	Omics technology	RRDG_7	7
+	Resource.resourceDesign.dataSource.general	Other	RRDG_8	8
+	Resource.resourceDesign.dataSource.general	Physiological/Biochemical measurements	RRDG_9	9
+	Resource.resourceDesign.dataSource.general	Questionnaire	RRDG_10	10
+	Resource.resourceDesign.dataSource.general	Registries	RRDG_11	11
+	Resource.resourceDesign.dataSource.biosamples	Blood	RRDB_0	0
+	Resource.resourceDesign.dataSource.biosamples	Buccal cells	RRDB_1	1
+	Resource.resourceDesign.dataSource.biosamples	Cord blood	RRDB_2	2
+	Resource.resourceDesign.dataSource.biosamples	DNA	RRDB_3	3
+	Resource.resourceDesign.dataSource.biosamples	Faeces	RRDB_4	4
+	Resource.resourceDesign.dataSource.biosamples	Hair	RRDB_5	5
+	Resource.resourceDesign.dataSource.biosamples	Immortalized cell lines	RRDB_6	6
+	Resource.resourceDesign.dataSource.biosamples	Isolated pathogen	RRDB_7	7
+	Resource.resourceDesign.dataSource.biosamples	Nail	RRDB_8	8
+	Resource.resourceDesign.dataSource.biosamples	Other biological samples	RRDB_9	9
+	Resource.resourceDesign.dataSource.biosamples	Plasma	RRDB_10	10
+	Resource.resourceDesign.dataSource.biosamples	RNA	RRDB_11	11
+	Resource.resourceDesign.dataSource.biosamples	Saliva	RRDB_12	12
+	Resource.resourceDesign.dataSource.biosamples	Serum	RRDB_13	13
+	Resource.resourceDesign.dataSource.biosamples	Tissue (FFPE)	RRDB_14	14
+	Resource.resourceDesign.dataSource.biosamples	Tissue (frozen)	RRDB_15	15
+	Resource.resourceDesign.dataSource.biosamples	Urine	RRDB_16	16
+	Resource.resourceDesign.dataSource.imaging	Computed tomography (CT)	RRDI_0	0
+	Resource.resourceDesign.dataSource.imaging	Magnetic resonance imaging (MRI)	RRDI_1	1
+	Resource.resourceDesign.dataSource.imaging	Other imaging data	RRDI_2	2
+	Resource.resourceDesign.dataSource.imaging	Radiography (x-ray)	RRDI_3	3
+	Resource.resourceDesign.dataSource.imaging	Ultrasound	RRDI_4	4
+	Resource.resourceDesign.dataSource.omics	Biomarkers	RRDO_0	0
+	Resource.resourceDesign.dataSource.omics	Genomics	RRDO_1	1
+	Resource.resourceDesign.dataSource.omics	Metabolomics	RRDO_2	2
+	Resource.resourceDesign.dataSource.omics	Other omics technology	RRDO_3	3
+	Resource.resourceDesign.dataSource.omics	Proteomics	RRDO_4	4
+	Resource.resourceDesign.dataSource.omics	Transcriptomics	RRDO_5	5
+	Resource.resourceDesign.primaryPurpose	Treatment	RRP_1_0	0
+	Resource.resourceDesign.primaryPurpose	Prevention	RRP_1_1	1
+	Resource.resourceDesign.primaryPurpose	Prognostic	RRP_1_2	2
+	Resource.resourceDesign.primaryPurpose	Diagnostic	RRP_1_3	3
+	Resource.resourceDesign.primaryPurpose	Supportive care	RRP_1_4	4
+	Resource.resourceDesign.primaryPurpose	Screening	RRP_1_5	5
+	Resource.resourceDesign.primaryPurpose	Health services research	RRP_1_6	6
+	Resource.resourceDesign.primaryPurpose	Basic science/Physiological study	RRP_1_7	7
+	Resource.resourceDesign.primaryPurpose	Device feasibility	RRP_1_8	8
+	Resource.resourceDesign.primaryPurpose	Pharmacogenetics	RRP_1_9	9
+	Resource.resourceDesign.primaryPurpose	Pharmacogenomics	RRP_1_10	10
+	Resource.resourceDesign.primaryPurpose	Health economics	RRP_1_11	11
+	Resource.resourceDesign.primaryPurpose	Not applicable	RRP_1_12	12
+	Resource.resourceDesign.primaryPurpose	Other	RRP_1_13	13
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Years	RREAT_0	0
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Months	RREAT_1	1
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Weeks	RREAT_2	2
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Days	RREAT_3	3
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Hours	RREAT_4	4
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Minutes	RREAT_5	5
+	Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit	Weeks of gestation	RREAT_6	6
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Years	RREAT_1_0	0
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Months	RREAT_1_1	1
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Weeks	RREAT_1_2	2
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Days	RREAT_1_3	3
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Hours	RREAT_1_4	4
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Minutes	RREAT_1_5	5
+	Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit	Weeks of gestation	RREAT_1_6	6
+	Resource.resourceDesign.eligibilityCriteria.genders	Diverse	RREG_0	0
+	Resource.resourceDesign.eligibilityCriteria.genders	Female	RREG_1	1
+	Resource.resourceDesign.eligibilityCriteria.genders	Male	RREG_2	2
+	Resource.resourceDesign.eligibilityCriteria.genders	Not applicable	RREG_3	3
+	Resource.resourceDesign.arms.type	Experimental	RRAT_0	0
+	Resource.resourceDesign.arms.type	Active comparator	RRAT_1	1
+	Resource.resourceDesign.arms.type	Placebo comparator	RRAT_2	2
+	Resource.resourceDesign.arms.type	Sham comparator	RRAT_3	3
+	Resource.resourceDesign.arms.type	No intervention	RRAT_4	4
+	Resource.resourceDesign.arms.type	Other	RRAT_5	5
+	Resource.resourceDesign.interventions.type	Drug (including placebo)	RRIT_0	0
+	Resource.resourceDesign.interventions.type	Device (including sham)	RRIT_1	1
+	Resource.resourceDesign.interventions.type	Biological/Vaccine	RRIT_2	2
+	Resource.resourceDesign.interventions.type	Procedure/Surgery	RRIT_3	3
+	Resource.resourceDesign.interventions.type	Radiation	RRIT_4	4
+	Resource.resourceDesign.interventions.type	Behavioral (e.g., psychotherapy, lifestyle counseling)	RRIT_5	5
+	Resource.resourceDesign.interventions.type	Genetic (including gene transfer, stem cell and recombinant DNA)	RRIT_6	6
+	Resource.resourceDesign.interventions.type	Dietary supplement (e.g., vitamins, minerals)	RRIT_7	7
+	Resource.resourceDesign.interventions.type	Combination product (combining a drug and device, a biological product and device; a drug and biological product; or a drug, biological product, and device)	RRIT_8	8
+	Resource.resourceDesign.interventions.type	Diagnostic test (e.g., imaging, in-vitro)	RRIT_9	9
+	Resource.resourceDesign.interventions.type	Other	RRIT_10	10
+	Resource.resourceDesign.exposures.type	Drug (including placebo)	RRET_0	0
+	Resource.resourceDesign.exposures.type	Device (including sham)	RRET_1	1
+	Resource.resourceDesign.exposures.type	Biological/Vaccine	RRET_2	2
+	Resource.resourceDesign.exposures.type	Procedure/Surgery	RRET_3	3
+	Resource.resourceDesign.exposures.type	Radiation	RRET_4	4
+	Resource.resourceDesign.exposures.type	Behavioral (e.g., psychotherapy, lifestyle counseling)	RRET_5	5
+	Resource.resourceDesign.exposures.type	Genetic (including gene transfer, stem cell and recombinant DNA)	RRET_6	6
+	Resource.resourceDesign.exposures.type	Dietary supplement (e.g., vitamins, minerals)	RRET_7	7
+	Resource.resourceDesign.exposures.type	Combination product (combining a drug and device, a biological product and device; a drug and biological product; or a drug, biological product, and device)	RRET_8	8
+	Resource.resourceDesign.exposures.type	Diagnostic test (e.g., imaging, in-vitro)	RRET_9	9
+	Resource.resourceDesign.exposures.type	Other	RRET_10	10
+	Resource.resourceDesign.outcomes.type	Primary	RROT_0	0
+	Resource.resourceDesign.outcomes.type	Secondary	RROT_1	1
+	Resource.resourceDesign.outcomes.type	Other	RROT_2	2
+	Resource.resourceDesign.assessments	Alcohol consumption	RRA_0	0
+	Resource.resourceDesign.assessments	Body Mass Index	RRA_1	1
+	Resource.resourceDesign.assessments	Body fat percentage	RRA_2	2
+	Resource.resourceDesign.assessments	Body height	RRA_3	3
+	Resource.resourceDesign.assessments	Body weight	RRA_4	4
+	Resource.resourceDesign.assessments	Diet/Nutrition	RRA_5	5
+	Resource.resourceDesign.assessments	Physical activity	RRA_6	6
+	Resource.resourceDesign.assessments	Sociodemographic information	RRA_7	7
+	Resource.resourceDesign.assessments	Tobacco use	RRA_8	8
+	Resource.resourceDesign.assessments	Waist circumference	RRA_9	9
+	Resource.resourceDesign.dataSharingPlan.generally	Yes, there is a plan to make data available	RRDG_1_0	0
+	Resource.resourceDesign.dataSharingPlan.generally	No, there is no plan to make data available	RRDG_1_1	1
+	Resource.resourceDesign.dataSharingPlan.generally	Undecided, it is not yet known if data will be made available	RRDG_1_2	2
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Analytic code	RRDS_0	0
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Case report form (template)	RRDS_1	1
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Clinical study report	RRDS_2	2
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Code book	RRDS_3	3
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Data dictionary	RRDS_4	4
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Informed consent form	RRDS_5	5
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Manual of operations (SOP)	RRDS_6	6
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Other	RRDS_7	7
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Protocol amendment	RRDS_8	8
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Questionnaire (template)	RRDS_9	9
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Statistical analysis plan	RRDS_10	10
+	Resource.resourceDesign.dataSharingPlan.supportingInformation	Study protocol	RRDS_11	11
+	Resource.resourceDesign.dataSharingPlan.datashield	Yes	RRDD_0	0
+	Resource.resourceDesign.dataSharingPlan.datashield	No	RRDD_1	1
+	Resource.resourceDesign.dataSharingPlan.datashield	Pending	RRDD_2	2
+	Resource.resourceDesign.dataSharingPlan.recordLinkage	Yes	RRDR_0	0
+	Resource.resourceDesign.dataSharingPlan.recordLinkage	No	RRDR_1	1
+	Resource.resourceDesign.nonInterventional.timePerspectives	Cross-sectional	RRNT_0	0
+	Resource.resourceDesign.nonInterventional.timePerspectives	Other	RRNT_1	1
+	Resource.resourceDesign.nonInterventional.timePerspectives	Prospective	RRNT_2	2
+	Resource.resourceDesign.nonInterventional.timePerspectives	Retrospective	RRNT_3	3
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit	Years	RRNTT_0	0
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit	Months	RRNTT_1	1
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit	Weeks	RRNTT_2	2
+	Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit	Days	RRNTT_3	3
+	Resource.resourceDesign.nonInterventional.biospecimenRetention	None retained	RRNB_0	0
+	Resource.resourceDesign.nonInterventional.biospecimenRetention	Samples with DNA	RRNB_1	1
+	Resource.resourceDesign.nonInterventional.biospecimenRetention	Samples without DNA	RRNB_2	2
+	Resource.resourceDesign.interventional.phase	Early-phase-1	RRIP_0	0
+	Resource.resourceDesign.interventional.phase	Phase-1	RRIP_1	1
+	Resource.resourceDesign.interventional.phase	Phase-1-phase-2	RRIP_2	2
+	Resource.resourceDesign.interventional.phase	Phase-2	RRIP_3	3
+	Resource.resourceDesign.interventional.phase	Phase-2a	RRIP_4	4
+	Resource.resourceDesign.interventional.phase	Phase-2b	RRIP_5	5
+	Resource.resourceDesign.interventional.phase	Phase-2-phase-3	RRIP_6	6
+	Resource.resourceDesign.interventional.phase	Phase-3	RRIP_7	7
+	Resource.resourceDesign.interventional.phase	Phase-3a	RRIP_8	8
+	Resource.resourceDesign.interventional.phase	Phase-3b	RRIP_9	9
+	Resource.resourceDesign.interventional.phase	Phase-4	RRIP_10	10
+	Resource.resourceDesign.interventional.phase	Other	RRIP_11	11
+	Resource.resourceDesign.interventional.phase	Not applicable	RRIP_12	12
+	Resource.resourceDesign.interventional.masking.general	Yes	RRIMG_0	0
+	Resource.resourceDesign.interventional.masking.general	No	RRIMG_1	1
+	Resource.resourceDesign.interventional.masking.roles	Care provider	RRIMR_0	0
+	Resource.resourceDesign.interventional.masking.roles	Investigator	RRIMR_1	1
+	Resource.resourceDesign.interventional.masking.roles	Outcomes assessor	RRIMR_2	2
+	Resource.resourceDesign.interventional.masking.roles	Participant	RRIMR_3	3
+	Resource.resourceDesign.interventional.allocation	Randomized	RRIA_0	0
+	Resource.resourceDesign.interventional.allocation	Nonrandomized	RRIA_1	1
+	Resource.resourceDesign.interventional.allocation	Not applicable (for single-arm trials)	RRIA_2	2
+	Resource.resourceDesign.interventional.offLabelUse	Yes	RRIO_0	0
+	Resource.resourceDesign.interventional.offLabelUse	No	RRIO_1	1
+	Resource.resourceDesign.interventional.offLabelUse	Not applicable	RRIO_2	2

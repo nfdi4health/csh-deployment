@@ -534,7 +534,6 @@
     <field name="Resource.provenance.resourceVersion" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.provenance.verificationDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.provenance.verificationUser" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.resourceDesign.arms" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.resourceDesign.arms.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.resourceDesign.arms.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -1184,7 +1183,6 @@
     <copyField source="Resource.provenance.resourceVersion" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.provenance.verificationDate" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.provenance.verificationUser" dest="_text_" maxChars="3000"/>
-    <copyField source="Resource.resourceDesign" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.resourceDesign.arms" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.resourceDesign.arms.description" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.resourceDesign.arms.label" dest="_text_" maxChars="3000"/>
