@@ -23,7 +23,7 @@
 
 
  For more information, on how to customize this file, please see
- http://lucene.apache.org/solr/guide/documents-fields-and-schema-design.html
+ https://solr.apache.org/guide/solr/latest/indexing-guide/schema-elements.html
 
  PERFORMANCE NOTE: this schema includes many optional features and should not
  be used for benchmarking.  To improve performance one could
@@ -38,7 +38,7 @@
     catchall "text" field, and use that for searching.
 -->
 
-<schema name="default-config" version="1.7">
+<schema name="default-config" version="1.6">
     <!-- attribute "name" is the name of this schema and is only used for display purposes.
        version="x.y" is Solr's version number for the schema syntax and 
        semantics.  It should not normally be changed by applications.
@@ -129,15 +129,8 @@
     <!-- catchall text field that indexes tokens both normally and in reverse for efficient
         leading wildcard queries. -->
     <field name="text_rev" type="text_general_rev" indexed="true" stored="false" multiValued="true"/>    
-    <field name="name" type="text_en" indexed="true" stored="true"/> 
-
-
-
-
-
-
-
-
+    <field name="name" type="text_en" indexed="true" stored="true"/>
+    
     <field name="definitionPointDocId" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="definitionPointDvObjectId" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="discoverableBy" type="string" stored="true" indexed="true" multiValued="true"/>
@@ -163,7 +156,7 @@
 
     <field name="publicationStatus" type="string" stored="true" indexed="true" multiValued="true"/>
     <field name="externalStatus" type="string" stored="true" indexed="true" multiValued="false"/>
-    <field name="embargoEndDate" type="long" stored="true" indexed="true" multiValued="false"/>
+    <field name="embargoEndDate" type="plong" stored="true" indexed="true" multiValued="false"/>
     
     <field name="subtreePaths" type="string" stored="true" indexed="true" multiValued="true"/>
 
@@ -200,7 +193,7 @@
     <field name="identifier" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="persistentUrl" type="string" stored="true" indexed="false" multiValued="false"/>
     <field name="unf" type="string" stored="true" indexed="true" multiValued="false"/>
-    <field name="fileSizeInBytes" type="long" stored="true" indexed="true" multiValued="false"/>
+    <field name="fileSizeInBytes" type="plong" stored="true" indexed="true" multiValued="false"/>
     <field name="fileMd5" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="fileChecksumType" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="fileChecksumValue" type="string" stored="true" indexed="true" multiValued="false"/>
@@ -208,9 +201,9 @@
     <field name="deaccessionReason" type="string" stored="true" indexed="false" multiValued="false"/>
 
     <!-- Added for Dataverse 4.0 alpha 1. This is a required field so we don't have to go to the database to get the database id of the entity. On cards we use the id in links -->
-    <field name="entityId" type="long" stored="true" indexed="true" multiValued="false"/>
+    <field name="entityId" type="plong" stored="true" indexed="true" multiValued="false"/>
 
-    <field name="datasetVersionId" type="long" stored="true" indexed="true" multiValued="false"/>
+    <field name="datasetVersionId" type="plong" stored="true" indexed="true" multiValued="false"/>
 
     <!-- Added for Dataverse 4.0 alpha 1 to sort by name  -->
     <!-- https://redmine.hmdc.harvard.edu/issues/3482 -->
@@ -218,10 +211,10 @@
     <!-- http://stackoverflow.com/questions/13360706/solr-4-0-alphabetical-sorting-trouble/13361226#13361226 -->
     <field name="nameSort" type="alphaOnlySort" indexed="true" stored="true"/>
 
-    <field name="dateSort" type="date" indexed="true" stored="true"/>
+    <field name="dateSort" type="pdate" indexed="true" stored="true"/>
 
     <!-- Added for Dataverse 4.0: release date https://redmine.hmdc.harvard.edu/issues/3592 -->
-    <field name="releasedate" type="int" indexed="true" stored="true"/>
+    <field name="releasedate" type="pint" indexed="true" stored="true"/>
 
     <!-- Added for Dataverse 4.0: do we want a description field that applies to dataverses, datasets, and files? https://redmine.hmdc.harvard.edu/issues/3745 -->
     <field name="description" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -233,6 +226,9 @@
     <field name="geolocation" type="location_rpt" multiValued="true" stored="true" indexed="true"/>
     <!-- https://solr.apache.org/guide/8_11/spatial-search.html#bboxfield -->
     <field name="boundingBox" type="bbox" multiValued="true" stored="true" indexed="true"/>
+
+    <!-- incomplete datasets issue 8822 -->
+    <field name="datasetValid" type="boolean" stored="true" indexed="true" multiValued="false"/>
     
     <!--
         METADATA SCHEMA FIELDS
@@ -263,9 +259,12 @@
     <field name="authorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="characteristicOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="chronic_diseases" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="chronic_diseases_epidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology.commonChronicDiseaseName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology.dataCollected" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology.informationSources" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology.outcomesVerificationMethods" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="city" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="cleaningOperations" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="collection" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -310,8 +309,119 @@
     <field name="dateOfCollectionStart" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dateOfDeposit" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="depositor" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.endDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.ethicsCommitteeApproval" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.reasonStopped" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.recruitmentStatusRegister" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.stageStopped" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.startDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.status" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.statusEnrollingByInvitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.statusWhenIntervention" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.arms" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.arms.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.arms.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.arms.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.assessments" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.centers" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.centersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.comment" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.conditions.classification" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.conditions.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.conditions.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataProviders" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataProvidersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.accessCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.datashield" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.recordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.supportingInformation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.timeFrame" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.url" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSource" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSource.biosamples" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSource.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSource.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSource.imaging" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSource.omics" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMax" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMax.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMax.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMin" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMin.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMin.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.exclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.genders" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.inclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.exposures" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.exposures.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.exposures.groupsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.exposures.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.exposures.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.focus" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.focus.classification" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.focus.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.focus.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.groups" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.groups.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.groups.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.groupsOfDiseases" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.groupsOfDiseases.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.groupsOfDiseases.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.hypotheses" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.interventional.allocation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.masking" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.interventional.masking.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.interventional.masking.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.masking.roles" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.offLabelUse" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.phase" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventions" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventions.armsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventions.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventions.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventions.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.mortalityData" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.biospecimenDescription" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.biospecimenRetention" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.targetFollowUpDuration" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.targetFollowUpDuration.frequency" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.targetFollowUpDuration.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.targetFollowUpDuration.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.timePerspectives" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.outcomes" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.outcomes.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.outcomes.timeFrame" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.outcomes.title" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.outcomes.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.population" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.population.countries" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.population.coverage" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.population.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.population.obtainedSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.population.region" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.population.targetSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.primaryDesign" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.primaryPurpose" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.sampling" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.sampling.method" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.sampling.nonProbabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.sampling.probabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.studyType" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.studyType.interventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.studyType.nonInterventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="deviationsFromSampleDesign" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="dietary_supplements" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="diet_assessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="diet_assessment_device" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.device" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.dietarySupplements" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -382,11 +492,6 @@
     <field name="last_update_submitted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="last_update_submitted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="link" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="diet_assessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="chronic_diseases_epidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ChronicDiseasesEpidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="RecordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="mortality_data" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="northLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="notesText" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -414,6 +519,7 @@
     <field name="publicationIDNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationIDType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationURL" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.additionalCosts" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.exampleResources" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.furtherDetails" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -882,6 +988,8 @@
     <!-- <copyField source="*_ss" dest="_text_" maxChars="3000"/> -->
     <!-- <copyField source="*_i" dest="_text_" maxChars="3000"/> -->
     
+    <copyField source="datasetValid" dest="_text_" maxChars="3000"/>
+    
     <!--
         METADATA SCHEMA FIELDS
         Now following: copyFields to copy the contents of the metadata fields above to a
@@ -912,9 +1020,12 @@
     <copyField source="authorName" dest="_text_" maxChars="3000"/>
     <copyField source="characteristicOfSources" dest="_text_" maxChars="3000"/>
     <copyField source="chronic_diseases" dest="_text_" maxChars="3000"/>
+    <copyField source="chronic_diseases_epidemiology" dest="_text_" maxChars="3000"/>
+    <copyField source="ChronicDiseasesEpidemiology" dest="_text_" maxChars="3000"/>
     <copyField source="ChronicDiseasesEpidemiology.commonChronicDiseaseName" dest="_text_" maxChars="3000"/>
     <copyField source="ChronicDiseasesEpidemiology.dataCollected" dest="_text_" maxChars="3000"/>
     <copyField source="ChronicDiseasesEpidemiology.informationSources" dest="_text_" maxChars="3000"/>
+    <copyField source="ChronicDiseasesEpidemiology.outcomesVerificationMethods" dest="_text_" maxChars="3000"/>
     <copyField source="city" dest="_text_" maxChars="3000"/>
     <copyField source="cleaningOperations" dest="_text_" maxChars="3000"/>
     <copyField source="collection" dest="_text_" maxChars="3000"/>
@@ -959,8 +1070,119 @@
     <copyField source="dateOfCollectionStart" dest="_text_" maxChars="3000"/>
     <copyField source="dateOfDeposit" dest="_text_" maxChars="3000"/>
     <copyField source="depositor" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.endDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.ethicsCommitteeApproval" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.reasonStopped" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.recruitmentStatusRegister" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.stageStopped" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.startDate" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.status" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.statusEnrollingByInvitation" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.administrativeInformation.statusWhenIntervention" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.arms" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.arms.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.arms.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.arms.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.assessments" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.centers" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.centersNumber" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.comment" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.conditions" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.conditions.classification" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.conditions.code" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.conditions.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataProviders" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataProvidersNumber" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.accessCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.datashield" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.generally" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.recordLinkage" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.supportingInformation" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.timeFrame" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.url" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSource" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSource.biosamples" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSource.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSource.general" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSource.imaging" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSource.omics" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.ageMax" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.ageMax.number" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.ageMax.timeUnit" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.ageMin" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.ageMin.number" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.ageMin.timeUnit" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.exclusionCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.genders" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.eligibilityCriteria.inclusionCriteria" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.exposures" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.exposures.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.exposures.groupsLabel" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.exposures.name" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.exposures.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.focus" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.focus.classification" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.focus.code" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.focus.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.groups" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.groups.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.groups.label" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.groupsOfDiseases" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.groupsOfDiseases.conditions" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.groupsOfDiseases.generally" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.hypotheses" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional.allocation" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional.masking" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional.masking.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional.masking.general" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional.masking.roles" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional.offLabelUse" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventional.phase" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventions" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventions.armsLabel" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventions.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventions.name" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.interventions.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.mortalityData" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional.biospecimenDescription" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional.biospecimenRetention" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional.targetFollowUpDuration" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional.targetFollowUpDuration.frequency" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional.targetFollowUpDuration.number" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional.targetFollowUpDuration.timeUnit" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.nonInterventional.timePerspectives" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.outcomes" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.outcomes.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.outcomes.timeFrame" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.outcomes.title" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.outcomes.type" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.population" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.population.countries" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.population.coverage" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.population.description" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.population.obtainedSampleSize" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.population.region" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.population.targetSampleSize" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.primaryDesign" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.primaryPurpose" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.sampling" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.sampling.method" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.sampling.nonProbabilityMethod" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.sampling.probabilityMethod" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.studyType" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.studyType.interventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.studyType.nonInterventional" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.subject" dest="_text_" maxChars="3000"/>
     <copyField source="deviationsFromSampleDesign" dest="_text_" maxChars="3000"/>
     <copyField source="dietary_supplements" dest="_text_" maxChars="3000"/>
+    <copyField source="diet_assessment" dest="_text_" maxChars="3000"/>
+    <copyField source="DietAssessment" dest="_text_" maxChars="3000"/>
     <copyField source="diet_assessment_device" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.device" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.dietarySupplements" dest="_text_" maxChars="3000"/>
@@ -1031,11 +1253,6 @@
     <copyField source="last_update_submitted_date" dest="_text_" maxChars="3000"/>
     <copyField source="last_update_submitted_user" dest="_text_" maxChars="3000"/>
     <copyField source="link" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment" dest="_text_" maxChars="3000"/>
-    <copyField source="chronic_diseases_epidemiology" dest="_text_" maxChars="3000"/>
-    <copyField source="DietAssessment" dest="_text_" maxChars="3000"/>
-    <copyField source="ChronicDiseasesEpidemiology" dest="_text_" maxChars="3000"/>
-    <copyField source="RecordLinkage" dest="_text_" maxChars="3000"/>
     <copyField source="mortality_data" dest="_text_" maxChars="3000"/>
     <copyField source="northLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="notesText" dest="_text_" maxChars="3000"/>
@@ -1063,6 +1280,7 @@
     <copyField source="publicationIDNumber" dest="_text_" maxChars="3000"/>
     <copyField source="publicationIDType" dest="_text_" maxChars="3000"/>
     <copyField source="publicationURL" dest="_text_" maxChars="3000"/>
+    <copyField source="RecordLinkage" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.additionalCosts" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.exampleResources" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.furtherDetails" dest="_text_" maxChars="3000"/>
@@ -1477,7 +1695,8 @@
     <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names.
        EXAMPLE:  name="*_i" will match any field ending in _i (like myid_i, z_i)
-       RESTRICTION: the glob-like pattern in the name attribute must have a "*" only at the start or the end.  -->
+       RESTRICTION: the glob-like pattern in the name attribute must have a "*"
+       only at the start or the end.  -->
    
     <dynamicField name="*_i"  type="pint"    indexed="true"  stored="true"/>
     <dynamicField name="*_is" type="pints"    indexed="true"  stored="true"/>
@@ -1485,19 +1704,23 @@
     <dynamicField name="*_ss" type="strings"  indexed="true"  stored="true"/>
     <dynamicField name="*_l"  type="plong"   indexed="true"  stored="true"/>
     <dynamicField name="*_ls" type="plongs"   indexed="true"  stored="true"/>
-    <dynamicField name="*_txt" type="text_general" indexed="true" stored="true"/>
     <dynamicField name="*_b"  type="boolean" indexed="true" stored="true"/>
     <dynamicField name="*_bs" type="booleans" indexed="true" stored="true"/>
     <dynamicField name="*_f"  type="pfloat"  indexed="true"  stored="true"/>
     <dynamicField name="*_fs" type="pfloats"  indexed="true"  stored="true"/>
     <dynamicField name="*_d"  type="pdouble" indexed="true"  stored="true"/>
     <dynamicField name="*_ds" type="pdoubles" indexed="true"  stored="true"/>
+    <dynamicField name="*_dt"  type="pdate"    indexed="true"  stored="true"/>
+    <dynamicField name="*_dts" type="pdates"   indexed="true"  stored="true"/>
+    <dynamicField name="*_t"   type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <dynamicField name="*_txt" type="text_general" indexed="true" stored="true"/>
+    
+    <dynamicField name="random_*" type="random"/>
+    <dynamicField name="ignored_*" type="ignored"/>
 
     <!-- Type used for data-driven schema, to add a string copy for each text field -->
-    <dynamicField name="*_str" type="strings" stored="false" docValues="true" indexed="false" />
-
-    <dynamicField name="*_dt"  type="pdate"    indexed="true"  stored="true"/>
-    <dynamicField name="*_dts" type="pdate"    indexed="true"  stored="true" multiValued="true"/>
+    <dynamicField name="*_str" type="strings" stored="false" docValues="true" indexed="false" useDocValuesAsStored="false" />
+    
     <dynamicField name="*_p"  type="location" indexed="true" stored="true"/>
     <dynamicField name="*_srpt"  type="location_rpt" indexed="true" stored="true"/>
     
@@ -1542,43 +1765,6 @@
          then default lucene sorting will be used which places docs without the
          field first in an ascending sort and last in a descending sort.
     -->
-
-<fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
-<fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
-<fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
-<fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
-
-<fieldType name="tint" class="solr.TrieIntField" precisionStep="8" positionIncrementGap="0"/>
-<fieldType name="tfloat" class="solr.TrieFloatField" precisionStep="8" positionIncrementGap="0"/>
-<fieldType name="tlong" class="solr.TrieLongField" precisionStep="8" positionIncrementGap="0"/>
-<fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" positionIncrementGap="0"/>
-
-<!-- The format for this date field is of the form 1995-12-31T23:59:59Z, and
-        is a more restricted form of the canonical representation of dateTime
-        http://www.w3.org/TR/xmlschema-2/#dateTime    
-        The trailing "Z" designates UTC time and is mandatory.
-        Optional fractional seconds are allowed: 1995-12-31T23:59:59.999Z
-        All other components are mandatory.
-
-        Expressions can also be used to denote calculations that should be
-        performed relative to "NOW" to determine the value, ie...
-
-            NOW/HOUR
-                ... Round to the start of the current hour
-            NOW-1DAY
-                ... Exactly 1 day prior to now
-            NOW/DAY+6MONTHS+3DAYS
-                ... 6 months and 3 days in the future from the start of
-                    the current day
-                    
-        Consult the DateField javadocs for more information.
-
-        Note: For faster range queries, consider the tdate type
-    -->
-    <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
-
-    <!-- A Trie based date field for faster date range queries and date faceting. -->
-    <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
 
     <!-- This is an example of using the KeywordTokenizer along
         With various TokenFilterFactories to produce a sortable field
@@ -1634,6 +1820,11 @@
     <fieldType name="pfloats" class="solr.FloatPointField" docValues="true" multiValued="true"/>
     <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
     <fieldType name="pdoubles" class="solr.DoublePointField" docValues="true" multiValued="true"/>
+    <fieldType name="random" class="solr.RandomSortField" indexed="true"/>
+    
+    <!-- since fields of this type are by default not stored or indexed,
+       any data added to them will be ignored outright.  -->
+    <fieldType name="ignored" stored="false" indexed="false" multiValued="true" class="solr.StrField" />
 
     <!-- The format for this date field is of the form 1995-12-31T23:59:59Z, and
          is a more restricted form of the canonical representation of dateTime
@@ -1660,7 +1851,14 @@
     
     <!--Binary data type. The data should be sent/retrieved in as Base64 encoded Strings -->
     <fieldType name="binary" class="solr.BinaryField"/>
-
+    
+    <!--
+    RankFields can be used to store scoring factors to improve document ranking. They should be used
+    in combination with RankQParserPlugin.
+    (experimental)
+    -->
+    <fieldType name="rank" class="solr.RankField"/>
+    
     <!-- solr.TextField allows the specification of custom text analyzers
          specified as a tokenizer and a list of token filters. Different
          analyzers may be specified for indexing and querying.
@@ -1670,7 +1868,7 @@
          matching across fields.
 
          For more info on customizing your analyzer chain, please see
-         http://lucene.apache.org/solr/guide/understanding-analyzers-tokenizers-and-filters.html#understanding-analyzers-tokenizers-and-filters
+         https://solr.apache.org/guide/solr/latest/indexing-guide/document-analysis.html#using-analyzers-tokenizers-and-filters
      -->
 
     <!-- One can also specify an existing Analyzer class that has a
@@ -1703,6 +1901,30 @@
         <filter class="solr.SynonymGraphFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/>
         <filter class="solr.FlattenGraphFilterFactory"/>
         -->
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+        <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    
+    <!-- SortableTextField generaly functions exactly like TextField,
+        except that it supports, and by default uses, docValues for sorting (or faceting)
+        on the first 1024 characters of the original field values (which is configurable).
+
+        This makes it a bit more useful then TextField in many situations, but the trade-off
+        is that it takes up more space on disk; which is why it's not used in place of TextField
+        for every fieldType in this _default schema.
+    -->
+    <dynamicField name="*_t_sort" type="text_gen_sort" indexed="true" stored="true" multiValued="false"/>
+    <dynamicField name="*_txt_sort" type="text_gen_sort" indexed="true" stored="true"/>
+    <fieldType name="text_gen_sort" class="solr.SortableTextField" positionIncrementGap="100" multiValued="true">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
       <analyzer type="query">
