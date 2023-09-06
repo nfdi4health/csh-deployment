@@ -1,0 +1,670 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI
+	MDS_Design		MDS_Design	
+#datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	Design.primaryDesign	Is it an interventional or non-interventional [RESOURCE]?	Non-interventional [RESOURCE] design refers to a [RESOURCE] that does not aim to alter [RESOURCE] outcomes of interest. Interventional [RESOURCE] design refers to a [RESOURCE] that aims to alter [RESOURCE] outcomes of interest. Select between non-interventional and interventional [RESOURCE] design.		text	0		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_Design	
+	Design.studyType	Specification of [RESOURCE] type	Group of items providing information about the [RESOURCE] type.		none	1		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_Design	
+	Design.studyType.interventional	[RESOURCE] type	'The strategy for assigning interventions to participants. Select all that apply. If ''Other'' is selected, please specify the [RESOURCE] type in the field ''Additional information about the [RESOURCE]''.'		text	2		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.studyType	MDS_Design	
+	Design.studyType.nonInterventional	[RESOURCE] type	'The primary strategy for participant identification and follow-up. Select all that apply. If ''Other'' is selected, you can specify the [RESOURCE] type in the field ''Additional information about the [RESOURCE]''.'		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.studyType	MDS_Design	
+	Design.conditions	Primary health condition(s) or disease(s) of the [RESOURCE]	Group of items providing information about primary health condition(s) or disease(s) considered in the [RESOURCE].		none	4		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.conditions.label	Name of the primary health condition or disease of the [RESOURCE]	Name of primary health condition or disease considered in the [RESOURCE]. Preferably, use terms from SNOMED CT (https://browser.ihtsdotools.org).	SARS-CoV-2	text	5		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.conditions	MDS_Design
+	Design.conditions.classification	Terminology/classification	Terminology/classification used for the health condition or disease. If used, name of the terminology/classification.	SNOMED CT	text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.conditions	MDS_Design
+	Design.conditions.code	Code ---- If known, code of the health condition or disease in the terminology/classification used	Code of the health condition or disease in the terminology/classification used. If found, the code from the terminology/classification used.	http://snomed.info/id/840533007	text	7		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.conditions	MDS_Design	
+	Design.focus	Primary focus of the [RESOURCE]	Group of items providing information about the focus of the [RESOURCE] (e.g. medication, food, therapy, device, etc.).		none	8		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.focus.label	Focus of the [RESOURCE]	Focus of the [RESOURCE] (e.g. medication, food, therapy, device, etc.). Preferably, use terms from SNOMED CT (https://browser.ihtsdotools.org).		text	9		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.focus	MDS_Design
+	Design.focus.classification	Terminology/classification	Terminology/classification used for the focus. If used, name of the terminology/classification.	SNOMED CT	text	10		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.focus	MDS_Design
+	Design.focus.code	Code ---- If known, code of the focus in the terminology/classification used	Code of the focus in the terminology/classification used. If found, the code from the terminology/classification used.	http://snomed.info/id/840533007	text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.focus	MDS_Design	
+	Design.groupsOfDiseases	Which groups of diseases or conditions were the data collected on?	Group of items providing information about groups of diseases or conditions on which the data were collected in the [RESOURCE].		none	12		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design
+	Design.groupsOfDiseases.generally	Which groups of diseases or conditions were the data collected on?	'Groups of diseases or conditions on which the data were collected in the [RESOURCE]. Select all that apply. For more information about the groups of diseases/conditions, visit the WHO''s ICD-10 homepage: https://icd.who.int/en.'		text	13		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.groupsOfDiseases	MDS_Design
+	Design.groupsOfDiseases.conditions	On which other diseases or conditions were the data collected?	'Other diseases or conditions on which the data were collected in the [RESOURCE]. Select all that apply. For more information about the groups of diseases/conditions, visit the WHO''s ICD-10 homepage: https://icd.who.int/en.'	Values are based on lower level ICD-10	text	14		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.groupsOfDiseases	MDS_Design	
+	Design.mortalityData	Were mortality data collected?	Mortality data.		text	15		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_Design	
+	Design.administrativeInformation	Administrative information	Group of items providing administrative information about the [RESOURCE].		none	16		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design
+	Design.administrativeInformation.ethicsCommitteeApproval	Status of the ethics committee approval	Status of the [RESOURCE] approval from the (leading) ethics committee.		text	17		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.status	Overall [RESOURCE] status	Overall status of the [RESOURCE]. Select one value from the list.		text	18		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.statusWhenIntervention	Do participants receive an intervention?	Specification whether [RESOURCE] participants receive intervention or have completed it but are still being followed according to the primary objective of the [RESOURCE]. Select one value from the list.		text	19		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.stageStopped	At what stage was the [RESOURCE] stopped?	If the [RESOURCE] was stopped prematurely, specification of the stage at what it was halted. Select one value from the list.		text	20		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.reasonStopped	Reason why the [RESOURCE] was stopped	If the [RESOURCE] was stopped prematurely, specification of the reason(s) why it was halted. E.g., closed due to toxicity / closed due to lack of [RESOURCE] progress / temporarily-closed per [RESOURCE] design /etc.	accrual goal met	text	21		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.statusEnrollingByInvitation	Are participants enrolled by invitation?	Specification whether [RESOURCE] participants have been selected from a predetermined population.		text	22		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.recruitmentStatusRegister	Overall recruitment status of the [RESOURCE] from the register of clinical trials	Overall recruitment status of the [RESOURCE] as indicated in the corresponding register of clinical trials.		text	23		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.startDate	Start date of data collection for the [RESOURCE]	Start date of data collection for the [RESOURCE]. In case of a planned [RESOURCE], it is the intended start date; in case of an ongoing [RESOURCE] — the actual start date.		text	24		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.administrativeInformation.endDate	End date of data collection for the [RESOURCE]	In case of a [RESOURCE] with patients or other participants, it is the date when the last participant is examined or receives an intervention, or the date of the last participant’s last visit. In case of a planned or ongoing [RESOURCE], it is the intended end date; in case of a completed [RESOURCE] — the actual end date.		text	25		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.administrativeInformation	MDS_Design	
+	Design.centers	Is it a mono- or multicentric [RESOURCE]?	Specification whether a [RESOURCE] is conducted at one [RESOURCE] center or at more than one [RESOURCE] center.		text	26		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_Design	
+	Design.centersNumber	Number of [RESOURCE] centers	Number of centers involved in the [RESOURCE].		int	27		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.dataProviders	Is this [RESOURCE] occurring from one or more data providers?	Specification whether this [RESOURCE] is occuring from one data provider or at more than one data provider.		text	28		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_Design	
+	Design.dataProvidersNumber	Number of [RESOURCE] data providers	Number of data providers involved in the [RESOURCE].		int	29		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.subject	Primary [RESOURCE] subject	Primary [RESOURCE] subject, i.e. a person, an animal or some other type of the subject. Select one value from the list.		text	30		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_Design
+	Design.sampling	Sampling method	Group of items providing information about the applied sampling method. Select one value from the list.		none	31		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_Design	
+	Design.sampling.method	Applied sampling method	Type of the sampling method applied for the selection of [RESOURCE] participants. Select one value from the list.		text	32		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.sampling	MDS_Design
+	Design.sampling.probabilityMethod	Specific type of probability sampling	Specific type of the probability sampling method applied for the selection of [RESOURCE] participants. If known, select one value from the list.		text	33		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.sampling	MDS_Design	
+	Design.sampling.nonProbabilityMethod	Specific type of non-probability sampling	Specific type of the probability sampling method applied for the selection of [RESOURCE] participants. If known, select one value from the list.		text	34		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.sampling	MDS_Design	
+	Design.dataSource	Data sources from which [RESOURCE] data are generated or extracted.	Group of items providing information about data sources from which [RESOURCE] data are generated or extracted.		none	35		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_Design	
+	Design.dataSource.general	Data sources for the [RESOURCE] (e.g. biosamples, registries, questionnaires, etc.)	Different types of data sources from which [RESOURCE] data are generated or extracted. Select all that apply.		text	36		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.dataSource	MDS_Design	
+	Design.dataSource.biosamples	Biosamples collected in the [RESOURCE]	Specification of biosamples collected in the [RESOURCE].		text	37		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.dataSource	MDS_Design	
+	Design.dataSource.imaging	Imaging data collected in the [RESOURCE]	Specification of imaging data collected in the [RESOURCE].		text	38		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.dataSource	MDS_Design	
+	Design.dataSource.omics	Omics technology used in the [RESOURCE]	Specification of omics technology applied in the [RESOURCE].		text	39		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.dataSource	MDS_Design	
+	Design.dataSource.description	Additional information about data sources	If needed, additional descriptive information about [RESOURCE] data sources, e.g. indication of the data source(s) not listed in the property „Data sources for the [RESOURCE]” or more detailed description of the selected data sources. E.g., indication of the data source(s) not listed in the field „Data sources for the [RESOURCE]” or more detailed description of the selected data sources.		text	40		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.dataSource	MDS_Design	
+	Design.primaryPurpose	Primary purpose of the [RESOURCE]	'Specification of the main purpose of the [RESOURCE]. Foremost for interventional studies, please specify the primary purpose why the [RESOURCE] was conducted. For non-interventional studies, this field may be ''Not appplicable'' as multiple purposes may be defined as primary ones.'		text	41		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_Design	
+	Design.eligibilityCriteria	Eligibility criteria for [RESOURCE] participants	Group of items providing information about eligibility criteria for [RESOURCE] participants.		none	42		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.eligibilityCriteria.ageMin	Eligibility criteria: Minimum age	Group of items providing information about the minimum eligible age of [RESOURCE] participants.		none	43		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Design.eligibilityCriteria	MDS_Design	
+	Design.eligibilityCriteria.ageMin.number	Minimum eligible age	Numerical value of the minimum age of potential participants eligible to participate in the [RESOURCE]. If age is less than 1 year, please indicate a value in months, weeks, days, hours, minutes, or weeks of gestation.		int	44		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.eligibilityCriteria.ageMin	MDS_Design
+	Design.eligibilityCriteria.ageMin.timeUnit	Unit of age	Unit of measurement used to describe the minimum eligible age.		text	45		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.eligibilityCriteria.ageMin	MDS_Design
+	Design.eligibilityCriteria.ageMax	Eligibility criteria: Maximum age	Group of items providing information about the maximum eligible age of [RESOURCE] participants.		none	46		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Design.eligibilityCriteria	MDS_Design	
+	Design.eligibilityCriteria.ageMax.number	Maximum eligible age	Numerical value of the maximum age of potential participants eligible to participate in the [RESOURCE]. If age is less than 1 year, please indicate a value in months, weeks, days, hours, minutes, or weeks of gestation.		int	47		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.eligibilityCriteria.ageMax	MDS_Design
+	Design.eligibilityCriteria.ageMax.timeUnit	Unit of age	Unit of measurement used to describe the maximum eligible age.		text	48		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.eligibilityCriteria.ageMax	MDS_Design
+	Design.eligibilityCriteria.genders	Eligible gender	Gender of potential participants eligible to participate in the [RESOURCE]. Select all that apply.		text	49		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.eligibilityCriteria	MDS_Design	
+	Design.eligibilityCriteria.inclusionCriteria	Inclusion criteria	Inclusion criteria for participation in the [RESOURCE]. If possible, use an enumerated or bulleted list for each criterion.		text	50		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.eligibilityCriteria	MDS_Design	
+	Design.eligibilityCriteria.exclusionCriteria	Exclusion criteria	Exclusion criteria for participation in the [RESOURCE]. If possible, use an enumerated or bulleted list for each criterion.		text	51		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.eligibilityCriteria	MDS_Design	
+	Design.population	Population of the [RESOURCE]	Group of items providing information about the population of the [RESOURCE]		none	52		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design
+	Design.population.coverage	Coverage of the [RESOURCE]	Specification of the recruitment area of the [RESOURCE] Select one value from the list.		text	53		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.population	MDS_Design	
+	Design.population.countries	Country(ies) where the [RESOURCE] takes place	Country or countries where the [RESOURCE] takes place. Select all that apply.		text	54		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.population	MDS_Design
+	Design.population.region	Regions and/or cities within a country where the [RESOURCE] takes place	If applicable, region(s) and/or city(ies) within a country where the [RESOURCE] takes place.		text	55		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.population	MDS_Design	
+	Design.population.description	Description of [RESOURCE] population	Additional descriptive information providing more details about [RESOURCE] population. Any information important for the given [RESOURCE] population can be specified here.		text	56		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.population	MDS_Design	
+	Design.population.targetSampleSize	Target sample size	Intended number of observational units for the whole [RESOURCE] (e.g. intended number of [RESOURCE] participants at all [RESOURCE] sites).		int	57		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.population	MDS_Design	
+	Design.population.obtainedSampleSize	Obtained sample size	Obtained number of observational units for the whole [RESOURCE] (e.g. obtained number of [RESOURCE] participants at all [RESOURCE] sites). The value is only available after the end of recruitment.		int	58		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.population	MDS_Design	
+	Design.hypotheses	Research questions and/or hypotheses underlying the [RESOURCE]	Statement of the research questions and/or hypotheses underlying the [RESOURCE].		text	59		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.arms	Arms of the [RESOURCE]	Group of items providing information about arms of the [RESOURCE].		none	60		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.arms.label	Name of the arm	Short name used to identify the arm.		text	61		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.arms	MDS_Design
+	Design.arms.type	Role of the arm	Role of the given arm in the [RESOURCE]. Select one value from the list.		text	62		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.arms	MDS_Design
+	Design.arms.description	Additional information about the arm	Additional descriptive information about the given arm.		text	63		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.arms	MDS_Design	
+	Design.groups	Groups/cohorts of the [RESOURCE]	Group of items providing information about groups/cohorts of the [RESOURCE].		none	64		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.groups.label	Name of the group	Short name used to identify the group.		text	65		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.groups	MDS_Design
+	Design.groups.description	Additional information about the group	Additional descriptive information about the given group.		text	66		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.groups	MDS_Design	
+	Design.interventions	Interventions of the [RESOURCE]	Group of items providing information about [RESOURCE] interventions.		none	67		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.interventions.name	Name of the intervention	'A short descriptive name of the intervention. If the same intervention is associated with more than one arm, provide the information once and use the field ''Name of the arm associated with the given intervention'' to associate it with more than one arm.'		text	68		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.interventions	MDS_Design
+	Design.interventions.type	Type of the intervention	General type of the given intervention.		text	69		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.interventions	MDS_Design	
+	Design.interventions.description	Additional information about the intervention	If needed, additional descriptive information about the given intervention.		text	70		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.interventions	MDS_Design	
+	Design.interventions.armsLabel	Name of the arm(s) associated with the given intervention	Name of the [RESOURCE] arm(s) associated with the given intervention.		text	71		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	Design.interventions	MDS_Design	
+	Design.exposures	Exposures of the [RESOURCE]	Group of items providing information about [RESOURCE] exposures.		none	72		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.exposures.name	Name of the exposure	'A short descriptive name of the exposure. If the same exposure is associated with more than one group, provide the information once and use the field ''Name of the group associated with the given exposure'' to associate it with more than one group.'		text	73		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.exposures	MDS_Design	
+	Design.exposures.type	Type of the exposure	General type of the given exposure.		text	74		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.exposures	MDS_Design	
+	Design.exposures.description	Additional information about the exposure	If needed, additional descriptive information about the given exposure.		text	75		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.exposures	MDS_Design	
+	Design.exposures.groupsLabel	Name of the group(s) associated with the given exposure	Name of the [RESOURCE] group(s) associated with the given exposure.		text	76		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	Design.exposures	MDS_Design	
+	Design.outcomes	Outcome measure(s)	Group of items providing information about outcome measure(s).		none	77		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.outcomes.title	Name of the outcome measure	Name of the outcome measure. For non-interventional studies, this can be the name of specific measurement(s) or observation(s) used to describe patterns of diseases or traits or associations with exposures, risk factors or treatment. For non-interventional studies, this can be specific measurement(s) or observation(s) used to describe patterns of diseases or traits or associations with exposures, risk factors or treatment.		text	78		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.outcomes	MDS_Design
+	Design.outcomes.description	Description of the outcome measure	Additional descriptive information about the given outcome.		text	79		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.outcomes	MDS_Design	
+	Design.outcomes.type	Type of the outcome measure	Type of the outcome measure. Primary or secondary outcome measure?		text	80		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.outcomes	MDS_Design	
+	Design.outcomes.timeFrame	Time point(s) of assessment	Description of the time point(s) at which the measurement for the outcome is assessed, e.g. the specific duration of time over which each participant is assessed.		text	81		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.outcomes	MDS_Design	
+	Design.comment	Any additional information about the [RESOURCE]	Any additional information about specific aspects of the [RESOURCE] that cannot be captured by other fields. Any additional information about specific aspects of the [RESOURCE] that cannot be captured by other fields.		text	82		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.assessments	Further assessments/measurements included in the [RESOURCE]	Assessments/measurements included in the [RESOURCE].		text	83		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		MDS_Design	
+	Design.dataSharingPlan	Information about data sharing	Group of items providing information about the data sharing strategy of the [RESOURCE].		none	84		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design
+	Design.dataSharingPlan.generally	Is it planned to share the data?	Indication whether there is a plan to make data collected in the [RESOURCE] available. In case of a [RESOURCE] with patients or other individuals, this refers to individual participant data (IPD). Select one value from the list.		text	85		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design
+	Design.dataSharingPlan.supportingInformation	Supporting documents available in addition to the data	Supporting information/documents which will be made available in addition to the [RESOURCE] data. Select all that apply.		text	86		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design	
+	Design.dataSharingPlan.timeFrame	When and for how long will the data be available?	Indication when the data and, if applicable, supporting documents will become available and for how long.		text	87		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design	
+	Design.dataSharingPlan.accessCriteria	Criteria for the data access	Indication by what access criteria data will be shared, including: a) with whom, b) for what types of analyses, and c) by what mechanism. Please provide here with whom, for what types of analyses and by what mechanism the data will be shared.		text	88		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design	
+	Design.dataSharingPlan.description	Additional information about data sharing	Additional descriptive information providing more details about the data sharing, e.g. indication what data in particular will be shared or why the data will not be shared or why it is not yet decided. Please indicate here what data in particular will be shared or why the data will not be shared or why it is not yet decided.		text	89		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design	
+	Design.dataSharingPlan.datashield	Is the DataSHIELD/Opal infrastructure available?	Indication, whether the DataSHIELD/Opal infrastructure is available.		text	90		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design	
+	Design.dataSharingPlan.url	Web page with additional information about data sharing	If existing, a link to the web page where additional information about data sharing can be found.		text	91		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design	
+	Design.dataSharingPlan.recordLinkage	Is record linkage with other data sources possible?	Indication if record linkage is possible.		text	92		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.dataSharingPlan	MDS_Design	
+	Design.nonInterventional	Information about specific aspects of a non-interventional [RESOURCE]	Group of items providing information about specific aspects of a non-interventional [RESOURCE].		none	93		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.nonInterventional.timePerspectives	Temporal design of the [RESOURCE]	Temporal design of the [RESOURCE], i.e. the relationship of observation period to time of participant enrollment. Is it a retrospective, prospective or cross-sectional [RESOURCE]?		text	94		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.nonInterventional	MDS_Design	
+	Design.nonInterventional.targetFollowUpDuration	Target follow-up duration of the [RESOURCE]	If applicable, anticipated time period over which each participant was followed.		none	95		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.nonInterventional	MDS_Design	
+	Design.nonInterventional.targetFollowUpDuration.number	Target follow-up duration	Numerical value of the target follow-up duration.		int	96		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.nonInterventional.targetFollowUpDuration	MDS_Design
+	Design.nonInterventional.targetFollowUpDuration.timeUnit	Unit of time	Unit of time.		text	97		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.nonInterventional.targetFollowUpDuration	MDS_Design
+	Design.nonInterventional.targetFollowUpDuration.frequency	How many follow-ups were conducted?	The number of follow-ups conducted within the specified duration.		int	98		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.nonInterventional.targetFollowUpDuration	MDS_Design	
+	Design.nonInterventional.biospecimenRetention	Which biosamples are retained in a biorepository?	Indication whether samples of biomaterial from [RESOURCE] participants are retained in a biorepository. Select all that apply.		text	99		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.nonInterventional	MDS_Design	
+	Design.nonInterventional.biospecimenDescription	Specific types of retained biosamples	Additional information about biosamples to be retained, i.e. which specific types of biospecimens will be retained (e.g. blood, serum, urine, etc.). Which specific types of biosamples will be retained (e.g. blood, serum, urine, etc.)?	blood	text	100		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.nonInterventional	MDS_Design	
+	Design.interventional	Information about specific aspects of an interventional [RESOURCE]	Group of items providing information about specific aspects of an interventional [RESOURCE].		none	101		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_Design	
+	Design.interventional.phase	Numerical phase of the [RESOURCE]	If applicable, numerical phase of the [RESOURCE]. Select one value from the list.		text	102		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.interventional	MDS_Design	
+	Design.interventional.masking	Information about masking of intervention(s) assignment	Group of items providing information about the masking of intervention(s) assignment.		none	103		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.interventional	MDS_Design	
+	Design.interventional.masking.general	Is masking of intervention(s) assignment implemented?	Indication, whether a masking (or blinding) of intervention(s) assignment is implemented (i.e., whether someone is prevented from having knowledge of the interventions assigned to individual participants).		text	104		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.interventional.masking	MDS_Design	
+	Design.interventional.masking.roles	Who is masked?	If masking is implemented, the party(ies) who are masked. Select all that apply.		text	105		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	Design.interventional.masking	MDS_Design	
+	Design.interventional.masking.description	Additional information about masking	If needed, additional descriptive information about masking (e.g. information about other parties who may be masked). If needed, additional information about masking, e.g. other parties who may be masked.		text	106		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Design.interventional.masking	MDS_Design	
+	Design.interventional.allocation	Type of allocation of participants to an arm	Type of allocation/assignment of individual [RESOURCE] participants to an arm. Select one value from the list.		text	107		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.interventional	MDS_Design	
+	Design.interventional.offLabelUse	Off-label use of a drug product	'Unapproved (off-label) use of a drug product. Select ''Yes'' or ''No'' only for a drug [RESOURCE] and ''Not applicable'' for any other [RESOURCE].'		text	108		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.interventional	MDS_Design	
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder
+	Design.primaryDesign	Non-interventional	MDS_Design_DP_0	0
+	Design.primaryDesign	Interventional	MDS_Design_DP_1	1
+	Design.studyType.interventional	Crossover	MDS_Design_DSI_0	0
+	Design.studyType.interventional	Factorial	MDS_Design_DSI_1	1
+	Design.studyType.interventional	Other	MDS_Design_DSI_2	2
+	Design.studyType.interventional	Parallel	MDS_Design_DSI_3	3
+	Design.studyType.interventional	Sequential	MDS_Design_DSI_4	4
+	Design.studyType.interventional	Single group	MDS_Design_DSI_5	5
+	Design.studyType.interventional	Unknown	MDS_Design_DSI_6	6
+	Design.studyType.nonInterventional	Birth cohort	MDS_Design_DSN_0	0
+	Design.studyType.nonInterventional	Case-cohort	MDS_Design_DSN_1	1
+	Design.studyType.nonInterventional	Case-control	MDS_Design_DSN_2	2
+	Design.studyType.nonInterventional	Case-crossover	MDS_Design_DSN_3	3
+	Design.studyType.nonInterventional	Case-only	MDS_Design_DSN_4	4
+	Design.studyType.nonInterventional	Cohort	MDS_Design_DSN_5	5
+	Design.studyType.nonInterventional	Cross-sectional	MDS_Design_DSN_6	6
+	Design.studyType.nonInterventional	Cross-sectional ad-hoc follow-up	MDS_Design_DSN_7	7
+	Design.studyType.nonInterventional	Ecologic or community studies	MDS_Design_DSN_8	8
+	Design.studyType.nonInterventional	Family-based	MDS_Design_DSN_9	9
+	Design.studyType.nonInterventional	Longitudinal	MDS_Design_DSN_10	10
+	Design.studyType.nonInterventional	Nested case-control	MDS_Design_DSN_11	11
+	Design.studyType.nonInterventional	Other	MDS_Design_DSN_12	12
+	Design.studyType.nonInterventional	Panel	MDS_Design_DSN_13	13
+	Design.studyType.nonInterventional	Quality control	MDS_Design_DSN_14	14
+	Design.studyType.nonInterventional	Register studies	MDS_Design_DSN_15	15
+	Design.studyType.nonInterventional	Time series	MDS_Design_DSN_16	16
+	Design.studyType.nonInterventional	Trend	MDS_Design_DSN_17	17
+	Design.studyType.nonInterventional	Twin study	MDS_Design_DSN_18	18
+	Design.studyType.nonInterventional	Unknown	MDS_Design_DSN_19	19
+	Design.conditions.classification	MeSH	MDS_Design_DCC_0	0
+	Design.conditions.classification	ICD-10	MDS_Design_DCC_1	1
+	Design.conditions.classification	ICD-11	MDS_Design_DCC_2	2
+	Design.conditions.classification	MedDRA	MDS_Design_DCC_3	3
+	Design.conditions.classification	SNOMED CT	MDS_Design_DCC_4	4
+	Design.conditions.classification	Other vocabulary	MDS_Design_DCC_5	5
+	Design.conditions.classification	Free text	MDS_Design_DCC_6	6
+	Design.focus.classification	MeSH	MDS_Design_DFC_0	0
+	Design.focus.classification	ICD-10	MDS_Design_DFC_1	1
+	Design.focus.classification	ICD-11	MDS_Design_DFC_2	2
+	Design.focus.classification	MedDRA	MDS_Design_DFC_3	3
+	Design.focus.classification	SNOMED CT	MDS_Design_DFC_4	4
+	Design.focus.classification	Other vocabulary	MDS_Design_DFC_5	5
+	Design.focus.classification	Free text	MDS_Design_DFC_6	6
+	Design.groupsOfDiseases.generally	Certain conditions originating in the perinatal period (XVI)	MDS_Design_DGG_0	0
+	Design.groupsOfDiseases.generally	Certain infectious or parasitic diseases (I)	MDS_Design_DGG_1	1
+	Design.groupsOfDiseases.generally	Congenital malformations, deformations and chromosomal abnormalities (XVII)	MDS_Design_DGG_2	2
+	Design.groupsOfDiseases.generally	Diseases of the blood or blood-forming organs and certain disorders involving the immune mechanism (III)	MDS_Design_DGG_3	3
+	Design.groupsOfDiseases.generally	Diseases of the circulatory system (IX)	MDS_Design_DGG_4	4
+	Design.groupsOfDiseases.generally	Diseases of the digestive system (XI)	MDS_Design_DGG_5	5
+	Design.groupsOfDiseases.generally	Diseases of the ear or mastoid process (VIII)	MDS_Design_DGG_6	6
+	Design.groupsOfDiseases.generally	Diseases of the eye and adnexa (VII)	MDS_Design_DGG_7	7
+	Design.groupsOfDiseases.generally	Diseases of the genitourinary system (XIV)	MDS_Design_DGG_8	8
+	Design.groupsOfDiseases.generally	Diseases of the musculoskeletal system and connective tissue (XIII)	MDS_Design_DGG_9	9
+	Design.groupsOfDiseases.generally	Diseases of the nervous system (VI)	MDS_Design_DGG_10	10
+	Design.groupsOfDiseases.generally	Diseases of the respiratory system (X)	MDS_Design_DGG_11	11
+	Design.groupsOfDiseases.generally	Diseases of the skin and subcutaneous tissue (XII)	MDS_Design_DGG_12	12
+	Design.groupsOfDiseases.generally	Endocrine, nutritional and metabolic diseases (IV)	MDS_Design_DGG_13	13
+	Design.groupsOfDiseases.generally	External causes of morbidity or mortality (XX)	MDS_Design_DGG_14	14
+	Design.groupsOfDiseases.generally	Factors influencing health status and contact with health services (XXI)	MDS_Design_DGG_15	15
+	Design.groupsOfDiseases.generally	Injury, poisoning and certain other consequences of external causes (XIX)	MDS_Design_DGG_16	16
+	Design.groupsOfDiseases.generally	Mental and behavioural disorders (V)	MDS_Design_DGG_17	17
+	Design.groupsOfDiseases.generally	Neoplasms (II)	MDS_Design_DGG_18	18
+	Design.groupsOfDiseases.generally	Not applicable	MDS_Design_DGG_19	19
+	Design.groupsOfDiseases.generally	Other	MDS_Design_DGG_20	20
+	Design.groupsOfDiseases.generally	Pregnancy, childbirth or the puerperium (XV)	MDS_Design_DGG_21	21
+	Design.groupsOfDiseases.generally	Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (XVIII)	MDS_Design_DGG_22	22
+	Design.groupsOfDiseases.generally	Unknown	MDS_Design_DGG_23	23
+	Design.groupsOfDiseases.conditions	Lower level ICD-10 (https://icd.who.int/browse10/2019/en), with autocomplete	MDS_Design_DGC_0	0
+	Design.mortalityData	Yes, vital status only (cause of death missing)	MDS_Design_DM_0	0
+	Design.mortalityData	Yes, with cause of death	MDS_Design_DM_1	1
+	Design.mortalityData	No	MDS_Design_DM_2	2
+	Design.administrativeInformation.ethicsCommitteeApproval	Request for approval not yet submitted	MDS_Design_DAE_0	0
+	Design.administrativeInformation.ethicsCommitteeApproval	Request for approval submitted, approval pending	MDS_Design_DAE_1	1
+	Design.administrativeInformation.ethicsCommitteeApproval	Request for approval submitted, approval granted	MDS_Design_DAE_2	2
+	Design.administrativeInformation.ethicsCommitteeApproval	Request for approval submitted, exempt granted	MDS_Design_DAE_3	3
+	Design.administrativeInformation.ethicsCommitteeApproval	Request for approval submitted, approval denied	MDS_Design_DAE_4	4
+	Design.administrativeInformation.ethicsCommitteeApproval	Approval not required	MDS_Design_DAE_5	5
+	Design.administrativeInformation.ethicsCommitteeApproval	Study withdrawn prior to decision on approval	MDS_Design_DAE_6	6
+	Design.administrativeInformation.ethicsCommitteeApproval	Unknown status of request approval	MDS_Design_DAE_7	7
+	Design.administrativeInformation.status	At the planning stage	MDS_Design_DAS_0	0
+	Design.administrativeInformation.status	Ongoing (I): Recruitment ongoing, but data collection not yet started	MDS_Design_DAS_1	1
+	Design.administrativeInformation.status	Ongoing (II): Recruitment and data collection ongoing	MDS_Design_DAS_2	2
+	Design.administrativeInformation.status	Ongoing (III): Recruitment completed, but data collection ongoing	MDS_Design_DAS_3	3
+	Design.administrativeInformation.status	Ongoing (IV): Recruitment and data collection completed, but data quality management ongoing	MDS_Design_DAS_4	4
+	Design.administrativeInformation.status	Suspended: Recruitment, data collection, or data quality management, halted, but potentially will resume	MDS_Design_DAS_5	5
+	Design.administrativeInformation.status	Terminated: Recruitment, data collection, data and quality management halted prematurely and will not resume	MDS_Design_DAS_6	6
+	Design.administrativeInformation.status	Completed: Recruitment, data collection, and data quality management completed normally	MDS_Design_DAS_7	7
+	Design.administrativeInformation.status	Other	MDS_Design_DAS_8	8
+	Design.administrativeInformation.statusWhenIntervention	Intervention ongoing	MDS_Design_DAS_1_0	0
+	Design.administrativeInformation.statusWhenIntervention	Intervention completed, follow-up ongoing	MDS_Design_DAS_1_1	1
+	Design.administrativeInformation.stageStopped	At the planning stage	MDS_Design_DAS_2_0	0
+	Design.administrativeInformation.stageStopped	Ongoing (I): Recruitment ongoing, but data collection not yet started	MDS_Design_DAS_2_1	1
+	Design.administrativeInformation.stageStopped	Ongoing (II): Recruitment and data collection ongoing	MDS_Design_DAS_2_2	2
+	Design.administrativeInformation.stageStopped	Ongoing (III): Recruitment completed, but data collection ongoing	MDS_Design_DAS_2_3	3
+	Design.administrativeInformation.stageStopped	Ongoing (IV): Recruitment and data collection completed, but data quality management ongoing	MDS_Design_DAS_2_4	4
+	Design.administrativeInformation.statusEnrollingByInvitation	Yes	MDS_Design_DAS_3_0	0
+	Design.administrativeInformation.statusEnrollingByInvitation	No	MDS_Design_DAS_3_1	1
+	Design.administrativeInformation.statusEnrollingByInvitation	Not applicable	MDS_Design_DAS_3_2	2
+	Design.administrativeInformation.recruitmentStatusRegister	Not yet recruiting	MDS_Design_DAR_0	0
+	Design.administrativeInformation.recruitmentStatusRegister	Recruiting	MDS_Design_DAR_1	1
+	Design.administrativeInformation.recruitmentStatusRegister	Enrolling by invitation	MDS_Design_DAR_2	2
+	Design.administrativeInformation.recruitmentStatusRegister	Active, not recruiting	MDS_Design_DAR_3	3
+	Design.administrativeInformation.recruitmentStatusRegister	Completed	MDS_Design_DAR_4	4
+	Design.administrativeInformation.recruitmentStatusRegister	Suspended	MDS_Design_DAR_5	5
+	Design.administrativeInformation.recruitmentStatusRegister	Terminated	MDS_Design_DAR_6	6
+	Design.administrativeInformation.recruitmentStatusRegister	Withdrawn	MDS_Design_DAR_7	7
+	Design.administrativeInformation.recruitmentStatusRegister	Other	MDS_Design_DAR_8	8
+	Design.centers	Monocentric	MDS_Design_DC_0	0
+	Design.centers	Multicentric	MDS_Design_DC_1	1
+	Design.dataProviders	One data provider	MDS_Design_DD_0	0
+	Design.dataProviders	Several data providers	MDS_Design_DD_1	1
+	Design.subject	Person	MDS_Design_DS_0	0
+	Design.subject	Animal	MDS_Design_DS_1	1
+	Design.subject	Other	MDS_Design_DS_2	2
+	Design.subject	Unknown	MDS_Design_DS_3	3
+	Design.sampling.method	Probability	MDS_Design_DSM_0	0
+	Design.sampling.method	Non-probability	MDS_Design_DSM_1	1
+	Design.sampling.method	Mixed probability and non-probability	MDS_Design_DSM_2	2
+	Design.sampling.method	Total universe/Complete enumeration	MDS_Design_DSM_3	3
+	Design.sampling.method	Other	MDS_Design_DSM_4	4
+	Design.sampling.method	Unknown	MDS_Design_DSM_5	5
+	Design.sampling.method	Not applicable	MDS_Design_DSM_6	6
+	Design.sampling.probabilityMethod	Simple random	MDS_Design_DSP_0	0
+	Design.sampling.probabilityMethod	Systematic random	MDS_Design_DSP_1	1
+	Design.sampling.probabilityMethod	Stratified	MDS_Design_DSP_2	2
+	Design.sampling.probabilityMethod	Stratified: Proportional	MDS_Design_DSP_3	3
+	Design.sampling.probabilityMethod	Stratified: Disproportional	MDS_Design_DSP_4	4
+	Design.sampling.probabilityMethod	Cluster	MDS_Design_DSP_5	5
+	Design.sampling.probabilityMethod	Cluster: Simple random	MDS_Design_DSP_6	6
+	Design.sampling.probabilityMethod	Cluster: Stratified random	MDS_Design_DSP_7	7
+	Design.sampling.probabilityMethod	Multistage	MDS_Design_DSP_8	8
+	Design.sampling.nonProbabilityMethod	Availability	MDS_Design_DSN_1_0	0
+	Design.sampling.nonProbabilityMethod	Purposive	MDS_Design_DSN_1_1	1
+	Design.sampling.nonProbabilityMethod	Quota	MDS_Design_DSN_1_2	2
+	Design.sampling.nonProbabilityMethod	Respondent-assisted	MDS_Design_DSN_1_3	3
+	Design.dataSource.general	Administrative databases	MDS_Design_DDG_0	0
+	Design.dataSource.general	Biological samples	MDS_Design_DDG_1	1
+	Design.dataSource.general	Cognitive measurements	MDS_Design_DDG_2	2
+	Design.dataSource.general	Genealogical records	MDS_Design_DDG_3	3
+	Design.dataSource.general	Imaging data	MDS_Design_DDG_4	4
+	Design.dataSource.general	Interview	MDS_Design_DDG_5	5
+	Design.dataSource.general	Medical records	MDS_Design_DDG_6	6
+	Design.dataSource.general	Omics technology	MDS_Design_DDG_7	7
+	Design.dataSource.general	Other	MDS_Design_DDG_8	8
+	Design.dataSource.general	Physiological/Biochemical measurements	MDS_Design_DDG_9	9
+	Design.dataSource.general	Questionnaire	MDS_Design_DDG_10	10
+	Design.dataSource.general	Registries	MDS_Design_DDG_11	11
+	Design.dataSource.biosamples	Blood	MDS_Design_DDB_0	0
+	Design.dataSource.biosamples	Buccal cells	MDS_Design_DDB_1	1
+	Design.dataSource.biosamples	Cord blood	MDS_Design_DDB_2	2
+	Design.dataSource.biosamples	DNA	MDS_Design_DDB_3	3
+	Design.dataSource.biosamples	Faeces	MDS_Design_DDB_4	4
+	Design.dataSource.biosamples	Hair	MDS_Design_DDB_5	5
+	Design.dataSource.biosamples	Immortalized cell lines	MDS_Design_DDB_6	6
+	Design.dataSource.biosamples	Isolated pathogen	MDS_Design_DDB_7	7
+	Design.dataSource.biosamples	Nail	MDS_Design_DDB_8	8
+	Design.dataSource.biosamples	Other biological samples	MDS_Design_DDB_9	9
+	Design.dataSource.biosamples	Plasma	MDS_Design_DDB_10	10
+	Design.dataSource.biosamples	RNA	MDS_Design_DDB_11	11
+	Design.dataSource.biosamples	Saliva	MDS_Design_DDB_12	12
+	Design.dataSource.biosamples	Serum	MDS_Design_DDB_13	13
+	Design.dataSource.biosamples	Tissue (FFPE)	MDS_Design_DDB_14	14
+	Design.dataSource.biosamples	Tissue (frozen)	MDS_Design_DDB_15	15
+	Design.dataSource.biosamples	Urine	MDS_Design_DDB_16	16
+	Design.dataSource.imaging	Computed tomography (CT)	MDS_Design_DDI_0	0
+	Design.dataSource.imaging	Magnetic resonance imaging (MRI)	MDS_Design_DDI_1	1
+	Design.dataSource.imaging	Other imaging data	MDS_Design_DDI_2	2
+	Design.dataSource.imaging	Radiography (x-ray)	MDS_Design_DDI_3	3
+	Design.dataSource.imaging	Ultrasound	MDS_Design_DDI_4	4
+	Design.dataSource.omics	Biomarkers	MDS_Design_DDO_0	0
+	Design.dataSource.omics	Genomics	MDS_Design_DDO_1	1
+	Design.dataSource.omics	Metabolomics	MDS_Design_DDO_2	2
+	Design.dataSource.omics	Other omics technology	MDS_Design_DDO_3	3
+	Design.dataSource.omics	Proteomics	MDS_Design_DDO_4	4
+	Design.dataSource.omics	Transcriptomics	MDS_Design_DDO_5	5
+	Design.primaryPurpose	Treatment	MDS_Design_DP_1_0	0
+	Design.primaryPurpose	Prevention	MDS_Design_DP_1_1	1
+	Design.primaryPurpose	Prognostic	MDS_Design_DP_1_2	2
+	Design.primaryPurpose	Diagnostic	MDS_Design_DP_1_3	3
+	Design.primaryPurpose	Supportive care	MDS_Design_DP_1_4	4
+	Design.primaryPurpose	Screening	MDS_Design_DP_1_5	5
+	Design.primaryPurpose	Health services research	MDS_Design_DP_1_6	6
+	Design.primaryPurpose	Basic science/Physiological study	MDS_Design_DP_1_7	7
+	Design.primaryPurpose	Device feasibility	MDS_Design_DP_1_8	8
+	Design.primaryPurpose	Pharmacogenetics	MDS_Design_DP_1_9	9
+	Design.primaryPurpose	Pharmacogenomics	MDS_Design_DP_1_10	10
+	Design.primaryPurpose	Health economics	MDS_Design_DP_1_11	11
+	Design.primaryPurpose	Not applicable	MDS_Design_DP_1_12	12
+	Design.primaryPurpose	Other	MDS_Design_DP_1_13	13
+	Design.eligibilityCriteria.ageMin.timeUnit	Years	MDS_Design_DEAT_0	0
+	Design.eligibilityCriteria.ageMin.timeUnit	Months	MDS_Design_DEAT_1	1
+	Design.eligibilityCriteria.ageMin.timeUnit	Weeks	MDS_Design_DEAT_2	2
+	Design.eligibilityCriteria.ageMin.timeUnit	Days	MDS_Design_DEAT_3	3
+	Design.eligibilityCriteria.ageMin.timeUnit	Hours	MDS_Design_DEAT_4	4
+	Design.eligibilityCriteria.ageMin.timeUnit	Minutes	MDS_Design_DEAT_5	5
+	Design.eligibilityCriteria.ageMin.timeUnit	Weeks of gestation	MDS_Design_DEAT_6	6
+	Design.eligibilityCriteria.ageMax.timeUnit	Years	MDS_Design_DEAT_1_0	0
+	Design.eligibilityCriteria.ageMax.timeUnit	Months	MDS_Design_DEAT_1_1	1
+	Design.eligibilityCriteria.ageMax.timeUnit	Weeks	MDS_Design_DEAT_1_2	2
+	Design.eligibilityCriteria.ageMax.timeUnit	Days	MDS_Design_DEAT_1_3	3
+	Design.eligibilityCriteria.ageMax.timeUnit	Hours	MDS_Design_DEAT_1_4	4
+	Design.eligibilityCriteria.ageMax.timeUnit	Minutes	MDS_Design_DEAT_1_5	5
+	Design.eligibilityCriteria.ageMax.timeUnit	Weeks of gestation	MDS_Design_DEAT_1_6	6
+	Design.eligibilityCriteria.genders	Diverse	MDS_Design_DEG_0	0
+	Design.eligibilityCriteria.genders	Female	MDS_Design_DEG_1	1
+	Design.eligibilityCriteria.genders	Male	MDS_Design_DEG_2	2
+	Design.eligibilityCriteria.genders	Not applicable	MDS_Design_DEG_3	3
+	Design.population.coverage	International	MDS_Design_DPC_0	0
+	Design.population.coverage	National	MDS_Design_DPC_1	1
+	Design.population.coverage	Regional	MDS_Design_DPC_2	2
+	Design.population.countries	Afghanistan	MDS_Design_DPC_1_0	0
+	Design.population.countries	Albania	MDS_Design_DPC_1_1	1
+	Design.population.countries	Algeria	MDS_Design_DPC_1_2	2
+	Design.population.countries	American Samoa	MDS_Design_DPC_1_3	3
+	Design.population.countries	Andorra	MDS_Design_DPC_1_4	4
+	Design.population.countries	Angola	MDS_Design_DPC_1_5	5
+	Design.population.countries	Anguilla	MDS_Design_DPC_1_6	6
+	Design.population.countries	Antarctica	MDS_Design_DPC_1_7	7
+	Design.population.countries	Antigua and Barbuda	MDS_Design_DPC_1_8	8
+	Design.population.countries	Argentina	MDS_Design_DPC_1_9	9
+	Design.population.countries	Armenia	MDS_Design_DPC_1_10	10
+	Design.population.countries	Aruba	MDS_Design_DPC_1_11	11
+	Design.population.countries	Australia	MDS_Design_DPC_1_12	12
+	Design.population.countries	Austria	MDS_Design_DPC_1_13	13
+	Design.population.countries	Azerbaijan	MDS_Design_DPC_1_14	14
+	Design.population.countries	Bahamas	MDS_Design_DPC_1_15	15
+	Design.population.countries	Bahrain	MDS_Design_DPC_1_16	16
+	Design.population.countries	Bangladesh	MDS_Design_DPC_1_17	17
+	Design.population.countries	Barbados	MDS_Design_DPC_1_18	18
+	Design.population.countries	Belarus	MDS_Design_DPC_1_19	19
+	Design.population.countries	Belgium	MDS_Design_DPC_1_20	20
+	Design.population.countries	Belize	MDS_Design_DPC_1_21	21
+	Design.population.countries	Benin	MDS_Design_DPC_1_22	22
+	Design.population.countries	Bermuda	MDS_Design_DPC_1_23	23
+	Design.population.countries	Bhutan	MDS_Design_DPC_1_24	24
+	Design.population.countries	Bolivia, Plurinational State of	MDS_Design_DPC_1_25	25
+	Design.population.countries	Bonaire, Sint Eustatius and Saba	MDS_Design_DPC_1_26	26
+	Design.population.countries	Bosnia and Herzegovina	MDS_Design_DPC_1_27	27
+	Design.population.countries	Botswana	MDS_Design_DPC_1_28	28
+	Design.population.countries	Bouvet Island	MDS_Design_DPC_1_29	29
+	Design.population.countries	Brazil	MDS_Design_DPC_1_30	30
+	Design.population.countries	British Indian Ocean Territory	MDS_Design_DPC_1_31	31
+	Design.population.countries	Brunei Darussalam	MDS_Design_DPC_1_32	32
+	Design.population.countries	Bulgaria	MDS_Design_DPC_1_33	33
+	Design.population.countries	Burkina Faso	MDS_Design_DPC_1_34	34
+	Design.population.countries	Burundi	MDS_Design_DPC_1_35	35
+	Design.population.countries	Cabo Verde	MDS_Design_DPC_1_36	36
+	Design.population.countries	Cambodia	MDS_Design_DPC_1_37	37
+	Design.population.countries	Cameroon	MDS_Design_DPC_1_38	38
+	Design.population.countries	Canada	MDS_Design_DPC_1_39	39
+	Design.population.countries	Cayman Islands	MDS_Design_DPC_1_40	40
+	Design.population.countries	Central African Republic	MDS_Design_DPC_1_41	41
+	Design.population.countries	Chad	MDS_Design_DPC_1_42	42
+	Design.population.countries	Chile	MDS_Design_DPC_1_43	43
+	Design.population.countries	China	MDS_Design_DPC_1_44	44
+	Design.population.countries	Christmas Island	MDS_Design_DPC_1_45	45
+	Design.population.countries	Cocos (Keeling) Islands	MDS_Design_DPC_1_46	46
+	Design.population.countries	Colombia	MDS_Design_DPC_1_47	47
+	Design.population.countries	Comoros	MDS_Design_DPC_1_48	48
+	Design.population.countries	Congo	MDS_Design_DPC_1_49	49
+	Design.population.countries	Congo, Democratic Republic of the	MDS_Design_DPC_1_50	50
+	Design.population.countries	Cook Islands	MDS_Design_DPC_1_51	51
+	Design.population.countries	Costa Rica	MDS_Design_DPC_1_52	52
+	Design.population.countries	Croatia	MDS_Design_DPC_1_53	53
+	Design.population.countries	Cuba	MDS_Design_DPC_1_54	54
+	Design.population.countries	Curaçao	MDS_Design_DPC_1_55	55
+	Design.population.countries	Cyprus	MDS_Design_DPC_1_56	56
+	Design.population.countries	Czechia	MDS_Design_DPC_1_57	57
+	Design.population.countries	Côte d'Ivoire	MDS_Design_DPC_1_58	58
+	Design.population.countries	Denmark	MDS_Design_DPC_1_59	59
+	Design.population.countries	Djibouti	MDS_Design_DPC_1_60	60
+	Design.population.countries	Dominica	MDS_Design_DPC_1_61	61
+	Design.population.countries	Dominican Republic	MDS_Design_DPC_1_62	62
+	Design.population.countries	Ecuador	MDS_Design_DPC_1_63	63
+	Design.population.countries	Egypt	MDS_Design_DPC_1_64	64
+	Design.population.countries	El Salvador	MDS_Design_DPC_1_65	65
+	Design.population.countries	Equatorial Guinea	MDS_Design_DPC_1_66	66
+	Design.population.countries	Eritrea	MDS_Design_DPC_1_67	67
+	Design.population.countries	Estonia	MDS_Design_DPC_1_68	68
+	Design.population.countries	Eswatini	MDS_Design_DPC_1_69	69
+	Design.population.countries	Ethiopia	MDS_Design_DPC_1_70	70
+	Design.population.countries	Falkland Islands (Malvinas)	MDS_Design_DPC_1_71	71
+	Design.population.countries	Faroe Islands	MDS_Design_DPC_1_72	72
+	Design.population.countries	Fiji	MDS_Design_DPC_1_73	73
+	Design.population.countries	Finland	MDS_Design_DPC_1_74	74
+	Design.population.countries	France	MDS_Design_DPC_1_75	75
+	Design.population.countries	French Guiana	MDS_Design_DPC_1_76	76
+	Design.population.countries	French Polynesia	MDS_Design_DPC_1_77	77
+	Design.population.countries	French Southern Territories	MDS_Design_DPC_1_78	78
+	Design.population.countries	Gabon	MDS_Design_DPC_1_79	79
+	Design.population.countries	Gambia	MDS_Design_DPC_1_80	80
+	Design.population.countries	Georgia	MDS_Design_DPC_1_81	81
+	Design.population.countries	Germany	MDS_Design_DPC_1_82	82
+	Design.population.countries	Ghana	MDS_Design_DPC_1_83	83
+	Design.population.countries	Gibraltar	MDS_Design_DPC_1_84	84
+	Design.population.countries	Greece	MDS_Design_DPC_1_85	85
+	Design.population.countries	Greenland	MDS_Design_DPC_1_86	86
+	Design.population.countries	Grenada	MDS_Design_DPC_1_87	87
+	Design.population.countries	Guadeloupe	MDS_Design_DPC_1_88	88
+	Design.population.countries	Guam	MDS_Design_DPC_1_89	89
+	Design.population.countries	Guatemala	MDS_Design_DPC_1_90	90
+	Design.population.countries	Guernsey	MDS_Design_DPC_1_91	91
+	Design.population.countries	Guinea	MDS_Design_DPC_1_92	92
+	Design.population.countries	Guinea-Bissau	MDS_Design_DPC_1_93	93
+	Design.population.countries	Guyana	MDS_Design_DPC_1_94	94
+	Design.population.countries	Haiti	MDS_Design_DPC_1_95	95
+	Design.population.countries	Heard Island and McDonald Islands	MDS_Design_DPC_1_96	96
+	Design.population.countries	Holy See	MDS_Design_DPC_1_97	97
+	Design.population.countries	Honduras	MDS_Design_DPC_1_98	98
+	Design.population.countries	Hong Kong	MDS_Design_DPC_1_99	99
+	Design.population.countries	Hungary	MDS_Design_DPC_1_100	100
+	Design.population.countries	Iceland	MDS_Design_DPC_1_101	101
+	Design.population.countries	India	MDS_Design_DPC_1_102	102
+	Design.population.countries	Indonesia	MDS_Design_DPC_1_103	103
+	Design.population.countries	Iran, Islamic Republic of	MDS_Design_DPC_1_104	104
+	Design.population.countries	Iraq	MDS_Design_DPC_1_105	105
+	Design.population.countries	Ireland	MDS_Design_DPC_1_106	106
+	Design.population.countries	Isle of Man	MDS_Design_DPC_1_107	107
+	Design.population.countries	Israel	MDS_Design_DPC_1_108	108
+	Design.population.countries	Italy	MDS_Design_DPC_1_109	109
+	Design.population.countries	Jamaica	MDS_Design_DPC_1_110	110
+	Design.population.countries	Japan	MDS_Design_DPC_1_111	111
+	Design.population.countries	Jersey	MDS_Design_DPC_1_112	112
+	Design.population.countries	Jordan	MDS_Design_DPC_1_113	113
+	Design.population.countries	Kazakhstan	MDS_Design_DPC_1_114	114
+	Design.population.countries	Kenya	MDS_Design_DPC_1_115	115
+	Design.population.countries	Kiribati	MDS_Design_DPC_1_116	116
+	Design.population.countries	Korea, Democratic People's Republic of	MDS_Design_DPC_1_117	117
+	Design.population.countries	Korea, Republic of	MDS_Design_DPC_1_118	118
+	Design.population.countries	Kuwait	MDS_Design_DPC_1_119	119
+	Design.population.countries	Kyrgyzstan	MDS_Design_DPC_1_120	120
+	Design.population.countries	Lao People's Democratic Republic	MDS_Design_DPC_1_121	121
+	Design.population.countries	Latvia	MDS_Design_DPC_1_122	122
+	Design.population.countries	Lebanon	MDS_Design_DPC_1_123	123
+	Design.population.countries	Lesotho	MDS_Design_DPC_1_124	124
+	Design.population.countries	Liberia	MDS_Design_DPC_1_125	125
+	Design.population.countries	Libya	MDS_Design_DPC_1_126	126
+	Design.population.countries	Liechtenstein	MDS_Design_DPC_1_127	127
+	Design.population.countries	Lithuania	MDS_Design_DPC_1_128	128
+	Design.population.countries	Luxembourg	MDS_Design_DPC_1_129	129
+	Design.population.countries	Macao	MDS_Design_DPC_1_130	130
+	Design.population.countries	Madagascar	MDS_Design_DPC_1_131	131
+	Design.population.countries	Malawi	MDS_Design_DPC_1_132	132
+	Design.population.countries	Malaysia	MDS_Design_DPC_1_133	133
+	Design.population.countries	Maldives	MDS_Design_DPC_1_134	134
+	Design.population.countries	Mali	MDS_Design_DPC_1_135	135
+	Design.population.countries	Malta	MDS_Design_DPC_1_136	136
+	Design.population.countries	Marshall Islands	MDS_Design_DPC_1_137	137
+	Design.population.countries	Martinique	MDS_Design_DPC_1_138	138
+	Design.population.countries	Mauritania	MDS_Design_DPC_1_139	139
+	Design.population.countries	Mauritius	MDS_Design_DPC_1_140	140
+	Design.population.countries	Mayotte	MDS_Design_DPC_1_141	141
+	Design.population.countries	Mexico	MDS_Design_DPC_1_142	142
+	Design.population.countries	Micronesia, Federated States of	MDS_Design_DPC_1_143	143
+	Design.population.countries	Moldova, Republic of	MDS_Design_DPC_1_144	144
+	Design.population.countries	Monaco	MDS_Design_DPC_1_145	145
+	Design.population.countries	Mongolia	MDS_Design_DPC_1_146	146
+	Design.population.countries	Montenegro	MDS_Design_DPC_1_147	147
+	Design.population.countries	Montserrat	MDS_Design_DPC_1_148	148
+	Design.population.countries	Morocco	MDS_Design_DPC_1_149	149
+	Design.population.countries	Mozambique	MDS_Design_DPC_1_150	150
+	Design.population.countries	Myanmar	MDS_Design_DPC_1_151	151
+	Design.population.countries	Namibia	MDS_Design_DPC_1_152	152
+	Design.population.countries	Nauru	MDS_Design_DPC_1_153	153
+	Design.population.countries	Nepal	MDS_Design_DPC_1_154	154
+	Design.population.countries	Netherlands	MDS_Design_DPC_1_155	155
+	Design.population.countries	New Caledonia	MDS_Design_DPC_1_156	156
+	Design.population.countries	New Zealand	MDS_Design_DPC_1_157	157
+	Design.population.countries	Nicaragua	MDS_Design_DPC_1_158	158
+	Design.population.countries	Niger	MDS_Design_DPC_1_159	159
+	Design.population.countries	Nigeria	MDS_Design_DPC_1_160	160
+	Design.population.countries	Niue	MDS_Design_DPC_1_161	161
+	Design.population.countries	Norfolk Island	MDS_Design_DPC_1_162	162
+	Design.population.countries	North Macedonia	MDS_Design_DPC_1_163	163
+	Design.population.countries	Northern Mariana Islands	MDS_Design_DPC_1_164	164
+	Design.population.countries	Norway	MDS_Design_DPC_1_165	165
+	Design.population.countries	Oman	MDS_Design_DPC_1_166	166
+	Design.population.countries	Pakistan	MDS_Design_DPC_1_167	167
+	Design.population.countries	Palau	MDS_Design_DPC_1_168	168
+	Design.population.countries	Palestine, State of	MDS_Design_DPC_1_169	169
+	Design.population.countries	Panama	MDS_Design_DPC_1_170	170
+	Design.population.countries	Papua New Guinea	MDS_Design_DPC_1_171	171
+	Design.population.countries	Paraguay	MDS_Design_DPC_1_172	172
+	Design.population.countries	Peru	MDS_Design_DPC_1_173	173
+	Design.population.countries	Philippines	MDS_Design_DPC_1_174	174
+	Design.population.countries	Pitcairn	MDS_Design_DPC_1_175	175
+	Design.population.countries	Poland	MDS_Design_DPC_1_176	176
+	Design.population.countries	Portugal	MDS_Design_DPC_1_177	177
+	Design.population.countries	Puerto Rico	MDS_Design_DPC_1_178	178
+	Design.population.countries	Qatar	MDS_Design_DPC_1_179	179
+	Design.population.countries	Romania	MDS_Design_DPC_1_180	180
+	Design.population.countries	Russian Federation	MDS_Design_DPC_1_181	181
+	Design.population.countries	Rwanda	MDS_Design_DPC_1_182	182
+	Design.population.countries	Réunion	MDS_Design_DPC_1_183	183
+	Design.population.countries	Saint Barthélemy	MDS_Design_DPC_1_184	184
+	Design.population.countries	Saint Helena, Ascension and Tristan da Cunha	MDS_Design_DPC_1_185	185
+	Design.population.countries	Saint Kitts and Nevis	MDS_Design_DPC_1_186	186
+	Design.population.countries	Saint Lucia	MDS_Design_DPC_1_187	187
+	Design.population.countries	Saint Martin, (French part)	MDS_Design_DPC_1_188	188
+	Design.population.countries	Saint Pierre and Miquelon	MDS_Design_DPC_1_189	189
+	Design.population.countries	Saint Vincent and the Grenadines	MDS_Design_DPC_1_190	190
+	Design.population.countries	Samoa	MDS_Design_DPC_1_191	191
+	Design.population.countries	San Marino	MDS_Design_DPC_1_192	192
+	Design.population.countries	Sao Tome and Principe	MDS_Design_DPC_1_193	193
+	Design.population.countries	Saudi Arabia	MDS_Design_DPC_1_194	194
+	Design.population.countries	Senegal	MDS_Design_DPC_1_195	195
+	Design.population.countries	Serbia	MDS_Design_DPC_1_196	196
+	Design.population.countries	Seychelles	MDS_Design_DPC_1_197	197
+	Design.population.countries	Sierra Leone	MDS_Design_DPC_1_198	198
+	Design.population.countries	Singapore	MDS_Design_DPC_1_199	199
+	Design.population.countries	Sint Maarten, (Dutch part)	MDS_Design_DPC_1_200	200
+	Design.population.countries	Slovakia	MDS_Design_DPC_1_201	201
+	Design.population.countries	Slovenia	MDS_Design_DPC_1_202	202
+	Design.population.countries	Solomon Islands	MDS_Design_DPC_1_203	203
+	Design.population.countries	Somalia	MDS_Design_DPC_1_204	204
+	Design.population.countries	South Africa	MDS_Design_DPC_1_205	205
+	Design.population.countries	South Georgia and the South Sandwich Islands	MDS_Design_DPC_1_206	206
+	Design.population.countries	South Sudan	MDS_Design_DPC_1_207	207
+	Design.population.countries	Spain	MDS_Design_DPC_1_208	208
+	Design.population.countries	Sri Lanka	MDS_Design_DPC_1_209	209
+	Design.population.countries	Sudan	MDS_Design_DPC_1_210	210
+	Design.population.countries	Suriname	MDS_Design_DPC_1_211	211
+	Design.population.countries	Svalbard and Jan Mayen	MDS_Design_DPC_1_212	212
+	Design.population.countries	Sweden	MDS_Design_DPC_1_213	213
+	Design.population.countries	Switzerland	MDS_Design_DPC_1_214	214
+	Design.population.countries	Syrian Arab Republic	MDS_Design_DPC_1_215	215
+	Design.population.countries	Taiwan, Province of China	MDS_Design_DPC_1_216	216
+	Design.population.countries	Tajikistan	MDS_Design_DPC_1_217	217
+	Design.population.countries	Tanzania, United Republic of	MDS_Design_DPC_1_218	218
+	Design.population.countries	Thailand	MDS_Design_DPC_1_219	219
+	Design.population.countries	Timor-Leste	MDS_Design_DPC_1_220	220
+	Design.population.countries	Togo	MDS_Design_DPC_1_221	221
+	Design.population.countries	Tokelau	MDS_Design_DPC_1_222	222
+	Design.population.countries	Tonga	MDS_Design_DPC_1_223	223
+	Design.population.countries	Trinidad and Tobago	MDS_Design_DPC_1_224	224
+	Design.population.countries	Tunisia	MDS_Design_DPC_1_225	225
+	Design.population.countries	Turkmenistan	MDS_Design_DPC_1_226	226
+	Design.population.countries	Turks and Caicos Islands	MDS_Design_DPC_1_227	227
+	Design.population.countries	Tuvalu	MDS_Design_DPC_1_228	228
+	Design.population.countries	Türkiye	MDS_Design_DPC_1_229	229
+	Design.population.countries	Uganda	MDS_Design_DPC_1_230	230
+	Design.population.countries	Ukraine	MDS_Design_DPC_1_231	231
+	Design.population.countries	United Arab Emirates	MDS_Design_DPC_1_232	232
+	Design.population.countries	United Kingdom of Great Britain and Northern Ireland	MDS_Design_DPC_1_233	233
+	Design.population.countries	United States Minor Outlying Islands	MDS_Design_DPC_1_234	234
+	Design.population.countries	United States of America	MDS_Design_DPC_1_235	235
+	Design.population.countries	Uruguay	MDS_Design_DPC_1_236	236
+	Design.population.countries	Uzbekistan	MDS_Design_DPC_1_237	237
+	Design.population.countries	Vanuatu	MDS_Design_DPC_1_238	238
+	Design.population.countries	Venezuela, Bolivarian Republic of	MDS_Design_DPC_1_239	239
+	Design.population.countries	Viet Nam	MDS_Design_DPC_1_240	240
+	Design.population.countries	Virgin Islands, British	MDS_Design_DPC_1_241	241
+	Design.population.countries	Virgin Islands, U.S.	MDS_Design_DPC_1_242	242
+	Design.population.countries	Wallis and Futuna	MDS_Design_DPC_1_243	243
+	Design.population.countries	Western Sahara	MDS_Design_DPC_1_244	244
+	Design.population.countries	Yemen	MDS_Design_DPC_1_245	245
+	Design.population.countries	Zambia	MDS_Design_DPC_1_246	246
+	Design.population.countries	Zimbabwe	MDS_Design_DPC_1_247	247
+	Design.population.countries	Åland Islands	MDS_Design_DPC_1_248	248
+	Design.arms.type	Experimental	MDS_Design_DAT_0	0
+	Design.arms.type	Active comparator	MDS_Design_DAT_1	1
+	Design.arms.type	Placebo comparator	MDS_Design_DAT_2	2
+	Design.arms.type	Sham comparator	MDS_Design_DAT_3	3
+	Design.arms.type	No intervention	MDS_Design_DAT_4	4
+	Design.arms.type	Other	MDS_Design_DAT_5	5
+	Design.interventions.type	Drug (including placebo)	MDS_Design_DIT_0	0
+	Design.interventions.type	Device (including sham)	MDS_Design_DIT_1	1
+	Design.interventions.type	Biological/Vaccine	MDS_Design_DIT_2	2
+	Design.interventions.type	Procedure/Surgery	MDS_Design_DIT_3	3
+	Design.interventions.type	Radiation	MDS_Design_DIT_4	4
+	Design.interventions.type	Behavioral (e.g., psychotherapy, lifestyle counseling)	MDS_Design_DIT_5	5
+	Design.interventions.type	Genetic (including gene transfer, stem cell and recombinant DNA)	MDS_Design_DIT_6	6
+	Design.interventions.type	Dietary supplement (e.g., vitamins, minerals)	MDS_Design_DIT_7	7
+	Design.interventions.type	Combination product (combining a drug and device, a biological product and device; a drug and biological product; or a drug, biological product, and device)	MDS_Design_DIT_8	8
+	Design.interventions.type	Diagnostic test (e.g., imaging, in-vitro)	MDS_Design_DIT_9	9
+	Design.interventions.type	Other	MDS_Design_DIT_10	10
+	Design.exposures.type	Drug (including placebo)	MDS_Design_DET_0	0
+	Design.exposures.type	Device (including sham)	MDS_Design_DET_1	1
+	Design.exposures.type	Biological/Vaccine	MDS_Design_DET_2	2
+	Design.exposures.type	Procedure/Surgery	MDS_Design_DET_3	3
+	Design.exposures.type	Radiation	MDS_Design_DET_4	4
+	Design.exposures.type	Behavioral (e.g., psychotherapy, lifestyle counseling)	MDS_Design_DET_5	5
+	Design.exposures.type	Genetic (including gene transfer, stem cell and recombinant DNA)	MDS_Design_DET_6	6
+	Design.exposures.type	Dietary supplement (e.g., vitamins, minerals)	MDS_Design_DET_7	7
+	Design.exposures.type	Combination product (combining a drug and device, a biological product and device; a drug and biological product; or a drug, biological product, and device)	MDS_Design_DET_8	8
+	Design.exposures.type	Diagnostic test (e.g., imaging, in-vitro)	MDS_Design_DET_9	9
+	Design.exposures.type	Other	MDS_Design_DET_10	10
+	Design.outcomes.type	Primary	MDS_Design_DOT_0	0
+	Design.outcomes.type	Secondary	MDS_Design_DOT_1	1
+	Design.outcomes.type	Other	MDS_Design_DOT_2	2
+	Design.assessments	Alcohol consumption	MDS_Design_DA_0	0
+	Design.assessments	Body Mass Index	MDS_Design_DA_1	1
+	Design.assessments	Body fat percentage	MDS_Design_DA_2	2
+	Design.assessments	Body height	MDS_Design_DA_3	3
+	Design.assessments	Body weight	MDS_Design_DA_4	4
+	Design.assessments	Diet/Nutrition	MDS_Design_DA_5	5
+	Design.assessments	Physical activity	MDS_Design_DA_6	6
+	Design.assessments	Sociodemographic information	MDS_Design_DA_7	7
+	Design.assessments	Tobacco use	MDS_Design_DA_8	8
+	Design.assessments	Waist circumference	MDS_Design_DA_9	9
+	Design.dataSharingPlan.generally	Yes, there is a plan to make data available	MDS_Design_DDG_1_0	0
+	Design.dataSharingPlan.generally	No, there is no plan to make data available	MDS_Design_DDG_1_1	1
+	Design.dataSharingPlan.generally	Undecided, it is not yet known if data will be made available	MDS_Design_DDG_1_2	2
+	Design.dataSharingPlan.supportingInformation	Analytic code	MDS_Design_DDS_0	0
+	Design.dataSharingPlan.supportingInformation	Case report form (template)	MDS_Design_DDS_1	1
+	Design.dataSharingPlan.supportingInformation	Clinical study report	MDS_Design_DDS_2	2
+	Design.dataSharingPlan.supportingInformation	Code book	MDS_Design_DDS_3	3
+	Design.dataSharingPlan.supportingInformation	Data dictionary	MDS_Design_DDS_4	4
+	Design.dataSharingPlan.supportingInformation	Informed consent form	MDS_Design_DDS_5	5
+	Design.dataSharingPlan.supportingInformation	Manual of operations (SOP)	MDS_Design_DDS_6	6
+	Design.dataSharingPlan.supportingInformation	Other	MDS_Design_DDS_7	7
+	Design.dataSharingPlan.supportingInformation	Protocol amendment	MDS_Design_DDS_8	8
+	Design.dataSharingPlan.supportingInformation	Questionnaire (template)	MDS_Design_DDS_9	9
+	Design.dataSharingPlan.supportingInformation	Statistical analysis plan	MDS_Design_DDS_10	10
+	Design.dataSharingPlan.supportingInformation	Study protocol	MDS_Design_DDS_11	11
+	Design.dataSharingPlan.datashield	Yes	MDS_Design_DDD_0	0
+	Design.dataSharingPlan.datashield	No	MDS_Design_DDD_1	1
+	Design.dataSharingPlan.datashield	Pending	MDS_Design_DDD_2	2
+	Design.dataSharingPlan.recordLinkage	Yes	MDS_Design_DDR_0	0
+	Design.dataSharingPlan.recordLinkage	No	MDS_Design_DDR_1	1
+	Design.nonInterventional.timePerspectives	Cross-sectional	MDS_Design_DNT_0	0
+	Design.nonInterventional.timePerspectives	Other	MDS_Design_DNT_1	1
+	Design.nonInterventional.timePerspectives	Prospective	MDS_Design_DNT_2	2
+	Design.nonInterventional.timePerspectives	Retrospective	MDS_Design_DNT_3	3
+	Design.nonInterventional.targetFollowUpDuration.timeUnit	Years	MDS_Design_DNTT_0	0
+	Design.nonInterventional.targetFollowUpDuration.timeUnit	Months	MDS_Design_DNTT_1	1
+	Design.nonInterventional.targetFollowUpDuration.timeUnit	Weeks	MDS_Design_DNTT_2	2
+	Design.nonInterventional.targetFollowUpDuration.timeUnit	Days	MDS_Design_DNTT_3	3
+	Design.nonInterventional.biospecimenRetention	None retained	MDS_Design_DNB_0	0
+	Design.nonInterventional.biospecimenRetention	Samples with DNA	MDS_Design_DNB_1	1
+	Design.nonInterventional.biospecimenRetention	Samples without DNA	MDS_Design_DNB_2	2
+	Design.interventional.phase	Early-phase-1	MDS_Design_DIP_0	0
+	Design.interventional.phase	Phase-1	MDS_Design_DIP_1	1
+	Design.interventional.phase	Phase-1-phase-2	MDS_Design_DIP_2	2
+	Design.interventional.phase	Phase-2	MDS_Design_DIP_3	3
+	Design.interventional.phase	Phase-2a	MDS_Design_DIP_4	4
+	Design.interventional.phase	Phase-2b	MDS_Design_DIP_5	5
+	Design.interventional.phase	Phase-2-phase-3	MDS_Design_DIP_6	6
+	Design.interventional.phase	Phase-3	MDS_Design_DIP_7	7
+	Design.interventional.phase	Phase-3a	MDS_Design_DIP_8	8
+	Design.interventional.phase	Phase-3b	MDS_Design_DIP_9	9
+	Design.interventional.phase	Phase-4	MDS_Design_DIP_10	10
+	Design.interventional.phase	Other	MDS_Design_DIP_11	11
+	Design.interventional.phase	Not applicable	MDS_Design_DIP_12	12
+	Design.interventional.masking.general	Yes	MDS_Design_DIMG_0	0
+	Design.interventional.masking.general	No	MDS_Design_DIMG_1	1
+	Design.interventional.masking.roles	Care provider	MDS_Design_DIMR_0	0
+	Design.interventional.masking.roles	Investigator	MDS_Design_DIMR_1	1
+	Design.interventional.masking.roles	Outcomes assessor	MDS_Design_DIMR_2	2
+	Design.interventional.masking.roles	Participant	MDS_Design_DIMR_3	3
+	Design.interventional.allocation	Randomized	MDS_Design_DIA_0	0
+	Design.interventional.allocation	Nonrandomized	MDS_Design_DIA_1	1
+	Design.interventional.allocation	Not applicable (for single-arm trials)	MDS_Design_DIA_2	2
+	Design.interventional.offLabelUse	Yes	MDS_Design_DIO_0	0
+	Design.interventional.offLabelUse	No	MDS_Design_DIO_1	1
+	Design.interventional.offLabelUse	Not applicable	MDS_Design_DIO_2	2
+	Design.nonInterventional.targetFollowUpDuration.timeUnit	Unit of time	Unit of time.		text	97		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.nonInterventional.targetFollowUpDuration	MDS_Design

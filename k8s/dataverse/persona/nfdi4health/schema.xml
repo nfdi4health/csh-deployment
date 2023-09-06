@@ -258,8 +258,6 @@
     <field name="authorIdentifierScheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="authorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="characteristicOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="chronic_diseases" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="chronic_diseases_epidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology.commonChronicDiseaseName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology.dataCollected" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -270,7 +268,6 @@
     <field name="collection" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="collectionMode" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="collectorTraining" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="common_chronic_disease_name" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="contributor" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="contributorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="contributorType" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -293,7 +290,6 @@
     <field name="coverage.Temporal" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="coverage.Temporal.StartTime" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="coverage.Temporal.StopTime" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="data_collected" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dataCollectionSituation" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="dataCollector" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="datasetContact" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -301,7 +297,6 @@
     <field name="datasetContactEmail" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="datasetContactName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="datasetLevelErrorNotes" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="data_source" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dataSources" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="date" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dateOfCollection" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -419,31 +414,20 @@
     <field name="Design.studyType.nonInterventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="deviationsFromSampleDesign" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="dietary_supplements" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_device" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.device" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.dietarySupplements" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.ffqItemsNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_instrument" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.instrument" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_mode" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.mode" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.portionSizeEstimation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.referencePeriodNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.referencePeriodUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_reliability" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.reliability" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_reliability_reference" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.reliabilityReference" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_repeat" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.repeat" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_repeat_frequency" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.repeatFrequency" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_validity" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.validity" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="diet_assessment_validity_reference" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.validityReference" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="distributionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="distributor" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -456,7 +440,6 @@
     <field name="dsDescriptionDate" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dsDescriptionValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="eastLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ffq_items_number" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="frequencyOfDataCollection" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="geographicBoundingBox" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="geographicCoverage" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -465,17 +448,6 @@
     <field name="grantNumberAgency" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="grantNumberValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="ids" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_alternative" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_alternative_identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_alternative_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_nfdi4health" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_nfdi4health_identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_nfdi4health_relation_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_relation_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_resource_type_general" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ids_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="information_sources" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalArticleType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalIssue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalPubDate" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -487,15 +459,10 @@
     <field name="keywordVocabularyURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="kindOfData" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="language" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="last_update_posted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="last_update_posted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="last_update_submitted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="last_update_submitted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="link" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="mortality_data" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="northLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="notesText" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="nutritional_data" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="originOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="otherDataAppraisal" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="otherGeographicCoverage" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -503,7 +470,6 @@
     <field name="otherIdAgency" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="otherIdValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="otherReferences" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="portion_size_estimation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="producer" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="producerAbbreviation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="producerAffiliation" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -513,7 +479,6 @@
     <field name="productionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="productionPlace" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="provenance" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="provenance_resource_version" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="publication" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationCitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationIDNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -527,11 +492,8 @@
     <field name="RecordLinkage.informedConsent" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.legalBasis" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.legalBasisDetails" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="record_linkage_possible" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.responsibleInstitutions" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="redshiftType" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="reference_period_number" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="reference_period_unit" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="relatedDatasets" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="relatedMaterial" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="researchInstrument" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -539,16 +501,11 @@
     <field name="resolution.Spatial" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resolution.Spectral" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resolution.Temporal" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_acronyms" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.acronyms" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_acronyms_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.acronyms.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_acronyms_text" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.acronyms.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.chronicDiseases" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_classification" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.classification" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_classification_resource_type_general" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.classification.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.classification.typeGeneral" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.collection" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -574,24 +531,12 @@
     <field name="Resource.contributors.personal.identifiers.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.personal.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.phone" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_description_english" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.descriptionEnglish" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_description_english_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.descriptionEnglish.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_description_english_text" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.descriptionEnglish.text" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_descriptions_non_english" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.descriptionsNonEnglish" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_descriptions_non_english_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.descriptionsNonEnglish.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_descriptions_non_english_text" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.descriptionsNonEnglish.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_first_posted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_first_posted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_first_submitted_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_first_submitted_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_format" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_identifier" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.identifier" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.ids" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.idsAlternative" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -605,15 +550,10 @@
     <field name="Resource.ids.relationType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.ids.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.ids.typeGeneral" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_keywords" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.keywords" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.keywords.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_keywords_label" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.keywords.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_keywords_label_code" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_languages" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.languages" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_non_study_details" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.nonStudyDetails" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.nonStudyDetails.format" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.nonStudyDetails.useRights" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -640,150 +580,11 @@
     <field name="Resource.provenance.resourceVersion" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.provenance.verificationDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.provenance.verificationUser" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.arms" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.arms.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.arms.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.arms.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.assessments" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.centers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.centersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.comment" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.conditions.classification" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.conditions.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.conditions.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.countries" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataProviders" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataProvidersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.accessCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.datashield" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.recordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.supportingInformation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.timeFrame" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSharingPlan.url" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSource" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSource.biosamples" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSource.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSource.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSource.imaging" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.dataSource.omics" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.ageMax" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.ageMax.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.ageMax.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.ageMin" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.ageMin.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.ageMin.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.exclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.genders" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.eligibilityCriteria.inclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.endDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.ethicsCommitteeApproval" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.exposures" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.exposures.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.exposures.groupsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.exposures.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.exposures.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.groups" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.groups.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.groups.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.groupsOfDiseases" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.groupsOfDiseases.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.groupsOfDiseases.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.hypothesis" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional.allocation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional.masking" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional.masking.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional.masking.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional.masking.roles" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional.offLabelUse" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventional.phase" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventions.armsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventions.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventions.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.interventions.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.mortalityData" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional.biospecimenDescription" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional.biospecimenRetention" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.frequency" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional.targetFollowUpDuration.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.nonInterventional.timePerspectives" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.obtainedSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.outcomes" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.outcomes.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.outcomes.timeFrame" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.outcomes.title" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.outcomes.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.population" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.primaryDesign" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.primaryPurpose" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.reasonStopped" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.recruitmentStatusRegister" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.region" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.sampling" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.sampling.method" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.sampling.nonProbabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.sampling.probabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.stageStopped" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.startDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.status" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.statusEnrollingByInvitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.statusWhenIntervention" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.studyType" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.studyType.interventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.studyType.nonInterventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.resourceDesign.targetSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_titles" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.titles" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_titles_language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.titles.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_titles_text" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.titles.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_use_rights" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_use_rights_confirmation_authority" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_use_rights_confirmation_irrevocability" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_use_rights_confirmations" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_use_rights_confirmation_terms" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_use_rights_description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_use_rights_label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_use_rights_support_by_licensing" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource_version" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resource_web_page" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.webpage" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="responseRate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="role_affiliation_address" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_affiliation_identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_affiliation_identifiers_identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_affiliation_identifiers_scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_affiliation_name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_affiliations" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_affiliation_web_page" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_email" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_identifiers_identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_identifiers_scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_organisational_group" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_organisational_group_name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_organisational_group_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_organisational_group_type_funding_id" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_personal" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_personal_family_name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_personal_given_name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_personal_title" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_personal_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_name_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="role_phone" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="roles" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="samplingErrorEstimates" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="samplingProcedure" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="series" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -798,17 +599,6 @@
     <field name="softwareVersion" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="southLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="state" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_age_max_examined" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_age_max_examined_number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_age_max_examined_time_unit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_age_min_examined" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_age_min_examined_number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_age_min_examined_time_unit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_allocation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_arm_group_description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_arm_group_label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_arm_group_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_arms_groups" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyAssayCellType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyAssayMeasurementType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyAssayOrganism" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -818,93 +608,10 @@
     <field name="studyAssayOtherTechnologyType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyAssayPlatform" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyAssayTechnologyType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_assessments" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_biospecimen_description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_biospecimen_retention" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_centers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_centers_number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_conditions_classification" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_conditions_classification_code" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_conditions_label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_countries" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan_access_criteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan_datashield" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan_description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan_generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan_supporting_information" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan_time_frame" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_data_sharing_plan_url" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_data_source" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_data_source_description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_data_sources_biosamples" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_data_sources_general" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_data_sources_imaging" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_data_sources_omics" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_design" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_design_comment" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_design_interventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_design_non_interventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="studyDesignType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_diseases_conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_eligibility_age_max" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_eligibility_age_max_number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_eligibility_age_max_time_unit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_eligibility_age_min" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_eligibility_age_min_number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_eligibility_age_min_time_unit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_eligibility_criteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_eligibility_exclusion_criteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_eligibility_genders" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_eligibility_inclusion_criteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_end_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_ethics_committee_approval" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyFactorType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_groups_of_diseases" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_groups_of_diseases_generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_hypothesis" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_intervention_arms_groups_label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_intervention_description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_intervention_name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_interventions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_intervention_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_masking" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_masking_description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_masking_general" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_masking_roles" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_obtained_sample_size" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_off_label_use" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyOtherDesignType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="studyOtherFactorType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_outcome_description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_outcomes" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_outcome_time_frame" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_outcome_title" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_outcome_type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_phase" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_population" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_primary_design" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_primary_purpose" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_recruitment_status_register" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_region" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_sampling" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_sampling_method" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_sampling_method_non_probability" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_sampling_method_probability" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_start_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_status" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_status_enrolling_by_invitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_status_halted_reason" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_status_halted_stage" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_status_when_intervention" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_target_followup_duration" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_target_sample_size" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_time_perspectives" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_type" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="study_type_interventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="study_type_non_interventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="subtitle" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="targetSampleActualSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -921,8 +628,6 @@
     <field name="topicClassVocabURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="unitOfAnalysis" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="universe" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="verification_date" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="verification_date_user" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="weighting" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="westLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <!-- SCHEMA-FIELDS::END -->
@@ -1019,8 +724,6 @@
     <copyField source="authorIdentifierScheme" dest="_text_" maxChars="3000"/>
     <copyField source="authorName" dest="_text_" maxChars="3000"/>
     <copyField source="characteristicOfSources" dest="_text_" maxChars="3000"/>
-    <copyField source="chronic_diseases" dest="_text_" maxChars="3000"/>
-    <copyField source="chronic_diseases_epidemiology" dest="_text_" maxChars="3000"/>
     <copyField source="ChronicDiseasesEpidemiology" dest="_text_" maxChars="3000"/>
     <copyField source="ChronicDiseasesEpidemiology.commonChronicDiseaseName" dest="_text_" maxChars="3000"/>
     <copyField source="ChronicDiseasesEpidemiology.dataCollected" dest="_text_" maxChars="3000"/>
@@ -1031,7 +734,6 @@
     <copyField source="collection" dest="_text_" maxChars="3000"/>
     <copyField source="collectionMode" dest="_text_" maxChars="3000"/>
     <copyField source="collectorTraining" dest="_text_" maxChars="3000"/>
-    <copyField source="common_chronic_disease_name" dest="_text_" maxChars="3000"/>
     <copyField source="contributor" dest="_text_" maxChars="3000"/>
     <copyField source="contributorName" dest="_text_" maxChars="3000"/>
     <copyField source="contributorType" dest="_text_" maxChars="3000"/>
@@ -1054,7 +756,6 @@
     <copyField source="coverage.Temporal" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Temporal.StartTime" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Temporal.StopTime" dest="_text_" maxChars="3000"/>
-    <copyField source="data_collected" dest="_text_" maxChars="3000"/>
     <copyField source="dataCollectionSituation" dest="_text_" maxChars="3000"/>
     <copyField source="dataCollector" dest="_text_" maxChars="3000"/>
     <copyField source="datasetContact" dest="_text_" maxChars="3000"/>
@@ -1062,7 +763,6 @@
     <copyField source="datasetContactEmail" dest="_text_" maxChars="3000"/>
     <copyField source="datasetContactName" dest="_text_" maxChars="3000"/>
     <copyField source="datasetLevelErrorNotes" dest="_text_" maxChars="3000"/>
-    <copyField source="data_source" dest="_text_" maxChars="3000"/>
     <copyField source="dataSources" dest="_text_" maxChars="3000"/>
     <copyField source="date" dest="_text_" maxChars="3000"/>
     <copyField source="dateOfCollection" dest="_text_" maxChars="3000"/>
@@ -1180,31 +880,20 @@
     <copyField source="Design.studyType.nonInterventional" dest="_text_" maxChars="3000"/>
     <copyField source="Design.subject" dest="_text_" maxChars="3000"/>
     <copyField source="deviationsFromSampleDesign" dest="_text_" maxChars="3000"/>
-    <copyField source="dietary_supplements" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_device" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.device" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.dietarySupplements" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.ffqItemsNumber" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_instrument" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.instrument" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_mode" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.mode" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.portionSizeEstimation" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.referencePeriodNumber" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.referencePeriodUnit" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_reliability" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.reliability" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_reliability_reference" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.reliabilityReference" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_repeat" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.repeat" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_repeat_frequency" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.repeatFrequency" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_validity" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.validity" dest="_text_" maxChars="3000"/>
-    <copyField source="diet_assessment_validity_reference" dest="_text_" maxChars="3000"/>
     <copyField source="DietAssessment.validityReference" dest="_text_" maxChars="3000"/>
     <copyField source="distributionDate" dest="_text_" maxChars="3000"/>
     <copyField source="distributor" dest="_text_" maxChars="3000"/>
@@ -1217,7 +906,6 @@
     <copyField source="dsDescriptionDate" dest="_text_" maxChars="3000"/>
     <copyField source="dsDescriptionValue" dest="_text_" maxChars="3000"/>
     <copyField source="eastLongitude" dest="_text_" maxChars="3000"/>
-    <copyField source="ffq_items_number" dest="_text_" maxChars="3000"/>
     <copyField source="frequencyOfDataCollection" dest="_text_" maxChars="3000"/>
     <copyField source="geographicBoundingBox" dest="_text_" maxChars="3000"/>
     <copyField source="geographicCoverage" dest="_text_" maxChars="3000"/>
@@ -1226,17 +914,6 @@
     <copyField source="grantNumberAgency" dest="_text_" maxChars="3000"/>
     <copyField source="grantNumberValue" dest="_text_" maxChars="3000"/>
     <copyField source="ids" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_alternative" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_alternative_identifier" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_alternative_type" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_identifier" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_nfdi4health" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_nfdi4health_identifier" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_nfdi4health_relation_type" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_relation_type" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_resource_type_general" dest="_text_" maxChars="3000"/>
-    <copyField source="ids_type" dest="_text_" maxChars="3000"/>
-    <copyField source="information_sources" dest="_text_" maxChars="3000"/>
     <copyField source="journalArticleType" dest="_text_" maxChars="3000"/>
     <copyField source="journalIssue" dest="_text_" maxChars="3000"/>
     <copyField source="journalPubDate" dest="_text_" maxChars="3000"/>
@@ -1248,12 +925,7 @@
     <copyField source="keywordVocabularyURI" dest="_text_" maxChars="3000"/>
     <copyField source="kindOfData" dest="_text_" maxChars="3000"/>
     <copyField source="language" dest="_text_" maxChars="3000"/>
-    <copyField source="last_update_posted_date" dest="_text_" maxChars="3000"/>
-    <copyField source="last_update_posted_user" dest="_text_" maxChars="3000"/>
-    <copyField source="last_update_submitted_date" dest="_text_" maxChars="3000"/>
-    <copyField source="last_update_submitted_user" dest="_text_" maxChars="3000"/>
     <copyField source="link" dest="_text_" maxChars="3000"/>
-    <copyField source="mortality_data" dest="_text_" maxChars="3000"/>
     <copyField source="northLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="notesText" dest="_text_" maxChars="3000"/>
     <copyField source="nutritional_data" dest="_text_" maxChars="3000"/>
@@ -1264,7 +936,6 @@
     <copyField source="otherIdAgency" dest="_text_" maxChars="3000"/>
     <copyField source="otherIdValue" dest="_text_" maxChars="3000"/>
     <copyField source="otherReferences" dest="_text_" maxChars="3000"/>
-    <copyField source="portion_size_estimation" dest="_text_" maxChars="3000"/>
     <copyField source="producer" dest="_text_" maxChars="3000"/>
     <copyField source="producerAbbreviation" dest="_text_" maxChars="3000"/>
     <copyField source="producerAffiliation" dest="_text_" maxChars="3000"/>
@@ -1274,7 +945,6 @@
     <copyField source="productionDate" dest="_text_" maxChars="3000"/>
     <copyField source="productionPlace" dest="_text_" maxChars="3000"/>
     <copyField source="provenance" dest="_text_" maxChars="3000"/>
-    <copyField source="provenance_resource_version" dest="_text_" maxChars="3000"/>
     <copyField source="publication" dest="_text_" maxChars="3000"/>
     <copyField source="publicationCitation" dest="_text_" maxChars="3000"/>
     <copyField source="publicationIDNumber" dest="_text_" maxChars="3000"/>
@@ -1288,11 +958,8 @@
     <copyField source="RecordLinkage.informedConsent" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.legalBasis" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.legalBasisDetails" dest="_text_" maxChars="3000"/>
-    <copyField source="record_linkage_possible" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.responsibleInstitutions" dest="_text_" maxChars="3000"/>
     <copyField source="redshiftType" dest="_text_" maxChars="3000"/>
-    <copyField source="reference_period_number" dest="_text_" maxChars="3000"/>
-    <copyField source="reference_period_unit" dest="_text_" maxChars="3000"/>
     <copyField source="relatedDatasets" dest="_text_" maxChars="3000"/>
     <copyField source="relatedMaterial" dest="_text_" maxChars="3000"/>
     <copyField source="researchInstrument" dest="_text_" maxChars="3000"/>
@@ -1300,16 +967,11 @@
     <copyField source="resolution.Spatial" dest="_text_" maxChars="3000"/>
     <copyField source="resolution.Spectral" dest="_text_" maxChars="3000"/>
     <copyField source="resolution.Temporal" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_acronyms" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.acronyms" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_acronyms_language" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.acronyms.language" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_acronyms_text" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.acronyms.text" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.chronicDiseases" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_classification" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.classification" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_classification_resource_type_general" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.classification.type" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.classification.typeGeneral" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.collection" dest="_text_" maxChars="3000"/>
@@ -1335,24 +997,12 @@
     <copyField source="Resource.contributors.personal.identifiers.scheme" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.contributors.personal.type" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.contributors.phone" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_description_english" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.descriptionEnglish" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_description_english_language" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.descriptionEnglish.language" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_description_english_text" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.descriptionEnglish.text" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_descriptions_non_english" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.descriptionsNonEnglish" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_descriptions_non_english_language" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.descriptionsNonEnglish.language" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_descriptions_non_english_text" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.descriptionsNonEnglish.text" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_first_posted_date" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_first_posted_user" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_first_submitted_date" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_first_submitted_user" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_format" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_identifier" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.identifier" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.ids" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.idsAlternative" dest="_text_" maxChars="3000"/>
@@ -1366,15 +1016,10 @@
     <copyField source="Resource.ids.relationType" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.ids.scheme" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.ids.typeGeneral" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_keywords" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.keywords" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.keywords.code" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_keywords_label" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.keywords.label" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_keywords_label_code" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_languages" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.languages" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_non_study_details" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.nonStudyDetails" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.nonStudyDetails.format" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.nonStudyDetails.useRights" dest="_text_" maxChars="3000"/>
@@ -1503,48 +1148,11 @@
     <copyField source="Resource.resourceDesign.studyType.nonInterventional" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.resourceDesign.subject" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.resourceDesign.targetSampleSize" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_titles" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.titles" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_titles_language" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.titles.language" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_titles_text" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.titles.text" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_type" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights_confirmation_authority" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights_confirmation_irrevocability" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights_confirmations" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights_confirmation_terms" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights_description" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights_label" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_use_rights_support_by_licensing" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_version" dest="_text_" maxChars="3000"/>
-    <copyField source="resource_web_page" dest="_text_" maxChars="3000"/>
     <copyField source="Resource.webpage" dest="_text_" maxChars="3000"/>
     <copyField source="responseRate" dest="_text_" maxChars="3000"/>
-    <copyField source="role_affiliation_address" dest="_text_" maxChars="3000"/>
-    <copyField source="role_affiliation_identifiers" dest="_text_" maxChars="3000"/>
-    <copyField source="role_affiliation_identifiers_identifier" dest="_text_" maxChars="3000"/>
-    <copyField source="role_affiliation_identifiers_scheme" dest="_text_" maxChars="3000"/>
-    <copyField source="role_affiliation_name" dest="_text_" maxChars="3000"/>
-    <copyField source="role_affiliations" dest="_text_" maxChars="3000"/>
-    <copyField source="role_affiliation_web_page" dest="_text_" maxChars="3000"/>
-    <copyField source="role_email" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_identifiers" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_identifiers_identifier" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_identifiers_scheme" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_organisational_group" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_organisational_group_name" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_organisational_group_type" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_organisational_group_type_funding_id" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_personal" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_personal_family_name" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_personal_given_name" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_personal_title" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_personal_type" dest="_text_" maxChars="3000"/>
-    <copyField source="role_name_type" dest="_text_" maxChars="3000"/>
-    <copyField source="role_phone" dest="_text_" maxChars="3000"/>
-    <copyField source="roles" dest="_text_" maxChars="3000"/>
     <copyField source="samplingErrorEstimates" dest="_text_" maxChars="3000"/>
     <copyField source="samplingProcedure" dest="_text_" maxChars="3000"/>
     <copyField source="series" dest="_text_" maxChars="3000"/>
@@ -1559,17 +1167,6 @@
     <copyField source="softwareVersion" dest="_text_" maxChars="3000"/>
     <copyField source="southLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="state" dest="_text_" maxChars="3000"/>
-    <copyField source="study_age_max_examined" dest="_text_" maxChars="3000"/>
-    <copyField source="study_age_max_examined_number" dest="_text_" maxChars="3000"/>
-    <copyField source="study_age_max_examined_time_unit" dest="_text_" maxChars="3000"/>
-    <copyField source="study_age_min_examined" dest="_text_" maxChars="3000"/>
-    <copyField source="study_age_min_examined_number" dest="_text_" maxChars="3000"/>
-    <copyField source="study_age_min_examined_time_unit" dest="_text_" maxChars="3000"/>
-    <copyField source="study_allocation" dest="_text_" maxChars="3000"/>
-    <copyField source="study_arm_group_description" dest="_text_" maxChars="3000"/>
-    <copyField source="study_arm_group_label" dest="_text_" maxChars="3000"/>
-    <copyField source="study_arm_group_type" dest="_text_" maxChars="3000"/>
-    <copyField source="study_arms_groups" dest="_text_" maxChars="3000"/>
     <copyField source="studyAssayCellType" dest="_text_" maxChars="3000"/>
     <copyField source="studyAssayMeasurementType" dest="_text_" maxChars="3000"/>
     <copyField source="studyAssayOrganism" dest="_text_" maxChars="3000"/>
@@ -1579,93 +1176,10 @@
     <copyField source="studyAssayOtherTechnologyType" dest="_text_" maxChars="3000"/>
     <copyField source="studyAssayPlatform" dest="_text_" maxChars="3000"/>
     <copyField source="studyAssayTechnologyType" dest="_text_" maxChars="3000"/>
-    <copyField source="study_assessments" dest="_text_" maxChars="3000"/>
-    <copyField source="study_biospecimen_description" dest="_text_" maxChars="3000"/>
-    <copyField source="study_biospecimen_retention" dest="_text_" maxChars="3000"/>
-    <copyField source="study_centers" dest="_text_" maxChars="3000"/>
-    <copyField source="study_centers_number" dest="_text_" maxChars="3000"/>
-    <copyField source="study_conditions" dest="_text_" maxChars="3000"/>
-    <copyField source="study_conditions_classification" dest="_text_" maxChars="3000"/>
-    <copyField source="study_conditions_classification_code" dest="_text_" maxChars="3000"/>
-    <copyField source="study_conditions_label" dest="_text_" maxChars="3000"/>
-    <copyField source="study_countries" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan_access_criteria" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan_datashield" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan_description" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan_generally" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan_supporting_information" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan_time_frame" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sharing_plan_url" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_source" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_source_description" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sources_biosamples" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sources_general" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sources_imaging" dest="_text_" maxChars="3000"/>
-    <copyField source="study_data_sources_omics" dest="_text_" maxChars="3000"/>
-    <copyField source="study_design" dest="_text_" maxChars="3000"/>
-    <copyField source="study_design_comment" dest="_text_" maxChars="3000"/>
-    <copyField source="study_design_interventional" dest="_text_" maxChars="3000"/>
-    <copyField source="study_design_non_interventional" dest="_text_" maxChars="3000"/>
     <copyField source="studyDesignType" dest="_text_" maxChars="3000"/>
-    <copyField source="study_diseases_conditions" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_age_max" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_age_max_number" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_age_max_time_unit" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_age_min" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_age_min_number" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_age_min_time_unit" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_criteria" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_exclusion_criteria" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_genders" dest="_text_" maxChars="3000"/>
-    <copyField source="study_eligibility_inclusion_criteria" dest="_text_" maxChars="3000"/>
-    <copyField source="study_end_date" dest="_text_" maxChars="3000"/>
-    <copyField source="study_ethics_committee_approval" dest="_text_" maxChars="3000"/>
     <copyField source="studyFactorType" dest="_text_" maxChars="3000"/>
-    <copyField source="study_groups_of_diseases" dest="_text_" maxChars="3000"/>
-    <copyField source="study_groups_of_diseases_generally" dest="_text_" maxChars="3000"/>
-    <copyField source="study_hypothesis" dest="_text_" maxChars="3000"/>
-    <copyField source="study_intervention_arms_groups_label" dest="_text_" maxChars="3000"/>
-    <copyField source="study_intervention_description" dest="_text_" maxChars="3000"/>
-    <copyField source="study_intervention_name" dest="_text_" maxChars="3000"/>
-    <copyField source="study_interventions" dest="_text_" maxChars="3000"/>
-    <copyField source="study_intervention_type" dest="_text_" maxChars="3000"/>
-    <copyField source="study_masking" dest="_text_" maxChars="3000"/>
-    <copyField source="study_masking_description" dest="_text_" maxChars="3000"/>
-    <copyField source="study_masking_general" dest="_text_" maxChars="3000"/>
-    <copyField source="study_masking_roles" dest="_text_" maxChars="3000"/>
-    <copyField source="study_obtained_sample_size" dest="_text_" maxChars="3000"/>
-    <copyField source="study_off_label_use" dest="_text_" maxChars="3000"/>
     <copyField source="studyOtherDesignType" dest="_text_" maxChars="3000"/>
     <copyField source="studyOtherFactorType" dest="_text_" maxChars="3000"/>
-    <copyField source="study_outcome_description" dest="_text_" maxChars="3000"/>
-    <copyField source="study_outcomes" dest="_text_" maxChars="3000"/>
-    <copyField source="study_outcome_time_frame" dest="_text_" maxChars="3000"/>
-    <copyField source="study_outcome_title" dest="_text_" maxChars="3000"/>
-    <copyField source="study_outcome_type" dest="_text_" maxChars="3000"/>
-    <copyField source="study_phase" dest="_text_" maxChars="3000"/>
-    <copyField source="study_population" dest="_text_" maxChars="3000"/>
-    <copyField source="study_primary_design" dest="_text_" maxChars="3000"/>
-    <copyField source="study_primary_purpose" dest="_text_" maxChars="3000"/>
-    <copyField source="study_recruitment_status_register" dest="_text_" maxChars="3000"/>
-    <copyField source="study_region" dest="_text_" maxChars="3000"/>
-    <copyField source="study_sampling" dest="_text_" maxChars="3000"/>
-    <copyField source="study_sampling_method" dest="_text_" maxChars="3000"/>
-    <copyField source="study_sampling_method_non_probability" dest="_text_" maxChars="3000"/>
-    <copyField source="study_sampling_method_probability" dest="_text_" maxChars="3000"/>
-    <copyField source="study_start_date" dest="_text_" maxChars="3000"/>
-    <copyField source="study_status" dest="_text_" maxChars="3000"/>
-    <copyField source="study_status_enrolling_by_invitation" dest="_text_" maxChars="3000"/>
-    <copyField source="study_status_halted_reason" dest="_text_" maxChars="3000"/>
-    <copyField source="study_status_halted_stage" dest="_text_" maxChars="3000"/>
-    <copyField source="study_status_when_intervention" dest="_text_" maxChars="3000"/>
-    <copyField source="study_subject" dest="_text_" maxChars="3000"/>
-    <copyField source="study_target_followup_duration" dest="_text_" maxChars="3000"/>
-    <copyField source="study_target_sample_size" dest="_text_" maxChars="3000"/>
-    <copyField source="study_time_perspectives" dest="_text_" maxChars="3000"/>
-    <copyField source="study_type" dest="_text_" maxChars="3000"/>
-    <copyField source="study_type_interventional" dest="_text_" maxChars="3000"/>
-    <copyField source="study_type_non_interventional" dest="_text_" maxChars="3000"/>
     <copyField source="subject" dest="_text_" maxChars="3000"/>
     <copyField source="subtitle" dest="_text_" maxChars="3000"/>
     <copyField source="targetSampleActualSize" dest="_text_" maxChars="3000"/>
@@ -1682,8 +1196,6 @@
     <copyField source="topicClassVocabURI" dest="_text_" maxChars="3000"/>
     <copyField source="unitOfAnalysis" dest="_text_" maxChars="3000"/>
     <copyField source="universe" dest="_text_" maxChars="3000"/>
-    <copyField source="verification_date" dest="_text_" maxChars="3000"/>
-    <copyField source="verification_date_user" dest="_text_" maxChars="3000"/>
     <copyField source="weighting" dest="_text_" maxChars="3000"/>
     <copyField source="westLongitude" dest="_text_" maxChars="3000"/>
     <!-- SCHEMA-COPY-FIELDS::END -->

@@ -1,0 +1,51 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI
+	DietAssessment		DietAssessment	
+#datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	DietAssessment	Diet assessment	Group of items providing information on diet assessment.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		DietAssessment
+	DietAssessment.instrument	Dietary assessment instrument used	Which dietary assessment instrument is used in the [RESOURCE]? Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.ffqItemsNumber	Number of items in FFQ	How many items were inquired with the FFQ?		int	2		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.mode	Mode used to apply the dietary assessment instrument to [RESOURCE] participants	How was the dietary assessment instrument applied to the [RESOURCE] participants? Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.device	Device used to apply the dietary assessment instrument to [RESOURCE] participants	Which device was used to apply the dietary assessment instrument to the [RESOURCE] participants? Select all that apply.		text	4		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.portionSizeEstimation	Portion size estimated by:	How is the portion size inquired in the dietary assessment instrument? Select all that apply.		text	5		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.referencePeriodUnit	Reference period unit	Which reference period is the dietary assessment instrument referring to, e.g. 24-h recall is referring to the previous day. Select one value from the list.		text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.referencePeriodNumber	Numerical value of reference period units	How many of the reference period units were assessed?		int	7		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.repeat	Was this instrument applied repeatedly?	Was the same instrument applied repeatedly?		text	8		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.repeatFrequency	Frequency of applying the dietary assessment instrument	How often was the dietary assessment instrument repeatedly applied?		int	9		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.validity	Was this instrument validated?	Was the dietary assessment instrument validated?		text	10		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.validityReference	Please provide a reference describing the validation.	Reference describing the validation.		text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.reliability	Instrument described according to reliablity?	Was the dietary assessment instrument described according to its reliability?		text	12		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.reliabilityReference	Please provide a reference describing the reliability measures.	Reference describing the reliability measures.		text	13		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.dietarySupplements	Dietary supplements inquired?	Does the dietary assessment instrument inquire information about dietary supplements?		text	14		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder
+	DietAssessment.instrument	Food frequency questionnaire (FFQ)	DI_0	0
+	DietAssessment.instrument	Diet history	DI_1	1
+	DietAssessment.instrument	24-h dietary recall	DI_2	2
+	DietAssessment.instrument	Food record	DI_3	3
+	DietAssessment.instrument	Screener	DI_4	4
+	DietAssessment.instrument	Other	DI_5	5
+	DietAssessment.mode	Face-to-face interview	DM_0	0
+	DietAssessment.mode	Other	DM_1	1
+	DietAssessment.mode	Proxy-administered	DM_2	2
+	DietAssessment.mode	Self-administered	DM_3	3
+	DietAssessment.mode	Telephone interview	DM_4	4
+	DietAssessment.device	App-based	DD_0	0
+	DietAssessment.device	Online questionnaire	DD_1	1
+	DietAssessment.device	Other	DD_2	2
+	DietAssessment.device	Paper-based	DD_3	3
+	DietAssessment.portionSizeEstimation	Described portion sizes	DP_0	0
+	DietAssessment.portionSizeEstimation	None	DP_1	1
+	DietAssessment.portionSizeEstimation	Picture book/visual aids	DP_2	2
+	DietAssessment.portionSizeEstimation	Volume measures	DP_3	3
+	DietAssessment.portionSizeEstimation	Weighing	DP_4	4
+	DietAssessment.referencePeriodUnit	Days	DR_0	0
+	DietAssessment.referencePeriodUnit	Weeks	DR_1	1
+	DietAssessment.referencePeriodUnit	Months	DR_2	2
+	DietAssessment.referencePeriodUnit	Years	DR_3	3
+	DietAssessment.repeat	Yes	DR_1_0	0
+	DietAssessment.repeat	No	DR_1_1	1
+	DietAssessment.validity	Yes	DV_0	0
+	DietAssessment.validity	No	DV_1	1
+	DietAssessment.reliability	Yes	DR_2_0	0
+	DietAssessment.reliability	No	DR_2_1	1
+	DietAssessment.dietarySupplements	Yes	DD_1_0	0
+	DietAssessment.dietarySupplements	No	DD_1_1	1
