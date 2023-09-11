@@ -1,6 +1,7 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
 	MDS_V3_2		MDS_V3_2	
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	Resource.collection				text	0		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2
 	Resource.identifier	ID of the [RESOURCE]	Unique identifier of the resource used for identification within the NFDI4Health.		text	0		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_2
 	Resource.classification	Classification of the resource within the predefined categories	Group of items providing Information about classification of the resource within the predefined categories.		none	1		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_2
 	Resource.classification.type	Type of the resource	A term describing the resource. You can register a study, a study protocol, a questionnaire, etc. Please only add follow up questionnaires if baseline questionnaires have already been registered.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.classification	MDS_V3_2
