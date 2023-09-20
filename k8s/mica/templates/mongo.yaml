@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-mongo
+spec:
+  serviceName: {{ .Release.Name }}-mongo
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-mongo
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo
+          resources:
+            limits:
+              memory: 1000Mi
+            requests:
+              memory: 500Mi
+{{/*          env:*/}}
+{{/*            - name: MONGO_INITDB_ROOT_PASSWORD*/}}
+{{/*              valueFrom:*/}}
+{{/*                secretKeyRef:*/}}
+{{/*                  name: {{ .Release.Name }}-mongo-secret*/}}
+{{/*                  key: password*/}}
+{{/*                  optional: false*/}}
+{{/*            - name: MONGO_INITDB_ROOT_USERNAME*/}}
+{{/*              valueFrom:*/}}
+{{/*                secretKeyRef:*/}}
+{{/*                  name: {{ .Release.Name }}-mongo-secret*/}}
+{{/*                  key: username*/}}
+{{/*                  optional: false*/}}
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: /data/db
+              name: {{ .Release.Name }}-mongo-data-container
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Release.Name }}-mongo-data-container
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-mongo-data-container
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mongo
+spec:
+  ports:
+    - name: "27017"
+      port: 27017
+      targetPort: 27017
+  selector:
+    name: {{ .Release.Name }}-mongo
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-mongo-data-container
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+{{- $name := printf "%s-%s" .Release.Name "mongo-secret" }}
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace $name) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-mongo-secret
+type: Opaque
+data:
+  {{ if $secret -}}
+  username: {{ $secret.data.username }}
+  password: {{ $secret.data.password }}
+  {{ else -}}
+  username: {{ randAlphaNum 20  |b64enc| quote }}
+  password: {{ randAlphaNum 20  |b64enc| quote }}
+  {{ end -}}
+
