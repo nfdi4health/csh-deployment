@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-mica
+spec:
+  serviceName: {{ .Release.Name }}-mica
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-mica
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-mica
+    spec:
+      containers:
+      - name: frontend
+        image: {{ .Values.image }}
+        resources:
+          limits:
+            memory: 4048Mi
+          requests:
+            memory: 512Mi
+        env:
+          - name: MICA_ADMINISTRATOR_PASSWORD
+            value: {{ .Values.mica.admin_pw }}
+          - name: MICA_ANONYMOUS_PASSWORD
+            value: {{ .Values.mica.user_pw }}
+          - name: MONGO_HOST
+            value: {{ .Release.Name }}-mongo
+          - name: MONGO_PORT
+            value: "27017"
+{{/*          - name: MONGO_USERNAME*/}}
+{{/*            valueFrom:*/}}
+{{/*                secretKeyRef:*/}}
+{{/*                  name: {{ .Release.Name }}-mongo-secret*/}}
+{{/*                  key: username*/}}
+{{/*                  optional: false*/}}
+{{/*          - name: MONGO_PASSWORD*/}}
+{{/*            valueFrom:*/}}
+{{/*              secretKeyRef:*/}}
+{{/*                name: {{ .Release.Name }}-mongo-secret*/}}
+{{/*                key: password*/}}
+{{/*                optional: false*/}}
+        ports:
+          - containerPort: 8082
+        volumeMounts:
+          - mountPath: /srv
+            name: {{ .Release.Name }}-data-container-mica
+          - mountPath: /usr/share/mica2/webapp/WEB-INF/classes/templates
+            name: {{ .Release.Name }}-template-container
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Release.Name }}-data-container-mica
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-data-container-mica
+        - name: {{ .Release.Name }}-template-container
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-template-container-mica
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-template-container-mica
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-data-container-mica
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mica
+spec:
+  ports:
+    - name: "8082"
+      port: 8082
+      targetPort: 8082
+  selector:
+    name: {{ .Release.Name }}-mica

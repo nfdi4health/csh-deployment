@@ -1,0 +1,8 @@
+ingress:
+  dns:
+  enableSSL: false
+  certIssuer:
+mica:
+  user_pw:
+  admin_pw:
+image: obiba/mica:snapshot

@@ -1,0 +1,12 @@
+{
+  "name": "BIPS",
+  "alias": "BIPS",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description":  "Leibniz Institute for Prevention Research and Epidemiology - BIPS\n\nThe Leibniz Institute for Prevention Research and Epidemiology - BIPS develops effective strategies for the prevention of chronic, non-communicable diseases. Supporting a healthy life-course early on is our primary goal. The focus of our research is therefore on factors beyond individual diseases, such as lifestyle and environment, biological and social factors, as well as early detection and drug safety. Our research spectrum covers methodological development, the identification of the causes of diseases, and intervention and implementation research. We also offer information to politicians and the general population and provide academic qualification to young scientists. BIPS thus covers the entire cycle of epidemiological research.\n\nMore information can be found on [bips-institut.de](https://www.bips-institut.de/en/index.html)",
+  "dataverseType": "UNCATEGORIZED"
+}

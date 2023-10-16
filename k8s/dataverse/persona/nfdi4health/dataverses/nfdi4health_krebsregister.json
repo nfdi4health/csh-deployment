@@ -1,0 +1,12 @@
+{
+  "name": "Krebsregister § 65c",
+  "alias": "Krebsregister_65c",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "Collection of \"klinischen Krebsregister nach § 65c SGB V\"",
+  "dataverseType": "UNCATEGORIZED"
+}
