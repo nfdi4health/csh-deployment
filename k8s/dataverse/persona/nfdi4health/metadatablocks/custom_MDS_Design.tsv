@@ -178,7 +178,9 @@
 	Design.groupsOfDiseases.generally	Pregnancy, childbirth or the puerperium (XV)	MDS_Design_DGG_21	21
 	Design.groupsOfDiseases.generally	Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (XVIII)	MDS_Design_DGG_22	22
 	Design.groupsOfDiseases.generally	Unknown	MDS_Design_DGG_23	23
-	Design.groupsOfDiseases.conditions	Lower level ICD-10 (https://icd.who.int/browse10/2019/en), with autocomplete	MDS_Design_DGC_0	0
+	Design.groupsOfDiseases.conditions	Cholera (1A00)	MDS_Design_DGC_0	0
+	Design.groupsOfDiseases.conditions	Intestinal infection due to other Vibrio (1A01)	MDS_Design_DGC_1	0
+	Design.groupsOfDiseases.conditions	Intestinal infections due to Shigella (1A02)	MDS_Design_DGC_2	0
 	Design.mortalityData	Yes, vital status only (cause of death missing)	MDS_Design_DM_0	0
 	Design.mortalityData	Yes, with cause of death	MDS_Design_DM_1	1
 	Design.mortalityData	No	MDS_Design_DM_2	2
