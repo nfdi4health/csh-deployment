@@ -1,0 +1,11 @@
+{
+  "alias":"collaborator",
+  "name":"Collaborator",
+  "description":"For datasets, a person who can edit License + Terms, and then submit them for review, just like the original contributor.",
+  "permissions":[
+    "ViewUnpublishedDataset",
+    "EditDataset",
+    "DownloadFile",
+    "DeleteDatasetDraft"
+  ]
+}
