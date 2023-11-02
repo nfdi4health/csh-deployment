@@ -2,7 +2,12 @@ ingress:
   dns:
   enableSSL: false
   certIssuer:
-mica:
-  user_pw:
-  admin_pw:
-image: obiba/mica:snapshot
+backup:
+  s3:
+    host:
+    bucket:
+    key:
+    keyid:
+image: obiba/mica:5.2.3
+mongo:
+  image: mongo:7.0.2

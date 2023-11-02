@@ -14,25 +14,25 @@ spec:
     spec:
       containers:
         - name: mongo
-          image: mongo
+          image: {{ .Values.mongo.image}}
           resources:
             limits:
               memory: 1000Mi
             requests:
               memory: 500Mi
-{{/*          env:*/}}
-{{/*            - name: MONGO_INITDB_ROOT_PASSWORD*/}}
-{{/*              valueFrom:*/}}
-{{/*                secretKeyRef:*/}}
-{{/*                  name: {{ .Release.Name }}-mongo-secret*/}}
-{{/*                  key: password*/}}
-{{/*                  optional: false*/}}
-{{/*            - name: MONGO_INITDB_ROOT_USERNAME*/}}
-{{/*              valueFrom:*/}}
-{{/*                secretKeyRef:*/}}
-{{/*                  name: {{ .Release.Name }}-mongo-secret*/}}
-{{/*                  key: username*/}}
-{{/*                  optional: false*/}}
+          env:
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongo-secret
+                  key: password
+                  optional: false
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongo-secret
+                  key: username
+                  optional: false
           ports:
             - containerPort: 27017
           volumeMounts:

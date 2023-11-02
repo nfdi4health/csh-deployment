@@ -17,30 +17,38 @@ spec:
         image: {{ .Values.image }}
         resources:
           limits:
-            memory: 4048Mi
+            memory: 8048Mi
           requests:
             memory: 512Mi
         env:
           - name: MICA_ADMINISTRATOR_PASSWORD
-            value: {{ .Values.mica.admin_pw }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mica-secret
+                key: admin_pw
+                optional: false
           - name: MICA_ANONYMOUS_PASSWORD
-            value: {{ .Values.mica.user_pw }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mica-secret
+                key: user_pw
+                optional: false
           - name: MONGO_HOST
             value: {{ .Release.Name }}-mongo
           - name: MONGO_PORT
             value: "27017"
-{{/*          - name: MONGO_USERNAME*/}}
-{{/*            valueFrom:*/}}
-{{/*                secretKeyRef:*/}}
-{{/*                  name: {{ .Release.Name }}-mongo-secret*/}}
-{{/*                  key: username*/}}
-{{/*                  optional: false*/}}
-{{/*          - name: MONGO_PASSWORD*/}}
-{{/*            valueFrom:*/}}
-{{/*              secretKeyRef:*/}}
-{{/*                name: {{ .Release.Name }}-mongo-secret*/}}
-{{/*                key: password*/}}
-{{/*                optional: false*/}}
+          - name: MONGO_USERNAME
+            valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongo-secret
+                  key: username
+                  optional: false
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mongo-secret
+                key: password
+                optional: false
         ports:
           - containerPort: 8082
         volumeMounts:
@@ -90,3 +98,20 @@ spec:
       targetPort: 8082
   selector:
     name: {{ .Release.Name }}-mica
+---
+{{- $name := printf "%s-%s" .Release.Name "mica-secret" }}
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace $name) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-mica-secret
+type: Opaque
+data:
+  {{ if $secret -}}
+  admin_pw: {{ $secret.data.admin_pw }}
+  user_pw: {{ $secret.data.user_pw }}
+  {{ else -}}
+  admin_pw: {{ randAlphaNum 20  |b64enc| quote }}
+  user_pw: {{ randAlphaNum 20  |b64enc| quote }}
+  {{ end -}}
+
