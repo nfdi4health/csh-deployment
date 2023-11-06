@@ -54,8 +54,52 @@ spec:
         volumeMounts:
           - mountPath: /srv
             name: {{ .Release.Name }}-data-container-mica
-          - mountPath: /usr/share/mica2/webapp/WEB-INF/classes/templates
+          - mountPath: /usr/share/mica2/webapp/WEB-INF/classes/_templates
             name: {{ .Release.Name }}-template-container
+          - mountPath: /usr/share/mica2/webapp/assets/js/vue-mica-search/libs/result-parsers.js
+            name: {{ .Release.Name }}-mica-result-parsers
+            subPath: result-parsers.js
+{{- if eq .Values.backup.enabled true }}
+      - name: backup
+        image: alpine
+        env:
+          - name: S3_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-s3-backup-secret
+                key: key
+          - name: S3_KEYID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-s3-backup-secret
+                key: keyid
+          - name: S3_HOST
+            value: {{ .Values.backup.s3.host }}
+          - name: S3_BUCKET
+            value: {{ .Values.backup.s3.bucket }}
+          - name: CRON_SCHEDULE
+            value: {{ .Values.backup.schedule }}
+          - name: RELEASE_NAME
+            value: {{ .Release.Name }}
+        command: [ "/bin/sh", "-c" ]
+        args: [ 'apk add s3cmd;
+rm -f script.sh;
+touch script.sh;
+echo "tar -czvf /tmp/${RELEASE_NAME}_$(date +%Y-%m-%d).mica.archive.gz /srv" >> script.sh;
+echo "s3cmd --host=${S3_HOST} --access_key=${S3_KEYID} --secret_key=${S3_KEY} --host-bucket=${S3_BUCKET}.${S3_HOST} put /tmp/${RELEASE_NAME}_$(date +%Y-%m-%d).mica.archive.gz s3://${S3_BUCKET}/${RELEASE_NAME}_$(date +%Y-%m-%d).mica.archive.gz" >> script.sh;
+echo "echo \"done\"" >> script.sh;
+chmod +x script.sh;
+crontab -l | grep -v -F "${CMD}"; echo "$CRON_SCHEDULE /script.sh > /dev/stdout" | crontab - ;
+crond -f -l 8' ]
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            memory: 264Mi
+        volumeMounts:
+          - mountPath: /srv
+            name: {{ .Release.Name }}-data-container-mica
+{{- end }}
       restartPolicy: Always
       volumes:
         - name: {{ .Release.Name }}-data-container-mica
@@ -64,6 +108,10 @@ spec:
         - name: {{ .Release.Name }}-template-container
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-template-container-mica
+        - name: {{ .Release.Name }}-mica-result-parsers
+          configMap:
+            name: {{ .Release.Name }}-mica-result-parsers
+            defaultMode: 0544
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -114,4 +162,3 @@ data:
   admin_pw: {{ randAlphaNum 20  |b64enc| quote }}
   user_pw: {{ randAlphaNum 20  |b64enc| quote }}
   {{ end -}}
-

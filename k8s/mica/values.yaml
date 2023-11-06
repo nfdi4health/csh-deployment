@@ -3,11 +3,13 @@ ingress:
   enableSSL: false
   certIssuer:
 backup:
+  enabled: false
+  schedule: "30 7 * * *"
   s3:
     host:
     bucket:
     key:
     keyid:
-image: obiba/mica:5.2.3
+image: obiba/mica:5.2
 mongo:
   image: mongo:7.0.2

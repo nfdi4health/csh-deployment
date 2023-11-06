@@ -1,9 +1,10 @@
+{{- if eq .Values.backup.enabled true }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ .Release.Name }}-mongodb-backup
 spec:
-  schedule: "30 7 * * *"
+  schedule: {{ .Values.backup.schedule }}
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -63,4 +64,4 @@ type: Opaque
 data:
   key: {{ .Values.backup.s3.key | b64enc| quote}}
   keyid: {{ .Values.backup.s3.keyid |b64enc| quote}}
-
+{{- end }}

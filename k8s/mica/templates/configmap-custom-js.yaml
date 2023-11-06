@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-mica-result-parsers
+data:
+  result-parsers.js: >
+    {{ .Files.Get "persona/result-parsers.js" | nindent 4 }}
