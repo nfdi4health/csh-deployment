@@ -51,8 +51,8 @@ spec:
               command: [ "/bin/sh","-c" ]
               args: [ "apt-get update;
               apt-get install -y s3cmd;
-              mongodump --host=$MONGO_HOST --username=$MONGO_USERNAME --password=$MONGO_PASSWORD --authenticationDatabase=admin --gzip --archive=${RELEASE_NAME}_$(date +%Y-%m-%d).archive.gz;
-              s3cmd --host=${S3_HOST} --access_key=${S3_KEYID} --secret_key=${S3_KEY} --host-bucket=${S3_BUCKET}.${S3_HOST} put ${RELEASE_NAME}_$(date +%Y-%m-%d).archive.gz s3://${S3_BUCKET}/${RELEASE_NAME}_$(date +%Y-%m-%d).archive.gz" ]
+              mongodump --host=$MONGO_HOST --username=$MONGO_USERNAME --password=$MONGO_PASSWORD --authenticationDatabase=admin --gzip --archive=${RELEASE_NAME}_$(date +%Y-%m-%d).mongodb.archive.gz;
+              s3cmd --host=${S3_HOST} --access_key=${S3_KEYID} --secret_key=${S3_KEY} --host-bucket=${S3_BUCKET}.${S3_HOST} put ${RELEASE_NAME}_$(date +%Y-%m-%d).mongodb.archive.gz s3://${S3_BUCKET}/${RELEASE_NAME}_$(date +%Y-%m-%d).mongodb.archive.gz" ]
           restartPolicy: Never
       backoffLimit: 2
 ---
