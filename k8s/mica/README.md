@@ -3,13 +3,26 @@
 
 `helm install my-test ./mica`
 
+
+# Add Custom Templates
 This creates a volume `{{ .Release.Name }}-template-container-mica` where one can store custom 
 templates. Just copy the freemaker files into the running pod.
 
 `kubcetl cp ~/PycharmProjects/mica-templates/ {{ .Release.Name }}-mica-0:/usr/share/mica2/webapp/WEB-INF/classes/`
 
 
- k cp _templates/ mica-mica-0:/usr/share/mica2/webapp/WEB-INF/classes/templates/
+`k cp _templates/ mica-mica-0:/usr/share/mica2/webapp/WEB-INF/classes/templates/`
+
+# Expose mica behind an ingress
+Somehow the CRSF configuration does not work as expected.
+
+`k exec -it  {{ .Release.Name }}-mica-0 -c backup -- /bin/sh`          
+`/ #` vi /srv/conf/application.yml`
+And add the following lines to the top of the file:
+```
+csrf:
+  allowed: {{ .Values.ingress.dns }}
+```
 
 # Load a backup 
 A backup consists of two parts, a mongodb backup and the contents of `MICA_HOME`.

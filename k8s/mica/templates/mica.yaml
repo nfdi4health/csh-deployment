@@ -21,6 +21,10 @@ spec:
           requests:
             memory: 512Mi
         env:
+{{- if .Values.ingress.dns }}
+          - name: SPRING_CSRF_ALLOWED
+            value: {{ .Values.ingress.dns }}
+{{- end }}
           - name: MICA_ADMINISTRATOR_PASSWORD
             valueFrom:
               secretKeyRef:
