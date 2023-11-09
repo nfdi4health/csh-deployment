@@ -669,4 +669,3 @@
 	Design.interventional.offLabelUse	Yes	MDS_Design_DIO_0	0
 	Design.interventional.offLabelUse	No	MDS_Design_DIO_1	1
 	Design.interventional.offLabelUse	Not applicable	MDS_Design_DIO_2	2
-	Design.nonInterventional.targetFollowUpDuration.timeUnit	Unit of time	Unit of time.		text	97		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Design.nonInterventional.targetFollowUpDuration	MDS_Design
