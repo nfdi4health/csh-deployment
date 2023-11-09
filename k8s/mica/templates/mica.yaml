@@ -17,37 +17,93 @@ spec:
         image: {{ .Values.image }}
         resources:
           limits:
-            memory: 4048Mi
+            memory: 8048Mi
           requests:
             memory: 512Mi
         env:
+{{- if .Values.ingress.dns }}
+          - name: SPRING_CSRF_ALLOWED
+            value: {{ .Values.ingress.dns }}
+{{- end }}
           - name: MICA_ADMINISTRATOR_PASSWORD
-            value: {{ .Values.mica.admin_pw }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mica-secret
+                key: admin_pw
+                optional: false
           - name: MICA_ANONYMOUS_PASSWORD
-            value: {{ .Values.mica.user_pw }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mica-secret
+                key: user_pw
+                optional: false
           - name: MONGO_HOST
             value: {{ .Release.Name }}-mongo
           - name: MONGO_PORT
             value: "27017"
-{{/*          - name: MONGO_USERNAME*/}}
-{{/*            valueFrom:*/}}
-{{/*                secretKeyRef:*/}}
-{{/*                  name: {{ .Release.Name }}-mongo-secret*/}}
-{{/*                  key: username*/}}
-{{/*                  optional: false*/}}
-{{/*          - name: MONGO_PASSWORD*/}}
-{{/*            valueFrom:*/}}
-{{/*              secretKeyRef:*/}}
-{{/*                name: {{ .Release.Name }}-mongo-secret*/}}
-{{/*                key: password*/}}
-{{/*                optional: false*/}}
+          - name: MONGO_USERNAME
+            valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongo-secret
+                  key: username
+                  optional: false
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-mongo-secret
+                key: password
+                optional: false
         ports:
           - containerPort: 8082
         volumeMounts:
           - mountPath: /srv
             name: {{ .Release.Name }}-data-container-mica
-          - mountPath: /usr/share/mica2/webapp/WEB-INF/classes/templates
+          - mountPath: /usr/share/mica2/webapp/WEB-INF/classes/_templates
             name: {{ .Release.Name }}-template-container
+          - mountPath: /usr/share/mica2/webapp/assets/js/vue-mica-search/libs/result-parsers.js
+            name: {{ .Release.Name }}-mica-result-parsers
+            subPath: result-parsers.js
+{{- if eq .Values.backup.enabled true }}
+      - name: backup
+        image: alpine
+        env:
+          - name: S3_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-s3-backup-secret
+                key: key
+          - name: S3_KEYID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-s3-backup-secret
+                key: keyid
+          - name: S3_HOST
+            value: {{ .Values.backup.s3.host }}
+          - name: S3_BUCKET
+            value: {{ .Values.backup.s3.bucket }}
+          - name: CRON_SCHEDULE
+            value: {{ .Values.backup.schedule }}
+          - name: RELEASE_NAME
+            value: {{ .Release.Name }}
+        command: [ "/bin/sh", "-c" ]
+        args: [ 'apk add s3cmd;
+rm -f script.sh;
+touch script.sh;
+echo "tar -czvf /tmp/${RELEASE_NAME}_$(date +%Y-%m-%d).mica.archive.gz /srv" >> script.sh;
+echo "s3cmd --host=${S3_HOST} --access_key=${S3_KEYID} --secret_key=${S3_KEY} --host-bucket=${S3_BUCKET}.${S3_HOST} put /tmp/${RELEASE_NAME}_$(date +%Y-%m-%d).mica.archive.gz s3://${S3_BUCKET}/${RELEASE_NAME}_$(date +%Y-%m-%d).mica.archive.gz" >> script.sh;
+echo "echo \"done\"" >> script.sh;
+chmod +x script.sh;
+crontab -l | grep -v -F "${CMD}"; echo "$CRON_SCHEDULE /script.sh > /dev/stdout" | crontab - ;
+crond -f -l 8' ]
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            memory: 264Mi
+        volumeMounts:
+          - mountPath: /srv
+            name: {{ .Release.Name }}-data-container-mica
+{{- end }}
       restartPolicy: Always
       volumes:
         - name: {{ .Release.Name }}-data-container-mica
@@ -56,6 +112,10 @@ spec:
         - name: {{ .Release.Name }}-template-container
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-template-container-mica
+        - name: {{ .Release.Name }}-mica-result-parsers
+          configMap:
+            name: {{ .Release.Name }}-mica-result-parsers
+            defaultMode: 0544
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -90,3 +150,19 @@ spec:
       targetPort: 8082
   selector:
     name: {{ .Release.Name }}-mica
+---
+{{- $name := printf "%s-%s" .Release.Name "mica-secret" }}
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace $name) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-mica-secret
+type: Opaque
+data:
+  {{ if $secret -}}
+  admin_pw: {{ $secret.data.admin_pw }}
+  user_pw: {{ $secret.data.user_pw }}
+  {{ else -}}
+  admin_pw: {{ randAlphaNum 20  |b64enc| quote }}
+  user_pw: {{ randAlphaNum 20  |b64enc| quote }}
+  {{ end -}}

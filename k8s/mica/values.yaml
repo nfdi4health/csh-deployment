@@ -2,7 +2,14 @@ ingress:
   dns:
   enableSSL: false
   certIssuer:
-mica:
-  user_pw:
-  admin_pw:
-image: obiba/mica:snapshot
+backup:
+  enabled: false
+  schedule: "30 7 * * *"
+  s3:
+    host:
+    bucket:
+    key:
+    keyid:
+image: obiba/mica:5.2
+mongo:
+  image: mongo:7.0.2
