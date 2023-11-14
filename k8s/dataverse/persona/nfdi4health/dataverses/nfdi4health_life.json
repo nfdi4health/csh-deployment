@@ -1,0 +1,12 @@
+{
+  "name": "LIFE - Leipzig Research Center for Civilization Diseases",
+  "alias": "LIFE_-_Leipzig_Research_Center_for_Civilization_Diseases",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description":  "LIFE pursues the relevant challenges in medical research, namely to support individual health maintenance from childhood to aged people and to find risks for frequent diseases and new strategies for targeted prevention and therapies.\n\nGoal of the Leipzig Research Center for Civilization Diseases (LIFE) is the investigation of civilization diseases like depression, diabetes, allergies or cardiovascular diseases. For this purpose we collect as much data as possible regarding health and living conditions of the population in Leipzig and provide these data for scientists of the University of Leipzig and other research institutions.",
+  "dataverseType": "UNCATEGORIZED"
+}
