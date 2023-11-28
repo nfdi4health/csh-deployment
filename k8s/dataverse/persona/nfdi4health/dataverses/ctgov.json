@@ -1,0 +1,12 @@
+{
+  "name": "CTgov",
+  "alias": "CTgov",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "Automatically imported from CT.gov",
+  "dataverseType": "UNCATEGORIZED"
+}
