@@ -44,7 +44,7 @@ As soon as there are no bugs in the new version. The step-by-step migration guid
 
 - **Assumption 1**: `green` is the current production environment, and `blue` the stand-by.
 - **Assumption 2**: `green` is  accessible to customers!
-- Step 1: Reconfigure the k8s ingress object to serve a 503.
+- Step 1: Reconfigure the k8s ingress object to serve a 503. (https://github.com/nfdi4health/csh-ui/actions/workflows/change_ingress.yml)
 - Step 2: Create a backup of `green` postgres db.
 - Step 3: Remove all S3 demo data, then copy S3 prod-data into S3 demo-data.
 - **Remark**: Step 1-3 can be performed in parallel. 
@@ -67,7 +67,7 @@ As soon as there are no bugs in the new version. The step-by-step migration guid
 - **Assumption 4**: `blue` is now upgraded! This must be checked! 
 - Step 8: Create a backup of `blue` postgres db
 - Step 9: Create a backup of S3 demo-data data???
-- Step 10: Reconfigure the k8s ingress object to forward traffic to `blue`
+- Step 10: Reconfigure the k8s ingress object to forward traffic to `blue` (https://github.com/nfdi4health/csh-ui/actions/workflows/change_ingress.yml)
 - **Remark**: Step 8-10 can be performed in parallel. 
 - **Assumption 5**: `blue` is now accessible to customer!
 - **Assumption 6**: `blue` is the current production environment, and `green` the stand-by.

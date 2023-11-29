@@ -121,8 +121,7 @@ spec:
             - containerPort: 9009
             - containerPort: 8686
           resources:
-            limits:
-              memory: "2147483648"
+{{ toYaml .Values.dataverse.resources | indent 12 }}
           volumeMounts:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
