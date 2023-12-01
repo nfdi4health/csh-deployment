@@ -1,1068 +1,1068 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
-	MDS_V3_2		MDS_V3_2	
+	MDS_V3_3		MDS_V3_3	
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	Resource.collection				text	0		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2
-	Resource.identifier	ID of the [RESOURCE]	Unique identifier of the resource used for identification within the NFDI4Health.		text	0		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_2
-	Resource.classification	Classification of the resource within the predefined categories	Group of items providing Information about classification of the resource within the predefined categories.		none	1		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_2
-	Resource.classification.type	Type of the resource	A term describing the resource. You can register a study, a study protocol, a questionnaire, etc. Please only add follow up questionnaires if baseline questionnaires have already been registered.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.classification	MDS_V3_2
-	Resource.classification.typeGeneral	In what form is the [RESOURCE] available?	'Specific information about the form in which the [RESOURCE] is available. You can select ''Text'' for most of the study documents, e.g. for questionnaires, informed consent forms, case report forms, etc.'		text	3		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.classification	MDS_V3_2	
-	Resource.titles	Title(s)/name(s) of the [RESOURCE]	Group of items providing Information about title(s)/name(s) of the [RESOURCE].		none	4		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2
-	Resource.titles.text	Title/name	Scientific unabbreviated title or name of the [RESOURCE]. Please provide at least one title/name of the [RESOURCE]. If the original title is not in English, please also provide an English translation of the original title.		text	5		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.titles	MDS_V3_2
-	Resource.titles.language	Language of the title/name	Language of the title/name.		text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.titles	MDS_V3_2
-	Resource.acronyms	Acronym(s) of the [RESOURCE]	Group of items providing Information about acronym(s) of the [RESOURCE].		none	7		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2	
-	Resource.acronyms.text	Acronym	'If existing, acronym(s) of the [RESOURCE]. The property refers primarily to studies which often have an acronym. For other types of resources, a short title (preferably up to 5 words) can be provided, e.g. ''NAKO-COVID Questionnaire''.'		text	8		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.acronyms	MDS_V3_2
-	Resource.acronyms.language	Language of the acronym	Language of the acronym.		text	9		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.acronyms	MDS_V3_2
-	Resource.descriptions	Description(s) of the [RESOURCE]	Group of items with description(s) of the [RESOURCE].		none	10		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2
-	Resource.descriptions.text	Description	Short plain text summary of the [RESOURCE]. Please provide a description in the original language of the [RESOURCE]. If the original language is not English, please also provide a full English translation of the description.		text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.descriptions	MDS_V3_2
-	Resource.descriptions.language	Language of the description	Language of the description text.		text	12		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.descriptions	MDS_V3_2
-	Resource.keywords	Keyword(s) describing the [RESOURCE]	Group of items providing Information about keywords describing the [RESOURCE].		none	13		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2	
-	Resource.keywords.label	Keyword	Keyword(s) describing the [RESOURCE]. Preferably, use terms from SNOMED CT.	SARS-CoV-2	text	14		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.keywords	MDS_V3_2
-	Resource.keywords.code	Code of the keyword	If known, the code of the keyword in a classification/vocabulary. If found, the code from the classification/vocabulary used.	http://id.nlm.nih.gov/mesh/D000086402	text	15		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.keywords	MDS_V3_2	
-	Resource.languages	Language(s) of the [RESOURCE]	Language(s) in which the [RESOURCE] is conducted/provided. Select all that apply.		text	16		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		MDS_V3_2	
-	Resource.webpage	Web page of the [RESOURCE]	If existing, a link to the web page directly relevant to the [RESOURCE].		text	17		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_2	
-	Resource.nonStudyDetails	Detailed information about the [RESOURCE]	Group of items applicable only to the resources which are not a study/substudy, a dataset, a registry, or a secondary data source.		none	18		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_2	
-	Resource.nonStudyDetails.version	Version of the [RESOURCE]	If applicable, the version number of the [RESOURCE].		text	19		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails	MDS_V3_2	
-	Resource.nonStudyDetails.format	Format of the [RESOURCE]	The file format of the [RESOURCE] (E.g., XML, PDF, XLSX, etc.).	PDF	text	20		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails	MDS_V3_2	
-	Resource.nonStudyDetails.useRights	Information about the rights to (re-)use the [RESOURCE]	Group of items providing Information about the rights to (re-)use the [RESOURCE].		none	21		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails	MDS_V3_2	
-	Resource.nonStudyDetails.useRights.label	License	License defining the rights to (re-)use the [RESOURCE]. Select one value from the list. If “Other” is selected, an explanation of the (re-)use terms and conditions has to be provided in the field “Additional information about use rights”.		text	22		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_2
-	Resource.nonStudyDetails.useRights.link	URL of the license	Link to the selected license.		text	23		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_2	
-	Resource.nonStudyDetails.useRights.confirmations	Important information about licensing, if a Creative Commons license is selected.	Group of items applicable if a Creative Commons license is selected.		none	24		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_2	
-	Resource.nonStudyDetails.useRights.confirmations.authority	Do you confirm that the authors of the [RESOURCE] have authority to license it?	Confirmation that the authors of the [RESOURCE] have authority to license it.		text	25		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_2
-	Resource.nonStudyDetails.useRights.confirmations.terms	Do you confirm that the authors of the [RESOURCE] have read and understood the terms of the chosen license?	Confirmation that the authors of the [RESOURCE] have read and understood the terms of the chosen license.		text	26		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_2
-	Resource.nonStudyDetails.useRights.confirmations.irrevocability	Do you confirm that the authors of the [RESOURCE] understand that Creative Commons (CC) licensing is irrevocable?	Confirmation that the authors of the [RESOURCE] understand that Creative Commons (CC) licensing is not revocable.		text	27		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_2
-	Resource.nonStudyDetails.useRights.confirmations.supportByLicensing	Do you confirm that the authors of the [RESOURCE] allow NFDI4Health to license the document?	Confirmation that NFDI4Health is allowed to license the document, i.e. to mark the [RESOURCE] with the license information.		text	28		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_2
-	Resource.nonStudyDetails.useRights.description	Additional information about use rights	Any additional descriptive information explaining terms and conditions to (re-)use the [RESOURCE].		text	29		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_2	
-	Resource.contributors	Contributor(s)	Group of items providing information about person(s), group(s) of persons or institution(s)/organisation(s) contributing to the [RESOURCE].		none	30		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2
-	Resource.contributors.nameType	Is it a personal or organisational contribution?	Personal or organisational/group contribution. Personal or organisational/group contribution.		text	31		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors	MDS_V3_2
-	Resource.contributors.organisational	Details about the organisation/institution/group/etc.	Group of items providing information about group(s) of persons, institution(s) or organisation(s) contributing to the [RESOURCE]. Organisational name can be used to denote a research group or an institution.		none	32		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.contributors	MDS_V3_2	
-	Resource.contributors.organisational.type	Contributor type	Contributor type an organisation, institution or group fulllfils. For example, this can be a sponsor of the study or a group of authors of the document. Which contributor type does the organisation/institution/group/etc. fulllfil? Select one value from the list.		text	33		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.organisational	MDS_V3_2
-	Resource.contributors.organisational.fundingIds	Funding identifier(s)	Identifier(s) assigned by a funder to the [RESOURCE]. If available, you can enter funding identifiers.		text	34		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.organisational	MDS_V3_2
-	Resource.contributors.organisational.name	Name of the organisation/institution/group	Name of the organisation, institution or group.		text	35		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.organisational	MDS_V3_2
-	Resource.contributors.personal	Details about the person	Group of items providing information about person(s) contributing to the [RESOURCE].		none	36		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.contributors	MDS_V3_2	
-	Resource.contributors.personal.type	Contributor type	Contributor type a person fulllfils. For example, this can be a principal investigator of a study or an author of a document. Which contributor type does the person fulllfil? Select one value from the list.		text	37		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_2
-	Resource.contributors.personal.givenName	Given name of the person	Given name of the person.		text	38		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_2
-	Resource.contributors.personal.familyName	Family name(s) of the person	Family name(s) of the person.		text	39		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_2
-	Resource.contributors.personal.identifiers	Digital identifier(s) of the person	Group of items providing information about digital identifiers of the person.		none	40		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_2	
-	Resource.contributors.personal.identifiers.identifier	Identifier	Digital identifier according to a specific scheme that uniquely identifies the person. Preferably, provide an ORCID (https://orcid.org/).	0000-0003-1379-7023	text	41		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.personal.identifiers	MDS_V3_2
-	Resource.contributors.personal.identifiers.scheme	Which type of identifier is reported?	Type of the identifier scheme.	ORCID	text	42		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.personal.identifiers	MDS_V3_2
-	Resource.contributors.email	Email address	Email address of the person, group of persons or institution/organisation.		text	43		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors	MDS_V3_2	
-	Resource.contributors.phone	Phone number	Phone number of the person, group of persons or institution/organisation. Please, use the International ITU-T E.164-number structure for geographic areas, e.g. +49 (0)153 1112233.	+49 (0)153 1112233	text	44		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors	MDS_V3_2	
-	Resource.contributors.affiliations	Further information about organisation(s) associated with the contributor	Group of items providing further information about the organisation(s) associated with the contributor.		none	45		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.contributors	MDS_V3_2	
-	Resource.contributors.affiliations.name	Name of the organisation	'Name of the organisation associated with the contributor. If you are have already entered the name of the organistion in the field ''Name of the organisation/institution/group'', please repeat it here.'		text	46		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_2
-	Resource.contributors.affiliations.address	Address of the organisation	Address of the organisation associated with the contributor.		text	47		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_2	
-	Resource.contributors.affiliations.webpage	Web page of the organisation	Web page of the organisation associated with the contributor.		text	48		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_2	
-	Resource.contributors.affiliations.identifiers	Digital identifier(s) of the organisation	Group of items providing information about identifiers of the organisation.		none	49		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_2	
-	Resource.contributors.affiliations.identifiers.identifier	Identifier	Digital identifier according to a specific scheme that uniquely identifies the organisation. Preferably, provide an identifier from ROR (https://ror.org/search).	0259fwx54	text	50		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations.identifiers	MDS_V3_2
-	Resource.contributors.affiliations.identifiers.scheme	Identifier scheme	Type of the identifier scheme. Which type of identifer is reported?	ROR	text	51		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.affiliations.identifiers	MDS_V3_2
-	Resource.idsAlternative	Alternative identifiers	Group of items providing information about identifiers (IDs) assigned to the given [RESOURCE] by another registering systems, e.g. a registry of clinical trials or a data repository. If the [RESOURCE] is registered in other systems (e.g. a registry of clinical trials or a data repository), you can provide corresponding identifier(s) here.		none	52		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2	
-	Resource.idsAlternative.scheme	Type of the registry	Type/name of the system where the given [RESOURCE] is already registered.	DRKS	text	53		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.idsAlternative	MDS_V3_2
-	Resource.idsAlternative.identifier	Identifier	Identifier (ID) assigned to the given [RESOURCE] by another registering system, e.g. by a registry of clinical trials or a data repository. E. g., DRKS00021273, NCT04327505, etc.	ISRCTN91495258	text	54		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.idsAlternative	MDS_V3_2
-	Resource.ids	Related resources	Group of items providing information about identifiers (IDs) of the resources related to the given [RESOURCE], e.g. DOIs of publications, datasets, study documents or links to web pages. If existing, you can specify identifier(s) of any related resources, e.g. DOIs of publications, datasets, study documents, links to web pages, etc.		none	55		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2	
-	Resource.ids.identifier	Identifier of the related resource	'Identifier (ID) related to, or associated with, the [RESOURCE] being registered. These can be IDs of related publications, datasets, study documents, web pages, etc. a) Publications like journal articles usually have a DOI, e.g. 10.3238/arztebl.2020.0861. b) A link (URL) starting with ''http(s)://'' to a web page with any additional information can also be provided here.'	10.4126/FRL01-006431467	text	56		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.ids	MDS_V3_2
-	Resource.ids.scheme	Type of the identifier	Type of the identifier of the related resource. Select one value from the list.	DOI	text	57		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.ids	MDS_V3_2
-	Resource.ids.relationType	Relationship between this [RESOURCE] (A) and the related resource (B)?	Relationship between the [RESOURCE] being registered (A) and the related resource (B). Select one value from the list.	A is part of B	text	58		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.ids	MDS_V3_2
-	Resource.ids.typeGeneral	Type of the related resource	Type of the related resource, e.g. journal article, dataset, text, etc. Select one value from the list. For example, a journal article, dataset, text, etc.	Text	text	59		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.ids	MDS_V3_2	
-	Resource.idsNfdi4health	Related (sub-)studies, study documents, etc. registered on this portal	Group of items providing information about related resources registered on this portal. Does the [RESOURCE] have any related resources registered on this portal?		none	60		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_2	
-	Resource.idsNfdi4health.identifier	Identifier of the related resource	Identifier (ID) of the related resource assigned on this portal.	39	text	61		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.idsNfdi4health	MDS_V3_2
-	Resource.idsNfdi4health.date	Date of ID assignment	Date when the identifier of the related resource was assigned.		text	62		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.idsNfdi4health	MDS_V3_2	
-	Resource.idsNfdi4health.relationType	Relationship between this [RESOURCE] (A) and the related resource (B)?	Relationship between the [RESOURCE] being registered (A) and the related resource (B).		text	63		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.idsNfdi4health	MDS_V3_2	
-	Resource.nutritionalData	Nutritional data collected?	Indication whether nutritional data was collected by the [RESOURCE].		text	64		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_2	
-	Resource.chronicDiseases	Chronic diseases included?	Indication whether chronic diseases were addressed by the [RESOURCE].		text	65		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_2	
-	Resource.provenance	Information about provenance aspects of the data entry	Group of items providing information about provenance aspects of the data entry on the portal.		none	66		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_2
-	Resource.provenance.dataSource	Source of information about the [RESOURCE]	Source of information about the [RESOURCE] and the way it was uploaded/collected.		text	67		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_2
-	Resource.provenance.verificationDate	Verfication date	Date on which the responsible party last verified the information about the [RESOURCE], even if no additional or updated information is being submitted.		text	68		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.verificationUser	User who last verified the [RESOURCE]	User who last verified the information about the [RESOURCE].		text	69		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.firstSubmittedDate	Date when the [RESOURCE] was first submitted for publication	Date when the [RESOURCE] was first submitted for publication.		text	70		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.firstSubmittedUser	User who first submitted the [RESOURCE] for publication	User who first submitted the [RESOURCE] for publication.		text	71		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.firstPostedDate	Date when the [RESOURCE] was first posted/published	Date when the [RESOURCE] was first posted/published.		text	72		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.firstPostedUser	User who first posted/published the [RESOURCE]	User who first posted/published the [RESOURCE].		text	73		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.lastUpdateSubmittedDate	Date when the last update of the [RESOURCE] was submitted for publication	Date when the last update of the [RESOURCE] was submitted for publication.		text	74		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.lastUpdateSubmittedUser	User who submitted the last update of the [RESOURCE]	User who submitted the last update of the [RESOURCE].		text	75		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.lastUpdatePostedDate	Date when the last update of the [RESOURCE] was posted/published	Date when the last update of the [RESOURCE] was posted/published.		text	76		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.lastUpdatePostedUser	User who posted/published the last update	User who posted/published the last update.		text	77		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
-	Resource.provenance.resourceVersion	Version number of the [RESOURCE] within the portal/system	Version number of the [RESOURCE] within the portal/system.		text	78		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_2	
+	Resource.collection				text	0		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3
+	Resource.identifier	ID of the [RESOURCE]	Unique identifier of the resource used for identification within the NFDI4Health.		text	0		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_3
+	Resource.classification	Resource classification	Group of items providing information about the classification of the resource within the predefined categories.		none	1		FALSE	FALSE	FALSE	FALSE	FALSE	TRUE		MDS_V3_3	
+	Resource.classification.type	Type of the resource	A term describing the resource. You can register a study, a study protocol, a questionnaire, etc. Please only add follow up questionnaires if baseline questionnaires have already been registered.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.classification	MDS_V3_3	
+	Resource.classification.typeGeneral	In what form is the [RESOURCE] available?	'Specific information about the form in which the [RESOURCE] is available. You can select ''Text'' for most of the study documents, e.g. for questionnaires, informed consent forms, case report forms, etc.'		text	3		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.classification	MDS_V3_3	
+	Resource.titles	Title(s)/name(s) of the [RESOURCE]	Group of items providing information about title(s)/name(s) of the [RESOURCE].		none	4		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.titles.text	Title/name	Scientific unabbreviated title or name of the [RESOURCE]. Please provide at least one title/name of the [RESOURCE]. If the original title is not in English, please also provide an English translation of the original title.		text	5		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.titles	MDS_V3_3	
+	Resource.titles.language	Language of the title/name	Language in which the title/name is provided.		text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.titles	MDS_V3_3	
+	Resource.acronyms	Acronym(s) of the [RESOURCE]	Group of items providing information about acronym(s) of the [RESOURCE].		none	7		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.acronyms.text	Acronym	'If existing, acronym(s) of the [RESOURCE]. If no acronym exists, you can provide a short title, preferably up to 5 words, e.g. ''NAKO-COVID Questionnaire''.'		text	8		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.acronyms	MDS_V3_3	
+	Resource.acronyms.language	Language of the acronym	Language in which the acronym is provided.		text	9		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.acronyms	MDS_V3_3	
+	Resource.descriptions	Description(s) of the [RESOURCE]	Group of items providing information about the description(s) of the [RESOURCE].		none	10		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.descriptions.text	Description	Short plain text summary of the [RESOURCE]. Please provide a description in the original language of the [RESOURCE]. If the original language is not English, please also provide a full English translation of the description.		text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.descriptions	MDS_V3_3	
+	Resource.descriptions.language	Language of the description	Language in which the description text is provided.		text	12		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.descriptions	MDS_V3_3	
+	Resource.keywords	Keyword(s) describing the [RESOURCE]	Group of items providing information about keywords describing the [RESOURCE].		none	13		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.keywords.label	Keyword	Keyword(s) describing the [RESOURCE]. Preferably, use terms from SNOMED CT or MESH.	SARS-CoV-2	text	14		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.keywords	MDS_V3_3	
+	Resource.keywords.code	Code of the keyword	If known, the code of the keyword in the classification/vocabulary used. If known, you can provide the code of the keyword in the classification/vocabulary used.	http://id.nlm.nih.gov/mesh/D000086402	text	15		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.keywords	MDS_V3_3	
+	Resource.languages	Language(s) of the [RESOURCE]	Language(s) in which the [RESOURCE] is conducted/provided. Select all that apply.		text	16		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		MDS_V3_3	
+	Resource.webpage	Web page of the [RESOURCE]	If existing, a link to the web page directly relevant to the [RESOURCE].		text	17		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.nonStudyDetails	Detailed information about the [RESOURCE]	Group of items applicable only to resource types other than a study/substudy, a dataset, a registry, or a secondary data source.		none	18		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_3	
+	Resource.nonStudyDetails.version	Version	If applicable, the version number of the [RESOURCE].		text	19		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails	MDS_V3_3	
+	Resource.nonStudyDetails.format	Format	If applicable, the file format of the [RESOURCE] (e.g., XML, PDF, XLSX, etc.).	PDF	text	20		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails	MDS_V3_3	
+	Resource.nonStudyDetails.useRights	(Re-)use rights	Group of items providing information about the rights to (re-)use the [RESOURCE].		none	21		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.label	License	'License defining the rights to (re-)use the [RESOURCE]. Select one value from the list. If ''Other'' is selected, please provide an explanation of the (re-)use terms and conditions in the field ''Additional information about use rights''.'		text	22		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.link	URL of the license	Link to the selected license.		text	23		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.confirmations	Licensing confirmations	Group of items applicable only if a Creative Commons license is selected.		none	24		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.confirmations.authority	Do you confirm that the authors of the [RESOURCE] have authority to license it?	Confirmation that the authors of the [RESOURCE] have authority to license it.		text	25		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.confirmations.terms	Do you confirm that the authors of the [RESOURCE] have read and understood the terms of the chosen license?	Confirmation that the authors of the [RESOURCE] have read and understood the terms of the chosen license.		text	26		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.confirmations.irrevocability	Do you confirm that the authors of the [RESOURCE] understand that Creative Commons (CC) licensing is irrevocable?	Confirmation that the authors of the [RESOURCE] understand that Creative Commons (CC) licensing is not revocable.		text	27		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.confirmations.supportByLicensing	Do you confirm that the authors of the [RESOURCE] allow NFDI4Health to license the document?	Confirmation that NFDI4Health is allowed to license the document, i.e. to mark the [RESOURCE] with the license information.		text	28		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.nonStudyDetails.useRights.confirmations	MDS_V3_3	
+	Resource.nonStudyDetails.useRights.description	Additional information about use rights	Any additional descriptive information explaining terms and conditions to (re-)use the [RESOURCE].		text	29		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.nonStudyDetails.useRights	MDS_V3_3	
+	Resource.contributors	Contributor(s) of the [RESOURCE]	Group of items providing information about person(s), group(s) of persons or institution(s)/organisation(s) contributing to the [RESOURCE].		none	30		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.contributors.nameType	Is it a personal or organisational contribution?	Indication whether the contribution was made by person(s) or organisation(s)/institution(s)/group(s).		text	31		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors	MDS_V3_3	
+	Resource.contributors.organisational	Details about the contributing organisation(s)/institution(s)/group(s)	Group of items providing information about group(s) of persons, institution(s) or organisation(s) contributing to the [RESOURCE].		none	32		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.contributors	MDS_V3_3	
+	Resource.contributors.organisational.type	Contributor type	Contributor type an organisation, institution or group fulfills. For example, this can be a sponsor of the study or a group of authors of the document. Which contributor type does the organisation, institution or group fulfill? Select one value from the list.		text	33		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.organisational	MDS_V3_3	
+	Resource.contributors.organisational.fundingIds	Funding identifier(s)	Identifier(s) assigned by a funder to the [RESOURCE]. If available, you can enter funding identifiers.		text	34		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.contributors.organisational	MDS_V3_3	
+	Resource.contributors.organisational.name	Name of the organisation/institution/group	Name of the organisation, institution or group. An organisational name can be used to denote a research group or an institution.		text	35		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.organisational	MDS_V3_3	
+	Resource.contributors.personal	Details about the contributing person(s)	Group of items providing information about person(s) contributing to the [RESOURCE].		none	36		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.contributors	MDS_V3_3	
+	Resource.contributors.personal.type	Contributor type	Contributor type a person fulfills. For example, this can be a principal investigator of a study or an author of a document. Which contributor type does the person fulfill? Select one value from the list.		text	37		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_3	
+	Resource.contributors.personal.givenName	Given name	Given name of the person.		text	38		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_3	
+	Resource.contributors.personal.familyName	Family name(s)	Family name(s) of the person.		text	39		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_3	
+	Resource.contributors.personal.identifiers	Digital identifier(s)	Group of items providing information about digital identifiers of the person.		none	40		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.contributors.personal	MDS_V3_3	
+	Resource.contributors.personal.identifiers.identifier	Identifier	Digital identifier according to a specific scheme that uniquely identifies the person. Preferably, provide an ORCID (https://orcid.org/).	0000-0003-1379-7023	text	41		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.personal.identifiers	MDS_V3_3	
+	Resource.contributors.personal.identifiers.scheme	Scheme	Type of the identifier scheme reported.	ORCID	text	42		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.personal.identifiers	MDS_V3_3	
+	Resource.contributors.email	Email address	Email address of the person, group of persons or institution/organisation.		text	43		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors	MDS_V3_3	
+	Resource.contributors.phone	Phone number	Phone number of the person, group of persons or institution/organisation. Please use the International ITU-T E.164-number structure for geographic areas.	+49 (0)153 1112233	text	44		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors	MDS_V3_3	
+	Resource.contributors.affiliations	Organisation(s) associated with the contributor	Group of items providing further information about the organisation(s) associated with the contributor.		none	45		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.contributors	MDS_V3_3	
+	Resource.contributors.affiliations.name	Name	'Name of the organisation associated with the contributor. If you have already entered the name of the organistion in the field ''Name of the organisation/institution/group'', please repeat it here.'		text	46		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_3	
+	Resource.contributors.affiliations.address	Address	Address of the organisation associated with the contributor. Please preferably use the following address format: Street name and number [comma] post code [comma] city [comma] country.	Gleueler Straße 60, 50931, Cologne, Germany	text	47		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_3	
+	Resource.contributors.affiliations.webpage	Web page	Web page of the organisation associated with the contributor.		text	48		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_3	
+	Resource.contributors.affiliations.identifiers	Digital identifier(s)	Group of items providing information about identifiers of the organisation.		none	49		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	Resource.contributors.affiliations	MDS_V3_3	
+	Resource.contributors.affiliations.identifiers.identifier	Identifier	Digital identifier according to a specific scheme that uniquely identifies the organisation. Preferably, provide an identifier from ROR (https://ror.org/search).	0259fwx54	text	50		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.contributors.affiliations.identifiers	MDS_V3_3	
+	Resource.contributors.affiliations.identifiers.scheme	Scheme	Type of the identifier scheme reported.	ROR	text	51		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.contributors.affiliations.identifiers	MDS_V3_3	
+	Resource.idsAlternative	Alternative identifiers	Group of items providing information about identifiers (IDs) assigned to the given [RESOURCE] by another registering systems, e.g. a registry of clinical trials or a data repository.		none	52		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.idsAlternative.scheme	Type of the registry	Type/name of the system where the given [RESOURCE] is already registered.	DRKS	text	53		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.idsAlternative	MDS_V3_3	
+	Resource.idsAlternative.identifier	Identifier	Identifier (ID) assigned to the given [RESOURCE] by another registering system, e.g. by a registry of clinical trials or a data repository. If the [RESOURCE] is registered in other systems (e.g. a registry of clinical trials or a data repository), you can provide here corresponding identifier(s) such as DRKS00021273, NCT04327505, etc.	ISRCTN91495258	text	54		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.idsAlternative	MDS_V3_3	
+	Resource.ids	Related resources	Group of items providing information about identifiers (IDs) of the resources related to the given [RESOURCE], e.g. DOIs of publications, datasets, study documents or links to web pages.		none	55		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.ids.identifier	Identifier of the related resource	Identifier (ID) related to, or associated with, the [RESOURCE] being registered. These can be IDs of related publications, datasets, study documents, web pages, etc. If existing, you can specify here identifier(s) of any related resources, e.g. DOIs of publications, datasets, study documents, links to web pages, etc.	10.4126/FRL01-006431467	text	56		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.ids	MDS_V3_3	
+	Resource.ids.scheme	Type of the identifier	Type of the identifier of the related resource. Select one value from the list.	DOI	text	57		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.ids	MDS_V3_3	
+	Resource.ids.relationType	Relationship between this [RESOURCE] (A) and the related resource (B)	Relationship between the [RESOURCE] being registered (A) and the related resource (B). Select one value from the list.	A is part of B	text	58		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.ids	MDS_V3_3	
+	Resource.ids.typeGeneral	Type of the related resource	Type of the related resource, e.g. journal article, dataset, text, etc. Select one value from the list.	Text	text	59		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.ids	MDS_V3_3	
+	Resource.idsNfdi4health	Related resources registered on this portal	Group of items providing information about related resources (e.g. (sub-)studies, study documents, etc.) registered on this portal.		none	60		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3	
+	Resource.idsNfdi4health.identifier	Identifier of the related resource	Identifier (ID) of the related resource assigned on this portal.	39	text	61		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.idsNfdi4health	MDS_V3_3	
+	Resource.idsNfdi4health.date	Date of ID assignment	Date when the identifier of the related resource was assigned.		text	62		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	Resource.idsNfdi4health	MDS_V3_3	
+	Resource.idsNfdi4health.relationType	Relationship between this [RESOURCE] (A) and the related resource (B)	Relationship between the [RESOURCE] being registered (A) and the related resource (B).		text	63		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	Resource.idsNfdi4health	MDS_V3_3
+	Resource.nutritionalData	Collects nutritional data?	Indication whether the [RESOURCE] collects nutritional data.		text	77		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_3
+	Resource.chronicDiseases	Includes chronic diseases?	Indication whether the [RESOURCE] addresses chronic diseases.		text	78		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_V3_3
+	Resource.provenance	Provenance aspects of data entry	Group of items providing information about provenance aspects of the data entry on this portal.		none	64		FALSE	FALSE	FALSE	FALSE	FALSE	TRUE		MDS_V3_3
+	Resource.provenance.dataSource	Source of information about the [RESOURCE]	Source of information about the [RESOURCE] and the way it was uploaded/collected.		text	65		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.verificationDate	Last verified on	Date on which the responsible party last verified the information about the [RESOURCE], even if no additional or updated information is being submitted.		text	66		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.verificationUser	Last verified by	User who last verified the information about the [RESOURCE].		text	67		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.firstSubmittedDate	First submitted on	Date when the [RESOURCE] was first submitted for publication.		text	68		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.firstSubmittedUser	First submitted by	User who first submitted the [RESOURCE] for publication.		text	69		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.firstPostedDate	First posted/published on	Date when the [RESOURCE] was first posted/published.		text	70		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.firstPostedUser	First posted/published by	User who first posted/published the [RESOURCE].		text	71		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.lastUpdateSubmittedDate	Last update submitted on	Date when the last update of the [RESOURCE] was submitted for publication.		text	72		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.lastUpdateSubmittedUser	Last updated submitted by	User who submitted the last update of the [RESOURCE].		text	73		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.lastUpdatePostedDate	Last update posted/published on	Date when the last update of the [RESOURCE] was posted/published.		text	74		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.lastUpdatePostedUser	Last update posted/published by	User who posted/published the last update of the [RESOURCE].		text	75		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.resourceVersion	Version number	Version number of the [RESOURCE] within this portal.		text	76		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
-	Resource.classification.type	Study	MDS_V3_2_RCT_0	0
-	Resource.classification.type	Substudy/Data collection event	MDS_V3_2_RCT_1	1
-	Resource.classification.type	Biobank	MDS_V3_2_RCT_2	2
-	Resource.classification.type	Case report form	MDS_V3_2_RCT_3	3
-	Resource.classification.type	Code book	MDS_V3_2_RCT_4	4
-	Resource.classification.type	Data dictionary	MDS_V3_2_RCT_5	5
-	Resource.classification.type	Data management plan	MDS_V3_2_RCT_6	6
-	Resource.classification.type	Dataset	MDS_V3_2_RCT_7	7
-	Resource.classification.type	Discussion guide	MDS_V3_2_RCT_8	8
-	Resource.classification.type	Informed consent form	MDS_V3_2_RCT_9	9
-	Resource.classification.type	Interview scheme and themes	MDS_V3_2_RCT_10	10
-	Resource.classification.type	Manual of operations (SOPs)	MDS_V3_2_RCT_11	11
-	Resource.classification.type	Observation guide	MDS_V3_2_RCT_12	12
-	Resource.classification.type	Participant tasks	MDS_V3_2_RCT_13	13
-	Resource.classification.type	Patient information sheet	MDS_V3_2_RCT_14	14
-	Resource.classification.type	Questionnaire	MDS_V3_2_RCT_15	15
-	Resource.classification.type	Registry	MDS_V3_2_RCT_16	16
-	Resource.classification.type	Secondary data source	MDS_V3_2_RCT_17	17
-	Resource.classification.type	Statistical analysis plan	MDS_V3_2_RCT_18	18
-	Resource.classification.type	Study protocol	MDS_V3_2_RCT_19	19
-	Resource.classification.type	Other data collection instrument	MDS_V3_2_RCT_20	20
-	Resource.classification.type	Other study document	MDS_V3_2_RCT_21	21
-	Resource.classification.type	Other	MDS_V3_2_RCT_22	22
-	Resource.classification.typeGeneral	Audiovisual	MDS_V3_2_RCT_1_0	0
-	Resource.classification.typeGeneral	Book	MDS_V3_2_RCT_1_1	1
-	Resource.classification.typeGeneral	Book chapter	MDS_V3_2_RCT_1_2	2
-	Resource.classification.typeGeneral	Collection	MDS_V3_2_RCT_1_3	3
-	Resource.classification.typeGeneral	Computational notebook	MDS_V3_2_RCT_1_4	4
-	Resource.classification.typeGeneral	Conference paper	MDS_V3_2_RCT_1_5	5
-	Resource.classification.typeGeneral	Conference proceeding	MDS_V3_2_RCT_1_6	6
-	Resource.classification.typeGeneral	Data paper	MDS_V3_2_RCT_1_7	7
-	Resource.classification.typeGeneral	Dataset	MDS_V3_2_RCT_1_8	8
-	Resource.classification.typeGeneral	Dissertation	MDS_V3_2_RCT_1_9	9
-	Resource.classification.typeGeneral	Event	MDS_V3_2_RCT_1_10	10
-	Resource.classification.typeGeneral	Image	MDS_V3_2_RCT_1_11	11
-	Resource.classification.typeGeneral	Interactive resource	MDS_V3_2_RCT_1_12	12
-	Resource.classification.typeGeneral	Journal	MDS_V3_2_RCT_1_13	13
-	Resource.classification.typeGeneral	Journal article	MDS_V3_2_RCT_1_14	14
-	Resource.classification.typeGeneral	Model	MDS_V3_2_RCT_1_15	15
-	Resource.classification.typeGeneral	Output management plan	MDS_V3_2_RCT_1_16	16
-	Resource.classification.typeGeneral	Peer review	MDS_V3_2_RCT_1_17	17
-	Resource.classification.typeGeneral	Physical object	MDS_V3_2_RCT_1_18	18
-	Resource.classification.typeGeneral	Preprint	MDS_V3_2_RCT_1_19	19
-	Resource.classification.typeGeneral	Report	MDS_V3_2_RCT_1_20	20
-	Resource.classification.typeGeneral	Service	MDS_V3_2_RCT_1_21	21
-	Resource.classification.typeGeneral	Software	MDS_V3_2_RCT_1_22	22
-	Resource.classification.typeGeneral	Sound	MDS_V3_2_RCT_1_23	23
-	Resource.classification.typeGeneral	Standard	MDS_V3_2_RCT_1_24	24
-	Resource.classification.typeGeneral	Text	MDS_V3_2_RCT_1_25	25
-	Resource.classification.typeGeneral	Workflow	MDS_V3_2_RCT_1_26	26
-	Resource.classification.typeGeneral	Other	MDS_V3_2_RCT_1_27	27
-	Resource.titles.language	AA (Afar)	MDS_V3_2_RTL_0	0
-	Resource.titles.language	AB (Abkhaz)	MDS_V3_2_RTL_1	1
-	Resource.titles.language	AE (Avestan)	MDS_V3_2_RTL_2	2
-	Resource.titles.language	AF (Afrikaans)	MDS_V3_2_RTL_3	3
-	Resource.titles.language	AK (Akan)	MDS_V3_2_RTL_4	4
-	Resource.titles.language	AM (Amharic)	MDS_V3_2_RTL_5	5
-	Resource.titles.language	AN (Aragonese)	MDS_V3_2_RTL_6	6
-	Resource.titles.language	AR (Arabic)	MDS_V3_2_RTL_7	7
-	Resource.titles.language	AS (Assamese)	MDS_V3_2_RTL_8	8
-	Resource.titles.language	AV (Avaric)	MDS_V3_2_RTL_9	9
-	Resource.titles.language	AY (Aymara)	MDS_V3_2_RTL_10	10
-	Resource.titles.language	AZ (Azerbaijani)	MDS_V3_2_RTL_11	11
-	Resource.titles.language	BA (Bashkir)	MDS_V3_2_RTL_12	12
-	Resource.titles.language	BE (Belarusian)	MDS_V3_2_RTL_13	13
-	Resource.titles.language	BG (Bulgarian)	MDS_V3_2_RTL_14	14
-	Resource.titles.language	BI (Bislama)	MDS_V3_2_RTL_15	15
-	Resource.titles.language	BM (Bambara)	MDS_V3_2_RTL_16	16
-	Resource.titles.language	BN (Bengali)	MDS_V3_2_RTL_17	17
-	Resource.titles.language	BO (Tibetan)	MDS_V3_2_RTL_18	18
-	Resource.titles.language	BR (Breton)	MDS_V3_2_RTL_19	19
-	Resource.titles.language	BS (Bosnian)	MDS_V3_2_RTL_20	20
-	Resource.titles.language	CA (Catalan)	MDS_V3_2_RTL_21	21
-	Resource.titles.language	CE (Chechen)	MDS_V3_2_RTL_22	22
-	Resource.titles.language	CH (Chamorro)	MDS_V3_2_RTL_23	23
-	Resource.titles.language	CO (Corsican)	MDS_V3_2_RTL_24	24
-	Resource.titles.language	CR (Cree)	MDS_V3_2_RTL_25	25
-	Resource.titles.language	CS (Czech)	MDS_V3_2_RTL_26	26
-	Resource.titles.language	CU (Old Church Slavonic)	MDS_V3_2_RTL_27	27
-	Resource.titles.language	CV (Chuvash)	MDS_V3_2_RTL_28	28
-	Resource.titles.language	CY (Welsh)	MDS_V3_2_RTL_29	29
-	Resource.titles.language	DA (Danish)	MDS_V3_2_RTL_30	30
-	Resource.titles.language	DE (German)	MDS_V3_2_RTL_31	31
-	Resource.titles.language	DV (Divehi)	MDS_V3_2_RTL_32	32
-	Resource.titles.language	DZ (Dzongkha)	MDS_V3_2_RTL_33	33
-	Resource.titles.language	EE (Ewe)	MDS_V3_2_RTL_34	34
-	Resource.titles.language	EL (Greek)	MDS_V3_2_RTL_35	35
-	Resource.titles.language	EN (English)	MDS_V3_2_RTL_36	36
-	Resource.titles.language	EO (Esperanto)	MDS_V3_2_RTL_37	37
-	Resource.titles.language	ES (Spanish)	MDS_V3_2_RTL_38	38
-	Resource.titles.language	ET (Estonian)	MDS_V3_2_RTL_39	39
-	Resource.titles.language	EU (Basque)	MDS_V3_2_RTL_40	40
-	Resource.titles.language	FA (Persian)	MDS_V3_2_RTL_41	41
-	Resource.titles.language	FF (Fula)	MDS_V3_2_RTL_42	42
-	Resource.titles.language	FI (Finnish)	MDS_V3_2_RTL_43	43
-	Resource.titles.language	FJ (Fijian)	MDS_V3_2_RTL_44	44
-	Resource.titles.language	FO (Faroese)	MDS_V3_2_RTL_45	45
-	Resource.titles.language	FR (French)	MDS_V3_2_RTL_46	46
-	Resource.titles.language	FY (Western Frisian)	MDS_V3_2_RTL_47	47
-	Resource.titles.language	GA (Irish)	MDS_V3_2_RTL_48	48
-	Resource.titles.language	GD (Scottish Gaelic)	MDS_V3_2_RTL_49	49
-	Resource.titles.language	GL (Galician)	MDS_V3_2_RTL_50	50
-	Resource.titles.language	GN (Guaraní)	MDS_V3_2_RTL_51	51
-	Resource.titles.language	GU (Gujarati)	MDS_V3_2_RTL_52	52
-	Resource.titles.language	GV (Manx)	MDS_V3_2_RTL_53	53
-	Resource.titles.language	HA (Hausa)	MDS_V3_2_RTL_54	54
-	Resource.titles.language	HE (Hebrew)	MDS_V3_2_RTL_55	55
-	Resource.titles.language	HI (Hindi)	MDS_V3_2_RTL_56	56
-	Resource.titles.language	HO (Hiri Motu)	MDS_V3_2_RTL_57	57
-	Resource.titles.language	HR (Croatian)	MDS_V3_2_RTL_58	58
-	Resource.titles.language	HT (Haitian)	MDS_V3_2_RTL_59	59
-	Resource.titles.language	HU (Hungarian)	MDS_V3_2_RTL_60	60
-	Resource.titles.language	HY (Armenian)	MDS_V3_2_RTL_61	61
-	Resource.titles.language	HZ (Herero)	MDS_V3_2_RTL_62	62
-	Resource.titles.language	IA (Interlingua)	MDS_V3_2_RTL_63	63
-	Resource.titles.language	ID (Indonesian)	MDS_V3_2_RTL_64	64
-	Resource.titles.language	IE (Interlingue)	MDS_V3_2_RTL_65	65
-	Resource.titles.language	IG (Igbo)	MDS_V3_2_RTL_66	66
-	Resource.titles.language	II (Nuosu)	MDS_V3_2_RTL_67	67
-	Resource.titles.language	IK (Inupiaq)	MDS_V3_2_RTL_68	68
-	Resource.titles.language	IO (Ido)	MDS_V3_2_RTL_69	69
-	Resource.titles.language	IS (Icelandic)	MDS_V3_2_RTL_70	70
-	Resource.titles.language	IT (Italian)	MDS_V3_2_RTL_71	71
-	Resource.titles.language	IU (Inuktitut)	MDS_V3_2_RTL_72	72
-	Resource.titles.language	JA (Japanese)	MDS_V3_2_RTL_73	73
-	Resource.titles.language	JV (Javanese)	MDS_V3_2_RTL_74	74
-	Resource.titles.language	KA (Georgian)	MDS_V3_2_RTL_75	75
-	Resource.titles.language	KG (Kongo)	MDS_V3_2_RTL_76	76
-	Resource.titles.language	KI (Kikuyu)	MDS_V3_2_RTL_77	77
-	Resource.titles.language	KJ (Kwanyama)	MDS_V3_2_RTL_78	78
-	Resource.titles.language	KK (Kazakh)	MDS_V3_2_RTL_79	79
-	Resource.titles.language	KL (Kalaallisut)	MDS_V3_2_RTL_80	80
-	Resource.titles.language	KM (Khmer)	MDS_V3_2_RTL_81	81
-	Resource.titles.language	KN (Kannada)	MDS_V3_2_RTL_82	82
-	Resource.titles.language	KO (Korean)	MDS_V3_2_RTL_83	83
-	Resource.titles.language	KR (Kanuri)	MDS_V3_2_RTL_84	84
-	Resource.titles.language	KS (Kashmiri)	MDS_V3_2_RTL_85	85
-	Resource.titles.language	KU (Kurdish)	MDS_V3_2_RTL_86	86
-	Resource.titles.language	KV (Komi)	MDS_V3_2_RTL_87	87
-	Resource.titles.language	KW (Cornish)	MDS_V3_2_RTL_88	88
-	Resource.titles.language	KY (Kyrgyz)	MDS_V3_2_RTL_89	89
-	Resource.titles.language	LA (Latin)	MDS_V3_2_RTL_90	90
-	Resource.titles.language	LB (Luxembourgish)	MDS_V3_2_RTL_91	91
-	Resource.titles.language	LG (Ganda)	MDS_V3_2_RTL_92	92
-	Resource.titles.language	LI (Limburgish)	MDS_V3_2_RTL_93	93
-	Resource.titles.language	LN (Lingala)	MDS_V3_2_RTL_94	94
-	Resource.titles.language	LO (Lao)	MDS_V3_2_RTL_95	95
-	Resource.titles.language	LT (Lithuanian)	MDS_V3_2_RTL_96	96
-	Resource.titles.language	LU (Luba-Katanga)	MDS_V3_2_RTL_97	97
-	Resource.titles.language	LV (Latvian)	MDS_V3_2_RTL_98	98
-	Resource.titles.language	MG (Malagasy)	MDS_V3_2_RTL_99	99
-	Resource.titles.language	MH (Marshallese)	MDS_V3_2_RTL_100	100
-	Resource.titles.language	MI (Māori)	MDS_V3_2_RTL_101	101
-	Resource.titles.language	MK (Macedonian)	MDS_V3_2_RTL_102	102
-	Resource.titles.language	ML (Malayalam)	MDS_V3_2_RTL_103	103
-	Resource.titles.language	MN (Mongolian)	MDS_V3_2_RTL_104	104
-	Resource.titles.language	MR (Marathi)	MDS_V3_2_RTL_105	105
-	Resource.titles.language	MS (Malay)	MDS_V3_2_RTL_106	106
-	Resource.titles.language	MT (Maltese)	MDS_V3_2_RTL_107	107
-	Resource.titles.language	MY (Burmese)	MDS_V3_2_RTL_108	108
-	Resource.titles.language	NA (Nauru)	MDS_V3_2_RTL_109	109
-	Resource.titles.language	NB (Norwegian Bokmål)	MDS_V3_2_RTL_110	110
-	Resource.titles.language	ND (Northern Ndebele)	MDS_V3_2_RTL_111	111
-	Resource.titles.language	NE (Nepali)	MDS_V3_2_RTL_112	112
-	Resource.titles.language	NG (Ndonga)	MDS_V3_2_RTL_113	113
-	Resource.titles.language	NL (Dutch)	MDS_V3_2_RTL_114	114
-	Resource.titles.language	NN (Norwegian Nynorsk)	MDS_V3_2_RTL_115	115
-	Resource.titles.language	NO (Norwegian)	MDS_V3_2_RTL_116	116
-	Resource.titles.language	NR (Southern Ndebele)	MDS_V3_2_RTL_117	117
-	Resource.titles.language	NV (Navajo)	MDS_V3_2_RTL_118	118
-	Resource.titles.language	NY (Chichewa)	MDS_V3_2_RTL_119	119
-	Resource.titles.language	OC (Occitan)	MDS_V3_2_RTL_120	120
-	Resource.titles.language	OJ (Ojibwe)	MDS_V3_2_RTL_121	121
-	Resource.titles.language	OM (Oromo)	MDS_V3_2_RTL_122	122
-	Resource.titles.language	OR (Oriya)	MDS_V3_2_RTL_123	123
-	Resource.titles.language	OS (Ossetian)	MDS_V3_2_RTL_124	124
-	Resource.titles.language	PA (Panjabi)	MDS_V3_2_RTL_125	125
-	Resource.titles.language	PI (Pāli)	MDS_V3_2_RTL_126	126
-	Resource.titles.language	PL (Polish)	MDS_V3_2_RTL_127	127
-	Resource.titles.language	PS (Pashto)	MDS_V3_2_RTL_128	128
-	Resource.titles.language	PT (Portuguese)	MDS_V3_2_RTL_129	129
-	Resource.titles.language	QU (Quechua)	MDS_V3_2_RTL_130	130
-	Resource.titles.language	RM (Romansh)	MDS_V3_2_RTL_131	131
-	Resource.titles.language	RN (Kirundi)	MDS_V3_2_RTL_132	132
-	Resource.titles.language	RO (Romanian)	MDS_V3_2_RTL_133	133
-	Resource.titles.language	RU (Russian)	MDS_V3_2_RTL_134	134
-	Resource.titles.language	RW (Kinyarwanda)	MDS_V3_2_RTL_135	135
-	Resource.titles.language	SA (Sanskrit)	MDS_V3_2_RTL_136	136
-	Resource.titles.language	SC (Sardinian)	MDS_V3_2_RTL_137	137
-	Resource.titles.language	SD (Sindhi)	MDS_V3_2_RTL_138	138
-	Resource.titles.language	SE (Northern Sami)	MDS_V3_2_RTL_139	139
-	Resource.titles.language	SG (Sango)	MDS_V3_2_RTL_140	140
-	Resource.titles.language	SI (Sinhala)	MDS_V3_2_RTL_141	141
-	Resource.titles.language	SK (Slovak)	MDS_V3_2_RTL_142	142
-	Resource.titles.language	SL (Slovenian)	MDS_V3_2_RTL_143	143
-	Resource.titles.language	SM (Samoan)	MDS_V3_2_RTL_144	144
-	Resource.titles.language	SN (Shona)	MDS_V3_2_RTL_145	145
-	Resource.titles.language	SO (Somali)	MDS_V3_2_RTL_146	146
-	Resource.titles.language	SQ (Albanian)	MDS_V3_2_RTL_147	147
-	Resource.titles.language	SR (Serbian)	MDS_V3_2_RTL_148	148
-	Resource.titles.language	SS (Swati)	MDS_V3_2_RTL_149	149
-	Resource.titles.language	ST (Southern Sotho)	MDS_V3_2_RTL_150	150
-	Resource.titles.language	SU (Sundanese)	MDS_V3_2_RTL_151	151
-	Resource.titles.language	SV (Swedish)	MDS_V3_2_RTL_152	152
-	Resource.titles.language	SW (Swahili)	MDS_V3_2_RTL_153	153
-	Resource.titles.language	TA (Tamil)	MDS_V3_2_RTL_154	154
-	Resource.titles.language	TE (Telugu)	MDS_V3_2_RTL_155	155
-	Resource.titles.language	TG (Tajik)	MDS_V3_2_RTL_156	156
-	Resource.titles.language	TH (Thai)	MDS_V3_2_RTL_157	157
-	Resource.titles.language	TI (Tigrinya)	MDS_V3_2_RTL_158	158
-	Resource.titles.language	TK (Turkmen)	MDS_V3_2_RTL_159	159
-	Resource.titles.language	TL (Tagalog)	MDS_V3_2_RTL_160	160
-	Resource.titles.language	TN (Tswana)	MDS_V3_2_RTL_161	161
-	Resource.titles.language	TO (Tonga)	MDS_V3_2_RTL_162	162
-	Resource.titles.language	TR (Turkish)	MDS_V3_2_RTL_163	163
-	Resource.titles.language	TS (Tsonga)	MDS_V3_2_RTL_164	164
-	Resource.titles.language	TT (Tatar)	MDS_V3_2_RTL_165	165
-	Resource.titles.language	TW (Twi)	MDS_V3_2_RTL_166	166
-	Resource.titles.language	TY (Tahitian)	MDS_V3_2_RTL_167	167
-	Resource.titles.language	UG (Uyghur)	MDS_V3_2_RTL_168	168
-	Resource.titles.language	UK (Ukrainian)	MDS_V3_2_RTL_169	169
-	Resource.titles.language	UR (Urdu)	MDS_V3_2_RTL_170	170
-	Resource.titles.language	UZ (Uzbek)	MDS_V3_2_RTL_171	171
-	Resource.titles.language	VE (Venda)	MDS_V3_2_RTL_172	172
-	Resource.titles.language	VI (Vietnamese)	MDS_V3_2_RTL_173	173
-	Resource.titles.language	VO (Volapük)	MDS_V3_2_RTL_174	174
-	Resource.titles.language	WA (Walloon)	MDS_V3_2_RTL_175	175
-	Resource.titles.language	WO (Wolof)	MDS_V3_2_RTL_176	176
-	Resource.titles.language	XH (Xhosa)	MDS_V3_2_RTL_177	177
-	Resource.titles.language	YI (Yiddish)	MDS_V3_2_RTL_178	178
-	Resource.titles.language	YO (Yoruba)	MDS_V3_2_RTL_179	179
-	Resource.titles.language	ZA (Zhuang)	MDS_V3_2_RTL_180	180
-	Resource.titles.language	ZH (Chinese)	MDS_V3_2_RTL_181	181
-	Resource.titles.language	ZU (Zulu)	MDS_V3_2_RTL_182	182
-	Resource.acronyms.language	AA (Afar)	MDS_V3_2_RAL_0	0
-	Resource.acronyms.language	AB (Abkhaz)	MDS_V3_2_RAL_1	1
-	Resource.acronyms.language	AE (Avestan)	MDS_V3_2_RAL_2	2
-	Resource.acronyms.language	AF (Afrikaans)	MDS_V3_2_RAL_3	3
-	Resource.acronyms.language	AK (Akan)	MDS_V3_2_RAL_4	4
-	Resource.acronyms.language	AM (Amharic)	MDS_V3_2_RAL_5	5
-	Resource.acronyms.language	AN (Aragonese)	MDS_V3_2_RAL_6	6
-	Resource.acronyms.language	AR (Arabic)	MDS_V3_2_RAL_7	7
-	Resource.acronyms.language	AS (Assamese)	MDS_V3_2_RAL_8	8
-	Resource.acronyms.language	AV (Avaric)	MDS_V3_2_RAL_9	9
-	Resource.acronyms.language	AY (Aymara)	MDS_V3_2_RAL_10	10
-	Resource.acronyms.language	AZ (Azerbaijani)	MDS_V3_2_RAL_11	11
-	Resource.acronyms.language	BA (Bashkir)	MDS_V3_2_RAL_12	12
-	Resource.acronyms.language	BE (Belarusian)	MDS_V3_2_RAL_13	13
-	Resource.acronyms.language	BG (Bulgarian)	MDS_V3_2_RAL_14	14
-	Resource.acronyms.language	BI (Bislama)	MDS_V3_2_RAL_15	15
-	Resource.acronyms.language	BM (Bambara)	MDS_V3_2_RAL_16	16
-	Resource.acronyms.language	BN (Bengali)	MDS_V3_2_RAL_17	17
-	Resource.acronyms.language	BO (Tibetan)	MDS_V3_2_RAL_18	18
-	Resource.acronyms.language	BR (Breton)	MDS_V3_2_RAL_19	19
-	Resource.acronyms.language	BS (Bosnian)	MDS_V3_2_RAL_20	20
-	Resource.acronyms.language	CA (Catalan)	MDS_V3_2_RAL_21	21
-	Resource.acronyms.language	CE (Chechen)	MDS_V3_2_RAL_22	22
-	Resource.acronyms.language	CH (Chamorro)	MDS_V3_2_RAL_23	23
-	Resource.acronyms.language	CO (Corsican)	MDS_V3_2_RAL_24	24
-	Resource.acronyms.language	CR (Cree)	MDS_V3_2_RAL_25	25
-	Resource.acronyms.language	CS (Czech)	MDS_V3_2_RAL_26	26
-	Resource.acronyms.language	CU (Old Church Slavonic)	MDS_V3_2_RAL_27	27
-	Resource.acronyms.language	CV (Chuvash)	MDS_V3_2_RAL_28	28
-	Resource.acronyms.language	CY (Welsh)	MDS_V3_2_RAL_29	29
-	Resource.acronyms.language	DA (Danish)	MDS_V3_2_RAL_30	30
-	Resource.acronyms.language	DE (German)	MDS_V3_2_RAL_31	31
-	Resource.acronyms.language	DV (Divehi)	MDS_V3_2_RAL_32	32
-	Resource.acronyms.language	DZ (Dzongkha)	MDS_V3_2_RAL_33	33
-	Resource.acronyms.language	EE (Ewe)	MDS_V3_2_RAL_34	34
-	Resource.acronyms.language	EL (Greek)	MDS_V3_2_RAL_35	35
-	Resource.acronyms.language	EN (English)	MDS_V3_2_RAL_36	36
-	Resource.acronyms.language	EO (Esperanto)	MDS_V3_2_RAL_37	37
-	Resource.acronyms.language	ES (Spanish)	MDS_V3_2_RAL_38	38
-	Resource.acronyms.language	ET (Estonian)	MDS_V3_2_RAL_39	39
-	Resource.acronyms.language	EU (Basque)	MDS_V3_2_RAL_40	40
-	Resource.acronyms.language	FA (Persian)	MDS_V3_2_RAL_41	41
-	Resource.acronyms.language	FF (Fula)	MDS_V3_2_RAL_42	42
-	Resource.acronyms.language	FI (Finnish)	MDS_V3_2_RAL_43	43
-	Resource.acronyms.language	FJ (Fijian)	MDS_V3_2_RAL_44	44
-	Resource.acronyms.language	FO (Faroese)	MDS_V3_2_RAL_45	45
-	Resource.acronyms.language	FR (French)	MDS_V3_2_RAL_46	46
-	Resource.acronyms.language	FY (Western Frisian)	MDS_V3_2_RAL_47	47
-	Resource.acronyms.language	GA (Irish)	MDS_V3_2_RAL_48	48
-	Resource.acronyms.language	GD (Scottish Gaelic)	MDS_V3_2_RAL_49	49
-	Resource.acronyms.language	GL (Galician)	MDS_V3_2_RAL_50	50
-	Resource.acronyms.language	GN (Guaraní)	MDS_V3_2_RAL_51	51
-	Resource.acronyms.language	GU (Gujarati)	MDS_V3_2_RAL_52	52
-	Resource.acronyms.language	GV (Manx)	MDS_V3_2_RAL_53	53
-	Resource.acronyms.language	HA (Hausa)	MDS_V3_2_RAL_54	54
-	Resource.acronyms.language	HE (Hebrew)	MDS_V3_2_RAL_55	55
-	Resource.acronyms.language	HI (Hindi)	MDS_V3_2_RAL_56	56
-	Resource.acronyms.language	HO (Hiri Motu)	MDS_V3_2_RAL_57	57
-	Resource.acronyms.language	HR (Croatian)	MDS_V3_2_RAL_58	58
-	Resource.acronyms.language	HT (Haitian)	MDS_V3_2_RAL_59	59
-	Resource.acronyms.language	HU (Hungarian)	MDS_V3_2_RAL_60	60
-	Resource.acronyms.language	HY (Armenian)	MDS_V3_2_RAL_61	61
-	Resource.acronyms.language	HZ (Herero)	MDS_V3_2_RAL_62	62
-	Resource.acronyms.language	IA (Interlingua)	MDS_V3_2_RAL_63	63
-	Resource.acronyms.language	ID (Indonesian)	MDS_V3_2_RAL_64	64
-	Resource.acronyms.language	IE (Interlingue)	MDS_V3_2_RAL_65	65
-	Resource.acronyms.language	IG (Igbo)	MDS_V3_2_RAL_66	66
-	Resource.acronyms.language	II (Nuosu)	MDS_V3_2_RAL_67	67
-	Resource.acronyms.language	IK (Inupiaq)	MDS_V3_2_RAL_68	68
-	Resource.acronyms.language	IO (Ido)	MDS_V3_2_RAL_69	69
-	Resource.acronyms.language	IS (Icelandic)	MDS_V3_2_RAL_70	70
-	Resource.acronyms.language	IT (Italian)	MDS_V3_2_RAL_71	71
-	Resource.acronyms.language	IU (Inuktitut)	MDS_V3_2_RAL_72	72
-	Resource.acronyms.language	JA (Japanese)	MDS_V3_2_RAL_73	73
-	Resource.acronyms.language	JV (Javanese)	MDS_V3_2_RAL_74	74
-	Resource.acronyms.language	KA (Georgian)	MDS_V3_2_RAL_75	75
-	Resource.acronyms.language	KG (Kongo)	MDS_V3_2_RAL_76	76
-	Resource.acronyms.language	KI (Kikuyu)	MDS_V3_2_RAL_77	77
-	Resource.acronyms.language	KJ (Kwanyama)	MDS_V3_2_RAL_78	78
-	Resource.acronyms.language	KK (Kazakh)	MDS_V3_2_RAL_79	79
-	Resource.acronyms.language	KL (Kalaallisut)	MDS_V3_2_RAL_80	80
-	Resource.acronyms.language	KM (Khmer)	MDS_V3_2_RAL_81	81
-	Resource.acronyms.language	KN (Kannada)	MDS_V3_2_RAL_82	82
-	Resource.acronyms.language	KO (Korean)	MDS_V3_2_RAL_83	83
-	Resource.acronyms.language	KR (Kanuri)	MDS_V3_2_RAL_84	84
-	Resource.acronyms.language	KS (Kashmiri)	MDS_V3_2_RAL_85	85
-	Resource.acronyms.language	KU (Kurdish)	MDS_V3_2_RAL_86	86
-	Resource.acronyms.language	KV (Komi)	MDS_V3_2_RAL_87	87
-	Resource.acronyms.language	KW (Cornish)	MDS_V3_2_RAL_88	88
-	Resource.acronyms.language	KY (Kyrgyz)	MDS_V3_2_RAL_89	89
-	Resource.acronyms.language	LA (Latin)	MDS_V3_2_RAL_90	90
-	Resource.acronyms.language	LB (Luxembourgish)	MDS_V3_2_RAL_91	91
-	Resource.acronyms.language	LG (Ganda)	MDS_V3_2_RAL_92	92
-	Resource.acronyms.language	LI (Limburgish)	MDS_V3_2_RAL_93	93
-	Resource.acronyms.language	LN (Lingala)	MDS_V3_2_RAL_94	94
-	Resource.acronyms.language	LO (Lao)	MDS_V3_2_RAL_95	95
-	Resource.acronyms.language	LT (Lithuanian)	MDS_V3_2_RAL_96	96
-	Resource.acronyms.language	LU (Luba-Katanga)	MDS_V3_2_RAL_97	97
-	Resource.acronyms.language	LV (Latvian)	MDS_V3_2_RAL_98	98
-	Resource.acronyms.language	MG (Malagasy)	MDS_V3_2_RAL_99	99
-	Resource.acronyms.language	MH (Marshallese)	MDS_V3_2_RAL_100	100
-	Resource.acronyms.language	MI (Māori)	MDS_V3_2_RAL_101	101
-	Resource.acronyms.language	MK (Macedonian)	MDS_V3_2_RAL_102	102
-	Resource.acronyms.language	ML (Malayalam)	MDS_V3_2_RAL_103	103
-	Resource.acronyms.language	MN (Mongolian)	MDS_V3_2_RAL_104	104
-	Resource.acronyms.language	MR (Marathi)	MDS_V3_2_RAL_105	105
-	Resource.acronyms.language	MS (Malay)	MDS_V3_2_RAL_106	106
-	Resource.acronyms.language	MT (Maltese)	MDS_V3_2_RAL_107	107
-	Resource.acronyms.language	MY (Burmese)	MDS_V3_2_RAL_108	108
-	Resource.acronyms.language	NA (Nauru)	MDS_V3_2_RAL_109	109
-	Resource.acronyms.language	NB (Norwegian Bokmål)	MDS_V3_2_RAL_110	110
-	Resource.acronyms.language	ND (Northern Ndebele)	MDS_V3_2_RAL_111	111
-	Resource.acronyms.language	NE (Nepali)	MDS_V3_2_RAL_112	112
-	Resource.acronyms.language	NG (Ndonga)	MDS_V3_2_RAL_113	113
-	Resource.acronyms.language	NL (Dutch)	MDS_V3_2_RAL_114	114
-	Resource.acronyms.language	NN (Norwegian Nynorsk)	MDS_V3_2_RAL_115	115
-	Resource.acronyms.language	NO (Norwegian)	MDS_V3_2_RAL_116	116
-	Resource.acronyms.language	NR (Southern Ndebele)	MDS_V3_2_RAL_117	117
-	Resource.acronyms.language	NV (Navajo)	MDS_V3_2_RAL_118	118
-	Resource.acronyms.language	NY (Chichewa)	MDS_V3_2_RAL_119	119
-	Resource.acronyms.language	OC (Occitan)	MDS_V3_2_RAL_120	120
-	Resource.acronyms.language	OJ (Ojibwe)	MDS_V3_2_RAL_121	121
-	Resource.acronyms.language	OM (Oromo)	MDS_V3_2_RAL_122	122
-	Resource.acronyms.language	OR (Oriya)	MDS_V3_2_RAL_123	123
-	Resource.acronyms.language	OS (Ossetian)	MDS_V3_2_RAL_124	124
-	Resource.acronyms.language	PA (Panjabi)	MDS_V3_2_RAL_125	125
-	Resource.acronyms.language	PI (Pāli)	MDS_V3_2_RAL_126	126
-	Resource.acronyms.language	PL (Polish)	MDS_V3_2_RAL_127	127
-	Resource.acronyms.language	PS (Pashto)	MDS_V3_2_RAL_128	128
-	Resource.acronyms.language	PT (Portuguese)	MDS_V3_2_RAL_129	129
-	Resource.acronyms.language	QU (Quechua)	MDS_V3_2_RAL_130	130
-	Resource.acronyms.language	RM (Romansh)	MDS_V3_2_RAL_131	131
-	Resource.acronyms.language	RN (Kirundi)	MDS_V3_2_RAL_132	132
-	Resource.acronyms.language	RO (Romanian)	MDS_V3_2_RAL_133	133
-	Resource.acronyms.language	RU (Russian)	MDS_V3_2_RAL_134	134
-	Resource.acronyms.language	RW (Kinyarwanda)	MDS_V3_2_RAL_135	135
-	Resource.acronyms.language	SA (Sanskrit)	MDS_V3_2_RAL_136	136
-	Resource.acronyms.language	SC (Sardinian)	MDS_V3_2_RAL_137	137
-	Resource.acronyms.language	SD (Sindhi)	MDS_V3_2_RAL_138	138
-	Resource.acronyms.language	SE (Northern Sami)	MDS_V3_2_RAL_139	139
-	Resource.acronyms.language	SG (Sango)	MDS_V3_2_RAL_140	140
-	Resource.acronyms.language	SI (Sinhala)	MDS_V3_2_RAL_141	141
-	Resource.acronyms.language	SK (Slovak)	MDS_V3_2_RAL_142	142
-	Resource.acronyms.language	SL (Slovenian)	MDS_V3_2_RAL_143	143
-	Resource.acronyms.language	SM (Samoan)	MDS_V3_2_RAL_144	144
-	Resource.acronyms.language	SN (Shona)	MDS_V3_2_RAL_145	145
-	Resource.acronyms.language	SO (Somali)	MDS_V3_2_RAL_146	146
-	Resource.acronyms.language	SQ (Albanian)	MDS_V3_2_RAL_147	147
-	Resource.acronyms.language	SR (Serbian)	MDS_V3_2_RAL_148	148
-	Resource.acronyms.language	SS (Swati)	MDS_V3_2_RAL_149	149
-	Resource.acronyms.language	ST (Southern Sotho)	MDS_V3_2_RAL_150	150
-	Resource.acronyms.language	SU (Sundanese)	MDS_V3_2_RAL_151	151
-	Resource.acronyms.language	SV (Swedish)	MDS_V3_2_RAL_152	152
-	Resource.acronyms.language	SW (Swahili)	MDS_V3_2_RAL_153	153
-	Resource.acronyms.language	TA (Tamil)	MDS_V3_2_RAL_154	154
-	Resource.acronyms.language	TE (Telugu)	MDS_V3_2_RAL_155	155
-	Resource.acronyms.language	TG (Tajik)	MDS_V3_2_RAL_156	156
-	Resource.acronyms.language	TH (Thai)	MDS_V3_2_RAL_157	157
-	Resource.acronyms.language	TI (Tigrinya)	MDS_V3_2_RAL_158	158
-	Resource.acronyms.language	TK (Turkmen)	MDS_V3_2_RAL_159	159
-	Resource.acronyms.language	TL (Tagalog)	MDS_V3_2_RAL_160	160
-	Resource.acronyms.language	TN (Tswana)	MDS_V3_2_RAL_161	161
-	Resource.acronyms.language	TO (Tonga)	MDS_V3_2_RAL_162	162
-	Resource.acronyms.language	TR (Turkish)	MDS_V3_2_RAL_163	163
-	Resource.acronyms.language	TS (Tsonga)	MDS_V3_2_RAL_164	164
-	Resource.acronyms.language	TT (Tatar)	MDS_V3_2_RAL_165	165
-	Resource.acronyms.language	TW (Twi)	MDS_V3_2_RAL_166	166
-	Resource.acronyms.language	TY (Tahitian)	MDS_V3_2_RAL_167	167
-	Resource.acronyms.language	UG (Uyghur)	MDS_V3_2_RAL_168	168
-	Resource.acronyms.language	UK (Ukrainian)	MDS_V3_2_RAL_169	169
-	Resource.acronyms.language	UR (Urdu)	MDS_V3_2_RAL_170	170
-	Resource.acronyms.language	UZ (Uzbek)	MDS_V3_2_RAL_171	171
-	Resource.acronyms.language	VE (Venda)	MDS_V3_2_RAL_172	172
-	Resource.acronyms.language	VI (Vietnamese)	MDS_V3_2_RAL_173	173
-	Resource.acronyms.language	VO (Volapük)	MDS_V3_2_RAL_174	174
-	Resource.acronyms.language	WA (Walloon)	MDS_V3_2_RAL_175	175
-	Resource.acronyms.language	WO (Wolof)	MDS_V3_2_RAL_176	176
-	Resource.acronyms.language	XH (Xhosa)	MDS_V3_2_RAL_177	177
-	Resource.acronyms.language	YI (Yiddish)	MDS_V3_2_RAL_178	178
-	Resource.acronyms.language	YO (Yoruba)	MDS_V3_2_RAL_179	179
-	Resource.acronyms.language	ZA (Zhuang)	MDS_V3_2_RAL_180	180
-	Resource.acronyms.language	ZH (Chinese)	MDS_V3_2_RAL_181	181
-	Resource.acronyms.language	ZU (Zulu)	MDS_V3_2_RAL_182	182
-	Resource.descriptions.language	AA (Afar)	MDS_V3_2_RDL_0	0
-	Resource.descriptions.language	AB (Abkhaz)	MDS_V3_2_RDL_1	1
-	Resource.descriptions.language	AE (Avestan)	MDS_V3_2_RDL_2	2
-	Resource.descriptions.language	AF (Afrikaans)	MDS_V3_2_RDL_3	3
-	Resource.descriptions.language	AK (Akan)	MDS_V3_2_RDL_4	4
-	Resource.descriptions.language	AM (Amharic)	MDS_V3_2_RDL_5	5
-	Resource.descriptions.language	AN (Aragonese)	MDS_V3_2_RDL_6	6
-	Resource.descriptions.language	AR (Arabic)	MDS_V3_2_RDL_7	7
-	Resource.descriptions.language	AS (Assamese)	MDS_V3_2_RDL_8	8
-	Resource.descriptions.language	AV (Avaric)	MDS_V3_2_RDL_9	9
-	Resource.descriptions.language	AY (Aymara)	MDS_V3_2_RDL_10	10
-	Resource.descriptions.language	AZ (Azerbaijani)	MDS_V3_2_RDL_11	11
-	Resource.descriptions.language	BA (Bashkir)	MDS_V3_2_RDL_12	12
-	Resource.descriptions.language	BE (Belarusian)	MDS_V3_2_RDL_13	13
-	Resource.descriptions.language	BG (Bulgarian)	MDS_V3_2_RDL_14	14
-	Resource.descriptions.language	BI (Bislama)	MDS_V3_2_RDL_15	15
-	Resource.descriptions.language	BM (Bambara)	MDS_V3_2_RDL_16	16
-	Resource.descriptions.language	BN (Bengali)	MDS_V3_2_RDL_17	17
-	Resource.descriptions.language	BO (Tibetan)	MDS_V3_2_RDL_18	18
-	Resource.descriptions.language	BR (Breton)	MDS_V3_2_RDL_19	19
-	Resource.descriptions.language	BS (Bosnian)	MDS_V3_2_RDL_20	20
-	Resource.descriptions.language	CA (Catalan)	MDS_V3_2_RDL_21	21
-	Resource.descriptions.language	CE (Chechen)	MDS_V3_2_RDL_22	22
-	Resource.descriptions.language	CH (Chamorro)	MDS_V3_2_RDL_23	23
-	Resource.descriptions.language	CO (Corsican)	MDS_V3_2_RDL_24	24
-	Resource.descriptions.language	CR (Cree)	MDS_V3_2_RDL_25	25
-	Resource.descriptions.language	CS (Czech)	MDS_V3_2_RDL_26	26
-	Resource.descriptions.language	CU (Old Church Slavonic)	MDS_V3_2_RDL_27	27
-	Resource.descriptions.language	CV (Chuvash)	MDS_V3_2_RDL_28	28
-	Resource.descriptions.language	CY (Welsh)	MDS_V3_2_RDL_29	29
-	Resource.descriptions.language	DA (Danish)	MDS_V3_2_RDL_30	30
-	Resource.descriptions.language	DE (German)	MDS_V3_2_RDL_31	31
-	Resource.descriptions.language	DV (Divehi)	MDS_V3_2_RDL_32	32
-	Resource.descriptions.language	DZ (Dzongkha)	MDS_V3_2_RDL_33	33
-	Resource.descriptions.language	EE (Ewe)	MDS_V3_2_RDL_34	34
-	Resource.descriptions.language	EL (Greek)	MDS_V3_2_RDL_35	35
-	Resource.descriptions.language	EN (English)	MDS_V3_2_RDL_36	36
-	Resource.descriptions.language	EO (Esperanto)	MDS_V3_2_RDL_37	37
-	Resource.descriptions.language	ES (Spanish)	MDS_V3_2_RDL_38	38
-	Resource.descriptions.language	ET (Estonian)	MDS_V3_2_RDL_39	39
-	Resource.descriptions.language	EU (Basque)	MDS_V3_2_RDL_40	40
-	Resource.descriptions.language	FA (Persian)	MDS_V3_2_RDL_41	41
-	Resource.descriptions.language	FF (Fula)	MDS_V3_2_RDL_42	42
-	Resource.descriptions.language	FI (Finnish)	MDS_V3_2_RDL_43	43
-	Resource.descriptions.language	FJ (Fijian)	MDS_V3_2_RDL_44	44
-	Resource.descriptions.language	FO (Faroese)	MDS_V3_2_RDL_45	45
-	Resource.descriptions.language	FR (French)	MDS_V3_2_RDL_46	46
-	Resource.descriptions.language	FY (Western Frisian)	MDS_V3_2_RDL_47	47
-	Resource.descriptions.language	GA (Irish)	MDS_V3_2_RDL_48	48
-	Resource.descriptions.language	GD (Scottish Gaelic)	MDS_V3_2_RDL_49	49
-	Resource.descriptions.language	GL (Galician)	MDS_V3_2_RDL_50	50
-	Resource.descriptions.language	GN (Guaraní)	MDS_V3_2_RDL_51	51
-	Resource.descriptions.language	GU (Gujarati)	MDS_V3_2_RDL_52	52
-	Resource.descriptions.language	GV (Manx)	MDS_V3_2_RDL_53	53
-	Resource.descriptions.language	HA (Hausa)	MDS_V3_2_RDL_54	54
-	Resource.descriptions.language	HE (Hebrew)	MDS_V3_2_RDL_55	55
-	Resource.descriptions.language	HI (Hindi)	MDS_V3_2_RDL_56	56
-	Resource.descriptions.language	HO (Hiri Motu)	MDS_V3_2_RDL_57	57
-	Resource.descriptions.language	HR (Croatian)	MDS_V3_2_RDL_58	58
-	Resource.descriptions.language	HT (Haitian)	MDS_V3_2_RDL_59	59
-	Resource.descriptions.language	HU (Hungarian)	MDS_V3_2_RDL_60	60
-	Resource.descriptions.language	HY (Armenian)	MDS_V3_2_RDL_61	61
-	Resource.descriptions.language	HZ (Herero)	MDS_V3_2_RDL_62	62
-	Resource.descriptions.language	IA (Interlingua)	MDS_V3_2_RDL_63	63
-	Resource.descriptions.language	ID (Indonesian)	MDS_V3_2_RDL_64	64
-	Resource.descriptions.language	IE (Interlingue)	MDS_V3_2_RDL_65	65
-	Resource.descriptions.language	IG (Igbo)	MDS_V3_2_RDL_66	66
-	Resource.descriptions.language	II (Nuosu)	MDS_V3_2_RDL_67	67
-	Resource.descriptions.language	IK (Inupiaq)	MDS_V3_2_RDL_68	68
-	Resource.descriptions.language	IO (Ido)	MDS_V3_2_RDL_69	69
-	Resource.descriptions.language	IS (Icelandic)	MDS_V3_2_RDL_70	70
-	Resource.descriptions.language	IT (Italian)	MDS_V3_2_RDL_71	71
-	Resource.descriptions.language	IU (Inuktitut)	MDS_V3_2_RDL_72	72
-	Resource.descriptions.language	JA (Japanese)	MDS_V3_2_RDL_73	73
-	Resource.descriptions.language	JV (Javanese)	MDS_V3_2_RDL_74	74
-	Resource.descriptions.language	KA (Georgian)	MDS_V3_2_RDL_75	75
-	Resource.descriptions.language	KG (Kongo)	MDS_V3_2_RDL_76	76
-	Resource.descriptions.language	KI (Kikuyu)	MDS_V3_2_RDL_77	77
-	Resource.descriptions.language	KJ (Kwanyama)	MDS_V3_2_RDL_78	78
-	Resource.descriptions.language	KK (Kazakh)	MDS_V3_2_RDL_79	79
-	Resource.descriptions.language	KL (Kalaallisut)	MDS_V3_2_RDL_80	80
-	Resource.descriptions.language	KM (Khmer)	MDS_V3_2_RDL_81	81
-	Resource.descriptions.language	KN (Kannada)	MDS_V3_2_RDL_82	82
-	Resource.descriptions.language	KO (Korean)	MDS_V3_2_RDL_83	83
-	Resource.descriptions.language	KR (Kanuri)	MDS_V3_2_RDL_84	84
-	Resource.descriptions.language	KS (Kashmiri)	MDS_V3_2_RDL_85	85
-	Resource.descriptions.language	KU (Kurdish)	MDS_V3_2_RDL_86	86
-	Resource.descriptions.language	KV (Komi)	MDS_V3_2_RDL_87	87
-	Resource.descriptions.language	KW (Cornish)	MDS_V3_2_RDL_88	88
-	Resource.descriptions.language	KY (Kyrgyz)	MDS_V3_2_RDL_89	89
-	Resource.descriptions.language	LA (Latin)	MDS_V3_2_RDL_90	90
-	Resource.descriptions.language	LB (Luxembourgish)	MDS_V3_2_RDL_91	91
-	Resource.descriptions.language	LG (Ganda)	MDS_V3_2_RDL_92	92
-	Resource.descriptions.language	LI (Limburgish)	MDS_V3_2_RDL_93	93
-	Resource.descriptions.language	LN (Lingala)	MDS_V3_2_RDL_94	94
-	Resource.descriptions.language	LO (Lao)	MDS_V3_2_RDL_95	95
-	Resource.descriptions.language	LT (Lithuanian)	MDS_V3_2_RDL_96	96
-	Resource.descriptions.language	LU (Luba-Katanga)	MDS_V3_2_RDL_97	97
-	Resource.descriptions.language	LV (Latvian)	MDS_V3_2_RDL_98	98
-	Resource.descriptions.language	MG (Malagasy)	MDS_V3_2_RDL_99	99
-	Resource.descriptions.language	MH (Marshallese)	MDS_V3_2_RDL_100	100
-	Resource.descriptions.language	MI (Māori)	MDS_V3_2_RDL_101	101
-	Resource.descriptions.language	MK (Macedonian)	MDS_V3_2_RDL_102	102
-	Resource.descriptions.language	ML (Malayalam)	MDS_V3_2_RDL_103	103
-	Resource.descriptions.language	MN (Mongolian)	MDS_V3_2_RDL_104	104
-	Resource.descriptions.language	MR (Marathi)	MDS_V3_2_RDL_105	105
-	Resource.descriptions.language	MS (Malay)	MDS_V3_2_RDL_106	106
-	Resource.descriptions.language	MT (Maltese)	MDS_V3_2_RDL_107	107
-	Resource.descriptions.language	MY (Burmese)	MDS_V3_2_RDL_108	108
-	Resource.descriptions.language	NA (Nauru)	MDS_V3_2_RDL_109	109
-	Resource.descriptions.language	NB (Norwegian Bokmål)	MDS_V3_2_RDL_110	110
-	Resource.descriptions.language	ND (Northern Ndebele)	MDS_V3_2_RDL_111	111
-	Resource.descriptions.language	NE (Nepali)	MDS_V3_2_RDL_112	112
-	Resource.descriptions.language	NG (Ndonga)	MDS_V3_2_RDL_113	113
-	Resource.descriptions.language	NL (Dutch)	MDS_V3_2_RDL_114	114
-	Resource.descriptions.language	NN (Norwegian Nynorsk)	MDS_V3_2_RDL_115	115
-	Resource.descriptions.language	NO (Norwegian)	MDS_V3_2_RDL_116	116
-	Resource.descriptions.language	NR (Southern Ndebele)	MDS_V3_2_RDL_117	117
-	Resource.descriptions.language	NV (Navajo)	MDS_V3_2_RDL_118	118
-	Resource.descriptions.language	NY (Chichewa)	MDS_V3_2_RDL_119	119
-	Resource.descriptions.language	OC (Occitan)	MDS_V3_2_RDL_120	120
-	Resource.descriptions.language	OJ (Ojibwe)	MDS_V3_2_RDL_121	121
-	Resource.descriptions.language	OM (Oromo)	MDS_V3_2_RDL_122	122
-	Resource.descriptions.language	OR (Oriya)	MDS_V3_2_RDL_123	123
-	Resource.descriptions.language	OS (Ossetian)	MDS_V3_2_RDL_124	124
-	Resource.descriptions.language	PA (Panjabi)	MDS_V3_2_RDL_125	125
-	Resource.descriptions.language	PI (Pāli)	MDS_V3_2_RDL_126	126
-	Resource.descriptions.language	PL (Polish)	MDS_V3_2_RDL_127	127
-	Resource.descriptions.language	PS (Pashto)	MDS_V3_2_RDL_128	128
-	Resource.descriptions.language	PT (Portuguese)	MDS_V3_2_RDL_129	129
-	Resource.descriptions.language	QU (Quechua)	MDS_V3_2_RDL_130	130
-	Resource.descriptions.language	RM (Romansh)	MDS_V3_2_RDL_131	131
-	Resource.descriptions.language	RN (Kirundi)	MDS_V3_2_RDL_132	132
-	Resource.descriptions.language	RO (Romanian)	MDS_V3_2_RDL_133	133
-	Resource.descriptions.language	RU (Russian)	MDS_V3_2_RDL_134	134
-	Resource.descriptions.language	RW (Kinyarwanda)	MDS_V3_2_RDL_135	135
-	Resource.descriptions.language	SA (Sanskrit)	MDS_V3_2_RDL_136	136
-	Resource.descriptions.language	SC (Sardinian)	MDS_V3_2_RDL_137	137
-	Resource.descriptions.language	SD (Sindhi)	MDS_V3_2_RDL_138	138
-	Resource.descriptions.language	SE (Northern Sami)	MDS_V3_2_RDL_139	139
-	Resource.descriptions.language	SG (Sango)	MDS_V3_2_RDL_140	140
-	Resource.descriptions.language	SI (Sinhala)	MDS_V3_2_RDL_141	141
-	Resource.descriptions.language	SK (Slovak)	MDS_V3_2_RDL_142	142
-	Resource.descriptions.language	SL (Slovenian)	MDS_V3_2_RDL_143	143
-	Resource.descriptions.language	SM (Samoan)	MDS_V3_2_RDL_144	144
-	Resource.descriptions.language	SN (Shona)	MDS_V3_2_RDL_145	145
-	Resource.descriptions.language	SO (Somali)	MDS_V3_2_RDL_146	146
-	Resource.descriptions.language	SQ (Albanian)	MDS_V3_2_RDL_147	147
-	Resource.descriptions.language	SR (Serbian)	MDS_V3_2_RDL_148	148
-	Resource.descriptions.language	SS (Swati)	MDS_V3_2_RDL_149	149
-	Resource.descriptions.language	ST (Southern Sotho)	MDS_V3_2_RDL_150	150
-	Resource.descriptions.language	SU (Sundanese)	MDS_V3_2_RDL_151	151
-	Resource.descriptions.language	SV (Swedish)	MDS_V3_2_RDL_152	152
-	Resource.descriptions.language	SW (Swahili)	MDS_V3_2_RDL_153	153
-	Resource.descriptions.language	TA (Tamil)	MDS_V3_2_RDL_154	154
-	Resource.descriptions.language	TE (Telugu)	MDS_V3_2_RDL_155	155
-	Resource.descriptions.language	TG (Tajik)	MDS_V3_2_RDL_156	156
-	Resource.descriptions.language	TH (Thai)	MDS_V3_2_RDL_157	157
-	Resource.descriptions.language	TI (Tigrinya)	MDS_V3_2_RDL_158	158
-	Resource.descriptions.language	TK (Turkmen)	MDS_V3_2_RDL_159	159
-	Resource.descriptions.language	TL (Tagalog)	MDS_V3_2_RDL_160	160
-	Resource.descriptions.language	TN (Tswana)	MDS_V3_2_RDL_161	161
-	Resource.descriptions.language	TO (Tonga)	MDS_V3_2_RDL_162	162
-	Resource.descriptions.language	TR (Turkish)	MDS_V3_2_RDL_163	163
-	Resource.descriptions.language	TS (Tsonga)	MDS_V3_2_RDL_164	164
-	Resource.descriptions.language	TT (Tatar)	MDS_V3_2_RDL_165	165
-	Resource.descriptions.language	TW (Twi)	MDS_V3_2_RDL_166	166
-	Resource.descriptions.language	TY (Tahitian)	MDS_V3_2_RDL_167	167
-	Resource.descriptions.language	UG (Uyghur)	MDS_V3_2_RDL_168	168
-	Resource.descriptions.language	UK (Ukrainian)	MDS_V3_2_RDL_169	169
-	Resource.descriptions.language	UR (Urdu)	MDS_V3_2_RDL_170	170
-	Resource.descriptions.language	UZ (Uzbek)	MDS_V3_2_RDL_171	171
-	Resource.descriptions.language	VE (Venda)	MDS_V3_2_RDL_172	172
-	Resource.descriptions.language	VI (Vietnamese)	MDS_V3_2_RDL_173	173
-	Resource.descriptions.language	VO (Volapük)	MDS_V3_2_RDL_174	174
-	Resource.descriptions.language	WA (Walloon)	MDS_V3_2_RDL_175	175
-	Resource.descriptions.language	WO (Wolof)	MDS_V3_2_RDL_176	176
-	Resource.descriptions.language	XH (Xhosa)	MDS_V3_2_RDL_177	177
-	Resource.descriptions.language	YI (Yiddish)	MDS_V3_2_RDL_178	178
-	Resource.descriptions.language	YO (Yoruba)	MDS_V3_2_RDL_179	179
-	Resource.descriptions.language	ZA (Zhuang)	MDS_V3_2_RDL_180	180
-	Resource.descriptions.language	ZH (Chinese)	MDS_V3_2_RDL_181	181
-	Resource.descriptions.language	ZU (Zulu)	MDS_V3_2_RDL_182	182
-	Resource.languages	AA (Afar)	MDS_V3_2_RL_0	0
-	Resource.languages	AB (Abkhaz)	MDS_V3_2_RL_1	1
-	Resource.languages	AE (Avestan)	MDS_V3_2_RL_2	2
-	Resource.languages	AF (Afrikaans)	MDS_V3_2_RL_3	3
-	Resource.languages	AK (Akan)	MDS_V3_2_RL_4	4
-	Resource.languages	AM (Amharic)	MDS_V3_2_RL_5	5
-	Resource.languages	AN (Aragonese)	MDS_V3_2_RL_6	6
-	Resource.languages	AR (Arabic)	MDS_V3_2_RL_7	7
-	Resource.languages	AS (Assamese)	MDS_V3_2_RL_8	8
-	Resource.languages	AV (Avaric)	MDS_V3_2_RL_9	9
-	Resource.languages	AY (Aymara)	MDS_V3_2_RL_10	10
-	Resource.languages	AZ (Azerbaijani)	MDS_V3_2_RL_11	11
-	Resource.languages	BA (Bashkir)	MDS_V3_2_RL_12	12
-	Resource.languages	BE (Belarusian)	MDS_V3_2_RL_13	13
-	Resource.languages	BG (Bulgarian)	MDS_V3_2_RL_14	14
-	Resource.languages	BI (Bislama)	MDS_V3_2_RL_15	15
-	Resource.languages	BM (Bambara)	MDS_V3_2_RL_16	16
-	Resource.languages	BN (Bengali)	MDS_V3_2_RL_17	17
-	Resource.languages	BO (Tibetan)	MDS_V3_2_RL_18	18
-	Resource.languages	BR (Breton)	MDS_V3_2_RL_19	19
-	Resource.languages	BS (Bosnian)	MDS_V3_2_RL_20	20
-	Resource.languages	CA (Catalan)	MDS_V3_2_RL_21	21
-	Resource.languages	CE (Chechen)	MDS_V3_2_RL_22	22
-	Resource.languages	CH (Chamorro)	MDS_V3_2_RL_23	23
-	Resource.languages	CO (Corsican)	MDS_V3_2_RL_24	24
-	Resource.languages	CR (Cree)	MDS_V3_2_RL_25	25
-	Resource.languages	CS (Czech)	MDS_V3_2_RL_26	26
-	Resource.languages	CU (Old Church Slavonic)	MDS_V3_2_RL_27	27
-	Resource.languages	CV (Chuvash)	MDS_V3_2_RL_28	28
-	Resource.languages	CY (Welsh)	MDS_V3_2_RL_29	29
-	Resource.languages	DA (Danish)	MDS_V3_2_RL_30	30
-	Resource.languages	DE (German)	MDS_V3_2_RL_31	31
-	Resource.languages	DV (Divehi)	MDS_V3_2_RL_32	32
-	Resource.languages	DZ (Dzongkha)	MDS_V3_2_RL_33	33
-	Resource.languages	EE (Ewe)	MDS_V3_2_RL_34	34
-	Resource.languages	EL (Greek)	MDS_V3_2_RL_35	35
-	Resource.languages	EN (English)	MDS_V3_2_RL_36	36
-	Resource.languages	EO (Esperanto)	MDS_V3_2_RL_37	37
-	Resource.languages	ES (Spanish)	MDS_V3_2_RL_38	38
-	Resource.languages	ET (Estonian)	MDS_V3_2_RL_39	39
-	Resource.languages	EU (Basque)	MDS_V3_2_RL_40	40
-	Resource.languages	FA (Persian)	MDS_V3_2_RL_41	41
-	Resource.languages	FF (Fula)	MDS_V3_2_RL_42	42
-	Resource.languages	FI (Finnish)	MDS_V3_2_RL_43	43
-	Resource.languages	FJ (Fijian)	MDS_V3_2_RL_44	44
-	Resource.languages	FO (Faroese)	MDS_V3_2_RL_45	45
-	Resource.languages	FR (French)	MDS_V3_2_RL_46	46
-	Resource.languages	FY (Western Frisian)	MDS_V3_2_RL_47	47
-	Resource.languages	GA (Irish)	MDS_V3_2_RL_48	48
-	Resource.languages	GD (Scottish Gaelic)	MDS_V3_2_RL_49	49
-	Resource.languages	GL (Galician)	MDS_V3_2_RL_50	50
-	Resource.languages	GN (Guaraní)	MDS_V3_2_RL_51	51
-	Resource.languages	GU (Gujarati)	MDS_V3_2_RL_52	52
-	Resource.languages	GV (Manx)	MDS_V3_2_RL_53	53
-	Resource.languages	HA (Hausa)	MDS_V3_2_RL_54	54
-	Resource.languages	HE (Hebrew)	MDS_V3_2_RL_55	55
-	Resource.languages	HI (Hindi)	MDS_V3_2_RL_56	56
-	Resource.languages	HO (Hiri Motu)	MDS_V3_2_RL_57	57
-	Resource.languages	HR (Croatian)	MDS_V3_2_RL_58	58
-	Resource.languages	HT (Haitian)	MDS_V3_2_RL_59	59
-	Resource.languages	HU (Hungarian)	MDS_V3_2_RL_60	60
-	Resource.languages	HY (Armenian)	MDS_V3_2_RL_61	61
-	Resource.languages	HZ (Herero)	MDS_V3_2_RL_62	62
-	Resource.languages	IA (Interlingua)	MDS_V3_2_RL_63	63
-	Resource.languages	ID (Indonesian)	MDS_V3_2_RL_64	64
-	Resource.languages	IE (Interlingue)	MDS_V3_2_RL_65	65
-	Resource.languages	IG (Igbo)	MDS_V3_2_RL_66	66
-	Resource.languages	II (Nuosu)	MDS_V3_2_RL_67	67
-	Resource.languages	IK (Inupiaq)	MDS_V3_2_RL_68	68
-	Resource.languages	IO (Ido)	MDS_V3_2_RL_69	69
-	Resource.languages	IS (Icelandic)	MDS_V3_2_RL_70	70
-	Resource.languages	IT (Italian)	MDS_V3_2_RL_71	71
-	Resource.languages	IU (Inuktitut)	MDS_V3_2_RL_72	72
-	Resource.languages	JA (Japanese)	MDS_V3_2_RL_73	73
-	Resource.languages	JV (Javanese)	MDS_V3_2_RL_74	74
-	Resource.languages	KA (Georgian)	MDS_V3_2_RL_75	75
-	Resource.languages	KG (Kongo)	MDS_V3_2_RL_76	76
-	Resource.languages	KI (Kikuyu)	MDS_V3_2_RL_77	77
-	Resource.languages	KJ (Kwanyama)	MDS_V3_2_RL_78	78
-	Resource.languages	KK (Kazakh)	MDS_V3_2_RL_79	79
-	Resource.languages	KL (Kalaallisut)	MDS_V3_2_RL_80	80
-	Resource.languages	KM (Khmer)	MDS_V3_2_RL_81	81
-	Resource.languages	KN (Kannada)	MDS_V3_2_RL_82	82
-	Resource.languages	KO (Korean)	MDS_V3_2_RL_83	83
-	Resource.languages	KR (Kanuri)	MDS_V3_2_RL_84	84
-	Resource.languages	KS (Kashmiri)	MDS_V3_2_RL_85	85
-	Resource.languages	KU (Kurdish)	MDS_V3_2_RL_86	86
-	Resource.languages	KV (Komi)	MDS_V3_2_RL_87	87
-	Resource.languages	KW (Cornish)	MDS_V3_2_RL_88	88
-	Resource.languages	KY (Kyrgyz)	MDS_V3_2_RL_89	89
-	Resource.languages	LA (Latin)	MDS_V3_2_RL_90	90
-	Resource.languages	LB (Luxembourgish)	MDS_V3_2_RL_91	91
-	Resource.languages	LG (Ganda)	MDS_V3_2_RL_92	92
-	Resource.languages	LI (Limburgish)	MDS_V3_2_RL_93	93
-	Resource.languages	LN (Lingala)	MDS_V3_2_RL_94	94
-	Resource.languages	LO (Lao)	MDS_V3_2_RL_95	95
-	Resource.languages	LT (Lithuanian)	MDS_V3_2_RL_96	96
-	Resource.languages	LU (Luba-Katanga)	MDS_V3_2_RL_97	97
-	Resource.languages	LV (Latvian)	MDS_V3_2_RL_98	98
-	Resource.languages	MG (Malagasy)	MDS_V3_2_RL_99	99
-	Resource.languages	MH (Marshallese)	MDS_V3_2_RL_100	100
-	Resource.languages	MI (Māori)	MDS_V3_2_RL_101	101
-	Resource.languages	MK (Macedonian)	MDS_V3_2_RL_102	102
-	Resource.languages	ML (Malayalam)	MDS_V3_2_RL_103	103
-	Resource.languages	MN (Mongolian)	MDS_V3_2_RL_104	104
-	Resource.languages	MR (Marathi)	MDS_V3_2_RL_105	105
-	Resource.languages	MS (Malay)	MDS_V3_2_RL_106	106
-	Resource.languages	MT (Maltese)	MDS_V3_2_RL_107	107
-	Resource.languages	MY (Burmese)	MDS_V3_2_RL_108	108
-	Resource.languages	NA (Nauru)	MDS_V3_2_RL_109	109
-	Resource.languages	NB (Norwegian Bokmål)	MDS_V3_2_RL_110	110
-	Resource.languages	ND (Northern Ndebele)	MDS_V3_2_RL_111	111
-	Resource.languages	NE (Nepali)	MDS_V3_2_RL_112	112
-	Resource.languages	NG (Ndonga)	MDS_V3_2_RL_113	113
-	Resource.languages	NL (Dutch)	MDS_V3_2_RL_114	114
-	Resource.languages	NN (Norwegian Nynorsk)	MDS_V3_2_RL_115	115
-	Resource.languages	NO (Norwegian)	MDS_V3_2_RL_116	116
-	Resource.languages	NR (Southern Ndebele)	MDS_V3_2_RL_117	117
-	Resource.languages	NV (Navajo)	MDS_V3_2_RL_118	118
-	Resource.languages	NY (Chichewa)	MDS_V3_2_RL_119	119
-	Resource.languages	OC (Occitan)	MDS_V3_2_RL_120	120
-	Resource.languages	OJ (Ojibwe)	MDS_V3_2_RL_121	121
-	Resource.languages	OM (Oromo)	MDS_V3_2_RL_122	122
-	Resource.languages	OR (Oriya)	MDS_V3_2_RL_123	123
-	Resource.languages	OS (Ossetian)	MDS_V3_2_RL_124	124
-	Resource.languages	PA (Panjabi)	MDS_V3_2_RL_125	125
-	Resource.languages	PI (Pāli)	MDS_V3_2_RL_126	126
-	Resource.languages	PL (Polish)	MDS_V3_2_RL_127	127
-	Resource.languages	PS (Pashto)	MDS_V3_2_RL_128	128
-	Resource.languages	PT (Portuguese)	MDS_V3_2_RL_129	129
-	Resource.languages	QU (Quechua)	MDS_V3_2_RL_130	130
-	Resource.languages	RM (Romansh)	MDS_V3_2_RL_131	131
-	Resource.languages	RN (Kirundi)	MDS_V3_2_RL_132	132
-	Resource.languages	RO (Romanian)	MDS_V3_2_RL_133	133
-	Resource.languages	RU (Russian)	MDS_V3_2_RL_134	134
-	Resource.languages	RW (Kinyarwanda)	MDS_V3_2_RL_135	135
-	Resource.languages	SA (Sanskrit)	MDS_V3_2_RL_136	136
-	Resource.languages	SC (Sardinian)	MDS_V3_2_RL_137	137
-	Resource.languages	SD (Sindhi)	MDS_V3_2_RL_138	138
-	Resource.languages	SE (Northern Sami)	MDS_V3_2_RL_139	139
-	Resource.languages	SG (Sango)	MDS_V3_2_RL_140	140
-	Resource.languages	SI (Sinhala)	MDS_V3_2_RL_141	141
-	Resource.languages	SK (Slovak)	MDS_V3_2_RL_142	142
-	Resource.languages	SL (Slovenian)	MDS_V3_2_RL_143	143
-	Resource.languages	SM (Samoan)	MDS_V3_2_RL_144	144
-	Resource.languages	SN (Shona)	MDS_V3_2_RL_145	145
-	Resource.languages	SO (Somali)	MDS_V3_2_RL_146	146
-	Resource.languages	SQ (Albanian)	MDS_V3_2_RL_147	147
-	Resource.languages	SR (Serbian)	MDS_V3_2_RL_148	148
-	Resource.languages	SS (Swati)	MDS_V3_2_RL_149	149
-	Resource.languages	ST (Southern Sotho)	MDS_V3_2_RL_150	150
-	Resource.languages	SU (Sundanese)	MDS_V3_2_RL_151	151
-	Resource.languages	SV (Swedish)	MDS_V3_2_RL_152	152
-	Resource.languages	SW (Swahili)	MDS_V3_2_RL_153	153
-	Resource.languages	TA (Tamil)	MDS_V3_2_RL_154	154
-	Resource.languages	TE (Telugu)	MDS_V3_2_RL_155	155
-	Resource.languages	TG (Tajik)	MDS_V3_2_RL_156	156
-	Resource.languages	TH (Thai)	MDS_V3_2_RL_157	157
-	Resource.languages	TI (Tigrinya)	MDS_V3_2_RL_158	158
-	Resource.languages	TK (Turkmen)	MDS_V3_2_RL_159	159
-	Resource.languages	TL (Tagalog)	MDS_V3_2_RL_160	160
-	Resource.languages	TN (Tswana)	MDS_V3_2_RL_161	161
-	Resource.languages	TO (Tonga)	MDS_V3_2_RL_162	162
-	Resource.languages	TR (Turkish)	MDS_V3_2_RL_163	163
-	Resource.languages	TS (Tsonga)	MDS_V3_2_RL_164	164
-	Resource.languages	TT (Tatar)	MDS_V3_2_RL_165	165
-	Resource.languages	TW (Twi)	MDS_V3_2_RL_166	166
-	Resource.languages	TY (Tahitian)	MDS_V3_2_RL_167	167
-	Resource.languages	UG (Uyghur)	MDS_V3_2_RL_168	168
-	Resource.languages	UK (Ukrainian)	MDS_V3_2_RL_169	169
-	Resource.languages	UR (Urdu)	MDS_V3_2_RL_170	170
-	Resource.languages	UZ (Uzbek)	MDS_V3_2_RL_171	171
-	Resource.languages	VE (Venda)	MDS_V3_2_RL_172	172
-	Resource.languages	VI (Vietnamese)	MDS_V3_2_RL_173	173
-	Resource.languages	VO (Volapük)	MDS_V3_2_RL_174	174
-	Resource.languages	WA (Walloon)	MDS_V3_2_RL_175	175
-	Resource.languages	WO (Wolof)	MDS_V3_2_RL_176	176
-	Resource.languages	XH (Xhosa)	MDS_V3_2_RL_177	177
-	Resource.languages	YI (Yiddish)	MDS_V3_2_RL_178	178
-	Resource.languages	YO (Yoruba)	MDS_V3_2_RL_179	179
-	Resource.languages	ZA (Zhuang)	MDS_V3_2_RL_180	180
-	Resource.languages	ZH (Chinese)	MDS_V3_2_RL_181	181
-	Resource.languages	ZU (Zulu)	MDS_V3_2_RL_182	182
-	Resource.nonStudyDetails.useRights.label	CC0 1.0 (Creative Commons Zero v1.0 Universal)	MDS_V3_2_RNUL_0	0
-	Resource.nonStudyDetails.useRights.label	CC BY 4.0 (Creative Commons Attribution 4.0 International)	MDS_V3_2_RNUL_1	1
-	Resource.nonStudyDetails.useRights.label	CC BY-NC 4.0 (Creative Commons Attribution Non Commercial 4.0 International)	MDS_V3_2_RNUL_2	2
-	Resource.nonStudyDetails.useRights.label	CC BY-SA 4.0 (Creative Commons Attribution Share Alike 4.0 International)	MDS_V3_2_RNUL_3	3
-	Resource.nonStudyDetails.useRights.label	CC BY-NC-SA 4.0 (Creative Commons Attribution Non Commercial Share Alike 4.0 International)	MDS_V3_2_RNUL_4	4
-	Resource.nonStudyDetails.useRights.label	All rights reserved	MDS_V3_2_RNUL_5	5
-	Resource.nonStudyDetails.useRights.label	Other	MDS_V3_2_RNUL_6	6
-	Resource.nonStudyDetails.useRights.label	Not applicable	MDS_V3_2_RNUL_7	7
-	Resource.nonStudyDetails.useRights.label	Not assigned	MDS_V3_2_RNUL_8	8
-	Resource.nonStudyDetails.useRights.label	Unknown	MDS_V3_2_RNUL_9	9
-	Resource.nonStudyDetails.useRights.confirmations.authority	Yes	MDS_V3_2_RNUCA_0	0
-	Resource.nonStudyDetails.useRights.confirmations.authority	No	MDS_V3_2_RNUCA_1	1
-	Resource.nonStudyDetails.useRights.confirmations.terms	Yes	MDS_V3_2_RNUCT_0	0
-	Resource.nonStudyDetails.useRights.confirmations.terms	No	MDS_V3_2_RNUCT_1	1
-	Resource.nonStudyDetails.useRights.confirmations.irrevocability	Yes	MDS_V3_2_RNUCI_0	0
-	Resource.nonStudyDetails.useRights.confirmations.irrevocability	No	MDS_V3_2_RNUCI_1	1
-	Resource.nonStudyDetails.useRights.confirmations.supportByLicensing	Yes	MDS_V3_2_RNUCS_0	0
-	Resource.nonStudyDetails.useRights.confirmations.supportByLicensing	No	MDS_V3_2_RNUCS_1	1
-	Resource.contributors.nameType	Personal	MDS_V3_2_RCN_0	0
-	Resource.contributors.nameType	Organisational	MDS_V3_2_RCN_1	1
-	Resource.contributors.organisational.type	Contact	MDS_V3_2_RCOT_0	0
-	Resource.contributors.organisational.type	Creator/Author	MDS_V3_2_RCOT_1	1
-	Resource.contributors.organisational.type	Funder (public)	MDS_V3_2_RCOT_2	2
-	Resource.contributors.organisational.type	Funder (private)	MDS_V3_2_RCOT_3	3
-	Resource.contributors.organisational.type	Sponsor (primary)	MDS_V3_2_RCOT_4	4
-	Resource.contributors.organisational.type	Sponsor (secondary)	MDS_V3_2_RCOT_5	5
-	Resource.contributors.organisational.type	Sponsor-Investigator	MDS_V3_2_RCOT_6	6
-	Resource.contributors.organisational.type	Research group	MDS_V3_2_RCOT_7	7
-	Resource.contributors.organisational.type	Data collector	MDS_V3_2_RCOT_8	8
-	Resource.contributors.organisational.type	Data curator	MDS_V3_2_RCOT_9	9
-	Resource.contributors.organisational.type	Data manager	MDS_V3_2_RCOT_10	10
-	Resource.contributors.organisational.type	Distributor	MDS_V3_2_RCOT_11	11
-	Resource.contributors.organisational.type	Hosting institution	MDS_V3_2_RCOT_12	12
-	Resource.contributors.organisational.type	Producer	MDS_V3_2_RCOT_13	13
-	Resource.contributors.organisational.type	Publisher	MDS_V3_2_RCOT_14	14
-	Resource.contributors.organisational.type	Registration agency	MDS_V3_2_RCOT_15	15
-	Resource.contributors.organisational.type	Registration authority	MDS_V3_2_RCOT_16	16
-	Resource.contributors.organisational.type	Rights holder	MDS_V3_2_RCOT_17	17
-	Resource.contributors.organisational.type	Supervisor	MDS_V3_2_RCOT_18	18
-	Resource.contributors.organisational.type	Other	MDS_V3_2_RCOT_19	19
-	Resource.contributors.personal.type	Contact	MDS_V3_2_RCPT_0	0
-	Resource.contributors.personal.type	Principal investigator	MDS_V3_2_RCPT_1	1
-	Resource.contributors.personal.type	Creator/Author	MDS_V3_2_RCPT_2	2
-	Resource.contributors.personal.type	Sponsor (primary)	MDS_V3_2_RCPT_3	3
-	Resource.contributors.personal.type	Sponsor (secondary)	MDS_V3_2_RCPT_4	4
-	Resource.contributors.personal.type	Sponsor-Investigator	MDS_V3_2_RCPT_5	5
-	Resource.contributors.personal.type	Data collector	MDS_V3_2_RCPT_6	6
-	Resource.contributors.personal.type	Data curator	MDS_V3_2_RCPT_7	7
-	Resource.contributors.personal.type	Data manager	MDS_V3_2_RCPT_8	8
-	Resource.contributors.personal.type	Editor	MDS_V3_2_RCPT_9	9
-	Resource.contributors.personal.type	Producer	MDS_V3_2_RCPT_10	10
-	Resource.contributors.personal.type	Project leader	MDS_V3_2_RCPT_11	11
-	Resource.contributors.personal.type	Project manager	MDS_V3_2_RCPT_12	12
-	Resource.contributors.personal.type	Project member	MDS_V3_2_RCPT_13	13
-	Resource.contributors.personal.type	Related person	MDS_V3_2_RCPT_14	14
-	Resource.contributors.personal.type	Researcher	MDS_V3_2_RCPT_15	15
-	Resource.contributors.personal.type	Rights holder	MDS_V3_2_RCPT_16	16
-	Resource.contributors.personal.type	Supervisor	MDS_V3_2_RCPT_17	17
-	Resource.contributors.personal.type	Work package leader	MDS_V3_2_RCPT_18	18
-	Resource.contributors.personal.type	Other	MDS_V3_2_RCPT_19	19
-	Resource.contributors.personal.identifiers.scheme	ORCID	MDS_V3_2_RCPIS_0	0
-	Resource.contributors.personal.identifiers.scheme	ROR	MDS_V3_2_RCPIS_1	1
-	Resource.contributors.personal.identifiers.scheme	GRID	MDS_V3_2_RCPIS_2	2
-	Resource.contributors.personal.identifiers.scheme	ISNI	MDS_V3_2_RCPIS_3	3
-	Resource.contributors.affiliations.identifiers.scheme	ROR	MDS_V3_2_RCAIS_0	0
-	Resource.contributors.affiliations.identifiers.scheme	GRID	MDS_V3_2_RCAIS_1	1
-	Resource.contributors.affiliations.identifiers.scheme	ISNI	MDS_V3_2_RCAIS_2	2
-	Resource.idsAlternative.scheme	DRKS	MDS_V3_2_RIS_0	0
-	Resource.idsAlternative.scheme	NCT (ClinicalTrials.gov)	MDS_V3_2_RIS_1	1
-	Resource.idsAlternative.scheme	ISRCTN	MDS_V3_2_RIS_2	2
-	Resource.idsAlternative.scheme	EudraCT	MDS_V3_2_RIS_3	3
-	Resource.idsAlternative.scheme	EUDAMED	MDS_V3_2_RIS_4	4
-	Resource.idsAlternative.scheme	UTN	MDS_V3_2_RIS_5	5
-	Resource.idsAlternative.scheme	KonsortSWD	MDS_V3_2_RIS_6	6
-	Resource.idsAlternative.scheme	MDM Portal	MDS_V3_2_RIS_7	7
-	Resource.idsAlternative.scheme	Other	MDS_V3_2_RIS_8	8
-	Resource.ids.scheme	DOI	MDS_V3_2_RIS_1_0	0
-	Resource.ids.scheme	URL	MDS_V3_2_RIS_1_1	1
-	Resource.ids.scheme	arXiv	MDS_V3_2_RIS_1_2	2
-	Resource.ids.scheme	EAN13	MDS_V3_2_RIS_1_3	3
-	Resource.ids.scheme	EISSN	MDS_V3_2_RIS_1_4	4
-	Resource.ids.scheme	Handle	MDS_V3_2_RIS_1_5	5
-	Resource.ids.scheme	ISBN	MDS_V3_2_RIS_1_6	6
-	Resource.ids.scheme	ISSN	MDS_V3_2_RIS_1_7	7
-	Resource.ids.scheme	ISTC	MDS_V3_2_RIS_1_8	8
-	Resource.ids.scheme	LISSN	MDS_V3_2_RIS_1_9	9
-	Resource.ids.scheme	LSID	MDS_V3_2_RIS_1_10	10
-	Resource.ids.scheme	PMID	MDS_V3_2_RIS_1_11	11
-	Resource.ids.scheme	PURL	MDS_V3_2_RIS_1_12	12
-	Resource.ids.scheme	URN	MDS_V3_2_RIS_1_13	13
-	Resource.ids.scheme	w3id	MDS_V3_2_RIS_1_14	14
-	Resource.ids.scheme	Other	MDS_V3_2_RIS_1_15	15
-	Resource.ids.relationType	A is cited by B	MDS_V3_2_RIR_0	0
-	Resource.ids.relationType	A cites B	MDS_V3_2_RIR_1	1
-	Resource.ids.relationType	A is supplement to B	MDS_V3_2_RIR_2	2
-	Resource.ids.relationType	A is supplemented by B	MDS_V3_2_RIR_3	3
-	Resource.ids.relationType	A is continued by B	MDS_V3_2_RIR_4	4
-	Resource.ids.relationType	A continues B	MDS_V3_2_RIR_5	5
-	Resource.ids.relationType	A is described by B	MDS_V3_2_RIR_6	6
-	Resource.ids.relationType	A describes B	MDS_V3_2_RIR_7	7
-	Resource.ids.relationType	A has metadata B	MDS_V3_2_RIR_8	8
-	Resource.ids.relationType	A is metadata for B	MDS_V3_2_RIR_9	9
-	Resource.ids.relationType	A has version B	MDS_V3_2_RIR_10	10
-	Resource.ids.relationType	A is version of B	MDS_V3_2_RIR_11	11
-	Resource.ids.relationType	A is new version of B	MDS_V3_2_RIR_12	12
-	Resource.ids.relationType	A is previous version of B	MDS_V3_2_RIR_13	13
-	Resource.ids.relationType	A is part of B	MDS_V3_2_RIR_14	14
-	Resource.ids.relationType	A has part B	MDS_V3_2_RIR_15	15
-	Resource.ids.relationType	A is referenced by B	MDS_V3_2_RIR_16	16
-	Resource.ids.relationType	A references B	MDS_V3_2_RIR_17	17
-	Resource.ids.relationType	A is documented by B	MDS_V3_2_RIR_18	18
-	Resource.ids.relationType	A documents B	MDS_V3_2_RIR_19	19
-	Resource.ids.relationType	A is compiled by B	MDS_V3_2_RIR_20	20
-	Resource.ids.relationType	A compiles B	MDS_V3_2_RIR_21	21
-	Resource.ids.relationType	A is variant form of B	MDS_V3_2_RIR_22	22
-	Resource.ids.relationType	A is original form of B	MDS_V3_2_RIR_23	23
-	Resource.ids.relationType	A is identical to B	MDS_V3_2_RIR_24	24
-	Resource.ids.relationType	A is reviewed by B	MDS_V3_2_RIR_25	25
-	Resource.ids.relationType	A reviews B	MDS_V3_2_RIR_26	26
-	Resource.ids.relationType	A is derived from B	MDS_V3_2_RIR_27	27
-	Resource.ids.relationType	A is source of B	MDS_V3_2_RIR_28	28
-	Resource.ids.relationType	A is required by B	MDS_V3_2_RIR_29	29
-	Resource.ids.relationType	A requires B	MDS_V3_2_RIR_30	30
-	Resource.ids.relationType	A is obsoleted by B	MDS_V3_2_RIR_31	31
-	Resource.ids.relationType	A obsoletes B	MDS_V3_2_RIR_32	32
-	Resource.ids.typeGeneral	Audiovisual	MDS_V3_2_RIT_0	0
-	Resource.ids.typeGeneral	Book	MDS_V3_2_RIT_1	1
-	Resource.ids.typeGeneral	Book chapter	MDS_V3_2_RIT_2	2
-	Resource.ids.typeGeneral	Collection	MDS_V3_2_RIT_3	3
-	Resource.ids.typeGeneral	Computational notebook	MDS_V3_2_RIT_4	4
-	Resource.ids.typeGeneral	Conference paper	MDS_V3_2_RIT_5	5
-	Resource.ids.typeGeneral	Conference proceeding	MDS_V3_2_RIT_6	6
-	Resource.ids.typeGeneral	Data paper	MDS_V3_2_RIT_7	7
-	Resource.ids.typeGeneral	Dataset	MDS_V3_2_RIT_8	8
-	Resource.ids.typeGeneral	Dissertation	MDS_V3_2_RIT_9	9
-	Resource.ids.typeGeneral	Event	MDS_V3_2_RIT_10	10
-	Resource.ids.typeGeneral	Image	MDS_V3_2_RIT_11	11
-	Resource.ids.typeGeneral	Interactive resource	MDS_V3_2_RIT_12	12
-	Resource.ids.typeGeneral	Journal	MDS_V3_2_RIT_13	13
-	Resource.ids.typeGeneral	Journal article	MDS_V3_2_RIT_14	14
-	Resource.ids.typeGeneral	Model	MDS_V3_2_RIT_15	15
-	Resource.ids.typeGeneral	Output management plan	MDS_V3_2_RIT_16	16
-	Resource.ids.typeGeneral	Peer review	MDS_V3_2_RIT_17	17
-	Resource.ids.typeGeneral	Physical object	MDS_V3_2_RIT_18	18
-	Resource.ids.typeGeneral	Preprint	MDS_V3_2_RIT_19	19
-	Resource.ids.typeGeneral	Report	MDS_V3_2_RIT_20	20
-	Resource.ids.typeGeneral	Service	MDS_V3_2_RIT_21	21
-	Resource.ids.typeGeneral	Software	MDS_V3_2_RIT_22	22
-	Resource.ids.typeGeneral	Sound	MDS_V3_2_RIT_23	23
-	Resource.ids.typeGeneral	Standard	MDS_V3_2_RIT_24	24
-	Resource.ids.typeGeneral	Text	MDS_V3_2_RIT_25	25
-	Resource.ids.typeGeneral	Workflow	MDS_V3_2_RIT_26	26
-	Resource.ids.typeGeneral	Other	MDS_V3_2_RIT_27	27
-	Resource.idsNfdi4health.relationType	A is cited by B	MDS_V3_2_RIR_1_0	0
-	Resource.idsNfdi4health.relationType	A cites B	MDS_V3_2_RIR_1_1	1
-	Resource.idsNfdi4health.relationType	A is supplement to B	MDS_V3_2_RIR_1_2	2
-	Resource.idsNfdi4health.relationType	A is supplemented by B	MDS_V3_2_RIR_1_3	3
-	Resource.idsNfdi4health.relationType	A is continued by B	MDS_V3_2_RIR_1_4	4
-	Resource.idsNfdi4health.relationType	A continues B	MDS_V3_2_RIR_1_5	5
-	Resource.idsNfdi4health.relationType	A is described by B	MDS_V3_2_RIR_1_6	6
-	Resource.idsNfdi4health.relationType	A describes B	MDS_V3_2_RIR_1_7	7
-	Resource.idsNfdi4health.relationType	A has metadata B	MDS_V3_2_RIR_1_8	8
-	Resource.idsNfdi4health.relationType	A is metadata for B	MDS_V3_2_RIR_1_9	9
-	Resource.idsNfdi4health.relationType	A has version B	MDS_V3_2_RIR_1_10	10
-	Resource.idsNfdi4health.relationType	A is version of B	MDS_V3_2_RIR_1_11	11
-	Resource.idsNfdi4health.relationType	A is new version of B	MDS_V3_2_RIR_1_12	12
-	Resource.idsNfdi4health.relationType	A is previous version of B	MDS_V3_2_RIR_1_13	13
-	Resource.idsNfdi4health.relationType	A is part of B	MDS_V3_2_RIR_1_14	14
-	Resource.idsNfdi4health.relationType	A has part B	MDS_V3_2_RIR_1_15	15
-	Resource.idsNfdi4health.relationType	A is referenced by B	MDS_V3_2_RIR_1_16	16
-	Resource.idsNfdi4health.relationType	A references B	MDS_V3_2_RIR_1_17	17
-	Resource.idsNfdi4health.relationType	A is documented by B	MDS_V3_2_RIR_1_18	18
-	Resource.idsNfdi4health.relationType	A documents B	MDS_V3_2_RIR_1_19	19
-	Resource.idsNfdi4health.relationType	A is compiled by B	MDS_V3_2_RIR_1_20	20
-	Resource.idsNfdi4health.relationType	A compiles B	MDS_V3_2_RIR_1_21	21
-	Resource.idsNfdi4health.relationType	A is variant form of B	MDS_V3_2_RIR_1_22	22
-	Resource.idsNfdi4health.relationType	A is original form of B	MDS_V3_2_RIR_1_23	23
-	Resource.idsNfdi4health.relationType	A is identical to B	MDS_V3_2_RIR_1_24	24
-	Resource.idsNfdi4health.relationType	A is reviewed by B	MDS_V3_2_RIR_1_25	25
-	Resource.idsNfdi4health.relationType	A reviews B	MDS_V3_2_RIR_1_26	26
-	Resource.idsNfdi4health.relationType	A is derived from B	MDS_V3_2_RIR_1_27	27
-	Resource.idsNfdi4health.relationType	A is source of B	MDS_V3_2_RIR_1_28	28
-	Resource.idsNfdi4health.relationType	A is required by B	MDS_V3_2_RIR_1_29	29
-	Resource.idsNfdi4health.relationType	A requires B	MDS_V3_2_RIR_1_30	30
-	Resource.idsNfdi4health.relationType	A is obsoleted by B	MDS_V3_2_RIR_1_31	31
-	Resource.idsNfdi4health.relationType	A obsoletes B	MDS_V3_2_RIR_1_32	32
-	Resource.nutritionalData	Yes	MDS_V3_2_RN_0	0
-	Resource.nutritionalData	No	MDS_V3_2_RN_1	1
-	Resource.chronicDiseases	Yes	MDS_V3_2_RC_0	0
-	Resource.chronicDiseases	No	MDS_V3_2_RC_1	1
-	Resource.provenance.dataSource	Automatically uploaded: ClinicalTrials.gov	MDS_V3_2_RPD_0	0
-	Resource.provenance.dataSource	Automatically uploaded: DRKS	MDS_V3_2_RPD_1	1
-	Resource.provenance.dataSource	Automatically uploaded: ICTRP	MDS_V3_2_RPD_2	2
-	Resource.provenance.dataSource	Automatically uploaded: MDM Portal	MDS_V3_2_RPD_3	3
-	Resource.provenance.dataSource	Automatically uploaded: Other	MDS_V3_2_RPD_4	4
-	Resource.provenance.dataSource	Manually collected	MDS_V3_2_RPD_5	5
-	Resource.provenance.verificationUser	Names from the list of users	MDS_V3_2_RPV_0	0
-	Resource.provenance.firstSubmittedUser	Names from the list of users	MDS_V3_2_RPF_0	0
-	Resource.provenance.firstPostedUser	Names from the list of users	MDS_V3_2_RPF_1_0	0
-	Resource.provenance.lastUpdateSubmittedUser	Names from the list of users	MDS_V3_2_RPL_0	0
-	Resource.provenance.lastUpdatePostedUser	Names from the list of users	MDS_V3_2_RPL_1_0	0
+	Resource.classification.type	Study	MDS_V3_3_RCT_0	0
+	Resource.classification.type	Substudy	MDS_V3_3_RCT_1	1
+	Resource.classification.type	Biobank	MDS_V3_3_RCT_2	2
+	Resource.classification.type	Case report form	MDS_V3_3_RCT_3	3
+	Resource.classification.type	Code book	MDS_V3_3_RCT_4	4
+	Resource.classification.type	Data dictionary	MDS_V3_3_RCT_5	5
+	Resource.classification.type	Data management plan	MDS_V3_3_RCT_6	6
+	Resource.classification.type	Dataset	MDS_V3_3_RCT_7	7
+	Resource.classification.type	Discussion guide	MDS_V3_3_RCT_8	8
+	Resource.classification.type	Informed consent form	MDS_V3_3_RCT_9	9
+	Resource.classification.type	Interview scheme and themes	MDS_V3_3_RCT_10	10
+	Resource.classification.type	Manual of operations (SOPs)	MDS_V3_3_RCT_11	11
+	Resource.classification.type	Observation guide	MDS_V3_3_RCT_12	12
+	Resource.classification.type	Participant tasks	MDS_V3_3_RCT_13	13
+	Resource.classification.type	Patient information sheet	MDS_V3_3_RCT_14	14
+	Resource.classification.type	Questionnaire	MDS_V3_3_RCT_15	15
+	Resource.classification.type	Registry	MDS_V3_3_RCT_16	16
+	Resource.classification.type	Secondary data source	MDS_V3_3_RCT_17	17
+	Resource.classification.type	Statistical analysis plan	MDS_V3_3_RCT_18	18
+	Resource.classification.type	Study protocol	MDS_V3_3_RCT_19	19
+	Resource.classification.type	Other data collection instrument	MDS_V3_3_RCT_20	20
+	Resource.classification.type	Other study document	MDS_V3_3_RCT_21	21
+	Resource.classification.type	Other	MDS_V3_3_RCT_22	22
+	Resource.classification.typeGeneral	Audiovisual	MDS_V3_3_RCT_1_0	0
+	Resource.classification.typeGeneral	Book	MDS_V3_3_RCT_1_1	1
+	Resource.classification.typeGeneral	Book chapter	MDS_V3_3_RCT_1_2	2
+	Resource.classification.typeGeneral	Collection	MDS_V3_3_RCT_1_3	3
+	Resource.classification.typeGeneral	Computational notebook	MDS_V3_3_RCT_1_4	4
+	Resource.classification.typeGeneral	Conference paper	MDS_V3_3_RCT_1_5	5
+	Resource.classification.typeGeneral	Conference proceeding	MDS_V3_3_RCT_1_6	6
+	Resource.classification.typeGeneral	Data paper	MDS_V3_3_RCT_1_7	7
+	Resource.classification.typeGeneral	Dataset	MDS_V3_3_RCT_1_8	8
+	Resource.classification.typeGeneral	Dissertation	MDS_V3_3_RCT_1_9	9
+	Resource.classification.typeGeneral	Event	MDS_V3_3_RCT_1_10	10
+	Resource.classification.typeGeneral	Image	MDS_V3_3_RCT_1_11	11
+	Resource.classification.typeGeneral	Interactive resource	MDS_V3_3_RCT_1_12	12
+	Resource.classification.typeGeneral	Journal	MDS_V3_3_RCT_1_13	13
+	Resource.classification.typeGeneral	Journal article	MDS_V3_3_RCT_1_14	14
+	Resource.classification.typeGeneral	Model	MDS_V3_3_RCT_1_15	15
+	Resource.classification.typeGeneral	Output management plan	MDS_V3_3_RCT_1_16	16
+	Resource.classification.typeGeneral	Peer review	MDS_V3_3_RCT_1_17	17
+	Resource.classification.typeGeneral	Physical object	MDS_V3_3_RCT_1_18	18
+	Resource.classification.typeGeneral	Preprint	MDS_V3_3_RCT_1_19	19
+	Resource.classification.typeGeneral	Report	MDS_V3_3_RCT_1_20	20
+	Resource.classification.typeGeneral	Service	MDS_V3_3_RCT_1_21	21
+	Resource.classification.typeGeneral	Software	MDS_V3_3_RCT_1_22	22
+	Resource.classification.typeGeneral	Sound	MDS_V3_3_RCT_1_23	23
+	Resource.classification.typeGeneral	Standard	MDS_V3_3_RCT_1_24	24
+	Resource.classification.typeGeneral	Text	MDS_V3_3_RCT_1_25	25
+	Resource.classification.typeGeneral	Workflow	MDS_V3_3_RCT_1_26	26
+	Resource.classification.typeGeneral	Other	MDS_V3_3_RCT_1_27	27
+	Resource.titles.language	AA (Afar)	MDS_V3_3_RTL_0	0
+	Resource.titles.language	AB (Abkhaz)	MDS_V3_3_RTL_1	1
+	Resource.titles.language	AE (Avestan)	MDS_V3_3_RTL_2	2
+	Resource.titles.language	AF (Afrikaans)	MDS_V3_3_RTL_3	3
+	Resource.titles.language	AK (Akan)	MDS_V3_3_RTL_4	4
+	Resource.titles.language	AM (Amharic)	MDS_V3_3_RTL_5	5
+	Resource.titles.language	AN (Aragonese)	MDS_V3_3_RTL_6	6
+	Resource.titles.language	AR (Arabic)	MDS_V3_3_RTL_7	7
+	Resource.titles.language	AS (Assamese)	MDS_V3_3_RTL_8	8
+	Resource.titles.language	AV (Avaric)	MDS_V3_3_RTL_9	9
+	Resource.titles.language	AY (Aymara)	MDS_V3_3_RTL_10	10
+	Resource.titles.language	AZ (Azerbaijani)	MDS_V3_3_RTL_11	11
+	Resource.titles.language	BA (Bashkir)	MDS_V3_3_RTL_12	12
+	Resource.titles.language	BE (Belarusian)	MDS_V3_3_RTL_13	13
+	Resource.titles.language	BG (Bulgarian)	MDS_V3_3_RTL_14	14
+	Resource.titles.language	BI (Bislama)	MDS_V3_3_RTL_15	15
+	Resource.titles.language	BM (Bambara)	MDS_V3_3_RTL_16	16
+	Resource.titles.language	BN (Bengali)	MDS_V3_3_RTL_17	17
+	Resource.titles.language	BO (Tibetan)	MDS_V3_3_RTL_18	18
+	Resource.titles.language	BR (Breton)	MDS_V3_3_RTL_19	19
+	Resource.titles.language	BS (Bosnian)	MDS_V3_3_RTL_20	20
+	Resource.titles.language	CA (Catalan)	MDS_V3_3_RTL_21	21
+	Resource.titles.language	CE (Chechen)	MDS_V3_3_RTL_22	22
+	Resource.titles.language	CH (Chamorro)	MDS_V3_3_RTL_23	23
+	Resource.titles.language	CO (Corsican)	MDS_V3_3_RTL_24	24
+	Resource.titles.language	CR (Cree)	MDS_V3_3_RTL_25	25
+	Resource.titles.language	CS (Czech)	MDS_V3_3_RTL_26	26
+	Resource.titles.language	CU (Old Church Slavonic)	MDS_V3_3_RTL_27	27
+	Resource.titles.language	CV (Chuvash)	MDS_V3_3_RTL_28	28
+	Resource.titles.language	CY (Welsh)	MDS_V3_3_RTL_29	29
+	Resource.titles.language	DA (Danish)	MDS_V3_3_RTL_30	30
+	Resource.titles.language	DE (German)	MDS_V3_3_RTL_31	31
+	Resource.titles.language	DV (Divehi)	MDS_V3_3_RTL_32	32
+	Resource.titles.language	DZ (Dzongkha)	MDS_V3_3_RTL_33	33
+	Resource.titles.language	EE (Ewe)	MDS_V3_3_RTL_34	34
+	Resource.titles.language	EL (Greek)	MDS_V3_3_RTL_35	35
+	Resource.titles.language	EN (English)	MDS_V3_3_RTL_36	36
+	Resource.titles.language	EO (Esperanto)	MDS_V3_3_RTL_37	37
+	Resource.titles.language	ES (Spanish)	MDS_V3_3_RTL_38	38
+	Resource.titles.language	ET (Estonian)	MDS_V3_3_RTL_39	39
+	Resource.titles.language	EU (Basque)	MDS_V3_3_RTL_40	40
+	Resource.titles.language	FA (Persian)	MDS_V3_3_RTL_41	41
+	Resource.titles.language	FF (Fula)	MDS_V3_3_RTL_42	42
+	Resource.titles.language	FI (Finnish)	MDS_V3_3_RTL_43	43
+	Resource.titles.language	FJ (Fijian)	MDS_V3_3_RTL_44	44
+	Resource.titles.language	FO (Faroese)	MDS_V3_3_RTL_45	45
+	Resource.titles.language	FR (French)	MDS_V3_3_RTL_46	46
+	Resource.titles.language	FY (Western Frisian)	MDS_V3_3_RTL_47	47
+	Resource.titles.language	GA (Irish)	MDS_V3_3_RTL_48	48
+	Resource.titles.language	GD (Scottish Gaelic)	MDS_V3_3_RTL_49	49
+	Resource.titles.language	GL (Galician)	MDS_V3_3_RTL_50	50
+	Resource.titles.language	GN (Guaraní)	MDS_V3_3_RTL_51	51
+	Resource.titles.language	GU (Gujarati)	MDS_V3_3_RTL_52	52
+	Resource.titles.language	GV (Manx)	MDS_V3_3_RTL_53	53
+	Resource.titles.language	HA (Hausa)	MDS_V3_3_RTL_54	54
+	Resource.titles.language	HE (Hebrew)	MDS_V3_3_RTL_55	55
+	Resource.titles.language	HI (Hindi)	MDS_V3_3_RTL_56	56
+	Resource.titles.language	HO (Hiri Motu)	MDS_V3_3_RTL_57	57
+	Resource.titles.language	HR (Croatian)	MDS_V3_3_RTL_58	58
+	Resource.titles.language	HT (Haitian)	MDS_V3_3_RTL_59	59
+	Resource.titles.language	HU (Hungarian)	MDS_V3_3_RTL_60	60
+	Resource.titles.language	HY (Armenian)	MDS_V3_3_RTL_61	61
+	Resource.titles.language	HZ (Herero)	MDS_V3_3_RTL_62	62
+	Resource.titles.language	IA (Interlingua)	MDS_V3_3_RTL_63	63
+	Resource.titles.language	ID (Indonesian)	MDS_V3_3_RTL_64	64
+	Resource.titles.language	IE (Interlingue)	MDS_V3_3_RTL_65	65
+	Resource.titles.language	IG (Igbo)	MDS_V3_3_RTL_66	66
+	Resource.titles.language	II (Nuosu)	MDS_V3_3_RTL_67	67
+	Resource.titles.language	IK (Inupiaq)	MDS_V3_3_RTL_68	68
+	Resource.titles.language	IO (Ido)	MDS_V3_3_RTL_69	69
+	Resource.titles.language	IS (Icelandic)	MDS_V3_3_RTL_70	70
+	Resource.titles.language	IT (Italian)	MDS_V3_3_RTL_71	71
+	Resource.titles.language	IU (Inuktitut)	MDS_V3_3_RTL_72	72
+	Resource.titles.language	JA (Japanese)	MDS_V3_3_RTL_73	73
+	Resource.titles.language	JV (Javanese)	MDS_V3_3_RTL_74	74
+	Resource.titles.language	KA (Georgian)	MDS_V3_3_RTL_75	75
+	Resource.titles.language	KG (Kongo)	MDS_V3_3_RTL_76	76
+	Resource.titles.language	KI (Kikuyu)	MDS_V3_3_RTL_77	77
+	Resource.titles.language	KJ (Kwanyama)	MDS_V3_3_RTL_78	78
+	Resource.titles.language	KK (Kazakh)	MDS_V3_3_RTL_79	79
+	Resource.titles.language	KL (Kalaallisut)	MDS_V3_3_RTL_80	80
+	Resource.titles.language	KM (Khmer)	MDS_V3_3_RTL_81	81
+	Resource.titles.language	KN (Kannada)	MDS_V3_3_RTL_82	82
+	Resource.titles.language	KO (Korean)	MDS_V3_3_RTL_83	83
+	Resource.titles.language	KR (Kanuri)	MDS_V3_3_RTL_84	84
+	Resource.titles.language	KS (Kashmiri)	MDS_V3_3_RTL_85	85
+	Resource.titles.language	KU (Kurdish)	MDS_V3_3_RTL_86	86
+	Resource.titles.language	KV (Komi)	MDS_V3_3_RTL_87	87
+	Resource.titles.language	KW (Cornish)	MDS_V3_3_RTL_88	88
+	Resource.titles.language	KY (Kyrgyz)	MDS_V3_3_RTL_89	89
+	Resource.titles.language	LA (Latin)	MDS_V3_3_RTL_90	90
+	Resource.titles.language	LB (Luxembourgish)	MDS_V3_3_RTL_91	91
+	Resource.titles.language	LG (Ganda)	MDS_V3_3_RTL_92	92
+	Resource.titles.language	LI (Limburgish)	MDS_V3_3_RTL_93	93
+	Resource.titles.language	LN (Lingala)	MDS_V3_3_RTL_94	94
+	Resource.titles.language	LO (Lao)	MDS_V3_3_RTL_95	95
+	Resource.titles.language	LT (Lithuanian)	MDS_V3_3_RTL_96	96
+	Resource.titles.language	LU (Luba-Katanga)	MDS_V3_3_RTL_97	97
+	Resource.titles.language	LV (Latvian)	MDS_V3_3_RTL_98	98
+	Resource.titles.language	MG (Malagasy)	MDS_V3_3_RTL_99	99
+	Resource.titles.language	MH (Marshallese)	MDS_V3_3_RTL_100	100
+	Resource.titles.language	MI (Māori)	MDS_V3_3_RTL_101	101
+	Resource.titles.language	MK (Macedonian)	MDS_V3_3_RTL_102	102
+	Resource.titles.language	ML (Malayalam)	MDS_V3_3_RTL_103	103
+	Resource.titles.language	MN (Mongolian)	MDS_V3_3_RTL_104	104
+	Resource.titles.language	MR (Marathi)	MDS_V3_3_RTL_105	105
+	Resource.titles.language	MS (Malay)	MDS_V3_3_RTL_106	106
+	Resource.titles.language	MT (Maltese)	MDS_V3_3_RTL_107	107
+	Resource.titles.language	MY (Burmese)	MDS_V3_3_RTL_108	108
+	Resource.titles.language	NA (Nauru)	MDS_V3_3_RTL_109	109
+	Resource.titles.language	NB (Norwegian Bokmål)	MDS_V3_3_RTL_110	110
+	Resource.titles.language	ND (Northern Ndebele)	MDS_V3_3_RTL_111	111
+	Resource.titles.language	NE (Nepali)	MDS_V3_3_RTL_112	112
+	Resource.titles.language	NG (Ndonga)	MDS_V3_3_RTL_113	113
+	Resource.titles.language	NL (Dutch)	MDS_V3_3_RTL_114	114
+	Resource.titles.language	NN (Norwegian Nynorsk)	MDS_V3_3_RTL_115	115
+	Resource.titles.language	NO (Norwegian)	MDS_V3_3_RTL_116	116
+	Resource.titles.language	NR (Southern Ndebele)	MDS_V3_3_RTL_117	117
+	Resource.titles.language	NV (Navajo)	MDS_V3_3_RTL_118	118
+	Resource.titles.language	NY (Chichewa)	MDS_V3_3_RTL_119	119
+	Resource.titles.language	OC (Occitan)	MDS_V3_3_RTL_120	120
+	Resource.titles.language	OJ (Ojibwe)	MDS_V3_3_RTL_121	121
+	Resource.titles.language	OM (Oromo)	MDS_V3_3_RTL_122	122
+	Resource.titles.language	OR (Oriya)	MDS_V3_3_RTL_123	123
+	Resource.titles.language	OS (Ossetian)	MDS_V3_3_RTL_124	124
+	Resource.titles.language	PA (Panjabi)	MDS_V3_3_RTL_125	125
+	Resource.titles.language	PI (Pāli)	MDS_V3_3_RTL_126	126
+	Resource.titles.language	PL (Polish)	MDS_V3_3_RTL_127	127
+	Resource.titles.language	PS (Pashto)	MDS_V3_3_RTL_128	128
+	Resource.titles.language	PT (Portuguese)	MDS_V3_3_RTL_129	129
+	Resource.titles.language	QU (Quechua)	MDS_V3_3_RTL_130	130
+	Resource.titles.language	RM (Romansh)	MDS_V3_3_RTL_131	131
+	Resource.titles.language	RN (Kirundi)	MDS_V3_3_RTL_132	132
+	Resource.titles.language	RO (Romanian)	MDS_V3_3_RTL_133	133
+	Resource.titles.language	RU (Russian)	MDS_V3_3_RTL_134	134
+	Resource.titles.language	RW (Kinyarwanda)	MDS_V3_3_RTL_135	135
+	Resource.titles.language	SA (Sanskrit)	MDS_V3_3_RTL_136	136
+	Resource.titles.language	SC (Sardinian)	MDS_V3_3_RTL_137	137
+	Resource.titles.language	SD (Sindhi)	MDS_V3_3_RTL_138	138
+	Resource.titles.language	SE (Northern Sami)	MDS_V3_3_RTL_139	139
+	Resource.titles.language	SG (Sango)	MDS_V3_3_RTL_140	140
+	Resource.titles.language	SI (Sinhala)	MDS_V3_3_RTL_141	141
+	Resource.titles.language	SK (Slovak)	MDS_V3_3_RTL_142	142
+	Resource.titles.language	SL (Slovenian)	MDS_V3_3_RTL_143	143
+	Resource.titles.language	SM (Samoan)	MDS_V3_3_RTL_144	144
+	Resource.titles.language	SN (Shona)	MDS_V3_3_RTL_145	145
+	Resource.titles.language	SO (Somali)	MDS_V3_3_RTL_146	146
+	Resource.titles.language	SQ (Albanian)	MDS_V3_3_RTL_147	147
+	Resource.titles.language	SR (Serbian)	MDS_V3_3_RTL_148	148
+	Resource.titles.language	SS (Swati)	MDS_V3_3_RTL_149	149
+	Resource.titles.language	ST (Southern Sotho)	MDS_V3_3_RTL_150	150
+	Resource.titles.language	SU (Sundanese)	MDS_V3_3_RTL_151	151
+	Resource.titles.language	SV (Swedish)	MDS_V3_3_RTL_152	152
+	Resource.titles.language	SW (Swahili)	MDS_V3_3_RTL_153	153
+	Resource.titles.language	TA (Tamil)	MDS_V3_3_RTL_154	154
+	Resource.titles.language	TE (Telugu)	MDS_V3_3_RTL_155	155
+	Resource.titles.language	TG (Tajik)	MDS_V3_3_RTL_156	156
+	Resource.titles.language	TH (Thai)	MDS_V3_3_RTL_157	157
+	Resource.titles.language	TI (Tigrinya)	MDS_V3_3_RTL_158	158
+	Resource.titles.language	TK (Turkmen)	MDS_V3_3_RTL_159	159
+	Resource.titles.language	TL (Tagalog)	MDS_V3_3_RTL_160	160
+	Resource.titles.language	TN (Tswana)	MDS_V3_3_RTL_161	161
+	Resource.titles.language	TO (Tonga)	MDS_V3_3_RTL_162	162
+	Resource.titles.language	TR (Turkish)	MDS_V3_3_RTL_163	163
+	Resource.titles.language	TS (Tsonga)	MDS_V3_3_RTL_164	164
+	Resource.titles.language	TT (Tatar)	MDS_V3_3_RTL_165	165
+	Resource.titles.language	TW (Twi)	MDS_V3_3_RTL_166	166
+	Resource.titles.language	TY (Tahitian)	MDS_V3_3_RTL_167	167
+	Resource.titles.language	UG (Uyghur)	MDS_V3_3_RTL_168	168
+	Resource.titles.language	UK (Ukrainian)	MDS_V3_3_RTL_169	169
+	Resource.titles.language	UR (Urdu)	MDS_V3_3_RTL_170	170
+	Resource.titles.language	UZ (Uzbek)	MDS_V3_3_RTL_171	171
+	Resource.titles.language	VE (Venda)	MDS_V3_3_RTL_172	172
+	Resource.titles.language	VI (Vietnamese)	MDS_V3_3_RTL_173	173
+	Resource.titles.language	VO (Volapük)	MDS_V3_3_RTL_174	174
+	Resource.titles.language	WA (Walloon)	MDS_V3_3_RTL_175	175
+	Resource.titles.language	WO (Wolof)	MDS_V3_3_RTL_176	176
+	Resource.titles.language	XH (Xhosa)	MDS_V3_3_RTL_177	177
+	Resource.titles.language	YI (Yiddish)	MDS_V3_3_RTL_178	178
+	Resource.titles.language	YO (Yoruba)	MDS_V3_3_RTL_179	179
+	Resource.titles.language	ZA (Zhuang)	MDS_V3_3_RTL_180	180
+	Resource.titles.language	ZH (Chinese)	MDS_V3_3_RTL_181	181
+	Resource.titles.language	ZU (Zulu)	MDS_V3_3_RTL_182	182
+	Resource.acronyms.language	AA (Afar)	MDS_V3_3_RAL_0	0
+	Resource.acronyms.language	AB (Abkhaz)	MDS_V3_3_RAL_1	1
+	Resource.acronyms.language	AE (Avestan)	MDS_V3_3_RAL_2	2
+	Resource.acronyms.language	AF (Afrikaans)	MDS_V3_3_RAL_3	3
+	Resource.acronyms.language	AK (Akan)	MDS_V3_3_RAL_4	4
+	Resource.acronyms.language	AM (Amharic)	MDS_V3_3_RAL_5	5
+	Resource.acronyms.language	AN (Aragonese)	MDS_V3_3_RAL_6	6
+	Resource.acronyms.language	AR (Arabic)	MDS_V3_3_RAL_7	7
+	Resource.acronyms.language	AS (Assamese)	MDS_V3_3_RAL_8	8
+	Resource.acronyms.language	AV (Avaric)	MDS_V3_3_RAL_9	9
+	Resource.acronyms.language	AY (Aymara)	MDS_V3_3_RAL_10	10
+	Resource.acronyms.language	AZ (Azerbaijani)	MDS_V3_3_RAL_11	11
+	Resource.acronyms.language	BA (Bashkir)	MDS_V3_3_RAL_12	12
+	Resource.acronyms.language	BE (Belarusian)	MDS_V3_3_RAL_13	13
+	Resource.acronyms.language	BG (Bulgarian)	MDS_V3_3_RAL_14	14
+	Resource.acronyms.language	BI (Bislama)	MDS_V3_3_RAL_15	15
+	Resource.acronyms.language	BM (Bambara)	MDS_V3_3_RAL_16	16
+	Resource.acronyms.language	BN (Bengali)	MDS_V3_3_RAL_17	17
+	Resource.acronyms.language	BO (Tibetan)	MDS_V3_3_RAL_18	18
+	Resource.acronyms.language	BR (Breton)	MDS_V3_3_RAL_19	19
+	Resource.acronyms.language	BS (Bosnian)	MDS_V3_3_RAL_20	20
+	Resource.acronyms.language	CA (Catalan)	MDS_V3_3_RAL_21	21
+	Resource.acronyms.language	CE (Chechen)	MDS_V3_3_RAL_22	22
+	Resource.acronyms.language	CH (Chamorro)	MDS_V3_3_RAL_23	23
+	Resource.acronyms.language	CO (Corsican)	MDS_V3_3_RAL_24	24
+	Resource.acronyms.language	CR (Cree)	MDS_V3_3_RAL_25	25
+	Resource.acronyms.language	CS (Czech)	MDS_V3_3_RAL_26	26
+	Resource.acronyms.language	CU (Old Church Slavonic)	MDS_V3_3_RAL_27	27
+	Resource.acronyms.language	CV (Chuvash)	MDS_V3_3_RAL_28	28
+	Resource.acronyms.language	CY (Welsh)	MDS_V3_3_RAL_29	29
+	Resource.acronyms.language	DA (Danish)	MDS_V3_3_RAL_30	30
+	Resource.acronyms.language	DE (German)	MDS_V3_3_RAL_31	31
+	Resource.acronyms.language	DV (Divehi)	MDS_V3_3_RAL_32	32
+	Resource.acronyms.language	DZ (Dzongkha)	MDS_V3_3_RAL_33	33
+	Resource.acronyms.language	EE (Ewe)	MDS_V3_3_RAL_34	34
+	Resource.acronyms.language	EL (Greek)	MDS_V3_3_RAL_35	35
+	Resource.acronyms.language	EN (English)	MDS_V3_3_RAL_36	36
+	Resource.acronyms.language	EO (Esperanto)	MDS_V3_3_RAL_37	37
+	Resource.acronyms.language	ES (Spanish)	MDS_V3_3_RAL_38	38
+	Resource.acronyms.language	ET (Estonian)	MDS_V3_3_RAL_39	39
+	Resource.acronyms.language	EU (Basque)	MDS_V3_3_RAL_40	40
+	Resource.acronyms.language	FA (Persian)	MDS_V3_3_RAL_41	41
+	Resource.acronyms.language	FF (Fula)	MDS_V3_3_RAL_42	42
+	Resource.acronyms.language	FI (Finnish)	MDS_V3_3_RAL_43	43
+	Resource.acronyms.language	FJ (Fijian)	MDS_V3_3_RAL_44	44
+	Resource.acronyms.language	FO (Faroese)	MDS_V3_3_RAL_45	45
+	Resource.acronyms.language	FR (French)	MDS_V3_3_RAL_46	46
+	Resource.acronyms.language	FY (Western Frisian)	MDS_V3_3_RAL_47	47
+	Resource.acronyms.language	GA (Irish)	MDS_V3_3_RAL_48	48
+	Resource.acronyms.language	GD (Scottish Gaelic)	MDS_V3_3_RAL_49	49
+	Resource.acronyms.language	GL (Galician)	MDS_V3_3_RAL_50	50
+	Resource.acronyms.language	GN (Guaraní)	MDS_V3_3_RAL_51	51
+	Resource.acronyms.language	GU (Gujarati)	MDS_V3_3_RAL_52	52
+	Resource.acronyms.language	GV (Manx)	MDS_V3_3_RAL_53	53
+	Resource.acronyms.language	HA (Hausa)	MDS_V3_3_RAL_54	54
+	Resource.acronyms.language	HE (Hebrew)	MDS_V3_3_RAL_55	55
+	Resource.acronyms.language	HI (Hindi)	MDS_V3_3_RAL_56	56
+	Resource.acronyms.language	HO (Hiri Motu)	MDS_V3_3_RAL_57	57
+	Resource.acronyms.language	HR (Croatian)	MDS_V3_3_RAL_58	58
+	Resource.acronyms.language	HT (Haitian)	MDS_V3_3_RAL_59	59
+	Resource.acronyms.language	HU (Hungarian)	MDS_V3_3_RAL_60	60
+	Resource.acronyms.language	HY (Armenian)	MDS_V3_3_RAL_61	61
+	Resource.acronyms.language	HZ (Herero)	MDS_V3_3_RAL_62	62
+	Resource.acronyms.language	IA (Interlingua)	MDS_V3_3_RAL_63	63
+	Resource.acronyms.language	ID (Indonesian)	MDS_V3_3_RAL_64	64
+	Resource.acronyms.language	IE (Interlingue)	MDS_V3_3_RAL_65	65
+	Resource.acronyms.language	IG (Igbo)	MDS_V3_3_RAL_66	66
+	Resource.acronyms.language	II (Nuosu)	MDS_V3_3_RAL_67	67
+	Resource.acronyms.language	IK (Inupiaq)	MDS_V3_3_RAL_68	68
+	Resource.acronyms.language	IO (Ido)	MDS_V3_3_RAL_69	69
+	Resource.acronyms.language	IS (Icelandic)	MDS_V3_3_RAL_70	70
+	Resource.acronyms.language	IT (Italian)	MDS_V3_3_RAL_71	71
+	Resource.acronyms.language	IU (Inuktitut)	MDS_V3_3_RAL_72	72
+	Resource.acronyms.language	JA (Japanese)	MDS_V3_3_RAL_73	73
+	Resource.acronyms.language	JV (Javanese)	MDS_V3_3_RAL_74	74
+	Resource.acronyms.language	KA (Georgian)	MDS_V3_3_RAL_75	75
+	Resource.acronyms.language	KG (Kongo)	MDS_V3_3_RAL_76	76
+	Resource.acronyms.language	KI (Kikuyu)	MDS_V3_3_RAL_77	77
+	Resource.acronyms.language	KJ (Kwanyama)	MDS_V3_3_RAL_78	78
+	Resource.acronyms.language	KK (Kazakh)	MDS_V3_3_RAL_79	79
+	Resource.acronyms.language	KL (Kalaallisut)	MDS_V3_3_RAL_80	80
+	Resource.acronyms.language	KM (Khmer)	MDS_V3_3_RAL_81	81
+	Resource.acronyms.language	KN (Kannada)	MDS_V3_3_RAL_82	82
+	Resource.acronyms.language	KO (Korean)	MDS_V3_3_RAL_83	83
+	Resource.acronyms.language	KR (Kanuri)	MDS_V3_3_RAL_84	84
+	Resource.acronyms.language	KS (Kashmiri)	MDS_V3_3_RAL_85	85
+	Resource.acronyms.language	KU (Kurdish)	MDS_V3_3_RAL_86	86
+	Resource.acronyms.language	KV (Komi)	MDS_V3_3_RAL_87	87
+	Resource.acronyms.language	KW (Cornish)	MDS_V3_3_RAL_88	88
+	Resource.acronyms.language	KY (Kyrgyz)	MDS_V3_3_RAL_89	89
+	Resource.acronyms.language	LA (Latin)	MDS_V3_3_RAL_90	90
+	Resource.acronyms.language	LB (Luxembourgish)	MDS_V3_3_RAL_91	91
+	Resource.acronyms.language	LG (Ganda)	MDS_V3_3_RAL_92	92
+	Resource.acronyms.language	LI (Limburgish)	MDS_V3_3_RAL_93	93
+	Resource.acronyms.language	LN (Lingala)	MDS_V3_3_RAL_94	94
+	Resource.acronyms.language	LO (Lao)	MDS_V3_3_RAL_95	95
+	Resource.acronyms.language	LT (Lithuanian)	MDS_V3_3_RAL_96	96
+	Resource.acronyms.language	LU (Luba-Katanga)	MDS_V3_3_RAL_97	97
+	Resource.acronyms.language	LV (Latvian)	MDS_V3_3_RAL_98	98
+	Resource.acronyms.language	MG (Malagasy)	MDS_V3_3_RAL_99	99
+	Resource.acronyms.language	MH (Marshallese)	MDS_V3_3_RAL_100	100
+	Resource.acronyms.language	MI (Māori)	MDS_V3_3_RAL_101	101
+	Resource.acronyms.language	MK (Macedonian)	MDS_V3_3_RAL_102	102
+	Resource.acronyms.language	ML (Malayalam)	MDS_V3_3_RAL_103	103
+	Resource.acronyms.language	MN (Mongolian)	MDS_V3_3_RAL_104	104
+	Resource.acronyms.language	MR (Marathi)	MDS_V3_3_RAL_105	105
+	Resource.acronyms.language	MS (Malay)	MDS_V3_3_RAL_106	106
+	Resource.acronyms.language	MT (Maltese)	MDS_V3_3_RAL_107	107
+	Resource.acronyms.language	MY (Burmese)	MDS_V3_3_RAL_108	108
+	Resource.acronyms.language	NA (Nauru)	MDS_V3_3_RAL_109	109
+	Resource.acronyms.language	NB (Norwegian Bokmål)	MDS_V3_3_RAL_110	110
+	Resource.acronyms.language	ND (Northern Ndebele)	MDS_V3_3_RAL_111	111
+	Resource.acronyms.language	NE (Nepali)	MDS_V3_3_RAL_112	112
+	Resource.acronyms.language	NG (Ndonga)	MDS_V3_3_RAL_113	113
+	Resource.acronyms.language	NL (Dutch)	MDS_V3_3_RAL_114	114
+	Resource.acronyms.language	NN (Norwegian Nynorsk)	MDS_V3_3_RAL_115	115
+	Resource.acronyms.language	NO (Norwegian)	MDS_V3_3_RAL_116	116
+	Resource.acronyms.language	NR (Southern Ndebele)	MDS_V3_3_RAL_117	117
+	Resource.acronyms.language	NV (Navajo)	MDS_V3_3_RAL_118	118
+	Resource.acronyms.language	NY (Chichewa)	MDS_V3_3_RAL_119	119
+	Resource.acronyms.language	OC (Occitan)	MDS_V3_3_RAL_120	120
+	Resource.acronyms.language	OJ (Ojibwe)	MDS_V3_3_RAL_121	121
+	Resource.acronyms.language	OM (Oromo)	MDS_V3_3_RAL_122	122
+	Resource.acronyms.language	OR (Oriya)	MDS_V3_3_RAL_123	123
+	Resource.acronyms.language	OS (Ossetian)	MDS_V3_3_RAL_124	124
+	Resource.acronyms.language	PA (Panjabi)	MDS_V3_3_RAL_125	125
+	Resource.acronyms.language	PI (Pāli)	MDS_V3_3_RAL_126	126
+	Resource.acronyms.language	PL (Polish)	MDS_V3_3_RAL_127	127
+	Resource.acronyms.language	PS (Pashto)	MDS_V3_3_RAL_128	128
+	Resource.acronyms.language	PT (Portuguese)	MDS_V3_3_RAL_129	129
+	Resource.acronyms.language	QU (Quechua)	MDS_V3_3_RAL_130	130
+	Resource.acronyms.language	RM (Romansh)	MDS_V3_3_RAL_131	131
+	Resource.acronyms.language	RN (Kirundi)	MDS_V3_3_RAL_132	132
+	Resource.acronyms.language	RO (Romanian)	MDS_V3_3_RAL_133	133
+	Resource.acronyms.language	RU (Russian)	MDS_V3_3_RAL_134	134
+	Resource.acronyms.language	RW (Kinyarwanda)	MDS_V3_3_RAL_135	135
+	Resource.acronyms.language	SA (Sanskrit)	MDS_V3_3_RAL_136	136
+	Resource.acronyms.language	SC (Sardinian)	MDS_V3_3_RAL_137	137
+	Resource.acronyms.language	SD (Sindhi)	MDS_V3_3_RAL_138	138
+	Resource.acronyms.language	SE (Northern Sami)	MDS_V3_3_RAL_139	139
+	Resource.acronyms.language	SG (Sango)	MDS_V3_3_RAL_140	140
+	Resource.acronyms.language	SI (Sinhala)	MDS_V3_3_RAL_141	141
+	Resource.acronyms.language	SK (Slovak)	MDS_V3_3_RAL_142	142
+	Resource.acronyms.language	SL (Slovenian)	MDS_V3_3_RAL_143	143
+	Resource.acronyms.language	SM (Samoan)	MDS_V3_3_RAL_144	144
+	Resource.acronyms.language	SN (Shona)	MDS_V3_3_RAL_145	145
+	Resource.acronyms.language	SO (Somali)	MDS_V3_3_RAL_146	146
+	Resource.acronyms.language	SQ (Albanian)	MDS_V3_3_RAL_147	147
+	Resource.acronyms.language	SR (Serbian)	MDS_V3_3_RAL_148	148
+	Resource.acronyms.language	SS (Swati)	MDS_V3_3_RAL_149	149
+	Resource.acronyms.language	ST (Southern Sotho)	MDS_V3_3_RAL_150	150
+	Resource.acronyms.language	SU (Sundanese)	MDS_V3_3_RAL_151	151
+	Resource.acronyms.language	SV (Swedish)	MDS_V3_3_RAL_152	152
+	Resource.acronyms.language	SW (Swahili)	MDS_V3_3_RAL_153	153
+	Resource.acronyms.language	TA (Tamil)	MDS_V3_3_RAL_154	154
+	Resource.acronyms.language	TE (Telugu)	MDS_V3_3_RAL_155	155
+	Resource.acronyms.language	TG (Tajik)	MDS_V3_3_RAL_156	156
+	Resource.acronyms.language	TH (Thai)	MDS_V3_3_RAL_157	157
+	Resource.acronyms.language	TI (Tigrinya)	MDS_V3_3_RAL_158	158
+	Resource.acronyms.language	TK (Turkmen)	MDS_V3_3_RAL_159	159
+	Resource.acronyms.language	TL (Tagalog)	MDS_V3_3_RAL_160	160
+	Resource.acronyms.language	TN (Tswana)	MDS_V3_3_RAL_161	161
+	Resource.acronyms.language	TO (Tonga)	MDS_V3_3_RAL_162	162
+	Resource.acronyms.language	TR (Turkish)	MDS_V3_3_RAL_163	163
+	Resource.acronyms.language	TS (Tsonga)	MDS_V3_3_RAL_164	164
+	Resource.acronyms.language	TT (Tatar)	MDS_V3_3_RAL_165	165
+	Resource.acronyms.language	TW (Twi)	MDS_V3_3_RAL_166	166
+	Resource.acronyms.language	TY (Tahitian)	MDS_V3_3_RAL_167	167
+	Resource.acronyms.language	UG (Uyghur)	MDS_V3_3_RAL_168	168
+	Resource.acronyms.language	UK (Ukrainian)	MDS_V3_3_RAL_169	169
+	Resource.acronyms.language	UR (Urdu)	MDS_V3_3_RAL_170	170
+	Resource.acronyms.language	UZ (Uzbek)	MDS_V3_3_RAL_171	171
+	Resource.acronyms.language	VE (Venda)	MDS_V3_3_RAL_172	172
+	Resource.acronyms.language	VI (Vietnamese)	MDS_V3_3_RAL_173	173
+	Resource.acronyms.language	VO (Volapük)	MDS_V3_3_RAL_174	174
+	Resource.acronyms.language	WA (Walloon)	MDS_V3_3_RAL_175	175
+	Resource.acronyms.language	WO (Wolof)	MDS_V3_3_RAL_176	176
+	Resource.acronyms.language	XH (Xhosa)	MDS_V3_3_RAL_177	177
+	Resource.acronyms.language	YI (Yiddish)	MDS_V3_3_RAL_178	178
+	Resource.acronyms.language	YO (Yoruba)	MDS_V3_3_RAL_179	179
+	Resource.acronyms.language	ZA (Zhuang)	MDS_V3_3_RAL_180	180
+	Resource.acronyms.language	ZH (Chinese)	MDS_V3_3_RAL_181	181
+	Resource.acronyms.language	ZU (Zulu)	MDS_V3_3_RAL_182	182
+	Resource.descriptions.language	AA (Afar)	MDS_V3_3_RDL_0	0
+	Resource.descriptions.language	AB (Abkhaz)	MDS_V3_3_RDL_1	1
+	Resource.descriptions.language	AE (Avestan)	MDS_V3_3_RDL_2	2
+	Resource.descriptions.language	AF (Afrikaans)	MDS_V3_3_RDL_3	3
+	Resource.descriptions.language	AK (Akan)	MDS_V3_3_RDL_4	4
+	Resource.descriptions.language	AM (Amharic)	MDS_V3_3_RDL_5	5
+	Resource.descriptions.language	AN (Aragonese)	MDS_V3_3_RDL_6	6
+	Resource.descriptions.language	AR (Arabic)	MDS_V3_3_RDL_7	7
+	Resource.descriptions.language	AS (Assamese)	MDS_V3_3_RDL_8	8
+	Resource.descriptions.language	AV (Avaric)	MDS_V3_3_RDL_9	9
+	Resource.descriptions.language	AY (Aymara)	MDS_V3_3_RDL_10	10
+	Resource.descriptions.language	AZ (Azerbaijani)	MDS_V3_3_RDL_11	11
+	Resource.descriptions.language	BA (Bashkir)	MDS_V3_3_RDL_12	12
+	Resource.descriptions.language	BE (Belarusian)	MDS_V3_3_RDL_13	13
+	Resource.descriptions.language	BG (Bulgarian)	MDS_V3_3_RDL_14	14
+	Resource.descriptions.language	BI (Bislama)	MDS_V3_3_RDL_15	15
+	Resource.descriptions.language	BM (Bambara)	MDS_V3_3_RDL_16	16
+	Resource.descriptions.language	BN (Bengali)	MDS_V3_3_RDL_17	17
+	Resource.descriptions.language	BO (Tibetan)	MDS_V3_3_RDL_18	18
+	Resource.descriptions.language	BR (Breton)	MDS_V3_3_RDL_19	19
+	Resource.descriptions.language	BS (Bosnian)	MDS_V3_3_RDL_20	20
+	Resource.descriptions.language	CA (Catalan)	MDS_V3_3_RDL_21	21
+	Resource.descriptions.language	CE (Chechen)	MDS_V3_3_RDL_22	22
+	Resource.descriptions.language	CH (Chamorro)	MDS_V3_3_RDL_23	23
+	Resource.descriptions.language	CO (Corsican)	MDS_V3_3_RDL_24	24
+	Resource.descriptions.language	CR (Cree)	MDS_V3_3_RDL_25	25
+	Resource.descriptions.language	CS (Czech)	MDS_V3_3_RDL_26	26
+	Resource.descriptions.language	CU (Old Church Slavonic)	MDS_V3_3_RDL_27	27
+	Resource.descriptions.language	CV (Chuvash)	MDS_V3_3_RDL_28	28
+	Resource.descriptions.language	CY (Welsh)	MDS_V3_3_RDL_29	29
+	Resource.descriptions.language	DA (Danish)	MDS_V3_3_RDL_30	30
+	Resource.descriptions.language	DE (German)	MDS_V3_3_RDL_31	31
+	Resource.descriptions.language	DV (Divehi)	MDS_V3_3_RDL_32	32
+	Resource.descriptions.language	DZ (Dzongkha)	MDS_V3_3_RDL_33	33
+	Resource.descriptions.language	EE (Ewe)	MDS_V3_3_RDL_34	34
+	Resource.descriptions.language	EL (Greek)	MDS_V3_3_RDL_35	35
+	Resource.descriptions.language	EN (English)	MDS_V3_3_RDL_36	36
+	Resource.descriptions.language	EO (Esperanto)	MDS_V3_3_RDL_37	37
+	Resource.descriptions.language	ES (Spanish)	MDS_V3_3_RDL_38	38
+	Resource.descriptions.language	ET (Estonian)	MDS_V3_3_RDL_39	39
+	Resource.descriptions.language	EU (Basque)	MDS_V3_3_RDL_40	40
+	Resource.descriptions.language	FA (Persian)	MDS_V3_3_RDL_41	41
+	Resource.descriptions.language	FF (Fula)	MDS_V3_3_RDL_42	42
+	Resource.descriptions.language	FI (Finnish)	MDS_V3_3_RDL_43	43
+	Resource.descriptions.language	FJ (Fijian)	MDS_V3_3_RDL_44	44
+	Resource.descriptions.language	FO (Faroese)	MDS_V3_3_RDL_45	45
+	Resource.descriptions.language	FR (French)	MDS_V3_3_RDL_46	46
+	Resource.descriptions.language	FY (Western Frisian)	MDS_V3_3_RDL_47	47
+	Resource.descriptions.language	GA (Irish)	MDS_V3_3_RDL_48	48
+	Resource.descriptions.language	GD (Scottish Gaelic)	MDS_V3_3_RDL_49	49
+	Resource.descriptions.language	GL (Galician)	MDS_V3_3_RDL_50	50
+	Resource.descriptions.language	GN (Guaraní)	MDS_V3_3_RDL_51	51
+	Resource.descriptions.language	GU (Gujarati)	MDS_V3_3_RDL_52	52
+	Resource.descriptions.language	GV (Manx)	MDS_V3_3_RDL_53	53
+	Resource.descriptions.language	HA (Hausa)	MDS_V3_3_RDL_54	54
+	Resource.descriptions.language	HE (Hebrew)	MDS_V3_3_RDL_55	55
+	Resource.descriptions.language	HI (Hindi)	MDS_V3_3_RDL_56	56
+	Resource.descriptions.language	HO (Hiri Motu)	MDS_V3_3_RDL_57	57
+	Resource.descriptions.language	HR (Croatian)	MDS_V3_3_RDL_58	58
+	Resource.descriptions.language	HT (Haitian)	MDS_V3_3_RDL_59	59
+	Resource.descriptions.language	HU (Hungarian)	MDS_V3_3_RDL_60	60
+	Resource.descriptions.language	HY (Armenian)	MDS_V3_3_RDL_61	61
+	Resource.descriptions.language	HZ (Herero)	MDS_V3_3_RDL_62	62
+	Resource.descriptions.language	IA (Interlingua)	MDS_V3_3_RDL_63	63
+	Resource.descriptions.language	ID (Indonesian)	MDS_V3_3_RDL_64	64
+	Resource.descriptions.language	IE (Interlingue)	MDS_V3_3_RDL_65	65
+	Resource.descriptions.language	IG (Igbo)	MDS_V3_3_RDL_66	66
+	Resource.descriptions.language	II (Nuosu)	MDS_V3_3_RDL_67	67
+	Resource.descriptions.language	IK (Inupiaq)	MDS_V3_3_RDL_68	68
+	Resource.descriptions.language	IO (Ido)	MDS_V3_3_RDL_69	69
+	Resource.descriptions.language	IS (Icelandic)	MDS_V3_3_RDL_70	70
+	Resource.descriptions.language	IT (Italian)	MDS_V3_3_RDL_71	71
+	Resource.descriptions.language	IU (Inuktitut)	MDS_V3_3_RDL_72	72
+	Resource.descriptions.language	JA (Japanese)	MDS_V3_3_RDL_73	73
+	Resource.descriptions.language	JV (Javanese)	MDS_V3_3_RDL_74	74
+	Resource.descriptions.language	KA (Georgian)	MDS_V3_3_RDL_75	75
+	Resource.descriptions.language	KG (Kongo)	MDS_V3_3_RDL_76	76
+	Resource.descriptions.language	KI (Kikuyu)	MDS_V3_3_RDL_77	77
+	Resource.descriptions.language	KJ (Kwanyama)	MDS_V3_3_RDL_78	78
+	Resource.descriptions.language	KK (Kazakh)	MDS_V3_3_RDL_79	79
+	Resource.descriptions.language	KL (Kalaallisut)	MDS_V3_3_RDL_80	80
+	Resource.descriptions.language	KM (Khmer)	MDS_V3_3_RDL_81	81
+	Resource.descriptions.language	KN (Kannada)	MDS_V3_3_RDL_82	82
+	Resource.descriptions.language	KO (Korean)	MDS_V3_3_RDL_83	83
+	Resource.descriptions.language	KR (Kanuri)	MDS_V3_3_RDL_84	84
+	Resource.descriptions.language	KS (Kashmiri)	MDS_V3_3_RDL_85	85
+	Resource.descriptions.language	KU (Kurdish)	MDS_V3_3_RDL_86	86
+	Resource.descriptions.language	KV (Komi)	MDS_V3_3_RDL_87	87
+	Resource.descriptions.language	KW (Cornish)	MDS_V3_3_RDL_88	88
+	Resource.descriptions.language	KY (Kyrgyz)	MDS_V3_3_RDL_89	89
+	Resource.descriptions.language	LA (Latin)	MDS_V3_3_RDL_90	90
+	Resource.descriptions.language	LB (Luxembourgish)	MDS_V3_3_RDL_91	91
+	Resource.descriptions.language	LG (Ganda)	MDS_V3_3_RDL_92	92
+	Resource.descriptions.language	LI (Limburgish)	MDS_V3_3_RDL_93	93
+	Resource.descriptions.language	LN (Lingala)	MDS_V3_3_RDL_94	94
+	Resource.descriptions.language	LO (Lao)	MDS_V3_3_RDL_95	95
+	Resource.descriptions.language	LT (Lithuanian)	MDS_V3_3_RDL_96	96
+	Resource.descriptions.language	LU (Luba-Katanga)	MDS_V3_3_RDL_97	97
+	Resource.descriptions.language	LV (Latvian)	MDS_V3_3_RDL_98	98
+	Resource.descriptions.language	MG (Malagasy)	MDS_V3_3_RDL_99	99
+	Resource.descriptions.language	MH (Marshallese)	MDS_V3_3_RDL_100	100
+	Resource.descriptions.language	MI (Māori)	MDS_V3_3_RDL_101	101
+	Resource.descriptions.language	MK (Macedonian)	MDS_V3_3_RDL_102	102
+	Resource.descriptions.language	ML (Malayalam)	MDS_V3_3_RDL_103	103
+	Resource.descriptions.language	MN (Mongolian)	MDS_V3_3_RDL_104	104
+	Resource.descriptions.language	MR (Marathi)	MDS_V3_3_RDL_105	105
+	Resource.descriptions.language	MS (Malay)	MDS_V3_3_RDL_106	106
+	Resource.descriptions.language	MT (Maltese)	MDS_V3_3_RDL_107	107
+	Resource.descriptions.language	MY (Burmese)	MDS_V3_3_RDL_108	108
+	Resource.descriptions.language	NA (Nauru)	MDS_V3_3_RDL_109	109
+	Resource.descriptions.language	NB (Norwegian Bokmål)	MDS_V3_3_RDL_110	110
+	Resource.descriptions.language	ND (Northern Ndebele)	MDS_V3_3_RDL_111	111
+	Resource.descriptions.language	NE (Nepali)	MDS_V3_3_RDL_112	112
+	Resource.descriptions.language	NG (Ndonga)	MDS_V3_3_RDL_113	113
+	Resource.descriptions.language	NL (Dutch)	MDS_V3_3_RDL_114	114
+	Resource.descriptions.language	NN (Norwegian Nynorsk)	MDS_V3_3_RDL_115	115
+	Resource.descriptions.language	NO (Norwegian)	MDS_V3_3_RDL_116	116
+	Resource.descriptions.language	NR (Southern Ndebele)	MDS_V3_3_RDL_117	117
+	Resource.descriptions.language	NV (Navajo)	MDS_V3_3_RDL_118	118
+	Resource.descriptions.language	NY (Chichewa)	MDS_V3_3_RDL_119	119
+	Resource.descriptions.language	OC (Occitan)	MDS_V3_3_RDL_120	120
+	Resource.descriptions.language	OJ (Ojibwe)	MDS_V3_3_RDL_121	121
+	Resource.descriptions.language	OM (Oromo)	MDS_V3_3_RDL_122	122
+	Resource.descriptions.language	OR (Oriya)	MDS_V3_3_RDL_123	123
+	Resource.descriptions.language	OS (Ossetian)	MDS_V3_3_RDL_124	124
+	Resource.descriptions.language	PA (Panjabi)	MDS_V3_3_RDL_125	125
+	Resource.descriptions.language	PI (Pāli)	MDS_V3_3_RDL_126	126
+	Resource.descriptions.language	PL (Polish)	MDS_V3_3_RDL_127	127
+	Resource.descriptions.language	PS (Pashto)	MDS_V3_3_RDL_128	128
+	Resource.descriptions.language	PT (Portuguese)	MDS_V3_3_RDL_129	129
+	Resource.descriptions.language	QU (Quechua)	MDS_V3_3_RDL_130	130
+	Resource.descriptions.language	RM (Romansh)	MDS_V3_3_RDL_131	131
+	Resource.descriptions.language	RN (Kirundi)	MDS_V3_3_RDL_132	132
+	Resource.descriptions.language	RO (Romanian)	MDS_V3_3_RDL_133	133
+	Resource.descriptions.language	RU (Russian)	MDS_V3_3_RDL_134	134
+	Resource.descriptions.language	RW (Kinyarwanda)	MDS_V3_3_RDL_135	135
+	Resource.descriptions.language	SA (Sanskrit)	MDS_V3_3_RDL_136	136
+	Resource.descriptions.language	SC (Sardinian)	MDS_V3_3_RDL_137	137
+	Resource.descriptions.language	SD (Sindhi)	MDS_V3_3_RDL_138	138
+	Resource.descriptions.language	SE (Northern Sami)	MDS_V3_3_RDL_139	139
+	Resource.descriptions.language	SG (Sango)	MDS_V3_3_RDL_140	140
+	Resource.descriptions.language	SI (Sinhala)	MDS_V3_3_RDL_141	141
+	Resource.descriptions.language	SK (Slovak)	MDS_V3_3_RDL_142	142
+	Resource.descriptions.language	SL (Slovenian)	MDS_V3_3_RDL_143	143
+	Resource.descriptions.language	SM (Samoan)	MDS_V3_3_RDL_144	144
+	Resource.descriptions.language	SN (Shona)	MDS_V3_3_RDL_145	145
+	Resource.descriptions.language	SO (Somali)	MDS_V3_3_RDL_146	146
+	Resource.descriptions.language	SQ (Albanian)	MDS_V3_3_RDL_147	147
+	Resource.descriptions.language	SR (Serbian)	MDS_V3_3_RDL_148	148
+	Resource.descriptions.language	SS (Swati)	MDS_V3_3_RDL_149	149
+	Resource.descriptions.language	ST (Southern Sotho)	MDS_V3_3_RDL_150	150
+	Resource.descriptions.language	SU (Sundanese)	MDS_V3_3_RDL_151	151
+	Resource.descriptions.language	SV (Swedish)	MDS_V3_3_RDL_152	152
+	Resource.descriptions.language	SW (Swahili)	MDS_V3_3_RDL_153	153
+	Resource.descriptions.language	TA (Tamil)	MDS_V3_3_RDL_154	154
+	Resource.descriptions.language	TE (Telugu)	MDS_V3_3_RDL_155	155
+	Resource.descriptions.language	TG (Tajik)	MDS_V3_3_RDL_156	156
+	Resource.descriptions.language	TH (Thai)	MDS_V3_3_RDL_157	157
+	Resource.descriptions.language	TI (Tigrinya)	MDS_V3_3_RDL_158	158
+	Resource.descriptions.language	TK (Turkmen)	MDS_V3_3_RDL_159	159
+	Resource.descriptions.language	TL (Tagalog)	MDS_V3_3_RDL_160	160
+	Resource.descriptions.language	TN (Tswana)	MDS_V3_3_RDL_161	161
+	Resource.descriptions.language	TO (Tonga)	MDS_V3_3_RDL_162	162
+	Resource.descriptions.language	TR (Turkish)	MDS_V3_3_RDL_163	163
+	Resource.descriptions.language	TS (Tsonga)	MDS_V3_3_RDL_164	164
+	Resource.descriptions.language	TT (Tatar)	MDS_V3_3_RDL_165	165
+	Resource.descriptions.language	TW (Twi)	MDS_V3_3_RDL_166	166
+	Resource.descriptions.language	TY (Tahitian)	MDS_V3_3_RDL_167	167
+	Resource.descriptions.language	UG (Uyghur)	MDS_V3_3_RDL_168	168
+	Resource.descriptions.language	UK (Ukrainian)	MDS_V3_3_RDL_169	169
+	Resource.descriptions.language	UR (Urdu)	MDS_V3_3_RDL_170	170
+	Resource.descriptions.language	UZ (Uzbek)	MDS_V3_3_RDL_171	171
+	Resource.descriptions.language	VE (Venda)	MDS_V3_3_RDL_172	172
+	Resource.descriptions.language	VI (Vietnamese)	MDS_V3_3_RDL_173	173
+	Resource.descriptions.language	VO (Volapük)	MDS_V3_3_RDL_174	174
+	Resource.descriptions.language	WA (Walloon)	MDS_V3_3_RDL_175	175
+	Resource.descriptions.language	WO (Wolof)	MDS_V3_3_RDL_176	176
+	Resource.descriptions.language	XH (Xhosa)	MDS_V3_3_RDL_177	177
+	Resource.descriptions.language	YI (Yiddish)	MDS_V3_3_RDL_178	178
+	Resource.descriptions.language	YO (Yoruba)	MDS_V3_3_RDL_179	179
+	Resource.descriptions.language	ZA (Zhuang)	MDS_V3_3_RDL_180	180
+	Resource.descriptions.language	ZH (Chinese)	MDS_V3_3_RDL_181	181
+	Resource.descriptions.language	ZU (Zulu)	MDS_V3_3_RDL_182	182
+	Resource.languages	AA (Afar)	MDS_V3_3_RL_0	0
+	Resource.languages	AB (Abkhaz)	MDS_V3_3_RL_1	1
+	Resource.languages	AE (Avestan)	MDS_V3_3_RL_2	2
+	Resource.languages	AF (Afrikaans)	MDS_V3_3_RL_3	3
+	Resource.languages	AK (Akan)	MDS_V3_3_RL_4	4
+	Resource.languages	AM (Amharic)	MDS_V3_3_RL_5	5
+	Resource.languages	AN (Aragonese)	MDS_V3_3_RL_6	6
+	Resource.languages	AR (Arabic)	MDS_V3_3_RL_7	7
+	Resource.languages	AS (Assamese)	MDS_V3_3_RL_8	8
+	Resource.languages	AV (Avaric)	MDS_V3_3_RL_9	9
+	Resource.languages	AY (Aymara)	MDS_V3_3_RL_10	10
+	Resource.languages	AZ (Azerbaijani)	MDS_V3_3_RL_11	11
+	Resource.languages	BA (Bashkir)	MDS_V3_3_RL_12	12
+	Resource.languages	BE (Belarusian)	MDS_V3_3_RL_13	13
+	Resource.languages	BG (Bulgarian)	MDS_V3_3_RL_14	14
+	Resource.languages	BI (Bislama)	MDS_V3_3_RL_15	15
+	Resource.languages	BM (Bambara)	MDS_V3_3_RL_16	16
+	Resource.languages	BN (Bengali)	MDS_V3_3_RL_17	17
+	Resource.languages	BO (Tibetan)	MDS_V3_3_RL_18	18
+	Resource.languages	BR (Breton)	MDS_V3_3_RL_19	19
+	Resource.languages	BS (Bosnian)	MDS_V3_3_RL_20	20
+	Resource.languages	CA (Catalan)	MDS_V3_3_RL_21	21
+	Resource.languages	CE (Chechen)	MDS_V3_3_RL_22	22
+	Resource.languages	CH (Chamorro)	MDS_V3_3_RL_23	23
+	Resource.languages	CO (Corsican)	MDS_V3_3_RL_24	24
+	Resource.languages	CR (Cree)	MDS_V3_3_RL_25	25
+	Resource.languages	CS (Czech)	MDS_V3_3_RL_26	26
+	Resource.languages	CU (Old Church Slavonic)	MDS_V3_3_RL_27	27
+	Resource.languages	CV (Chuvash)	MDS_V3_3_RL_28	28
+	Resource.languages	CY (Welsh)	MDS_V3_3_RL_29	29
+	Resource.languages	DA (Danish)	MDS_V3_3_RL_30	30
+	Resource.languages	DE (German)	MDS_V3_3_RL_31	31
+	Resource.languages	DV (Divehi)	MDS_V3_3_RL_32	32
+	Resource.languages	DZ (Dzongkha)	MDS_V3_3_RL_33	33
+	Resource.languages	EE (Ewe)	MDS_V3_3_RL_34	34
+	Resource.languages	EL (Greek)	MDS_V3_3_RL_35	35
+	Resource.languages	EN (English)	MDS_V3_3_RL_36	36
+	Resource.languages	EO (Esperanto)	MDS_V3_3_RL_37	37
+	Resource.languages	ES (Spanish)	MDS_V3_3_RL_38	38
+	Resource.languages	ET (Estonian)	MDS_V3_3_RL_39	39
+	Resource.languages	EU (Basque)	MDS_V3_3_RL_40	40
+	Resource.languages	FA (Persian)	MDS_V3_3_RL_41	41
+	Resource.languages	FF (Fula)	MDS_V3_3_RL_42	42
+	Resource.languages	FI (Finnish)	MDS_V3_3_RL_43	43
+	Resource.languages	FJ (Fijian)	MDS_V3_3_RL_44	44
+	Resource.languages	FO (Faroese)	MDS_V3_3_RL_45	45
+	Resource.languages	FR (French)	MDS_V3_3_RL_46	46
+	Resource.languages	FY (Western Frisian)	MDS_V3_3_RL_47	47
+	Resource.languages	GA (Irish)	MDS_V3_3_RL_48	48
+	Resource.languages	GD (Scottish Gaelic)	MDS_V3_3_RL_49	49
+	Resource.languages	GL (Galician)	MDS_V3_3_RL_50	50
+	Resource.languages	GN (Guaraní)	MDS_V3_3_RL_51	51
+	Resource.languages	GU (Gujarati)	MDS_V3_3_RL_52	52
+	Resource.languages	GV (Manx)	MDS_V3_3_RL_53	53
+	Resource.languages	HA (Hausa)	MDS_V3_3_RL_54	54
+	Resource.languages	HE (Hebrew)	MDS_V3_3_RL_55	55
+	Resource.languages	HI (Hindi)	MDS_V3_3_RL_56	56
+	Resource.languages	HO (Hiri Motu)	MDS_V3_3_RL_57	57
+	Resource.languages	HR (Croatian)	MDS_V3_3_RL_58	58
+	Resource.languages	HT (Haitian)	MDS_V3_3_RL_59	59
+	Resource.languages	HU (Hungarian)	MDS_V3_3_RL_60	60
+	Resource.languages	HY (Armenian)	MDS_V3_3_RL_61	61
+	Resource.languages	HZ (Herero)	MDS_V3_3_RL_62	62
+	Resource.languages	IA (Interlingua)	MDS_V3_3_RL_63	63
+	Resource.languages	ID (Indonesian)	MDS_V3_3_RL_64	64
+	Resource.languages	IE (Interlingue)	MDS_V3_3_RL_65	65
+	Resource.languages	IG (Igbo)	MDS_V3_3_RL_66	66
+	Resource.languages	II (Nuosu)	MDS_V3_3_RL_67	67
+	Resource.languages	IK (Inupiaq)	MDS_V3_3_RL_68	68
+	Resource.languages	IO (Ido)	MDS_V3_3_RL_69	69
+	Resource.languages	IS (Icelandic)	MDS_V3_3_RL_70	70
+	Resource.languages	IT (Italian)	MDS_V3_3_RL_71	71
+	Resource.languages	IU (Inuktitut)	MDS_V3_3_RL_72	72
+	Resource.languages	JA (Japanese)	MDS_V3_3_RL_73	73
+	Resource.languages	JV (Javanese)	MDS_V3_3_RL_74	74
+	Resource.languages	KA (Georgian)	MDS_V3_3_RL_75	75
+	Resource.languages	KG (Kongo)	MDS_V3_3_RL_76	76
+	Resource.languages	KI (Kikuyu)	MDS_V3_3_RL_77	77
+	Resource.languages	KJ (Kwanyama)	MDS_V3_3_RL_78	78
+	Resource.languages	KK (Kazakh)	MDS_V3_3_RL_79	79
+	Resource.languages	KL (Kalaallisut)	MDS_V3_3_RL_80	80
+	Resource.languages	KM (Khmer)	MDS_V3_3_RL_81	81
+	Resource.languages	KN (Kannada)	MDS_V3_3_RL_82	82
+	Resource.languages	KO (Korean)	MDS_V3_3_RL_83	83
+	Resource.languages	KR (Kanuri)	MDS_V3_3_RL_84	84
+	Resource.languages	KS (Kashmiri)	MDS_V3_3_RL_85	85
+	Resource.languages	KU (Kurdish)	MDS_V3_3_RL_86	86
+	Resource.languages	KV (Komi)	MDS_V3_3_RL_87	87
+	Resource.languages	KW (Cornish)	MDS_V3_3_RL_88	88
+	Resource.languages	KY (Kyrgyz)	MDS_V3_3_RL_89	89
+	Resource.languages	LA (Latin)	MDS_V3_3_RL_90	90
+	Resource.languages	LB (Luxembourgish)	MDS_V3_3_RL_91	91
+	Resource.languages	LG (Ganda)	MDS_V3_3_RL_92	92
+	Resource.languages	LI (Limburgish)	MDS_V3_3_RL_93	93
+	Resource.languages	LN (Lingala)	MDS_V3_3_RL_94	94
+	Resource.languages	LO (Lao)	MDS_V3_3_RL_95	95
+	Resource.languages	LT (Lithuanian)	MDS_V3_3_RL_96	96
+	Resource.languages	LU (Luba-Katanga)	MDS_V3_3_RL_97	97
+	Resource.languages	LV (Latvian)	MDS_V3_3_RL_98	98
+	Resource.languages	MG (Malagasy)	MDS_V3_3_RL_99	99
+	Resource.languages	MH (Marshallese)	MDS_V3_3_RL_100	100
+	Resource.languages	MI (Māori)	MDS_V3_3_RL_101	101
+	Resource.languages	MK (Macedonian)	MDS_V3_3_RL_102	102
+	Resource.languages	ML (Malayalam)	MDS_V3_3_RL_103	103
+	Resource.languages	MN (Mongolian)	MDS_V3_3_RL_104	104
+	Resource.languages	MR (Marathi)	MDS_V3_3_RL_105	105
+	Resource.languages	MS (Malay)	MDS_V3_3_RL_106	106
+	Resource.languages	MT (Maltese)	MDS_V3_3_RL_107	107
+	Resource.languages	MY (Burmese)	MDS_V3_3_RL_108	108
+	Resource.languages	NA (Nauru)	MDS_V3_3_RL_109	109
+	Resource.languages	NB (Norwegian Bokmål)	MDS_V3_3_RL_110	110
+	Resource.languages	ND (Northern Ndebele)	MDS_V3_3_RL_111	111
+	Resource.languages	NE (Nepali)	MDS_V3_3_RL_112	112
+	Resource.languages	NG (Ndonga)	MDS_V3_3_RL_113	113
+	Resource.languages	NL (Dutch)	MDS_V3_3_RL_114	114
+	Resource.languages	NN (Norwegian Nynorsk)	MDS_V3_3_RL_115	115
+	Resource.languages	NO (Norwegian)	MDS_V3_3_RL_116	116
+	Resource.languages	NR (Southern Ndebele)	MDS_V3_3_RL_117	117
+	Resource.languages	NV (Navajo)	MDS_V3_3_RL_118	118
+	Resource.languages	NY (Chichewa)	MDS_V3_3_RL_119	119
+	Resource.languages	OC (Occitan)	MDS_V3_3_RL_120	120
+	Resource.languages	OJ (Ojibwe)	MDS_V3_3_RL_121	121
+	Resource.languages	OM (Oromo)	MDS_V3_3_RL_122	122
+	Resource.languages	OR (Oriya)	MDS_V3_3_RL_123	123
+	Resource.languages	OS (Ossetian)	MDS_V3_3_RL_124	124
+	Resource.languages	PA (Panjabi)	MDS_V3_3_RL_125	125
+	Resource.languages	PI (Pāli)	MDS_V3_3_RL_126	126
+	Resource.languages	PL (Polish)	MDS_V3_3_RL_127	127
+	Resource.languages	PS (Pashto)	MDS_V3_3_RL_128	128
+	Resource.languages	PT (Portuguese)	MDS_V3_3_RL_129	129
+	Resource.languages	QU (Quechua)	MDS_V3_3_RL_130	130
+	Resource.languages	RM (Romansh)	MDS_V3_3_RL_131	131
+	Resource.languages	RN (Kirundi)	MDS_V3_3_RL_132	132
+	Resource.languages	RO (Romanian)	MDS_V3_3_RL_133	133
+	Resource.languages	RU (Russian)	MDS_V3_3_RL_134	134
+	Resource.languages	RW (Kinyarwanda)	MDS_V3_3_RL_135	135
+	Resource.languages	SA (Sanskrit)	MDS_V3_3_RL_136	136
+	Resource.languages	SC (Sardinian)	MDS_V3_3_RL_137	137
+	Resource.languages	SD (Sindhi)	MDS_V3_3_RL_138	138
+	Resource.languages	SE (Northern Sami)	MDS_V3_3_RL_139	139
+	Resource.languages	SG (Sango)	MDS_V3_3_RL_140	140
+	Resource.languages	SI (Sinhala)	MDS_V3_3_RL_141	141
+	Resource.languages	SK (Slovak)	MDS_V3_3_RL_142	142
+	Resource.languages	SL (Slovenian)	MDS_V3_3_RL_143	143
+	Resource.languages	SM (Samoan)	MDS_V3_3_RL_144	144
+	Resource.languages	SN (Shona)	MDS_V3_3_RL_145	145
+	Resource.languages	SO (Somali)	MDS_V3_3_RL_146	146
+	Resource.languages	SQ (Albanian)	MDS_V3_3_RL_147	147
+	Resource.languages	SR (Serbian)	MDS_V3_3_RL_148	148
+	Resource.languages	SS (Swati)	MDS_V3_3_RL_149	149
+	Resource.languages	ST (Southern Sotho)	MDS_V3_3_RL_150	150
+	Resource.languages	SU (Sundanese)	MDS_V3_3_RL_151	151
+	Resource.languages	SV (Swedish)	MDS_V3_3_RL_152	152
+	Resource.languages	SW (Swahili)	MDS_V3_3_RL_153	153
+	Resource.languages	TA (Tamil)	MDS_V3_3_RL_154	154
+	Resource.languages	TE (Telugu)	MDS_V3_3_RL_155	155
+	Resource.languages	TG (Tajik)	MDS_V3_3_RL_156	156
+	Resource.languages	TH (Thai)	MDS_V3_3_RL_157	157
+	Resource.languages	TI (Tigrinya)	MDS_V3_3_RL_158	158
+	Resource.languages	TK (Turkmen)	MDS_V3_3_RL_159	159
+	Resource.languages	TL (Tagalog)	MDS_V3_3_RL_160	160
+	Resource.languages	TN (Tswana)	MDS_V3_3_RL_161	161
+	Resource.languages	TO (Tonga)	MDS_V3_3_RL_162	162
+	Resource.languages	TR (Turkish)	MDS_V3_3_RL_163	163
+	Resource.languages	TS (Tsonga)	MDS_V3_3_RL_164	164
+	Resource.languages	TT (Tatar)	MDS_V3_3_RL_165	165
+	Resource.languages	TW (Twi)	MDS_V3_3_RL_166	166
+	Resource.languages	TY (Tahitian)	MDS_V3_3_RL_167	167
+	Resource.languages	UG (Uyghur)	MDS_V3_3_RL_168	168
+	Resource.languages	UK (Ukrainian)	MDS_V3_3_RL_169	169
+	Resource.languages	UR (Urdu)	MDS_V3_3_RL_170	170
+	Resource.languages	UZ (Uzbek)	MDS_V3_3_RL_171	171
+	Resource.languages	VE (Venda)	MDS_V3_3_RL_172	172
+	Resource.languages	VI (Vietnamese)	MDS_V3_3_RL_173	173
+	Resource.languages	VO (Volapük)	MDS_V3_3_RL_174	174
+	Resource.languages	WA (Walloon)	MDS_V3_3_RL_175	175
+	Resource.languages	WO (Wolof)	MDS_V3_3_RL_176	176
+	Resource.languages	XH (Xhosa)	MDS_V3_3_RL_177	177
+	Resource.languages	YI (Yiddish)	MDS_V3_3_RL_178	178
+	Resource.languages	YO (Yoruba)	MDS_V3_3_RL_179	179
+	Resource.languages	ZA (Zhuang)	MDS_V3_3_RL_180	180
+	Resource.languages	ZH (Chinese)	MDS_V3_3_RL_181	181
+	Resource.languages	ZU (Zulu)	MDS_V3_3_RL_182	182
+	Resource.nonStudyDetails.useRights.label	CC0 1.0 (Creative Commons Zero v1.0 Universal)	MDS_V3_3_RNUL_0	0
+	Resource.nonStudyDetails.useRights.label	CC BY 4.0 (Creative Commons Attribution 4.0 International)	MDS_V3_3_RNUL_1	1
+	Resource.nonStudyDetails.useRights.label	CC BY-NC 4.0 (Creative Commons Attribution Non Commercial 4.0 International)	MDS_V3_3_RNUL_2	2
+	Resource.nonStudyDetails.useRights.label	CC BY-SA 4.0 (Creative Commons Attribution Share Alike 4.0 International)	MDS_V3_3_RNUL_3	3
+	Resource.nonStudyDetails.useRights.label	CC BY-NC-SA 4.0 (Creative Commons Attribution Non Commercial Share Alike 4.0 International)	MDS_V3_3_RNUL_4	4
+	Resource.nonStudyDetails.useRights.label	All rights reserved	MDS_V3_3_RNUL_5	5
+	Resource.nonStudyDetails.useRights.label	Other	MDS_V3_3_RNUL_6	6
+	Resource.nonStudyDetails.useRights.label	Not applicable	MDS_V3_3_RNUL_7	7
+	Resource.nonStudyDetails.useRights.label	Not assigned	MDS_V3_3_RNUL_8	8
+	Resource.nonStudyDetails.useRights.label	Unknown	MDS_V3_3_RNUL_9	9
+	Resource.nonStudyDetails.useRights.confirmations.authority	Yes	MDS_V3_3_RNUCA_0	0
+	Resource.nonStudyDetails.useRights.confirmations.authority	No	MDS_V3_3_RNUCA_1	1
+	Resource.nonStudyDetails.useRights.confirmations.terms	Yes	MDS_V3_3_RNUCT_0	0
+	Resource.nonStudyDetails.useRights.confirmations.terms	No	MDS_V3_3_RNUCT_1	1
+	Resource.nonStudyDetails.useRights.confirmations.irrevocability	Yes	MDS_V3_3_RNUCI_0	0
+	Resource.nonStudyDetails.useRights.confirmations.irrevocability	No	MDS_V3_3_RNUCI_1	1
+	Resource.nonStudyDetails.useRights.confirmations.supportByLicensing	Yes	MDS_V3_3_RNUCS_0	0
+	Resource.nonStudyDetails.useRights.confirmations.supportByLicensing	No	MDS_V3_3_RNUCS_1	1
+	Resource.contributors.nameType	Personal	MDS_V3_3_RCN_0	0
+	Resource.contributors.nameType	Organisational	MDS_V3_3_RCN_1	1
+	Resource.contributors.organisational.type	Contact	MDS_V3_3_RCOT_0	0
+	Resource.contributors.organisational.type	Creator/Author	MDS_V3_3_RCOT_1	1
+	Resource.contributors.organisational.type	Funder (public)	MDS_V3_3_RCOT_2	2
+	Resource.contributors.organisational.type	Funder (private)	MDS_V3_3_RCOT_3	3
+	Resource.contributors.organisational.type	Sponsor (primary)	MDS_V3_3_RCOT_4	4
+	Resource.contributors.organisational.type	Sponsor (secondary)	MDS_V3_3_RCOT_5	5
+	Resource.contributors.organisational.type	Sponsor-Investigator	MDS_V3_3_RCOT_6	6
+	Resource.contributors.organisational.type	Research group	MDS_V3_3_RCOT_7	7
+	Resource.contributors.organisational.type	Data collector	MDS_V3_3_RCOT_8	8
+	Resource.contributors.organisational.type	Data curator	MDS_V3_3_RCOT_9	9
+	Resource.contributors.organisational.type	Data manager	MDS_V3_3_RCOT_10	10
+	Resource.contributors.organisational.type	Distributor	MDS_V3_3_RCOT_11	11
+	Resource.contributors.organisational.type	Hosting institution	MDS_V3_3_RCOT_12	12
+	Resource.contributors.organisational.type	Producer	MDS_V3_3_RCOT_13	13
+	Resource.contributors.organisational.type	Publisher	MDS_V3_3_RCOT_14	14
+	Resource.contributors.organisational.type	Registration agency	MDS_V3_3_RCOT_15	15
+	Resource.contributors.organisational.type	Registration authority	MDS_V3_3_RCOT_16	16
+	Resource.contributors.organisational.type	Rights holder	MDS_V3_3_RCOT_17	17
+	Resource.contributors.organisational.type	Supervisor	MDS_V3_3_RCOT_18	18
+	Resource.contributors.organisational.type	Other	MDS_V3_3_RCOT_19	19
+	Resource.contributors.personal.type	Contact	MDS_V3_3_RCPT_0	0
+	Resource.contributors.personal.type	Principal investigator	MDS_V3_3_RCPT_1	1
+	Resource.contributors.personal.type	Creator/Author	MDS_V3_3_RCPT_2	2
+	Resource.contributors.personal.type	Sponsor (primary)	MDS_V3_3_RCPT_3	3
+	Resource.contributors.personal.type	Sponsor (secondary)	MDS_V3_3_RCPT_4	4
+	Resource.contributors.personal.type	Sponsor-Investigator	MDS_V3_3_RCPT_5	5
+	Resource.contributors.personal.type	Data collector	MDS_V3_3_RCPT_6	6
+	Resource.contributors.personal.type	Data curator	MDS_V3_3_RCPT_7	7
+	Resource.contributors.personal.type	Data manager	MDS_V3_3_RCPT_8	8
+	Resource.contributors.personal.type	Editor	MDS_V3_3_RCPT_9	9
+	Resource.contributors.personal.type	Producer	MDS_V3_3_RCPT_10	10
+	Resource.contributors.personal.type	Project leader	MDS_V3_3_RCPT_11	11
+	Resource.contributors.personal.type	Project manager	MDS_V3_3_RCPT_12	12
+	Resource.contributors.personal.type	Project member	MDS_V3_3_RCPT_13	13
+	Resource.contributors.personal.type	Related person	MDS_V3_3_RCPT_14	14
+	Resource.contributors.personal.type	Researcher	MDS_V3_3_RCPT_15	15
+	Resource.contributors.personal.type	Rights holder	MDS_V3_3_RCPT_16	16
+	Resource.contributors.personal.type	Supervisor	MDS_V3_3_RCPT_17	17
+	Resource.contributors.personal.type	Work package leader	MDS_V3_3_RCPT_18	18
+	Resource.contributors.personal.type	Other	MDS_V3_3_RCPT_19	19
+	Resource.contributors.personal.identifiers.scheme	ORCID	MDS_V3_3_RCPIS_0	0
+	Resource.contributors.personal.identifiers.scheme	ROR	MDS_V3_3_RCPIS_1	1
+	Resource.contributors.personal.identifiers.scheme	GRID	MDS_V3_3_RCPIS_2	2
+	Resource.contributors.personal.identifiers.scheme	ISNI	MDS_V3_3_RCPIS_3	3
+	Resource.contributors.affiliations.identifiers.scheme	ROR	MDS_V3_3_RCAIS_0	0
+	Resource.contributors.affiliations.identifiers.scheme	GRID	MDS_V3_3_RCAIS_1	1
+	Resource.contributors.affiliations.identifiers.scheme	ISNI	MDS_V3_3_RCAIS_2	2
+	Resource.idsAlternative.scheme	DRKS	MDS_V3_3_RIS_0	0
+	Resource.idsAlternative.scheme	NCT (ClinicalTrials.gov)	MDS_V3_3_RIS_1	1
+	Resource.idsAlternative.scheme	ISRCTN	MDS_V3_3_RIS_2	2
+	Resource.idsAlternative.scheme	EudraCT	MDS_V3_3_RIS_3	3
+	Resource.idsAlternative.scheme	EUDAMED	MDS_V3_3_RIS_4	4
+	Resource.idsAlternative.scheme	UTN	MDS_V3_3_RIS_5	5
+	Resource.idsAlternative.scheme	KonsortSWD	MDS_V3_3_RIS_6	6
+	Resource.idsAlternative.scheme	MDM Portal	MDS_V3_3_RIS_7	7
+	Resource.idsAlternative.scheme	Other	MDS_V3_3_RIS_8	8
+	Resource.ids.scheme	DOI	MDS_V3_3_RIS_1_0	0
+	Resource.ids.scheme	URL	MDS_V3_3_RIS_1_1	1
+	Resource.ids.scheme	arXiv	MDS_V3_3_RIS_1_2	2
+	Resource.ids.scheme	EAN13	MDS_V3_3_RIS_1_3	3
+	Resource.ids.scheme	EISSN	MDS_V3_3_RIS_1_4	4
+	Resource.ids.scheme	Handle	MDS_V3_3_RIS_1_5	5
+	Resource.ids.scheme	ISBN	MDS_V3_3_RIS_1_6	6
+	Resource.ids.scheme	ISSN	MDS_V3_3_RIS_1_7	7
+	Resource.ids.scheme	ISTC	MDS_V3_3_RIS_1_8	8
+	Resource.ids.scheme	LISSN	MDS_V3_3_RIS_1_9	9
+	Resource.ids.scheme	LSID	MDS_V3_3_RIS_1_10	10
+	Resource.ids.scheme	PMID	MDS_V3_3_RIS_1_11	11
+	Resource.ids.scheme	PURL	MDS_V3_3_RIS_1_12	12
+	Resource.ids.scheme	URN	MDS_V3_3_RIS_1_13	13
+	Resource.ids.scheme	w3id	MDS_V3_3_RIS_1_14	14
+	Resource.ids.scheme	Other	MDS_V3_3_RIS_1_15	15
+	Resource.ids.relationType	A is cited by B	MDS_V3_3_RIR_0	0
+	Resource.ids.relationType	A cites B	MDS_V3_3_RIR_1	1
+	Resource.ids.relationType	A is supplement to B	MDS_V3_3_RIR_2	2
+	Resource.ids.relationType	A is supplemented by B	MDS_V3_3_RIR_3	3
+	Resource.ids.relationType	A is continued by B	MDS_V3_3_RIR_4	4
+	Resource.ids.relationType	A continues B	MDS_V3_3_RIR_5	5
+	Resource.ids.relationType	A is described by B	MDS_V3_3_RIR_6	6
+	Resource.ids.relationType	A describes B	MDS_V3_3_RIR_7	7
+	Resource.ids.relationType	A has metadata B	MDS_V3_3_RIR_8	8
+	Resource.ids.relationType	A is metadata for B	MDS_V3_3_RIR_9	9
+	Resource.ids.relationType	A has version B	MDS_V3_3_RIR_10	10
+	Resource.ids.relationType	A is version of B	MDS_V3_3_RIR_11	11
+	Resource.ids.relationType	A is new version of B	MDS_V3_3_RIR_12	12
+	Resource.ids.relationType	A is previous version of B	MDS_V3_3_RIR_13	13
+	Resource.ids.relationType	A is part of B	MDS_V3_3_RIR_14	14
+	Resource.ids.relationType	A has part B	MDS_V3_3_RIR_15	15
+	Resource.ids.relationType	A is referenced by B	MDS_V3_3_RIR_16	16
+	Resource.ids.relationType	A references B	MDS_V3_3_RIR_17	17
+	Resource.ids.relationType	A is documented by B	MDS_V3_3_RIR_18	18
+	Resource.ids.relationType	A documents B	MDS_V3_3_RIR_19	19
+	Resource.ids.relationType	A is compiled by B	MDS_V3_3_RIR_20	20
+	Resource.ids.relationType	A compiles B	MDS_V3_3_RIR_21	21
+	Resource.ids.relationType	A is variant form of B	MDS_V3_3_RIR_22	22
+	Resource.ids.relationType	A is original form of B	MDS_V3_3_RIR_23	23
+	Resource.ids.relationType	A is identical to B	MDS_V3_3_RIR_24	24
+	Resource.ids.relationType	A is reviewed by B	MDS_V3_3_RIR_25	25
+	Resource.ids.relationType	A reviews B	MDS_V3_3_RIR_26	26
+	Resource.ids.relationType	A is derived from B	MDS_V3_3_RIR_27	27
+	Resource.ids.relationType	A is source of B	MDS_V3_3_RIR_28	28
+	Resource.ids.relationType	A is required by B	MDS_V3_3_RIR_29	29
+	Resource.ids.relationType	A requires B	MDS_V3_3_RIR_30	30
+	Resource.ids.relationType	A is obsoleted by B	MDS_V3_3_RIR_31	31
+	Resource.ids.relationType	A obsoletes B	MDS_V3_3_RIR_32	32
+	Resource.ids.typeGeneral	Audiovisual	MDS_V3_3_RIT_0	0
+	Resource.ids.typeGeneral	Book	MDS_V3_3_RIT_1	1
+	Resource.ids.typeGeneral	Book chapter	MDS_V3_3_RIT_2	2
+	Resource.ids.typeGeneral	Collection	MDS_V3_3_RIT_3	3
+	Resource.ids.typeGeneral	Computational notebook	MDS_V3_3_RIT_4	4
+	Resource.ids.typeGeneral	Conference paper	MDS_V3_3_RIT_5	5
+	Resource.ids.typeGeneral	Conference proceeding	MDS_V3_3_RIT_6	6
+	Resource.ids.typeGeneral	Data paper	MDS_V3_3_RIT_7	7
+	Resource.ids.typeGeneral	Dataset	MDS_V3_3_RIT_8	8
+	Resource.ids.typeGeneral	Dissertation	MDS_V3_3_RIT_9	9
+	Resource.ids.typeGeneral	Event	MDS_V3_3_RIT_10	10
+	Resource.ids.typeGeneral	Image	MDS_V3_3_RIT_11	11
+	Resource.ids.typeGeneral	Interactive resource	MDS_V3_3_RIT_12	12
+	Resource.ids.typeGeneral	Journal	MDS_V3_3_RIT_13	13
+	Resource.ids.typeGeneral	Journal article	MDS_V3_3_RIT_14	14
+	Resource.ids.typeGeneral	Model	MDS_V3_3_RIT_15	15
+	Resource.ids.typeGeneral	Output management plan	MDS_V3_3_RIT_16	16
+	Resource.ids.typeGeneral	Peer review	MDS_V3_3_RIT_17	17
+	Resource.ids.typeGeneral	Physical object	MDS_V3_3_RIT_18	18
+	Resource.ids.typeGeneral	Preprint	MDS_V3_3_RIT_19	19
+	Resource.ids.typeGeneral	Report	MDS_V3_3_RIT_20	20
+	Resource.ids.typeGeneral	Service	MDS_V3_3_RIT_21	21
+	Resource.ids.typeGeneral	Software	MDS_V3_3_RIT_22	22
+	Resource.ids.typeGeneral	Sound	MDS_V3_3_RIT_23	23
+	Resource.ids.typeGeneral	Standard	MDS_V3_3_RIT_24	24
+	Resource.ids.typeGeneral	Text	MDS_V3_3_RIT_25	25
+	Resource.ids.typeGeneral	Workflow	MDS_V3_3_RIT_26	26
+	Resource.ids.typeGeneral	Other	MDS_V3_3_RIT_27	27
+	Resource.idsNfdi4health.relationType	A is cited by B	MDS_V3_3_RIR_1_0	0
+	Resource.idsNfdi4health.relationType	A cites B	MDS_V3_3_RIR_1_1	1
+	Resource.idsNfdi4health.relationType	A is supplement to B	MDS_V3_3_RIR_1_2	2
+	Resource.idsNfdi4health.relationType	A is supplemented by B	MDS_V3_3_RIR_1_3	3
+	Resource.idsNfdi4health.relationType	A is continued by B	MDS_V3_3_RIR_1_4	4
+	Resource.idsNfdi4health.relationType	A continues B	MDS_V3_3_RIR_1_5	5
+	Resource.idsNfdi4health.relationType	A is described by B	MDS_V3_3_RIR_1_6	6
+	Resource.idsNfdi4health.relationType	A describes B	MDS_V3_3_RIR_1_7	7
+	Resource.idsNfdi4health.relationType	A has metadata B	MDS_V3_3_RIR_1_8	8
+	Resource.idsNfdi4health.relationType	A is metadata for B	MDS_V3_3_RIR_1_9	9
+	Resource.idsNfdi4health.relationType	A has version B	MDS_V3_3_RIR_1_10	10
+	Resource.idsNfdi4health.relationType	A is version of B	MDS_V3_3_RIR_1_11	11
+	Resource.idsNfdi4health.relationType	A is new version of B	MDS_V3_3_RIR_1_12	12
+	Resource.idsNfdi4health.relationType	A is previous version of B	MDS_V3_3_RIR_1_13	13
+	Resource.idsNfdi4health.relationType	A is part of B	MDS_V3_3_RIR_1_14	14
+	Resource.idsNfdi4health.relationType	A has part B	MDS_V3_3_RIR_1_15	15
+	Resource.idsNfdi4health.relationType	A is referenced by B	MDS_V3_3_RIR_1_16	16
+	Resource.idsNfdi4health.relationType	A references B	MDS_V3_3_RIR_1_17	17
+	Resource.idsNfdi4health.relationType	A is documented by B	MDS_V3_3_RIR_1_18	18
+	Resource.idsNfdi4health.relationType	A documents B	MDS_V3_3_RIR_1_19	19
+	Resource.idsNfdi4health.relationType	A is compiled by B	MDS_V3_3_RIR_1_20	20
+	Resource.idsNfdi4health.relationType	A compiles B	MDS_V3_3_RIR_1_21	21
+	Resource.idsNfdi4health.relationType	A is variant form of B	MDS_V3_3_RIR_1_22	22
+	Resource.idsNfdi4health.relationType	A is original form of B	MDS_V3_3_RIR_1_23	23
+	Resource.idsNfdi4health.relationType	A is identical to B	MDS_V3_3_RIR_1_24	24
+	Resource.idsNfdi4health.relationType	A is reviewed by B	MDS_V3_3_RIR_1_25	25
+	Resource.idsNfdi4health.relationType	A reviews B	MDS_V3_3_RIR_1_26	26
+	Resource.idsNfdi4health.relationType	A is derived from B	MDS_V3_3_RIR_1_27	27
+	Resource.idsNfdi4health.relationType	A is source of B	MDS_V3_3_RIR_1_28	28
+	Resource.idsNfdi4health.relationType	A is required by B	MDS_V3_3_RIR_1_29	29
+	Resource.idsNfdi4health.relationType	A requires B	MDS_V3_3_RIR_1_30	30
+	Resource.idsNfdi4health.relationType	A is obsoleted by B	MDS_V3_3_RIR_1_31	31
+	Resource.idsNfdi4health.relationType	A obsoletes B	MDS_V3_3_RIR_1_32	32
+	Resource.nutritionalData	Yes	MDS_V3_3_RN_0	0
+	Resource.nutritionalData	No	MDS_V3_3_RN_1	1
+	Resource.chronicDiseases	Yes	MDS_V3_3_RC_0	0
+	Resource.chronicDiseases	No	MDS_V3_3_RC_1	1
+	Resource.provenance.dataSource	Automatically uploaded: ClinicalTrials.gov	MDS_V3_3_RPD_0	0
+	Resource.provenance.dataSource	Automatically uploaded: DRKS	MDS_V3_3_RPD_1	1
+	Resource.provenance.dataSource	Automatically uploaded: ICTRP	MDS_V3_3_RPD_2	2
+	Resource.provenance.dataSource	Automatically uploaded: MDM Portal	MDS_V3_3_RPD_3	3
+	Resource.provenance.dataSource	Automatically uploaded: Other	MDS_V3_3_RPD_4	4
+	Resource.provenance.dataSource	Manually collected	MDS_V3_3_RPD_5	5
+	Resource.provenance.verificationUser	Names from the list of users	MDS_V3_3_RPV_0	0
+	Resource.provenance.firstSubmittedUser	Names from the list of users	MDS_V3_3_RPF_0	0
+	Resource.provenance.firstPostedUser	Names from the list of users	MDS_V3_3_RPF_1_0	0
+	Resource.provenance.lastUpdateSubmittedUser	Names from the list of users	MDS_V3_3_RPL_0	0
+	Resource.provenance.lastUpdatePostedUser	Names from the list of users	MDS_V3_3_RPL_1_0	0
