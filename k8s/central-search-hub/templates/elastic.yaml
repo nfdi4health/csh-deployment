@@ -15,11 +15,14 @@ spec:
       containers:
           - name: elasticsearch
             image: elasticsearch:7.9.3
+            env:
+              - name: ES_JAVA_OPTS
+                value: -Xms2g -Xmx2g
             resources:
               limits:
-                memory: 2000Mi
+                memory: 4Gi
               requests:
-                memory: 200Mi
+                memory: 2Gi
             env:
               - name: discovery.type
                 value: single-node

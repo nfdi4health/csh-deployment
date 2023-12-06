@@ -13,7 +13,7 @@ spec:
   enableLogicalBackup: true
   teamId:  {{ .Release.Name }}
   volume:
-    size: 1Gi
+    size: 4Gi
   numberOfInstances: 2
   users:
     dataverse:  # database owner
