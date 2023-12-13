@@ -15,19 +15,16 @@ spec:
       containers:
           - name: elasticsearch
             image: elasticsearch:7.9.3
-            env:
-              - name: ES_JAVA_OPTS
-                value: -Xms2g -Xmx2g
-            resources:
-              limits:
-                memory: 4Gi
-              requests:
-                memory: 2Gi
+{{ toYaml .Values.elasticsearch.resources | indent 14 }}
             env:
               - name: discovery.type
                 value: single-node
               - name: network.host
                 value: 0.0.0.0
+              {{- if .Values.elasticsearch.es_java_opts }}
+              - name: ES_JAVA_OPTS
+                value: {{ .Values.elasticsearch.es_java_opts }}
+              {{- end }}
             ports:
               - containerPort: 9200
             volumeMounts:
