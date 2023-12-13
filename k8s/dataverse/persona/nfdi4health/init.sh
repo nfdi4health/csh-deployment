@@ -5,7 +5,10 @@ set -euo pipefail
 DATAVERSE_URL=${DATAVERSE_URL:-"http://dataverse:8080"}
 export DATAVERSE_URL
 # get current dir location
-SELF_LOCATION=$( dirname "$(readlink -f -- "$0")" )
+
+SELF_LOCATION=${BOOTSTRAP_DIR}/${PERSONA}/
+echo "SELF_LOCATION"
+echo $SELF_LOCATION
 
 echo "Running dev setup-all.sh (INSECURE MODE)"
 "${BOOTSTRAP_DIR}"/base/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
