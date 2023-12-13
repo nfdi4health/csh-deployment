@@ -26,22 +26,6 @@ spec:
             value: {{ .Values.api.dataverse_oidc_id }}
           - name: BACKEND_MODE
             value: {{ .Values.api.backend_mode }}
-          - name: MONGO_HOST
-            value: "{{ .Release.Name }}-mongo"
-          - name: MONGO_PORT
-            value: "27017"
-          - name: MONGO_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-mongo-secret
-                key: username
-                optional: false
-          - name: MONGO_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-mongo-secret
-                key: password
-                optional: false
           - name: API_TOKEN
             valueFrom:
               secretKeyRef:
