@@ -1,6 +1,7 @@
 ingress:
   dns:
 dataverse:
+  mem_max_metaspace_size:
   s3:
     access_key:
     secret_key:

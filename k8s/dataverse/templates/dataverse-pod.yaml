@@ -72,6 +72,10 @@ spec:
               value: {{.Values.ingress.dns }}
             - name: _CT_DATAVERSE_FQDN
               value: {{.Values.ingress.dns }}
+            {{- if .Values.dataverse.mem_max_metaspace_size }}
+            - name: MEM_MAX_METASPACE_SIZE
+              value: {{.Values.dataverse.mem_max_metaspace_size }}
+            {{- end }}
             - name: DATAVERSE_DB_HOST
               value: {{ .Release.Name }}-dataverse-postgres
             - name: DATAVERSE_DB_NAME
