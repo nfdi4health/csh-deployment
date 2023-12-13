@@ -124,8 +124,10 @@ spec:
             - containerPort: 4848
             - containerPort: 9009
             - containerPort: 8686
+            {{- if .Values.dataverse.resources }}
           resources:
 {{ toYaml .Values.dataverse.resources | indent 12 }}
+          {{- end }}
           volumeMounts:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
