@@ -15,7 +15,9 @@ spec:
       containers:
           - name: elasticsearch
             image: elasticsearch:7.9.3
+            {{- if  .Values.elasticsearch.resources }}
 {{ toYaml .Values.elasticsearch.resources | indent 14 }}
+                          {{- end }}
             env:
               - name: discovery.type
                 value: single-node
