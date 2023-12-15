@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
 spec:
   rules:
-    - host: csh1.nfdi4health.de
+    - host: csh.nfdi4health.de
       http:
         paths:
         - path: /api/
