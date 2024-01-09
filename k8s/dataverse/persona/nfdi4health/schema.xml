@@ -337,6 +337,7 @@
     <field name="Design.dataSharingPlan.supportingInformation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.dataSharingPlan.timeFrame" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.dataSharingPlan.url" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.requestData" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.dataSource" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.dataSource.biosamples" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.dataSource.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -800,6 +801,7 @@
     <copyField source="Design.dataSharingPlan.supportingInformation" dest="_text_" maxChars="3000"/>
     <copyField source="Design.dataSharingPlan.timeFrame" dest="_text_" maxChars="3000"/>
     <copyField source="Design.dataSharingPlan.url" dest="_text_" maxChars="3000"/>
+    <copyField source="Design.dataSharingPlan.requestData" dest="_text_" maxChars="3000"/>
     <copyField source="Design.dataSource" dest="_text_" maxChars="3000"/>
     <copyField source="Design.dataSource.biosamples" dest="_text_" maxChars="3000"/>
     <copyField source="Design.dataSource.description" dest="_text_" maxChars="3000"/>
