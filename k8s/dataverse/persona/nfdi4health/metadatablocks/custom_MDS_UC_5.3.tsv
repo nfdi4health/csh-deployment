@@ -2,12 +2,12 @@
 	RecordLinkage		RecordLinkage	
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
 	RecordLinkage.legalBasis	Legal regulation/permission for record linkage	Indication whether there are specific regulations/permissions for record linkage.		text	0		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		RecordLinkage	
-	RecordLinkage.legalBasisDetails	Specific legal basis allowing for record linkage	Information specifying which specific legal basis allows for record linkage.		text	1		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		RecordLinkage	
+	RecordLinkage.legalBasisDetails	Specific legal basis allowing record linkage	Information specifying which specific legal basis allows for record linkage.		text	1		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		RecordLinkage	
 	RecordLinkage.informedConsent	Informed consent for record linkage	Indication whether an informed consent that allows record linkage has been obtained.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		RecordLinkage	
 	RecordLinkage.responsibleInstitutions	Responsible authorities	Institutions and authorities that must agree to the record linkage.		text	3		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		RecordLinkage	
 	RecordLinkage.additionalCosts	Additional costs for record linkage	Indication whether there are additional costs for record linkage.		text	4		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		RecordLinkage	
 	RecordLinkage.identifiers	Identifiers for record linkage	Identifiers that can be used for record linkage (e.g. names, date of birth, zip code, insurance number or control number as in cancer registries).		text	5		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		RecordLinkage	
-	RecordLinkage.furtherDetails	Further details important for conducting the record linkage	Further important details for conducting the record linkage.		text	6		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		RecordLinkage	
+	RecordLinkage.furtherDetails	Further details important for conducting record linkage	Additional important details for conducting record linkage.		text	6		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		RecordLinkage	
 	RecordLinkage.exampleResources	Record linkage example resources	'DOIs of additional related resources specific to record linkage (e.g., publications). Please do not repeat those already entered in the section ''Related resources''.'		text	7		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		RecordLinkage	
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
 	RecordLinkage.legalBasis	Yes	RL_0	0

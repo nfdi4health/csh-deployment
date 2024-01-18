@@ -1,21 +1,21 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
 	DietAssessment		DietAssessment	
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	DietAssessment	Diet assessment	Group of items providing information on diet assessment.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		DietAssessment
-	DietAssessment.instrument	Dietary assessment instrument used	Which dietary assessment instrument is used in the [RESOURCE]? Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.ffqItemsNumber	Number of items in FFQ	How many items were inquired with the FFQ?		int	2		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.mode	Mode used to apply the dietary assessment instrument to [RESOURCE] participants	How was the dietary assessment instrument applied to the [RESOURCE] participants? Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.device	Device used to apply the dietary assessment instrument to [RESOURCE] participants	Which device was used to apply the dietary assessment instrument to the [RESOURCE] participants? Select all that apply.		text	4		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.portionSizeEstimation	Portion size estimated by:	How is the portion size inquired in the dietary assessment instrument? Select all that apply.		text	5		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.referencePeriodUnit	Reference period unit	Which reference period is the dietary assessment instrument referring to, e.g. 24-h recall is referring to the previous day. Select one value from the list.		text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.referencePeriodNumber	Numerical value of reference period units	How many of the reference period units were assessed?		int	7		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.repeat	Was this instrument applied repeatedly?	Was the same instrument applied repeatedly?		text	8		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.repeatFrequency	Frequency of applying the dietary assessment instrument	How often was the dietary assessment instrument repeatedly applied?		int	9		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.validity	Was this instrument validated?	Was the dietary assessment instrument validated?		text	10		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.validityReference	Please provide a reference describing the validation.	Reference describing the validation.		text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.reliability	Instrument described according to reliablity?	Was the dietary assessment instrument described according to its reliability?		text	12		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.reliabilityReference	Please provide a reference describing the reliability measures.	Reference describing the reliability measures.		text	13		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.dietarySupplements	Dietary supplements inquired?	Does the dietary assessment instrument inquire information about dietary supplements?		text	14		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment	Diet assessment information collected in the [RESOURCE]	Group of items providing information on diet assessment.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		DietAssessment	
+	DietAssessment.instrument	Dietary assessment instrument used	Specification of the dietary assessment instrument used in the [RESOURCE]. Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.ffqItemsNumber	Number of items in FFQ	The number of items inquired by the food frequency questionnaire (FFQ).		int	2		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.mode	Mode(s) used to apply the dietary assessment instrument	Specification of how the dietary assessment instrument was applied to participants of the [RESOURCE]. Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.device	Device(s) used to apply the dietary assessment instrument	Specification of device(s) used to apply the dietary assessment instrument to participants of the [RESOURCE]. Select all that apply.		text	4		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.portionSizeEstimation	Portion size estimated by:	Specification of how the portion size is inquired in the dietary assessment instrument. Select all that apply.		text	5		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.referencePeriodUnit	Reference period unit	Indication of the reference period the dietary assessment instrument refers to (e.g. 24-h recall refers to the previous day). Select one value from the list.		text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.referencePeriodNumber	Numerical value of reference period units	Indication of the number of reference period units assessed.		int	7		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.repeat	Instrument applied repeatedly?	Indication whether the same instrument was applied repeatedly.		text	8		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.repeatFrequency	Frequency of instrument application	Indication of how often the dietary assessment instrument was repeatedly applied.		int	9		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.validity	Instrument validated?	Indication whether the dietary assessment instrument was validated.		text	10		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.validityReference	Reference describing the validation	Indication of the reference describing the validation.		text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.reliability	Instrument described according to reliability?	Indication whether the dietary assessment instrument was described according to its reliability.		text	12		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.reliabilityReference	Reference describing reliability measures	Indication of the reference describing the reliability measures.		text	13		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
+	DietAssessment.dietarySupplements	Dietary supplements inquired?	Indication whether the dietary assessment instrument inquires information about dietary supplements.		text	14		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
 	DietAssessment.instrument	Food frequency questionnaire (FFQ)	DI_0	0
 	DietAssessment.instrument	Diet history	DI_1	1
