@@ -356,7 +356,7 @@
     <field name="Design.eligibilityCriteria.inclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.exposures" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.exposures.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.exposures.groupsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.exposures.groupsLabel" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.exposures.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.exposures.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.focus" type="text_en" multiValued="true" stored="true" indexed="true"/>
