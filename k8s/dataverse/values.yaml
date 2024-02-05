@@ -13,8 +13,8 @@ dataverse:
     clientsecret:
   resources:
     limits:
-      memory: "2Gbi"
+      memory: "2Gi"
     requests:
-      memory: "500Mbi"
+      memory: "500Mi"
 images:
   backend: gitlab.zbmed.de:5050/km/nfdi4health/registersearch/dataverse:a8a721be01ff4953061f1eb00337ef187bcf5c4f
