@@ -71,15 +71,15 @@
 	Resource.provenance	Provenance aspects of data entry	Group of items providing information about provenance aspects of the data entry on this portal.		none	64		FALSE	FALSE	FALSE	FALSE	FALSE	TRUE		MDS_V3_3
 	Resource.provenance.dataSource	Source of information about the [RESOURCE]	Source of information about the [RESOURCE] and the way it was uploaded/collected.		text	65		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
 	Resource.provenance.verificationDate	Last verified on	Date on which the responsible party last verified the information about the [RESOURCE], even if no additional or updated information is being submitted.		text	66		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
-	Resource.provenance.verificationUser	Last verified by	User who last verified the information about the [RESOURCE].		text	67		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.verificationUser	Last verified by	User who last verified the information about the [RESOURCE].		text	67		TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3
 	Resource.provenance.firstSubmittedDate	First submitted on	Date when the [RESOURCE] was first submitted for publication.		text	68		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
-	Resource.provenance.firstSubmittedUser	First submitted by	User who first submitted the [RESOURCE] for publication.		text	69		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.firstSubmittedUser	First submitted by	User who first submitted the [RESOURCE] for publication.		text	69		TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3
 	Resource.provenance.firstPostedDate	First posted/published on	Date when the [RESOURCE] was first posted/published.		text	70		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
-	Resource.provenance.firstPostedUser	First posted/published by	User who first posted/published the [RESOURCE].		text	71		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.firstPostedUser	First posted/published by	User who first posted/published the [RESOURCE].		text	71		TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3
 	Resource.provenance.lastUpdateSubmittedDate	Last update submitted on	Date when the last update of the [RESOURCE] was submitted for publication.		text	72		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
-	Resource.provenance.lastUpdateSubmittedUser	Last updated submitted by	User who submitted the last update of the [RESOURCE].		text	73		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.lastUpdateSubmittedUser	Last updated submitted by	User who submitted the last update of the [RESOURCE].		text	73		TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3
 	Resource.provenance.lastUpdatePostedDate	Last update posted/published on	Date when the last update of the [RESOURCE] was posted/published.		text	74		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
-	Resource.provenance.lastUpdatePostedUser	Last update posted/published by	User who posted/published the last update of the [RESOURCE].		text	75		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
+	Resource.provenance.lastUpdatePostedUser	Last update posted/published by	User who posted/published the last update of the [RESOURCE].		text	75		TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	Resource.provenance	MDS_V3_3
 	Resource.provenance.resourceVersion	Version number	Version number of the [RESOURCE] within this portal.		text	76		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE	Resource.provenance	MDS_V3_3	
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
 	Resource.classification.type	Study	MDS_V3_3_RCT_0	0
@@ -1061,8 +1061,3 @@
 	Resource.provenance.dataSource	Automatically uploaded: MDM Portal	MDS_V3_3_RPD_3	3
 	Resource.provenance.dataSource	Automatically uploaded: Other	MDS_V3_3_RPD_4	4
 	Resource.provenance.dataSource	Manually collected	MDS_V3_3_RPD_5	5
-	Resource.provenance.verificationUser	Names from the list of users	MDS_V3_3_RPV_0	0
-	Resource.provenance.firstSubmittedUser	Names from the list of users	MDS_V3_3_RPF_0	0
-	Resource.provenance.firstPostedUser	Names from the list of users	MDS_V3_3_RPF_1_0	0
-	Resource.provenance.lastUpdateSubmittedUser	Names from the list of users	MDS_V3_3_RPL_0	0
-	Resource.provenance.lastUpdatePostedUser	Names from the list of users	MDS_V3_3_RPL_1_0	0
