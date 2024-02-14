@@ -30,9 +30,9 @@ If no `table` information is given the default `Table` is used, i.e. `table` is 
 - `label`                   Label, a human-readable representation of the variable. 	
 - `alias`                   Alternative name for the variable, usually used for defining a shorter name for the variable.
 
-- `valueType`	            The value type of the variable. (@TODO: List of possible values unknown!) Default value is `text`.
+- `valueType`	            The value type of the variable. Default value is `text`. Possible values are: `binary`, `boolean`, `datetime`, `date`, `decimal`, `integer`, `linestring`, `locale`, `point`, `polygon` and `text`.
 - `referencedEntityType`	@TODO: List of possible values unknown an effect unclear!) If the variable values are entity identifiers, this is the type of the entities that are referenced
-- `mimeType`	            The mime type of the variable to help applications to display documents (e.g. `image/jpeg`, `application/excel` ...).
+- `mimeType`	            The mime type of the variable to help applications to display documents (e.g. `image/jpeg`, `application/excel` ...). cf. https://www.iana.org/assignments/media-types/media-types.xhtml
 - `entityType` 	            (@TODO: List of possible values unknown and effect unclear!)????Opal can store data on different entities such as `Participant`, `Instrument`, `Area`, `Drug`, etc. Default value is `Participant`.
 - `unit`	                (@TODO: Possible values and effed unclear!)The unit in which values expressed (e.g. `cm`, `kg` ...).
 
