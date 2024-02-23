@@ -1,25 +1,6 @@
 # Install dataverse
 `helm install my-dataverse ./dataverse`
 
-# Access dataverse via localhost port forwarding
-`export DATAVERSE_POD="my-dataverse-dataverse-0"`
-
-`kubectl port-forward pods/${DATAVERSE_POD} 8080:8080`
-# Configure custom schema
-## Update SOLR fields with custom metadata info
-The charts persona contains a valid solr schema which is used by default. 
-If you alter a MDS block you manually need to refresh the solr core.
-### Login into the solr helper container and execute the update 
-`export SOLR_POD="my-dataverse-dataverse-solr-0"`
-
-`kubectl exec -i -t $SOLR_POD --container dataverse-solr-config  -- /bin/sh`
-
-`curl "http://${DATAVERSE_HOSTNAME}:8080/api/admin/index/solr/schema" | /scripts/update-fields.sh /template/conf/schema.xml`
-
-`cp /template/conf/schema.xml /var/solr/data/collection1/schema.xml `
-
-`curl "http://localhost:8983/solr/admin/cores?action=RELOAD&core=collection1"`
-
 # Backup & Restore
 ## Restore database backup
 
@@ -74,8 +55,8 @@ Postgres is configured to automatically create and store a logical backup in S3.
 
 7. Configure and sync postgres secrets with k8s.
 
-   The default postgres deployment creates at least three k8s secrets. Since you just loaded a backup they are out of sync.
-   Either those secrets must be updated with the values of the backup or the  values within the db mut be updated.
+   The  postgres deployment creates at least three k8s secrets. Since you just loaded a backup they (k8s secret) are out of sync.
+   Either those k8s secrets must be updated with the values from the just loaded backup or the database must be adapted to the values of the k8s secrets
    We update the values within the db. First, we obtain list of accounts to update, then we obtain the passwords and update the db values.
 
    Get the list of accounts:

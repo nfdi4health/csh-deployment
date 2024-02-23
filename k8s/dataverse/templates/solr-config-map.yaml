@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: solr
     app.kubernetes.io/instance: solr-{{ .Release.Name }}
-    app.kubernetes.io/version: "8.11.2"
+    app.kubernetes.io/version: "9.5.0"
     app.kubernetes.io/component: solr
     app.kubernetes.io/part-of: dataverse
 data:

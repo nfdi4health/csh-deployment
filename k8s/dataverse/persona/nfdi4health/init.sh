@@ -10,7 +10,7 @@ SELF_LOCATION=${BOOTSTRAP_DIR}/${PERSONA}/
 echo "SELF_LOCATION"
 echo $SELF_LOCATION
 
-echo "Running dev setup-all.sh (INSECURE MODE)"
+echo "Running base setup-all.sh (INSECURE MODE)"
 "${BOOTSTRAP_DIR}"/base/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
 API_TOKEN=$(grep apiToken "/tmp/setup-all.sh.out" | jq ".data.apiToken" | tr -d \")
 export API_TOKEN
