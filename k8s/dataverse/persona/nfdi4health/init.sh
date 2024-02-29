@@ -46,6 +46,9 @@ while IFS= read -r TSV; do
   echo
 done <<< "${TSVS}"
 
+echo "Disable custom terms of use"
+curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d false $DATAVERSE_URL/aapi/admin/settings/:AllowCustomTermsOfUse
+
 echo "Creating users"
 USERS=$(find $USERS_PATH -maxdepth 1 -iname '*.json')
 while IFS= read -r USER; do
