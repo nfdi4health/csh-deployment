@@ -18,4 +18,4 @@ dataverse:
       memory: "500Mi"
 images:
   backend: gdcc/dataverse:alpha
-  configbaker: gdcc/dataverse:alpha
+  configbaker: gdcc/configbaker:alpha
