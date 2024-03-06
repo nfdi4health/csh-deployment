@@ -10,7 +10,7 @@ spec:
   selector:
       app.kubernetes.io/name: solr
       app.kubernetes.io/instance: solr-{{ .Release.Name }}
-      app.kubernetes.io/version: "8.11.2"
+      app.kubernetes.io/version: "9.5.0"
       app.kubernetes.io/component: solr
       app.kubernetes.io/part-of: dataverse
 ---
@@ -21,7 +21,7 @@ metadata:
   labels:
     app.kubernetes.io/name: solr
     app.kubernetes.io/instance: solr-{{ .Release.Name }}
-    app.kubernetes.io/version: "8.11.2"
+    app.kubernetes.io/version: "9.5.0"
     app.kubernetes.io/component: solr
     app.kubernetes.io/part-of: dataverse
 spec:
@@ -38,7 +38,7 @@ metadata:
   labels:
     app.kubernetes.io/name: solr
     app.kubernetes.io/instance: solr-{{ .Release.Name }}
-    app.kubernetes.io/version: "8.11.2"
+    app.kubernetes.io/version: "9.5.0"
     app.kubernetes.io/component: solr
     app.kubernetes.io/part-of: dataverse
 spec:
@@ -55,7 +55,7 @@ metadata:
   labels:
     app.kubernetes.io/name: solr
     app.kubernetes.io/instance: solr-{{ .Release.Name }}
-    app.kubernetes.io/version: "8.11.2"
+    app.kubernetes.io/version: "9.5.0"
     app.kubernetes.io/component: solr
     app.kubernetes.io/part-of: dataverse
 spec:
@@ -64,7 +64,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: solr
       app.kubernetes.io/instance: solr-{{ .Release.Name }}
-      app.kubernetes.io/version: "8.11.2"
+      app.kubernetes.io/version: "9.5.0"
       app.kubernetes.io/component: solr
       app.kubernetes.io/part-of: dataverse
   template:
@@ -72,14 +72,14 @@ spec:
       labels:
         app.kubernetes.io/name: solr
         app.kubernetes.io/instance: solr-{{ .Release.Name }}
-        app.kubernetes.io/version: "8.11.2"
+        app.kubernetes.io/version: "9.5.0"
         app.kubernetes.io/component: solr
         app.kubernetes.io/part-of: dataverse
     spec:
       securityContext:
         fsGroup: 8983
       containers:
-      - image: gdcc/configbaker:unstable
+      - image: {{.Values.images.configbaker}}
         name: dataverse-solr-config
         env:
           - name: DATAVERSE_SOLR_HOST
@@ -97,7 +97,7 @@ spec:
           - mountPath: /schema/
             name: cfgmap
       - name: solr
-        image: solr:8.11.2
+        image: solr:9.5.0
         command: [ "/bin/bash", "-c" ]
         args: [ "sleep 30; precreate-core collection1 /solr-template; solr-foreground -Djetty.host=0.0.0.0" ]
         env:
