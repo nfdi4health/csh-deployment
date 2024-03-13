@@ -73,7 +73,9 @@ Postgres is configured to automatically create and store a logical backup in S3.
    
       `kubectl exec -it $POSTGRES_POD_NAME -- psql -U dataverse "ALTER USER dataverse WITH PASSWORD '...'"`
 
-8. Start SOLR reindex
+8. Restart the dataverse container!
+
+9. Start SOLR reindex
 
    `curl http://localhost:8080/api/admin/index`
 
