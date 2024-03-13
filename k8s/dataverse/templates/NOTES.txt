@@ -31,3 +31,6 @@ Copies the schema into the core
 Tell SOLR to reload the configuration.
 `curl "http://localhost:8983/solr/admin/cores?action=RELOAD&core=collection1"`
 
+Tell Dataverse to reindex.
+`curl http://${DATAVERSE_HOSTNAME}:8080/api/admin/index`
+

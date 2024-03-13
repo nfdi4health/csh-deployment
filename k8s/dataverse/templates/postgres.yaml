@@ -15,6 +15,9 @@ spec:
   volume:
     size: 4Gi
   numberOfInstances: 2
+  enableConnectionPooler: true
+  connectionPooler:
+   mode: session
   users:
     dataverse:  # database owner
     - superuser
