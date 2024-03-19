@@ -17,5 +17,5 @@ dataverse:
     requests:
       memory: "500Mi"
 images:
-  backend: gdcc/dataverse:alpha
-  configbaker: gdcc/configbaker:alpha
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.1
+  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.1
