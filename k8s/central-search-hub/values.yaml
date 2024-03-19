@@ -2,6 +2,7 @@ api:
   backend_mode:
   dataverse_oidc_id:
   dataverse_host:
+  dataverse_admin_api_key:
 ingress:
   dns:
   enableSSL: false
