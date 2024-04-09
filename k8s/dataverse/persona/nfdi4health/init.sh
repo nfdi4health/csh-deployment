@@ -47,7 +47,8 @@ while IFS= read -r TSV; do
 done <<< "${TSVS}"
 
 echo "Disable custom terms of use"
-curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d false $DATAVERSE_URL/aapi/admin/settings/:AllowCustomTermsOfUse
+curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d false "${DATAVERSE_URL}/api/admin/settings/:AllowCustomTermsOfUse"
+echo
 
 echo "Creating users"
 USERS=$(find $USERS_PATH -maxdepth 1 -iname '*.json')
@@ -87,9 +88,9 @@ while IFS= read -r DATAVERSE; do
   curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/actions/:publish
   echo
 
-  echo "Adding @dataverseAdmin as admin to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
-  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@dataverseAdmin", "role": "admin"}'
-  echo
+#  echo "Adding @dataverseAdmin as admin to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+#  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@dataverseAdmin", "role": "admin"}'
+#  echo
 
   echo "Adding :authenticated-users as dataset creators to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
   curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'

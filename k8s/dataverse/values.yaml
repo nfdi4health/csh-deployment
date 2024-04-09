@@ -13,9 +13,9 @@ dataverse:
     clientsecret:
   resources:
     limits:
-      memory: "2Gi"
+      memory: "4Gi"
     requests:
-      memory: "500Mi"
+      memory: "1Gi"
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.1
-  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.1
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.2
+  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.2
