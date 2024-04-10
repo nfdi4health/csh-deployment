@@ -144,11 +144,18 @@ spec:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
               name: dev-dataverse-claim0
-          readinessProbe:
+          startupProbe:
             httpGet:
               path: /api/info/version
               port: 8080
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
+            failureThreshold: 10
+            periodSeconds: 30
+          livenessProbe:
+            httpGet:
+              path: /api/info/version
+              port: 8080
+            initialDelaySeconds: 30
             periodSeconds: 10
       restartPolicy: Always
       initContainers:
