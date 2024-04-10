@@ -94,6 +94,18 @@ spec:
               value: "1"
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
               value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
+            - name: DATAVERSE_PID_PROVIDERS
+              value: "fake"
+            - name: DATAVERSE_PID_DEFAULT_PROVIDER
+              value: "fake"
+            - name: DATAVERSE_PID_FAKE_TYPE
+              value: "FAKE"
+            - name: DATAVERSE_PID_FAKE_LABEL
+              value: "Fake DOI Provider"
+            - name: DATAVERSE_PID_FAKE_SHOULDER
+              value: "FK2/"
+            - name: DATAVERSE_PID_FAKE_AUTHORITY
+              value: "10.5072"
             - name: DATAVERSE_DB_CONNECTION_VALIDATION_METHOD
               value: "custom-validation"
             # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
