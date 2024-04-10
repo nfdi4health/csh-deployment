@@ -150,6 +150,19 @@ spec:
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/info/version
+              port: 8080
+            failureThreshold: 1
+            periodSeconds: 30
+          startupProbe:
+            httpGet:
+              path: /api/info/version
+              port: 8080
+            initialDelaySeconds: 60
+            failureThreshold: 24
+            periodSeconds: 10
       restartPolicy: Always
       initContainers:
         - name: check-db-ready
