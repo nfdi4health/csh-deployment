@@ -96,6 +96,10 @@ while IFS= read -r DATAVERSE; do
   curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
   echo
 
+  echo "Adding :authenticated-users as dataset permission admins to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPermAdmin"}'
+  echo
+
   if [[ $PARENT_DATAVERSE != "root" ]]; then
     # We add the "Publish permission" for all users only to the sub-dataverses (collection dataverses, e.g. "COVID-19")
     # where no datasets are created so it can only be used for linking, not publishing
