@@ -15,10 +15,6 @@ echo "Running base setup-all.sh (INSECURE MODE)"
 API_TOKEN=$(grep apiToken "/tmp/setup-all.sh.out" | jq ".data.apiToken" | tr -d \")
 export API_TOKEN
 
-echo "Setting DOI provider to FAKE"
-curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d FAKE $DATAVERSE_URL/api/admin/settings/:DoiProvider
-echo
-
 echo "Publishing root dataverse"
 curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
 echo
