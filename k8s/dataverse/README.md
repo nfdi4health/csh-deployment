@@ -11,7 +11,7 @@ Postgres is configured to automatically create and store a logical backup in S3.
    
    `s3cmd ls s3://$LOGICAL_BACKUP_S3_BUCKET/spilo/$SCOPE$LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX/logical_backups/`
    
-   The env variable values can be found using `kubectl describe job` on one of the backup jobs.
+   The env variable values can be found using `kubectl describe pod` on one of the backup job pods.
 
 2. Copy the backup to your local computer
 
@@ -48,12 +48,14 @@ Postgres is configured to automatically create and store a logical backup in S3.
    (source: https://stackoverflow.com/a/61221726)
 
 6. Load the backup into the database
+
    `kubectl exec -it $POSTGRES_POD_NAME -- bash`
+
    `psql -U dataverse -f /tmp/1690815661.sql template1`
 
    (replace the file name)
 
-7. Configure and sync postgres secrets with k8s.
+7. Configure and sync postgres secrets with k8s
 
    The  postgres deployment creates at least three k8s secrets. Since you just loaded a backup they (k8s secret) are out of sync.
    Either those k8s secrets must be updated with the values from the just loaded backup or the database must be adapted to the values of the k8s secrets
@@ -73,9 +75,11 @@ Postgres is configured to automatically create and store a logical backup in S3.
    
       `kubectl exec -it $POSTGRES_POD_NAME -- psql -U dataverse "ALTER USER dataverse WITH PASSWORD '...'"`
 
-8. Restart the dataverse container!
+8. Restart the dataverse container
 
-9. Start SOLR reindex
+9. Start complete SOLR reindex
+
+   `curl http://localhost:8080/api/admin/index/clear`
 
    `curl http://localhost:8080/api/admin/index`
 
