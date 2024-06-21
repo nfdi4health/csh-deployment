@@ -95,17 +95,19 @@ spec:
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
               value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
             - name: DATAVERSE_PID_PROVIDERS
-              value: "fake"
+              value: "permalink"
             - name: DATAVERSE_PID_DEFAULT_PROVIDER
-              value: "fake"
-            - name: DATAVERSE_PID_FAKE_TYPE
-              value: "FAKE"
-            - name: DATAVERSE_PID_FAKE_LABEL
-              value: "Fake DOI Provider"
-            - name: DATAVERSE_PID_FAKE_SHOULDER
-              value: "FK2/"
-            - name: DATAVERSE_PID_FAKE_AUTHORITY
-              value: "10.5072"
+              value: "permalink"
+            - name: DATAVERSE_PID_PERMALINK_TYPE
+              value: "perma"
+            - name: DATAVERSE_PID_PERMALINK_LABEL
+              value: "Permalink Provider"
+            - name: DATAVERSE_PID_PERMALINK_AUTHORITY
+              value: {{.Values.dataverse.pid.permalink.authority}}
+            - name: DATAVERSE_PID_PERMALINK_SHOULDER
+              value: {{.Values.dataverse.pid.permalink.shoulder}}
+            - name: DATAVERSE_PID_PERMALINK_IDENTIFIER_GENERATION_STYLE
+              value: "storedProcGenerated"
             - name: DATAVERSE_DB_CONNECTION_VALIDATION_METHOD
               value: "custom-validation"
             # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
