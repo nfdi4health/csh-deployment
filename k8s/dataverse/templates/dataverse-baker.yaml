@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
-    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
     app.kubernetes.io/component: bootstrap
     app.kubernetes.io/part-of: dataverse
   annotations:
@@ -18,12 +18,12 @@ spec:
       labels:
         app.kubernetes.io/name: dataverse
         app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
-        app.kubernetes.io/version: "5.13"
+        app.kubernetes.io/version: {{ .Chart.AppVersion }}
         app.kubernetes.io/component: bootstrap
         app.kubernetes.io/part-of: dataverse
     spec:
       containers:
-        - image:  gdcc/configbaker:unstable
+        - image: {{ .Values.images.configbaker}}
           name: dataverse-configbaker
           command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","nfdi4health" ]
           env:
@@ -127,6 +127,6 @@ data:
       "factoryAlias": "oidc",
       "title": "SSO OIDC",
       "subtitle": "SSO OIDC",
-      "factoryData": "type: oidc | issuer: {{.Values.dataverse.oidc.issuer}}| clientId: {{.Values.dataverse.oidc.cliedid}} | clientSecret: {{.Values.dataverse.oidc.clientsecret}}",
+      "factoryData": "type: oidc | issuer: {{.Values.dataverse.oidc.issuer}} | clientId: {{.Values.dataverse.oidc.cliedid}} | clientSecret: {{.Values.dataverse.oidc.clientsecret}}",
       "enabled": true
     }

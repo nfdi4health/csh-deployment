@@ -1,6 +1,7 @@
 ingress:
   dns:
 dataverse:
+  mem_max_metaspace_size:
   s3:
     access_key:
     secret_key:
@@ -10,5 +11,11 @@ dataverse:
     issuer:
     cliedid:
     clientsecret:
+  resources:
+    limits:
+      memory: "4Gi"
+    requests:
+      memory: "1Gi"
 images:
-  backend: gitlab.zbmed.de:5050/km/nfdi4health/registersearch/dataverse:a8a721be01ff4953061f1eb00337ef187bcf5c4f
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.2
+  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.2

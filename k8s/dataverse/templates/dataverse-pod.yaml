@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
-    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
     app.kubernetes.io/component: dataverse
     app.kubernetes.io/part-of: dataverse
 spec:
@@ -25,7 +25,7 @@ spec:
   selector:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
-    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
     app.kubernetes.io/component: dataverse
     app.kubernetes.io/part-of: dataverse
 ---
@@ -36,7 +36,7 @@ metadata:
   labels:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
-    app.kubernetes.io/version: "5.13"
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
     app.kubernetes.io/component: dataverse
     app.kubernetes.io/part-of: dataverse
 spec:
@@ -45,7 +45,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: dataverse
       app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
-      app.kubernetes.io/version: "5.13"
+      app.kubernetes.io/version: {{ .Chart.AppVersion }}
       app.kubernetes.io/component: dataverse
       app.kubernetes.io/part-of: dataverse
   template:
@@ -53,7 +53,7 @@ spec:
       labels:
         app.kubernetes.io/name: dataverse
         app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
-        app.kubernetes.io/version: "5.13"
+        app.kubernetes.io/version: {{ .Chart.AppVersion }}
         app.kubernetes.io/component: dataverse
         app.kubernetes.io/part-of: dataverse
     spec:
@@ -72,8 +72,12 @@ spec:
               value: {{.Values.ingress.dns }}
             - name: _CT_DATAVERSE_FQDN
               value: {{.Values.ingress.dns }}
+            {{- if .Values.dataverse.mem_max_metaspace_size }}
+            - name: MEM_MAX_METASPACE_SIZE
+              value: {{.Values.dataverse.mem_max_metaspace_size }}
+            {{- end }}
             - name: DATAVERSE_DB_HOST
-              value: {{ .Release.Name }}-dataverse-postgres
+              value: {{ .Release.Name }}-dataverse-postgres-pooler
             - name: DATAVERSE_DB_NAME
               value: dataverse
             - name: DATAVERSE_DB_PASSWORD
@@ -90,6 +94,18 @@ spec:
               value: "1"
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
               value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
+            - name: DATAVERSE_PID_PROVIDERS
+              value: "fake"
+            - name: DATAVERSE_PID_DEFAULT_PROVIDER
+              value: "fake"
+            - name: DATAVERSE_PID_FAKE_TYPE
+              value: "FAKE"
+            - name: DATAVERSE_PID_FAKE_LABEL
+              value: "Fake DOI Provider"
+            - name: DATAVERSE_PID_FAKE_SHOULDER
+              value: "FK2/"
+            - name: DATAVERSE_PID_FAKE_AUTHORITY
+              value: "10.5072"
             - name: DATAVERSE_DB_CONNECTION_VALIDATION_METHOD
               value: "custom-validation"
             # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
@@ -120,9 +136,10 @@ spec:
             - containerPort: 4848
             - containerPort: 9009
             - containerPort: 8686
+            {{- if .Values.dataverse.resources }}
           resources:
-            limits:
-              memory: "2147483648"
+{{ toYaml .Values.dataverse.resources | indent 12 }}
+          {{- end }}
           volumeMounts:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
@@ -133,13 +150,26 @@ spec:
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/info/version
+              port: 8080
+            failureThreshold: 1
+            periodSeconds: 30
+          startupProbe:
+            httpGet:
+              path: /api/info/version
+              port: 8080
+            initialDelaySeconds: 60
+            failureThreshold: 24
+            periodSeconds: 10
       restartPolicy: Always
       initContainers:
         - name: check-db-ready
           image: postgres:9.6
           env:
             - name: DATAVERSE_DB_HOST
-              value: {{ .Release.Name }}-dataverse-postgres
+              value: {{ .Release.Name }}-dataverse-postgres-pooler
             - name: DATAVERSE_DB_NAME
               value: dataverse
             - name: DATAVERSE_DB_PASSWORD

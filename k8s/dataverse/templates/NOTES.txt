@@ -2,21 +2,35 @@ Thank you for installing {{ .Chart.Name }}.
 
 Your release is named {{ .Release.Name }}.
 
-Here are some tasks to perform :)
+## Interact with the instance
 
-## Enable admin api via localhost port forwarding
-### Allow all API calls
 `kubectl port-forward pods/{{ .Release.Name }}-dataverse-0  8080:8080`
+Once the port forward is active you can interact with dataverse UI via http://localhost:8080 and via API.
+API request are treated by dataverse as they originate from localhost.
 
-`curl -X PUT -d allow http://localhost:8080/api/admin/settings/:BlockedApiPolicy`
 
 ## Update SOLR fields with custom metadata info
-Login into the solr helper container and execute the update
+The `schema.xml` file within the persona nfdi4health contains adaptions for the included custom metadata blocks.
+This means SOLR is configured for the personal out of the box! Once you alter a metadata blocks via the API,
+the change must be manually adapted to the solr configuration. The following snippet will walk you through the task:
+
+Connect to the solr helper container, and open a remote shell:
 `kubectl exec -i -t {{ .Release.Name }}-dataverse-solr-0 --container dataverse-solr-config  -- /bin/sh`
 
+In the shell you can invoke the following commands:
+
+Depending on your change it may be necessary to drop the complete index. You can use this call.
+`curl -X POST -H 'Content-Type: application/json' 'http://localhost:8983/solr/collection1/update?commit=true' -d '{ "delete": {"query":"*:*"} }'`
+
+Obtains the schema from dataverse and apply it to the default solr template
 `curl "http://${DATAVERSE_HOSTNAME}:8080/api/admin/index/solr/schema" | /scripts/update-fields.sh /template/conf/schema.xml`
 
+Copies the schema into the core
 `cp /template/conf/schema.xml /var/solr/data/collection1/schema.xml`
 
+Tell SOLR to reload the configuration.
 `curl "http://localhost:8983/solr/admin/cores?action=RELOAD&core=collection1"`
+
+Tell Dataverse to reindex.
+`curl http://${DATAVERSE_HOSTNAME}:8080/api/admin/index`
 

@@ -1,10 +1,10 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
 	ChronicDiseasesEpidemiology		ChronicDiseasesEpidemiology	
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	ChronicDiseasesEpidemiology	Chronic disease data collection	Group of items providing information on chronic disease data collection.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		ChronicDiseasesEpidemiology
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	On which of the following common chronic diseases were data collected?	Common chronic diseases on which data were collected in the [RESOURCE]. Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
-	ChronicDiseasesEpidemiology.dataCollected	Type of data collected	Type of data collected. Select one value from the list.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
-	ChronicDiseasesEpidemiology.informationSources	From which source(s) are the data generated/extracted?	Source(s) from which information is generated/extracted. Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
+	ChronicDiseasesEpidemiology	Chronic disease data collected in the [RESOURCE]	Group of items providing information on chronic disease data collection.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		ChronicDiseasesEpidemiology
+	ChronicDiseasesEpidemiology.commonChronicDiseaseName	On which of the following common chronic diseases were data collected?	Specification of the common chronic disease on which data were collected in the [RESOURCE]. Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
+	ChronicDiseasesEpidemiology.dataCollected	Type of data collected	Specification of the type of data collected. Select one value from the list.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
+	ChronicDiseasesEpidemiology.informationSources	From which source(s) are data generated/extracted?	Specification of the source(s) from which information is generated/extracted. Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
 	ChronicDiseasesEpidemiology.outcomesVerificationMethods	How were outcomes generally verified?	Methods of verification differ by study. All the details per outcome are not needed here but rather an explanation of how outcomes were verified in general.		text	4		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
 	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Malignant neoplasms (C00-C97)	CC_0	0
