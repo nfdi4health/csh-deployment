@@ -5,7 +5,7 @@ helm repo add postgres-operator-charts https://opensource.zalando.com/postgres-o
 ```
 ## install the postgres-operator
 ```
-helm upgrade postgres-operator postgres-operator-charts/postgres-operator  -f ./values_postgres_operator.yaml --version=1.8.2
+helm upgrade postgres-operator postgres-operator-charts/postgres-operator -f ./values_postgres_operator.yaml --version=1.10.1
 ```
 # Documentation
 

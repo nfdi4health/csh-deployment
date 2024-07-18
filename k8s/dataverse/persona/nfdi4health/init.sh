@@ -35,6 +35,10 @@ echo "Disable tabular file ingest"
 curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d 0 "${DATAVERSE_URL}/api/admin/settings/:TabularIngestSizeLimit"
 echo
 
+echo "Setting file upload limit to 5Gi"
+curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d 5368709120 "${DATAVERSE_URL}/api/admin/settings/:MaxFileUploadSizeInBytes"
+echo
+
 echo "Upload licenses"
 #curl -X POST -H "Content-Type: application/json" -H "X-Dataverse-key:$DATAVERSE_API_KEY" $DATAVERSE_HOST/api/licenses --upload-file license-CC0-1.0.json
 # Find all licence files
