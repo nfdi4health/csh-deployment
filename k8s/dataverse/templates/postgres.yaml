@@ -13,7 +13,7 @@ spec:
   enableLogicalBackup: true
   teamId:  {{ .Release.Name }}
   volume:
-    size: 4Gi
+    size: 8Gi
   numberOfInstances: 2
   enableConnectionPooler: true
   connectionPooler:
