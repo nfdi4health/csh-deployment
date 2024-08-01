@@ -13,25 +13,26 @@ spec:
         name: {{ .Release.Name }}-elastic
     spec:
       containers:
-          - name: elasticsearch
-            image: elasticsearch:7.9.3
-            {{- if  .Values.elasticsearch.resources }}
+        - name: elasticsearch
+          image: elasticsearch:7.9.3
+          {{- if  .Values.elasticsearch.resources }}
+          resources:
 {{ toYaml .Values.elasticsearch.resources | indent 12 }}
+          {{- end }}
+          env:
+            - name: discovery.type
+              value: single-node
+            - name: network.host
+              value: 0.0.0.0
+            {{- if .Values.elasticsearch.es_java_opts }}
+            - name: ES_JAVA_OPTS
+              value: {{ .Values.elasticsearch.es_java_opts }}
             {{- end }}
-            env:
-              - name: discovery.type
-                value: single-node
-              - name: network.host
-                value: 0.0.0.0
-              {{- if .Values.elasticsearch.es_java_opts }}
-              - name: ES_JAVA_OPTS
-                value: {{ .Values.elasticsearch.es_java_opts }}
-              {{- end }}
-            ports:
-              - containerPort: 9200
-            volumeMounts:
-              - mountPath: /usr/share/elasticsearch/data
-                name: {{ .Release.Name }}-elastic-data-container
+          ports:
+            - containerPort: 9200
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: {{ .Release.Name }}-elastic-data-container
       securityContext:
         fsGroup: 1000
       restartPolicy: Always
