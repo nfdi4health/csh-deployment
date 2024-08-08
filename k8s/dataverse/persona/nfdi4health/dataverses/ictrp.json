@@ -1,0 +1,12 @@
+{
+  "name": "ICTRP",
+  "alias": "ICTRP",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "Automatically imported from ICTRP",
+  "dataverseType": "UNCATEGORIZED"
+}

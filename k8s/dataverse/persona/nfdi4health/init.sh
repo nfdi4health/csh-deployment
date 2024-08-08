@@ -35,6 +35,10 @@ echo "Disable tabular file ingest"
 curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d 0 "${DATAVERSE_URL}/api/admin/settings/:TabularIngestSizeLimit"
 echo
 
+echo "Setting file upload limit to 5Gi"
+curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d 5368709120 "${DATAVERSE_URL}/api/admin/settings/:MaxFileUploadSizeInBytes"
+echo
+
 echo "Upload licenses"
 #curl -X POST -H "Content-Type: application/json" -H "X-Dataverse-key:$DATAVERSE_API_KEY" $DATAVERSE_HOST/api/licenses --upload-file license-CC0-1.0.json
 # Find all licence files
@@ -92,17 +96,19 @@ while IFS= read -r DATAVERSE; do
 #  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "@dataverseAdmin", "role": "admin"}'
 #  echo
 
-  echo "Adding :authenticated-users as dataset creators to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
-  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
-  echo
+  if [[ $DATAVERSE_ID == "nfdi4health" ]]; then
+    echo "Adding :authenticated-users as dataset creators to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
+    echo
 
-  echo "Adding :authenticated-users as dataset permission admins to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
-  curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPermAdmin"}'
-  echo
+    echo "Adding :authenticated-users as dataset permission admins to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
+    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPermAdmin"}'
+    echo
+  fi
 
-  if [[ $PARENT_DATAVERSE != "root" ]]; then
+  if [[ $PARENT_DATAVERSE == "nfdi4health" ]]; then
     # We add the "Publish permission" for all users only to the sub-dataverses (collection dataverses, e.g. "COVID-19")
-    # where no datasets are created so it can only be used for linking, not publishing
+    # of "NFDI4Health" where no datasets are created so it can only be used for linking, not publishing
     # (only curators should be able to publish)
     echo "Adding :authenticated-users as dataset publisher to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
     curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPublisher"}'
@@ -111,7 +117,7 @@ while IFS= read -r DATAVERSE; do
     # The import client and the admin are currently the only automatically configured curator user, all other curators
     # must be added manually
     echo "Creating curator group"
-    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/groups -d '{"description": "Curator users", "displayName": "Curators", "aliasInOwner": "curators"}'
+    CURATOR_GROUP_ID=`curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/groups -d '{"description": "Curator users", "displayName": "Curators", "aliasInOwner": "curators"}' | jq .data.identifier -r`
     echo
 
     echo "Adding @service-account-import_client and @dataverseAdmin to curator group"
@@ -119,7 +125,7 @@ while IFS= read -r DATAVERSE; do
     echo
 
     echo "Adding curator group as curator to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
-    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": "&explicit/2-curators", "role": "curator"}'
+    curl -s -H "X-Dataverse-key:$API_TOKEN" -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d "{\"assignee\": \"$CURATOR_GROUP_ID\", \"role\": \"curator\"}"
     echo
   fi
 done <<< "${DATAVERSES}"

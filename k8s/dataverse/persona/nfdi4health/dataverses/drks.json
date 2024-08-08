@@ -1,0 +1,12 @@
+{
+  "name": "DRKS",
+  "alias": "DRKS",
+  "dataverseContacts": [
+    {
+      "contactEmail": "fb.studyhub@nfdi4health.de"
+    }
+  ],
+  "affiliation": "NFDI4Health",
+  "description": "Automatically imported from DRKS",
+  "dataverseType": "UNCATEGORIZED"
+}
