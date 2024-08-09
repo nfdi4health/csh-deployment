@@ -26,6 +26,10 @@ echo "Setting DOI provider to FAKE"
 curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d FAKE $DATAVERSE_URL/api/admin/settings/:DoiProvider
 echo
 
+echo "Setting superuser status"
+curl -X POST "${DATAVERSE_URL}/api/admin/superuser/dataverseAdmin"
+echo
+
 echo "Publishing root dataverse"
 curl -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
 echo
