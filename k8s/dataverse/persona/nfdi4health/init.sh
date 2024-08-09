@@ -22,8 +22,8 @@ echo "# hide progress meter
 # fail script on server error
 --fail-with-body" > ~/.curlrc
 
-echo "Setting DOI provider to FAKE"
-curl -s -H "X-Dataverse-key:$API_TOKEN" -X PUT -d FAKE $DATAVERSE_URL/api/admin/settings/:DoiProvider
+echo "Configuring PID permalink generator function"
+PGPASSWORD=$DATAVERSE_DB_PASSWORD psql -h $DATAVERSE_DB_HOST -U $DATAVERSE_DB_USER < /scripts/bootstrap/nfdi4health/generate-permalink.sql
 echo
 
 echo "Setting superuser status"
