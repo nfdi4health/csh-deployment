@@ -95,7 +95,7 @@ spec:
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
               value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
             - name: DATAVERSE_PID_PROVIDERS
-              value: "fake,permalink,ctgov,ictrp,drks"
+              value: "fake,permalink,ctgov,euctr,per,isrctn,ctri,jprn,actrn,drks"
             - name: DATAVERSE_PID_DEFAULT_PROVIDER
               value: "fake"
             - name: DATAVERSE_PID_FAKE_TYPE
@@ -130,69 +130,69 @@ spec:
               value: ""
             - name: DATAVERSE_PID_CTGOV_PERMALINK_BASE_URL
               value: "https://clinicaltrials.gov/study/"
-            - name: DATAVERSE_PID_ICTRP_EUCTR_TYPE
+            - name: DATAVERSE_PID_EUCTR_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_ICTRP_EUCTR_LABEL
+            - name: DATAVERSE_PID_EUCTR_LABEL
               value: "ICTRP EUCTR Permalink Provider"
-            - name: DATAVERSE_PID_ICTRP_EUCTR_AUTHORITY
+            - name: DATAVERSE_PID_EUCTR_AUTHORITY
               value: "EUCTR"
-            - name: DATAVERSE_PID_ICTRP_EUCTR_SHOULDER
+            - name: DATAVERSE_PID_EUCTR_SHOULDER
               value: ""
-            - name: DATAVERSE_PID_ICTRP_EUCTR_PERMALINK_BASE_URL
+            - name: DATAVERSE_PID_EUCTR_PERMALINK_BASE_URL
               value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
-            - name: DATAVERSE_PID_ICTRP_PER_TYPE
+            - name: DATAVERSE_PID_PER_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_ICTRP_PER_LABEL
+            - name: DATAVERSE_PID_PER_LABEL
               value: "ICTRP PER Permalink Provider"
-            - name: DATAVERSE_PID_ICTRP_PER_AUTHORITY
+            - name: DATAVERSE_PID_PER_AUTHORITY
               value: "PER"
-            - name: DATAVERSE_PID_ICTRP_PER_SHOULDER
+            - name: DATAVERSE_PID_PER_SHOULDER
               value: ""
-            - name: DATAVERSE_PID_ICTRP_PER_PERMALINK_BASE_URL
+            - name: DATAVERSE_PID_PER_PERMALINK_BASE_URL
               value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
-            - name: DATAVERSE_PID_ICTRP_PER_PERMALINK_SEPARATOR
+            - name: DATAVERSE_PID_PER_PERMALINK_SEPARATOR
               value: "-"
-            - name: DATAVERSE_PID_ICTRP_ISRCTN_TYPE
+            - name: DATAVERSE_PID_ISRCTN_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_ICTRP_ISRCTN_LABEL
+            - name: DATAVERSE_PID_ISRCTN_LABEL
               value: "ICTRP ISRCTN Permalink Provider"
-            - name: DATAVERSE_PID_ICTRP_ISRCTN_AUTHORITY
+            - name: DATAVERSE_PID_ISRCTN_AUTHORITY
               value: "ISRCTN"
-            - name: DATAVERSE_PID_ICTRP_ISRCTN_SHOULDER
+            - name: DATAVERSE_PID_ISRCTN_SHOULDER
               value: ""
-            - name: DATAVERSE_PID_ICTRP_ISRCTN_PERMALINK_BASE_URL
+            - name: DATAVERSE_PID_ISRCTN_PERMALINK_BASE_URL
               value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
-            - name: DATAVERSE_PID_ICTRP_CTRI_TYPE
+            - name: DATAVERSE_PID_CTRI_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_ICTRP_CTRI_LABEL
+            - name: DATAVERSE_PID_CTRI_LABEL
               value: "ICTRP CTRI Permalink Provider"
-            - name: DATAVERSE_PID_ICTRP_CTRI_AUTHORITY
+            - name: DATAVERSE_PID_CTRI_AUTHORITY
               value: "CTRI"
-            - name: DATAVERSE_PID_ICTRP_CTRI_SHOULDER
+            - name: DATAVERSE_PID_CTRI_SHOULDER
               value: ""
-            - name: DATAVERSE_PID_ICTRP_CTRI_PERMALINK_BASE_URL
+            - name: DATAVERSE_PID_CTRI_PERMALINK_BASE_URL
               value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
-            - name: DATAVERSE_PID_ICTRP_CTRI_PERMALINK_SEPARATOR
+            - name: DATAVERSE_PID_CTRI_PERMALINK_SEPARATOR
               value: "/"
-            - name: DATAVERSE_PID_ICTRP_JPRN_TYPE
+            - name: DATAVERSE_PID_JPRN_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_ICTRP_JPRN_LABEL
+            - name: DATAVERSE_PID_JPRN_LABEL
               value: "ICTRP JPRN Permalink Provider"
-            - name: DATAVERSE_PID_ICTRP_JPRN_AUTHORITY
+            - name: DATAVERSE_PID_JPRN_AUTHORITY
               value: "JPRN-jRCT"
-            - name: DATAVERSE_PID_ICTRP_JPRN_SHOULDER
+            - name: DATAVERSE_PID_JPRN_SHOULDER
               value: ""
-            - name: DATAVERSE_PID_ICTRP_JPRN_PERMALINK_BASE_URL
+            - name: DATAVERSE_PID_JPRN_PERMALINK_BASE_URL
               value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
-            - name: DATAVERSE_PID_ICTRP_ACTRN_TYPE
+            - name: DATAVERSE_PID_ACTRN_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_ICTRP_ACTRN_LABEL
+            - name: DATAVERSE_PID_ACTRN_LABEL
               value: "ICTRP ACTRN Permalink Provider"
-            - name: DATAVERSE_PID_ICTRP_ACTRN_AUTHORITY
+            - name: DATAVERSE_PID_ACTRN_AUTHORITY
               value: "ACTRN"
-            - name: DATAVERSE_PID_ICTRP_ACTRN_SHOULDER
+            - name: DATAVERSE_PID_ACTRN_SHOULDER
               value: ""
-            - name: DATAVERSE_PID_ICTRP_ACTRN_PERMALINK_BASE_URL
+            - name: DATAVERSE_PID_ACTRN_PERMALINK_BASE_URL
               value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
             - name: DATAVERSE_PID_DRKS_TYPE
               value: "perma"
