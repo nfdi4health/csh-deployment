@@ -95,7 +95,7 @@ spec:
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
               value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
             - name: DATAVERSE_PID_PROVIDERS
-              value: "fake,permalink,ctgov,euctr,per,isrctn,ctri,jprn,actrn,drks"
+              value: "fake,csh,ctgov,euctr,per,isrctn,ctri,jprn,actrn,drks"
             - name: DATAVERSE_PID_DEFAULT_PROVIDER
               value: "fake"
             - name: DATAVERSE_PID_FAKE_TYPE
@@ -106,19 +106,19 @@ spec:
               value: "FK2/"
             - name: DATAVERSE_PID_FAKE_AUTHORITY
               value: "10.5072"
-            - name: DATAVERSE_PID_PERMALINK_TYPE
+            - name: DATAVERSE_PID_CSH_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_PERMALINK_LABEL
+            - name: DATAVERSE_PID_CSH_LABEL
               value: "Permalink Provider"
-            - name: DATAVERSE_PID_PERMALINK_AUTHORITY
+            - name: DATAVERSE_PID_CSH_AUTHORITY
               value: {{.Values.dataverse.pid.permalink.authority}}
-            - name: DATAVERSE_PID_PERMALINK_SHOULDER
+            - name: DATAVERSE_PID_CSH_SHOULDER
               value: {{.Values.dataverse.pid.permalink.shoulder}}
-            - name: DATAVERSE_PID_PERMALINK_BASE_URL
+            - name: DATAVERSE_PID_CSH_BASE_URL
               value: {{.Values.dataverse.pid.permalink.base_url}}
-            - name: DATAVERSE_PID_PERMALINK_SEPARATOR
+            - name: DATAVERSE_PID_CSH_SEPARATOR
               value: {{.Values.dataverse.pid.permalink.separator}}
-            - name: DATAVERSE_PID_PERMALINK_IDENTIFIER_GENERATION_STYLE
+            - name: DATAVERSE_PID_CSH_IDENTIFIER_GENERATION_STYLE
               value: "storedProcGenerated"
             - name: DATAVERSE_PID_CTGOV_TYPE
               value: "perma"
