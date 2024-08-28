@@ -95,9 +95,17 @@ spec:
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
               value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
             - name: DATAVERSE_PID_PROVIDERS
-              value: "permalink,ctgov,ictrp,drks"
+              value: "fake,permalink,ctgov,ictrp,drks"
             - name: DATAVERSE_PID_DEFAULT_PROVIDER
-              value: "permalink"
+              value: "fake"
+            - name: DATAVERSE_PID_FAKE_TYPE
+              value: "FAKE"
+            - name: DATAVERSE_PID_FAKE_LABEL
+              value: "Fake DOI Provider"
+            - name: DATAVERSE_PID_FAKE_SHOULDER
+              value: "FK2/"
+            - name: DATAVERSE_PID_FAKE_AUTHORITY
+              value: "10.5072"
             - name: DATAVERSE_PID_PERMALINK_TYPE
               value: "perma"
             - name: DATAVERSE_PID_PERMALINK_LABEL
@@ -106,6 +114,10 @@ spec:
               value: {{.Values.dataverse.pid.permalink.authority}}
             - name: DATAVERSE_PID_PERMALINK_SHOULDER
               value: {{.Values.dataverse.pid.permalink.shoulder}}
+            - name: DATAVERSE_PID_PERMALINK_BASE_URL
+              value: {{.Values.dataverse.pid.permalink.base_url}}
+            - name: DATAVERSE_PID_PERMALINK_SEPARATOR
+              value: {{.Values.dataverse.pid.permalink.separator}}
             - name: DATAVERSE_PID_PERMALINK_IDENTIFIER_GENERATION_STYLE
               value: "storedProcGenerated"
             - name: DATAVERSE_PID_CTGOV_TYPE
@@ -113,25 +125,85 @@ spec:
             - name: DATAVERSE_PID_CTGOV_LABEL
               value: "CT.gov Permalink Provider"
             - name: DATAVERSE_PID_CTGOV_AUTHORITY
-              value: "https://clinicaltrials.gov/study/"
+              value: "NCT"
             - name: DATAVERSE_PID_CTGOV_SHOULDER
               value: ""
-            - name: DATAVERSE_PID_ICTRP_TYPE
+            - name: DATAVERSE_PID_CTGOV_PERMALINK_BASE_URL
+              value: "https://clinicaltrials.gov/study/"
+            - name: DATAVERSE_PID_ICTRP_EUCTR_TYPE
               value: "perma"
-            - name: DATAVERSE_PID_ICTRP_LABEL
-              value: "ICTRP Permalink Provider"
-            - name: DATAVERSE_PID_ICTRP_AUTHORITY
-              value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
-            - name: DATAVERSE_PID_ICTRP_SHOULDER
+            - name: DATAVERSE_PID_ICTRP_EUCTR_LABEL
+              value: "ICTRP EUCTR Permalink Provider"
+            - name: DATAVERSE_PID_ICTRP_EUCTR_AUTHORITY
+              value: "EUCTR"
+            - name: DATAVERSE_PID_ICTRP_EUCTR_SHOULDER
               value: ""
+            - name: DATAVERSE_PID_ICTRP_EUCTR_PERMALINK_BASE_URL
+              value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+            - name: DATAVERSE_PID_ICTRP_PER_TYPE
+              value: "perma"
+            - name: DATAVERSE_PID_ICTRP_PER_LABEL
+              value: "ICTRP PER Permalink Provider"
+            - name: DATAVERSE_PID_ICTRP_PER_AUTHORITY
+              value: "PER"
+            - name: DATAVERSE_PID_ICTRP_PER_SHOULDER
+              value: ""
+            - name: DATAVERSE_PID_ICTRP_PER_PERMALINK_BASE_URL
+              value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+            - name: DATAVERSE_PID_ICTRP_PER_PERMALINK_SEPARATOR
+              value: "-"
+            - name: DATAVERSE_PID_ICTRP_ISRCTN_TYPE
+              value: "perma"
+            - name: DATAVERSE_PID_ICTRP_ISRCTN_LABEL
+              value: "ICTRP ISRCTN Permalink Provider"
+            - name: DATAVERSE_PID_ICTRP_ISRCTN_AUTHORITY
+              value: "ISRCTN"
+            - name: DATAVERSE_PID_ICTRP_ISRCTN_SHOULDER
+              value: ""
+            - name: DATAVERSE_PID_ICTRP_ISRCTN_PERMALINK_BASE_URL
+              value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+            - name: DATAVERSE_PID_ICTRP_CTRI_TYPE
+              value: "perma"
+            - name: DATAVERSE_PID_ICTRP_CTRI_LABEL
+              value: "ICTRP CTRI Permalink Provider"
+            - name: DATAVERSE_PID_ICTRP_CTRI_AUTHORITY
+              value: "CTRI"
+            - name: DATAVERSE_PID_ICTRP_CTRI_SHOULDER
+              value: ""
+            - name: DATAVERSE_PID_ICTRP_CTRI_PERMALINK_BASE_URL
+              value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+            - name: DATAVERSE_PID_ICTRP_CTRI_PERMALINK_SEPARATOR
+              value: "/"
+            - name: DATAVERSE_PID_ICTRP_JPRN_TYPE
+              value: "perma"
+            - name: DATAVERSE_PID_ICTRP_JPRN_LABEL
+              value: "ICTRP JPRN Permalink Provider"
+            - name: DATAVERSE_PID_ICTRP_JPRN_AUTHORITY
+              value: "JPRN-jRCT"
+            - name: DATAVERSE_PID_ICTRP_JPRN_SHOULDER
+              value: ""
+            - name: DATAVERSE_PID_ICTRP_JPRN_PERMALINK_BASE_URL
+              value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+            - name: DATAVERSE_PID_ICTRP_ACTRN_TYPE
+              value: "perma"
+            - name: DATAVERSE_PID_ICTRP_ACTRN_LABEL
+              value: "ICTRP ACTRN Permalink Provider"
+            - name: DATAVERSE_PID_ICTRP_ACTRN_AUTHORITY
+              value: "ACTRN"
+            - name: DATAVERSE_PID_ICTRP_ACTRN_SHOULDER
+              value: ""
+            - name: DATAVERSE_PID_ICTRP_ACTRN_PERMALINK_BASE_URL
+              value: "https://trialsearch.who.int/Trial2.aspx?TrialID="
             - name: DATAVERSE_PID_DRKS_TYPE
               value: "perma"
             - name: DATAVERSE_PID_DRKS_LABEL
               value: "DRKS Permalink Provider"
             - name: DATAVERSE_PID_DRKS_AUTHORITY
-              value: "https://drks.de/search/de/trial/"
+              value: "DRKS"
             - name: DATAVERSE_PID_DRKS_SHOULDER
               value: ""
+            - name: DATAVERSE_PID_DRKS_PERMALINK_BASE_URL
+              value: "https://drks.de/search/de/trial/"
             - name: DATAVERSE_DB_CONNECTION_VALIDATION_METHOD
               value: "custom-validation"
             # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
