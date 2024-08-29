@@ -16,6 +16,12 @@ dataverse:
       memory: "4Gi"
     requests:
       memory: "1Gi"
+  pid:
+    permalink:
+      authority:
+      shoulder:
+      base_url:
+      separator:
 images:
   backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.2
   configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.2
