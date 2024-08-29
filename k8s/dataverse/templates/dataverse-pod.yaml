@@ -117,7 +117,7 @@ spec:
             - name: DATAVERSE_PID_CSH_BASE_URL
               value: {{.Values.dataverse.pid.permalink.base_url}}
             - name: DATAVERSE_PID_CSH_SEPARATOR
-              value: {{.Values.dataverse.pid.permalink.separator}}
+              value: {{.Values.dataverse.pid.permalink.separator | quote}}
             - name: DATAVERSE_PID_CSH_IDENTIFIER_GENERATION_STYLE
               value: "storedProcGenerated"
             - name: DATAVERSE_PID_CTGOV_TYPE
