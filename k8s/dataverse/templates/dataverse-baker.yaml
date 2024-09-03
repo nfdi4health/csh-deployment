@@ -37,6 +37,18 @@ spec:
               value: "/roles"
             - name: USERS_PATH
               value: "/users"
+            - name: DATAVERSE_DB_HOST
+              value: "{{ .Release.Name }}-dataverse-postgres-pooler"
+            - name: DATAVERSE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
+                  key: password
+            - name: DATAVERSE_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
+                  key: username
           volumeMounts:
             - name: script
               mountPath: "/scripts/bootstrap/{{ .Values.persona }}"
