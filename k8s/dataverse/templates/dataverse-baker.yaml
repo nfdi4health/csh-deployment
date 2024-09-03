@@ -25,7 +25,7 @@ spec:
       containers:
         - image: {{ .Values.images.configbaker}}
           name: dataverse-configbaker
-          command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","nfdi4health" ]
+          command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","{{ .Values.persona }}" ]
           env:
             - name: METADATABLOCKS_PATH
               value: "/metadatablocks"
@@ -39,7 +39,7 @@ spec:
               value: "/users"
           volumeMounts:
             - name: script
-              mountPath: "/scripts/bootstrap/nfdi4health"
+              mountPath: "/scripts/bootstrap/{{ .Values.persona }}"
             - name: metadatablocks
               mountPath: "/metadatablocks"
             - name: licence
@@ -85,42 +85,42 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-metadatablocks
 data:
-{{ (.Files.Glob "persona/nfdi4health/metadatablocks/*").AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/metadatablocks/*")).AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-licences
 data:
-{{ (.Files.Glob "persona/nfdi4health/licence/*").AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/licence/*")).AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-dataverses
 data:
-{{ (.Files.Glob "persona/nfdi4health/dataverses/*").AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/dataverses/*")).AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-roles
 data:
-{{ (.Files.Glob "persona/nfdi4health/roles/*").AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/roles/*")).AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-users
 data:
-{{ (.Files.Glob "persona/nfdi4health/users/*").AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/users/*")).AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-configmap
 data:
-{{ (.Files.Glob "persona/nfdi4health/*").AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/*")).AsConfig | indent 2 }}
   keycloak.json: |
     {
       "id": "oidc-keycloak",

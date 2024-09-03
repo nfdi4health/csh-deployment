@@ -1,3 +1,4 @@
+persona: "nfdi4health"
 ingress:
   dns:
 dataverse:
