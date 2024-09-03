@@ -75,6 +75,7 @@ spec:
         app.kubernetes.io/version: "9.5.0"
         app.kubernetes.io/component: solr
         app.kubernetes.io/part-of: dataverse
+        kubectl.kubernetes.io/default-container: "solr"
     spec:
       securityContext:
         fsGroup: 8983
