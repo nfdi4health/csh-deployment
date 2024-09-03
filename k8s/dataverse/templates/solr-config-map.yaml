@@ -10,4 +10,4 @@ metadata:
     app.kubernetes.io/part-of: dataverse
 data:
   schema.xml: >
-{{ (.Files.Get "persona/nfdi4health/schema.xml") | indent 4}}
+{{ (.Files.Get (print "persona/" .Values.persona "/schema.xml")) | indent 4}}

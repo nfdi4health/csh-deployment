@@ -10,7 +10,7 @@ API request are treated by dataverse as they originate from localhost.
 
 
 ## Update SOLR fields with custom metadata info
-The `schema.xml` file within the persona nfdi4health contains adaptions for the included custom metadata blocks.
+The `schema.xml` file within the persona {{ .Values.persona }} contains adaptions for the included custom metadata blocks.
 This means SOLR is configured for the personal out of the box! Once you alter a metadata blocks via the API,
 the change must be manually adapted to the solr configuration. The following snippet will walk you through the task:
 
