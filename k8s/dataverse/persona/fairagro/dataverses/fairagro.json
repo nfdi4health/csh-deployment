@@ -1,0 +1,12 @@
+{
+  "name": "FAIRagro",
+  "alias": "fairagro",
+  "dataverseContacts": [
+    {
+      "contactEmail": "schneider@zbmed.de"
+    }
+  ],
+  "affiliation": "FAIRagro",
+  "description": "FAIR Data Infrastructure for Agrosystems",
+  "dataverseType": "UNCATEGORIZED"
+}
