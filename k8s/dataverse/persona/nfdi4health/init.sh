@@ -27,7 +27,7 @@ PGPASSWORD=$DATAVERSE_DB_PASSWORD psql -h $DATAVERSE_DB_HOST -U $DATAVERSE_DB_US
 echo
 
 echo "Setting superuser status"
-curl -X POST "${DATAVERSE_URL}/api/admin/superuser/dataverseAdmin"
+curl -X PUT "${DATAVERSE_URL}/api/admin/superuser/dataverseAdmin" -d true
 echo
 
 echo "Publishing root dataverse"
