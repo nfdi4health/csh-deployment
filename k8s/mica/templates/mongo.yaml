@@ -17,7 +17,7 @@ spec:
           image: {{ .Values.mongo.image}}
           resources:
             limits:
-              memory: 1000Mi
+              memory: 2000Mi
             requests:
               memory: 500Mi
           env:
