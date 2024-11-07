@@ -575,6 +575,16 @@ entries:
   mica:
   - apiVersion: v2
     appVersion: 5.2.3
+    created: "2024-11-07T14:52:25.32810124Z"
+    description: A Helm chart to deploy the mica.
+    digest: cf4e63cde02798f4d67156c147ccb4b82695a8315fa9a565b26cc9c1d327854c
+    name: mica
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.4/mica-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: 5.2.3
     created: "2024-09-10T06:14:14.878508874Z"
     description: A Helm chart to deploy the mica.
     digest: 82cac68007d10d16b695c689864b99baf4d06af50b7b8bb53c85511a9463825e
@@ -603,4 +613,4 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.1/mica-0.0.1.tgz
     version: 0.0.1
-generated: "2024-09-10T17:18:43.908085673Z"
+generated: "2024-11-07T14:52:25.328198612Z"
