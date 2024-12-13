@@ -97,15 +97,7 @@ spec:
             - name: DATAVERSE_PID_PROVIDERS
               value: "fake,csh,ctgov,euctr,per,isrctn,ctri,jprn,actrn,drks"
             - name: DATAVERSE_PID_DEFAULT_PROVIDER
-              value: "fake"
-            - name: DATAVERSE_PID_FAKE_TYPE
-              value: "FAKE"
-            - name: DATAVERSE_PID_FAKE_LABEL
-              value: "Fake DOI Provider"
-            - name: DATAVERSE_PID_FAKE_SHOULDER
-              value: "FK2/"
-            - name: DATAVERSE_PID_FAKE_AUTHORITY
-              value: "10.5072"
+              value: "csh"
             - name: DATAVERSE_PID_CSH_TYPE
               value: "perma"
             - name: DATAVERSE_PID_CSH_LABEL
@@ -113,10 +105,10 @@ spec:
             - name: DATAVERSE_PID_CSH_AUTHORITY
               value: {{.Values.dataverse.pid.permalink.authority}}
             - name: DATAVERSE_PID_CSH_SHOULDER
-              value: {{.Values.dataverse.pid.permalink.shoulder}}
-            - name: DATAVERSE_PID_CSH_BASE_URL
+              value: ""
+            - name: DATAVERSE_PID_CSH_PERMALINK_BASE_URL
               value: {{.Values.dataverse.pid.permalink.base_url}}
-            - name: DATAVERSE_PID_CSH_SEPARATOR
+            - name: DATAVERSE_PID_CSH_PERMALINK_SEPARATOR
               value: {{.Values.dataverse.pid.permalink.separator | quote}}
             - name: DATAVERSE_PID_CSH_IDENTIFIER_GENERATION_STYLE
               value: "storedProcGenerated"
