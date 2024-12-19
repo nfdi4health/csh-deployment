@@ -22,10 +22,6 @@ echo "# hide progress meter
 # fail script on server error
 --fail-with-body" > ~/.curlrc
 
-echo "Configuring PID permalink generator function"
-PGPASSWORD=$DATAVERSE_DB_PASSWORD psql -h $DATAVERSE_DB_HOST -U $DATAVERSE_DB_USER < /scripts/bootstrap/nfdi4health/generate-permalink.sql
-echo
-
 echo "Setting superuser status"
 curl -X PUT "${DATAVERSE_URL}/api/admin/superuser/dataverseAdmin" -d true
 echo
@@ -140,6 +136,12 @@ while IFS= read -r DATAVERSE; do
     echo
   fi
 done <<< "${DATAVERSES}"
+
+# This should be done after creating dataverses if we want a chance of keeping the database IDs and Permalink IDs of our
+# datasets in sync
+echo "Configuring PID permalink generator function"
+PGPASSWORD=$DATAVERSE_DB_PASSWORD psql -h $DATAVERSE_DB_HOST -U $DATAVERSE_DB_USER < /scripts/bootstrap/nfdi4health/generate-permalink.sql
+echo
 
 # Last step as existence of one block is the indicator for a complete bootstrapped installation
 echo "Load custom metadata blocks"
