@@ -19,7 +19,7 @@ spec:
           requests:
             memory: 4Gi
           limits:
-            memory: 8Gi
+            memory: 16Gi
         env:
 {{- if .Values.ingress.dns }}
           - name: SPRING_CSRF_ALLOWED
@@ -54,7 +54,7 @@ spec:
                 key: password
                 optional: false
           - name: JAVA_OPTS
-            value: -Xms4g -Xmx8g
+            value: -Xms4g -Xmx12g
         ports:
           - containerPort: 8082
         volumeMounts:

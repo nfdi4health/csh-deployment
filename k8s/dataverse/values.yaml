@@ -24,5 +24,5 @@ dataverse:
       base_url:
       separator:
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.3
-  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.3
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.5
+  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.5
