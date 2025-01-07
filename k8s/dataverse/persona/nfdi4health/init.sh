@@ -164,9 +164,8 @@ while IFS= read -r DATAVERSE; do
   echo
 done <<< "${DATAVERSES}"
 
-echo "Setting up facets"
-curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/root/facets -d '["Resource.classification.type","Resource.classification.typeGeneral","Resource.titles.language","Resource.acronyms.language","Resource.descriptions.language","Resource.languages","Resource.nonStudyDetails.useRights.label","Resource.contributors.nameType","Resource.contributors.organisational.type","Resource.contributors.personal.type","Resource.contributors.personal.identifiers.scheme","Resource.contributors.affiliations.identifiers.scheme","Resource.idsAlternative.scheme","Resource.ids.scheme","Resource.ids.relationType","Resource.ids.typeGeneral","Resource.idsNfdi4health.relationType","Resource.nutritionalData","Resource.chronicDiseases","Resource.provenance.dataSource","Design.primaryDesign","Design.studyType.interventional","Design.studyType.nonInterventional","Design.conditions.classification","Design.focus.classification","Design.groupsOfDiseases.generally","Design.groupsOfDiseases.conditions","Design.mortalityData","Design.administrativeInformation.ethicsCommitteeApproval","Design.administrativeInformation.status","Design.administrativeInformation.statusWhenIntervention","Design.administrativeInformation.stageStopped","Design.administrativeInformation.statusEnrollingByInvitation","Design.administrativeInformation.recruitmentStatusRegister","Design.centers","Design.dataProviders","Design.subject","Design.sampling.method","Design.sampling.probabilityMethod","Design.sampling.nonProbabilityMethod","DietAssessment.instrument","DietAssessment.mode","DietAssessment.device","DietAssessment.portionSizeEstimation","DietAssessment.referencePeriodUnit","DietAssessment.repeat","DietAssessment.validity","DietAssessment.reliability","DietAssessment.dietarySupplements","ChronicDiseasesEpidemiology.commonChronicDiseaseName","ChronicDiseasesEpidemiology.dataCollected","ChronicDiseasesEpidemiology.informationSources","RecordLinkage.legalBasis","RecordLinkage.informedConsent","RecordLinkage.additionalCosts"]'
-echo
+echo "Activating metadata field facets"
+curl "$DATAVERSE_URL/api/datasetfields/facetables" | jq ".data | map(.name)" | curl -X POST -H "Content-Type: application/json" -d @- "$DATAVERSE_URL/api/dataverses/root/facets"
 
 echo
 echo
