@@ -167,6 +167,8 @@
     <field name="fileNameWithoutExtension" type="text_en" stored="true" indexed="true" multiValued="true"/>
     <field name="variableName" type="text_en" stored="true" indexed="true" multiValued="true"/>
     <field name="variableLabel" type="text_en" stored="true" indexed="true" multiValued="true"/>
+    <field name="variableCount" type="plong" stored="true" indexed="false" multiValued="false"/>
+    <field name="observations" type="plong" stored="true" indexed="false" multiValued="false"/>
 
     <field name="literalQuestion" type="text_en" stored="true" indexed="true" multiValued="true"/>
     <field name="interviewInstructions" type="text_en" stored="true" indexed="true" multiValued="true"/>
@@ -201,6 +203,8 @@
     <field name="fileChecksumValue" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="fileContentType" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="deaccessionReason" type="string" stored="true" indexed="false" multiValued="false"/>
+    <field name="fileRestricted" type="boolean" stored="true" indexed="false" multiValued="false"/>
+    <field name="canDownloadFile" type="boolean" stored="true" indexed="false" multiValued="false"/>
 
     <!-- Added for Dataverse 4.0 alpha 1. This is a required field so we don't have to go to the database to get the database id of the entity. On cards we use the id in links -->
     <field name="entityId" type="plong" stored="true" indexed="true" multiValued="false"/>
@@ -265,9 +269,9 @@
     <field name="authorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="characteristicOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ChronicDiseasesEpidemiology.commonChronicDiseaseName" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ChronicDiseasesEpidemiology.dataCollected" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="ChronicDiseasesEpidemiology.informationSources" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology.commonChronicDiseaseName" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology.dataCollected" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="ChronicDiseasesEpidemiology.informationSources" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="ChronicDiseasesEpidemiology.outcomesVerificationMethods" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="city" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="cleaningOperations" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -278,23 +282,23 @@
     <field name="contributorType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="controlOperations" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="country" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.Depth" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="coverage.ObjectCount" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="coverage.ObjectDensity" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="coverage.Depth" type="pdouble" multiValued="false" stored="true" indexed="true"/>
+    <field name="coverage.ObjectCount" type="plong" multiValued="false" stored="true" indexed="true"/>
+    <field name="coverage.ObjectDensity" type="pdouble" multiValued="false" stored="true" indexed="true"/>
     <field name="coverage.Polarization" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="coverage.Redshift.MaximumValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.Redshift.MinimumValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.RedshiftValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.SkyFraction" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="coverage.Redshift.MaximumValue" type="pdouble" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.Redshift.MinimumValue" type="pdouble" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.RedshiftValue" type="pdouble" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.SkyFraction" type="pdouble" multiValued="false" stored="true" indexed="true"/>
     <field name="coverage.Spatial" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="coverage.Spectral.Bandpass" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.Spectral.CentralWavelength" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.Spectral.MaximumWavelength" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.Spectral.MinimumWavelength" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.Spectral.CentralWavelength" type="pdouble" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.Spectral.MaximumWavelength" type="pdouble" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.Spectral.MinimumWavelength" type="pdouble" multiValued="true" stored="true" indexed="true"/>
     <field name="coverage.Spectral.Wavelength" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="coverage.Temporal" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.Temporal.StartTime" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="coverage.Temporal.StopTime" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.Temporal.StartTime" type="date_range" multiValued="true" stored="true" indexed="true"/>
+    <field name="coverage.Temporal.StopTime" type="date_range" multiValued="true" stored="true" indexed="true"/>
     <field name="dataCollectionSituation" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="dataCollector" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="datasetContact" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -304,137 +308,137 @@
     <field name="datasetLevelErrorNotes" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="dataSources" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dateOfCollection" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="dateOfCollectionEnd" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="dateOfCollectionStart" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="dateOfDeposit" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="dateOfCollectionEnd" type="date_range" multiValued="true" stored="true" indexed="true"/>
+    <field name="dateOfCollectionStart" type="date_range" multiValued="true" stored="true" indexed="true"/>
+    <field name="dateOfDeposit" type="date_range" multiValued="false" stored="true" indexed="true"/>
     <field name="depositor" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.administrativeInformation" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.endDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.ethicsCommitteeApproval" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.endDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.ethicsCommitteeApproval" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.administrativeInformation.reasonStopped" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.recruitmentStatusRegister" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.stageStopped" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.startDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.status" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.statusEnrollingByInvitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.administrativeInformation.statusWhenIntervention" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.recruitmentStatusRegister" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.stageStopped" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.startDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.status" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.statusEnrollingByInvitation" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.administrativeInformation.statusWhenIntervention" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.arms" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.arms.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.arms.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.arms.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.arms.type" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.assessments" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.centers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.centersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.centers" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.centersNumber" type="plong" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.comment" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.conditions.classification" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.conditions.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.conditions.classification" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.conditions.code" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.conditions.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.dataProviders" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.dataProvidersNumber" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataProviders" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataProvidersNumber" type="plong" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.dataSharingPlan" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.dataSharingPlan.accessCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.dataSharingPlan.datashield" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.datashield" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.dataSharingPlan.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.dataSharingPlan.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.dataSharingPlan.recordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.dataSharingPlan.requestData" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.dataSharingPlan.supportingInformation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.generally" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.recordLinkage" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.requestData" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.supportingInformation" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.dataSharingPlan.timeFrame" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.dataSharingPlan.url" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.dataSharingPlan.url" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.dataSource" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.dataSource.biosamples" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSource.biosamples" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.dataSource.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.dataSource.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.dataSource.imaging" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.dataSource.omics" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSource.general" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSource.imaging" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.dataSource.omics" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.eligibilityCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.eligibilityCriteria.ageMax" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.eligibilityCriteria.ageMax.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.eligibilityCriteria.ageMax.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMax.number" type="plong" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMax.timeUnit" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.eligibilityCriteria.ageMin" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.eligibilityCriteria.ageMin.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.eligibilityCriteria.ageMin.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMin.number" type="plong" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.ageMin.timeUnit" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.eligibilityCriteria.exclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.eligibilityCriteria.genders" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.eligibilityCriteria.genders" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.eligibilityCriteria.inclusionCriteria" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.exposures" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.exposures.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.exposures.groupsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.exposures.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.exposures.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.exposures.type" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.focus" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.focus.classification" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.focus.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.focus.classification" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.focus.code" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.focus.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.groups" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.groups.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.groups.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.groupsOfDiseases" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.groupsOfDiseases.conditions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.groupsOfDiseases.generally" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.groupsOfDiseases.conditions" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.groupsOfDiseases.generally" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.hypotheses" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.interventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.interventional.allocation" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.allocation" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.interventional.masking" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.interventional.masking.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.interventional.masking.general" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.interventional.masking.roles" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.interventional.offLabelUse" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.interventional.phase" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.masking.general" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.masking.roles" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.offLabelUse" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventional.phase" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.interventions" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.interventions.armsLabel" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.interventions.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.interventions.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.interventions.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.mortalityData" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.interventions.type" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.mortalityData" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.nonInterventional" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.nonInterventional.biospecimenDescription" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.nonInterventional.biospecimenRetention" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.biospecimenRetention" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.nonInterventional.targetFollowUpDuration" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.nonInterventional.targetFollowUpDuration.frequency" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.nonInterventional.targetFollowUpDuration.number" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.nonInterventional.targetFollowUpDuration.timeUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.nonInterventional.timePerspectives" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.targetFollowUpDuration.frequency" type="plong" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.targetFollowUpDuration.number" type="plong" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.targetFollowUpDuration.timeUnit" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.nonInterventional.timePerspectives" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.outcomes" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.outcomes.description" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.outcomes.timeFrame" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.outcomes.title" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.outcomes.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.outcomes.type" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.population" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.population.countries" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.population.coverage" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.population.countries" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.population.coverage" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.population.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.population.obtainedSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.population.obtainedSampleSize" type="plong" multiValued="false" stored="true" indexed="true"/>
     <field name="Design.population.region" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.population.targetSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.primaryDesign" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.primaryPurpose" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.population.targetSampleSize" type="plong" multiValued="false" stored="true" indexed="true"/>
+    <field name="Design.primaryDesign" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.primaryPurpose" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.sampling" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.sampling.method" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.sampling.nonProbabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.sampling.probabilityMethod" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.sampling.method" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.sampling.nonProbabilityMethod" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.sampling.probabilityMethod" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Design.studyType" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Design.studyType.interventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.studyType.nonInterventional" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Design.subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.studyType.interventional" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.studyType.nonInterventional" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Design.subject" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="deviationsFromSampleDesign" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="DietAssessment" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.device" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.dietarySupplements" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.ffqItemsNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.instrument" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.mode" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.portionSizeEstimation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.referencePeriodNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.referencePeriodUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.reliability" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.device" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.dietarySupplements" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.ffqItemsNumber" type="plong" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.instrument" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.mode" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.portionSizeEstimation" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.referencePeriodNumber" type="plong" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.referencePeriodUnit" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.reliability" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.reliabilityReference" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.repeat" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.repeatFrequency" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="DietAssessment.validity" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.repeat" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.repeatFrequency" type="plong" multiValued="true" stored="true" indexed="true"/>
+    <field name="DietAssessment.validity" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="DietAssessment.validityReference" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="distributionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="distributionDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
     <field name="distributor" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="distributorAbbreviation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="distributorAffiliation" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -442,7 +446,7 @@
     <field name="distributorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="distributorURL" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dsDescription" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="dsDescriptionDate" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="dsDescriptionDate" type="date_range" multiValued="true" stored="true" indexed="true"/>
     <field name="dsDescriptionValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="eastLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="frequencyOfDataCollection" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -454,7 +458,7 @@
     <field name="grantNumberValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalArticleType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalIssue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="journalPubDate" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="journalPubDate" type="date_range" multiValued="true" stored="true" indexed="true"/>
     <field name="journalVolume" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalVolumeIssue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="keyword" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -464,7 +468,7 @@
     <field name="keywordVocabularyURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="kindOfData" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="language" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="link" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="link" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="northLatitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="notesText" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="originOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -480,110 +484,110 @@
     <field name="producerLogoURL" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="producerName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="producerURL" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="productionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="productionDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
     <field name="productionPlace" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publication" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationCitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="publicationRelationType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationIDNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationIDType" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="publicationRelationType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="publicationURL" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="RecordLinkage.additionalCosts" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="RecordLinkage.exampleResources" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.additionalCosts" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.exampleResources" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.furtherDetails" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="RecordLinkage.identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="RecordLinkage.informedConsent" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="RecordLinkage.legalBasis" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.identifiers" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.informedConsent" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="RecordLinkage.legalBasis" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="RecordLinkage.legalBasisDetails" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="RecordLinkage.responsibleInstitutions" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="redshiftType" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="relatedDatasets" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="relatedMaterial" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="researchInstrument" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="resolution.Redshift" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="resolution.Redshift" type="pdouble" multiValued="false" stored="true" indexed="true"/>
     <field name="resolution.Spatial" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resolution.Spectral" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="resolution.Temporal" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.acronyms" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.acronyms.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.acronyms.language" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.acronyms.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.chronicDiseases" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.chronicDiseases" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.classification" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.classification.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.classification.typeGeneral" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.collection" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.classification.type" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.classification.typeGeneral" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.collection" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.affiliations" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.affiliations.address" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.affiliations.identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.affiliations.identifiers.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.affiliations.identifiers.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.identifiers.identifier" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.identifiers.scheme" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.affiliations.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.affiliations.webpage" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.email" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.nameType" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.affiliations.webpage" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.email" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.nameType" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.organisational" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.organisational.fundingIds" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.organisational.fundingIds" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.organisational.name" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.organisational.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.organisational.type" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.personal" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.personal.familyName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.personal.givenName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.contributors.personal.identifiers" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.personal.identifiers.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.personal.identifiers.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.personal.type" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.contributors.phone" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.identifiers.identifier" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.identifiers.scheme" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.personal.type" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.contributors.phone" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.descriptions" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.descriptions.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.descriptions.language" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.descriptions.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.identifier" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.identifier" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.ids" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.idsAlternative" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.idsAlternative.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.idsAlternative.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.ids.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsAlternative.identifier" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsAlternative.scheme" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.identifier" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.idsNfdi4health" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.idsNfdi4health.date" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.idsNfdi4health.identifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.idsNfdi4health.relationType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.ids.relationType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.ids.scheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.ids.typeGeneral" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsNfdi4health.date" type="date_range" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsNfdi4health.identifier" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.idsNfdi4health.relationType" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.relationType" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.scheme" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.ids.typeGeneral" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.keywords" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.keywords.code" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.keywords.code" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.keywords.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.languages" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.languages" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.nonStudyDetails" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.format" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.format" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.nonStudyDetails.useRights" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.nonStudyDetails.useRights.confirmations" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.useRights.confirmations.authority" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.useRights.confirmations.irrevocability" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.useRights.confirmations.supportByLicensing" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.useRights.confirmations.terms" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.authority" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.irrevocability" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.supportByLicensing" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.confirmations.terms" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.nonStudyDetails.useRights.description" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.useRights.label" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.useRights.link" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.nonStudyDetails.version" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.nutritionalData" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.label" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.useRights.link" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nonStudyDetails.version" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.nutritionalData" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.provenance" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.dataSource" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.provenance.firstPostedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.firstPostedUser" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.firstSubmittedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.firstSubmittedUser" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.lastUpdatePostedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.lastUpdatePostedUser" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.lastUpdateSubmittedDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.lastUpdateSubmittedUser" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.resourceVersion" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.verificationDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="Resource.provenance.verificationUser" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.dataSource" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstPostedDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstPostedUser" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstSubmittedDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.firstSubmittedUser" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdatePostedDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdatePostedUser" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdateSubmittedDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.lastUpdateSubmittedUser" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.resourceVersion" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.verificationDate" type="date_range" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.provenance.verificationUser" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="Resource.titles" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.titles.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="Resource.titles.language" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="Resource.titles.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="Resource.webpage" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="Resource.webpage" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="responseRate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="samplingErrorEstimates" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="samplingProcedure" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -614,13 +618,13 @@
     <field name="studyOtherFactorType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="subtitle" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="targetSampleActualSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="targetSampleActualSize" type="plong" multiValued="false" stored="true" indexed="true"/>
     <field name="targetSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="targetSampleSizeFormula" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="timeMethod" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="timePeriodCovered" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="timePeriodCoveredEnd" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="timePeriodCoveredStart" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="timePeriodCoveredEnd" type="date_range" multiValued="true" stored="true" indexed="true"/>
+    <field name="timePeriodCoveredStart" type="date_range" multiValued="true" stored="true" indexed="true"/>
     <field name="title" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="topicClassification" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="topicClassValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -945,9 +949,9 @@
     <copyField source="productionPlace" dest="_text_" maxChars="3000"/>
     <copyField source="publication" dest="_text_" maxChars="3000"/>
     <copyField source="publicationCitation" dest="_text_" maxChars="3000"/>
-    <copyField source="publicationRelationType" dest="_text_" maxChars="3000"/>
     <copyField source="publicationIDNumber" dest="_text_" maxChars="3000"/>
     <copyField source="publicationIDType" dest="_text_" maxChars="3000"/>
+    <copyField source="publicationRelationType" dest="_text_" maxChars="3000"/>
     <copyField source="publicationURL" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.additionalCosts" dest="_text_" maxChars="3000"/>
     <copyField source="RecordLinkage.exampleResources" dest="_text_" maxChars="3000"/>
@@ -1253,7 +1257,9 @@
     <!-- KD-tree versions of date fields -->
     <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
     <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
-    
+
+    <fieldType name="date_range" class="solr.DateRangeField"/>
+
     <!--Binary data type. The data should be sent/retrieved in as Base64 encoded Strings -->
     <fieldType name="binary" class="solr.BinaryField"/>
     
