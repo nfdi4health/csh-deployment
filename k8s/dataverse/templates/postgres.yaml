@@ -14,7 +14,7 @@ spec:
   teamId:  {{ .Release.Name }}
   volume:
     size:  {{ .Values.postgres.volume_size }}
-  numberOfInstances: {{ .Values.postgres.number_instances }}}
+  numberOfInstances: {{ int .Values.postgres.number_instances }}
   {{ if gt (int .Values.postgres.number_instances) 1 }}
   enableConnectionPooler: true
   connectionPooler:

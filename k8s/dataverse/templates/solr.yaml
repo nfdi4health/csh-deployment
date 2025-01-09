@@ -106,10 +106,10 @@ spec:
             value: "0.0.0.0"
           - name: SOLR_OPTS
             value: "-Dsolr.jetty.request.header.size=65535"
-{{- if .Values.solr.resources }}
+{{ if .Values.solr.resources }}
         resources:
-        {{ toYaml .Values.solr.resources | indent 10 }}
-        {{- end }}
+{{ toYaml .Values.solr.resources | indent 10 }}
+{{ end }}
         ports:
           - containerPort: 8983
         volumeMounts:
