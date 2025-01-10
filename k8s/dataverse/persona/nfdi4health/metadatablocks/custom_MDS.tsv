@@ -1,5 +1,5 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
-	MDS_V3_3		MDS_V3_3	
+	Resource		MDS_V3_3
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
 	Resource.collection				text	0		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE		MDS_V3_3
 	Resource.identifier	ID of the [RESOURCE]	Unique identifier of the resource used for identification within the NFDI4Health.		text	0		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_V3_3

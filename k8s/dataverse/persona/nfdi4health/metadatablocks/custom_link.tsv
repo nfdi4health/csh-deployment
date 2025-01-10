@@ -1,5 +1,5 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
 	MDS_link		MDS_link
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	link	Link to file			text	0		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_link
+	link.url	Link to file			string	0		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		MDS_link
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
