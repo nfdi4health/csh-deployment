@@ -1,5 +1,5 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
-	MDS_Design		MDS_Design
+	Design		MDS_Design
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
 	Design.primaryDesign	Is it an interventional or non-interventional [RESOURCE]?	Non-interventional design refers to a [RESOURCE] that does not aim to alter its outcomes of interest. Interventional design refers to a [RESOURCE] that aims to alter its outcomes of interest. Select between non-interventional and interventional design for the given [RESOURCE].		text	0		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		MDS_Design
 	Design.studyType	Specification of the type of the [RESOURCE]	Group of items providing information about the type of the [RESOURCE].		none	1		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		MDS_Design

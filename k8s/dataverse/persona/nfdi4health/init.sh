@@ -164,6 +164,9 @@ while IFS= read -r DATAVERSE; do
   echo
 done <<< "${DATAVERSES}"
 
+echo "Activating metadata field facets"
+curl "$DATAVERSE_URL/api/datasetfields/facetables" | jq ".data | map(.name)" | curl -X POST -H "Content-Type: application/json" -d @- "$DATAVERSE_URL/api/dataverses/root/facets"
+
 echo
 echo
 echo "...DONE!"
