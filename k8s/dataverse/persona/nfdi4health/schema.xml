@@ -400,6 +400,7 @@
     <field name="resource.contributors.personal.identifiers.scheme" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.contributors.personal.type" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.contributors.phone" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="resource.customMetadata" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.customMetadata.chronicDiseasesEpidemiology" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.customMetadata.chronicDiseasesEpidemiology.dataCollected" type="string" multiValued="true" stored="true" indexed="true"/>
@@ -991,57 +992,83 @@
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName" dest="resource.customMetadata.chronicDiseasesEpidemiology" maxChars="3000"/>
+    <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.dataCollected" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.dataCollected" dest="resource.customMetadata.chronicDiseasesEpidemiology" maxChars="3000"/>
+    <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.dataCollected" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.informationSources" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.informationSources" dest="resource.customMetadata.chronicDiseasesEpidemiology" maxChars="3000"/>
+    <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.informationSources" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.outcomesVerificationMethods" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.outcomesVerificationMethods" dest="resource.customMetadata.chronicDiseasesEpidemiology" maxChars="3000"/>
+    <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.outcomesVerificationMethods" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.device" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.device" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.device" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.dietarySupplements" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.dietarySupplements" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.dietarySupplements" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.ffqItemsNumber" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.ffqItemsNumber" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.ffqItemsNumber" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.instrument" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.instrument" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.instrument" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.mode" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.mode" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.mode" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.portionSizeEstimation" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.portionSizeEstimation" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.portionSizeEstimation" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.referencePeriodNumber" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.referencePeriodNumber" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.referencePeriodNumber" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.referencePeriodUnit" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.referencePeriodUnit" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.referencePeriodUnit" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.reliability" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.reliability" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.reliability" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.reliabilityReference" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.reliabilityReference" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.reliabilityReference" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.repeat" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.repeat" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.repeat" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.repeatFrequency" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.repeatFrequency" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.repeatFrequency" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.validity" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.validity" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.validity" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.validityReference" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.dietAssessment.validityReference" dest="resource.customMetadata.dietAssessment" maxChars="3000"/>
+    <copyField source="resource.customMetadata.dietAssessment.validityReference" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.additionalCosts" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.additionalCosts" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.additionalCosts" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.exampleResources" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.exampleResources" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.exampleResources" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.furtherDetails" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.furtherDetails" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.furtherDetails" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.identifiers" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.identifiers" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.identifiers" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.informedConsent" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.informedConsent" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.informedConsent" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.legalBasis" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.legalBasis" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.legalBasis" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.legalBasisDetails" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.legalBasisDetails" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.legalBasisDetails" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.responsibleInstitutions" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.recordLinkage.responsibleInstitutions" dest="resource.customMetadata.recordLinkage" maxChars="3000"/>
+    <copyField source="resource.customMetadata.recordLinkage.responsibleInstitutions" dest="resource.customMetadata" maxChars="3000"/>
     <copyField source="resource.descriptions" dest="_text_" maxChars="3000"/>
     <copyField source="resource.descriptions" dest="resource" maxChars="3000"/>
     <copyField source="resource.descriptions.language" dest="_text_" maxChars="3000"/>
