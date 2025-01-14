@@ -154,7 +154,7 @@ while IFS= read -r TSV; do
   echo "Loading ${TSV}:"
   curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_URL/api/admin/datasetfield/load --upload-file ${TSV}
   echo
-  METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk 'NR==2 {print $2}' $TSV)")
+  METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk -F'\t' 'NR==2 {print $2}' $TSV)")
 done <<< "${TSVS}"
 
 echo "Activating metadata blocks"
