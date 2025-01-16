@@ -7,13 +7,6 @@ ingress:
   dns:
   enableSSL: false
   certIssuer:
-elasticsearch:
-  es_java_opts: -Xms2g -Xmx2g
-  resources:
-    limits:
-      memory: 4Gi
-    requests:
-      memory: 2Gi
 oidc:
   frontend:
     clientid:

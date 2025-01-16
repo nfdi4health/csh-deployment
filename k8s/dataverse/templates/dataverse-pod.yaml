@@ -90,6 +90,11 @@ spec:
                 secretKeyRef:
                   name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
                   key: username
+            - name: DATAVERSE_METADATA_BLOCK_SYSTEM_METADATA_KEYS_MICA
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-dataverse-protected-metadata-key
+                  key: mica
             - name: DATAVERSE_DB_IS_CONNECTION_VALIDATION_REQUIRED
               value: "1"
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
@@ -303,3 +308,11 @@ spec:
   resources:
     requests:
       storage: 100Mi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-dataverse-protected-metadata-key
+type: Opaque
+data:
+  mica: {{ randAlphaNum 20 | b64enc | quote }}

@@ -1,5 +1,7 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
-	link		NFDI4Health – Link Block
+	mica		NFDI4Health – MICA Integration Block
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	link.url	Link to file			text	0		FALSE	FALSE	FALSE	FALSE	TRUE	FALSE		link
+	mica.hasAnnotatedVariables	Variable annotations available?	Indicates whether the variables in the data have associated annotations.		text	0		FALSE	TRUE	FALSE	TRUE	FALSE	FALSE		mica
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
+	mica.hasAnnotatedVariables	Yes	mica_HAV_0	0
+	mica.hasAnnotatedVariables	No	mica_HAV_1	1

@@ -36,10 +36,6 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}-backend-secret
                 key: token
-          - name: ELASTIC_INDEX
-            value: test
-          - name: ELASTIC_URL
-            value: http://{{ .Release.Name }}-elastic:9200
           - name: CLIENT_ID
             value: {{ .Values.oidc.backend.clientid }}
           - name: CLIENT_SECRET
