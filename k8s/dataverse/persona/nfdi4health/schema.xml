@@ -339,6 +339,7 @@
     <field name="kindOfData" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="language" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="link.url" type="string" multiValued="false" stored="true" indexed="true"/>
+    <field name="mica.hasAnnotatedVariables" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="northLatitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="notesText" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="originOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -644,6 +645,7 @@
     <field name="resource.design" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.customMetadata.recordLinkage" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="link" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="mica" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <!-- SCHEMA-FIELDS::END -->
     
 
@@ -877,6 +879,8 @@
     <copyField source="language" dest="_text_" maxChars="3000"/>
     <copyField source="link.url" dest="_text_" maxChars="3000"/>
     <copyField source="link.url" dest="link" maxChars="3000"/>
+    <copyField source="mica.hasAnnotatedVariables" dest="_text_" maxChars="3000"/>
+    <copyField source="mica.hasAnnotatedVariables" dest="mica" maxChars="3000"/>
     <copyField source="northLatitude" dest="_text_" maxChars="3000"/>
     <copyField source="northLatitude" dest="geographicBoundingBox" maxChars="3000"/>
     <copyField source="notesText" dest="_text_" maxChars="3000"/>
