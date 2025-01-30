@@ -3,6 +3,16 @@ entries:
   central-search-hub:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-01-30T13:46:11.456105407Z"
+    description: A Helm chart to deploy the central search hub.
+    digest: 7648fe40a9ec179b8591d9c48ecccb8589e4e77e82ecea4309e728afb9ebf6aa
+    name: central-search-hub
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/central-search-hub-0.5.0/central-search-hub-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-08-01T13:48:17.596668564Z"
     description: A Helm chart to deploy the central search hub.
     digest: 84df4eec612fbf00adb8e9a8dcb50417b9c6cd89a95a0eb8a165256193996597
@@ -122,6 +132,16 @@ entries:
     - https://github.com/nfdi4health/csh-deployment/releases/download/central-search-hub-0.2.4/central-search-hub-0.2.4.tgz
     version: 0.2.4
   dataverse:
+  - apiVersion: v2
+    appVersion: 6.5.0
+    created: "2025-01-30T13:46:11.574644923Z"
+    description: A Helm chart to deploy the dataverse
+    digest: 72ca61e2d694e35df941b61959e092a4be047248ff4e4349aac3df84dfe875a5
+    name: dataverse
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/dataverse-0.10.0/dataverse-0.10.0.tgz
+    version: 0.10.0
   - apiVersion: v2
     appVersion: 6.5.0
     created: "2025-01-09T15:22:11.183839365Z"
@@ -653,4 +673,4 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.1/mica-0.0.1.tgz
     version: 0.0.1
-generated: "2025-01-09T15:22:11.184629943Z"
+generated: "2025-01-30T13:46:11.574922775Z"
