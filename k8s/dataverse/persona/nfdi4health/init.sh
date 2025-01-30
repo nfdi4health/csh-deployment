@@ -154,7 +154,7 @@ while IFS= read -r TSV; do
   echo "Loading ${TSV}:"
   curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_URL/api/admin/datasetfield/load --upload-file ${TSV}
   echo
-  METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk 'NR==2 {print $2}' $TSV)")
+  METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk -F'\t' 'NR==2 {print $2}' $TSV)")
 done <<< "${TSVS}"
 
 echo "Activating metadata blocks"
@@ -163,6 +163,9 @@ while IFS= read -r DATAVERSE; do
   curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/metadatablocks -d $(jq -c -n '$ARGS.positional' --args "${METADATABLOCK_NAMES[@]}")
   echo
 done <<< "${DATAVERSES}"
+
+echo "Activating metadata field facets"
+curl "$DATAVERSE_URL/api/datasetfields/facetables" | jq ".data | map(.name)" | curl -X POST -H "Content-Type: application/json" -d @- "$DATAVERSE_URL/api/dataverses/root/facets"
 
 echo
 echo

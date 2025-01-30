@@ -1,28 +1,28 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
-	ChronicDiseasesEpidemiology		ChronicDiseasesEpidemiology	
+	resource.customMetadata.chronicDiseasesEpidemiology		NFDI4Health Metadata Schema V3.3 – UC 5.1 Chronic Diseases Epidemiology Block
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	ChronicDiseasesEpidemiology	Chronic disease data collected in the [RESOURCE]	Group of items providing information on chronic disease data collection.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		ChronicDiseasesEpidemiology
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	On which of the following common chronic diseases were data collected?	Specification of the common chronic disease on which data were collected in the [RESOURCE]. Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
-	ChronicDiseasesEpidemiology.dataCollected	Type of data collected	Specification of the type of data collected. Select one value from the list.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
-	ChronicDiseasesEpidemiology.informationSources	From which source(s) are data generated/extracted?	Specification of the source(s) from which information is generated/extracted. Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
-	ChronicDiseasesEpidemiology.outcomesVerificationMethods	How were outcomes generally verified?	Methods of verification differ by study. All the details per outcome are not needed here but rather an explanation of how outcomes were verified in general.		text	4		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	ChronicDiseasesEpidemiology	ChronicDiseasesEpidemiology
+	resource.customMetadata.chronicDiseasesEpidemiology	Chronic disease data collected in the [RESOURCE]	Group of items providing information on chronic disease data collection.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		resource.customMetadata.chronicDiseasesEpidemiology
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	On which of the following common chronic diseases were data collected?	Specification of the common chronic disease on which data were collected in the [RESOURCE]. Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.chronicDiseasesEpidemiology	resource.customMetadata.chronicDiseasesEpidemiology
+	resource.customMetadata.chronicDiseasesEpidemiology.dataCollected	Type of data collected	Specification of the type of data collected. Select one value from the list.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.chronicDiseasesEpidemiology	resource.customMetadata.chronicDiseasesEpidemiology
+	resource.customMetadata.chronicDiseasesEpidemiology.informationSources	From which source(s) are data generated/extracted?	Specification of the source(s) from which information is generated/extracted. Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	resource.customMetadata.chronicDiseasesEpidemiology	resource.customMetadata.chronicDiseasesEpidemiology
+	resource.customMetadata.chronicDiseasesEpidemiology.outcomesVerificationMethods	How were outcomes generally verified?	Methods of verification differ by study. All the details per outcome are not needed here but rather an explanation of how outcomes were verified in general.		text	4		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	resource.customMetadata.chronicDiseasesEpidemiology	resource.customMetadata.chronicDiseasesEpidemiology
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Malignant neoplasms (C00-C97)	CC_0	0
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Type 2 Diabetes mellitus (E11-E14)	CC_1	1
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Hyperlipidaemia (E78)	CC_2	2
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Hypertensive diseases (I10-I15)	CC_3	3
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Ischaemic heart diseases (I20-I25)	CC_4	4
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Heart valve diseases (I34-I39)	CC_5	5
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Cardiac arrhythmia (I47-I49)	CC_6	6
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Heart failure (I50)	CC_7	7
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Cerebrovascular diseases (I60-I69)	CC_8	8
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Diseases of the circulatory system falling into multiple categories	CC_9	9
-	ChronicDiseasesEpidemiology.commonChronicDiseaseName	Data not collected for any of the above-listed diseases	CC_10	10
-	ChronicDiseasesEpidemiology.dataCollected	Prevalent	CD_0	0
-	ChronicDiseasesEpidemiology.dataCollected	Incident	CD_1	1
-	ChronicDiseasesEpidemiology.informationSources	Administrative databases	CI_0	0
-	ChronicDiseasesEpidemiology.informationSources	Biosamples	CI_1	1
-	ChronicDiseasesEpidemiology.informationSources	Other	CI_2	2
-	ChronicDiseasesEpidemiology.informationSources	Physical measures (e.g., clinical examination)	CI_3	3
-	ChronicDiseasesEpidemiology.informationSources	Self-report (questionnaires or interviews), cases not verified	CI_4	4
-	ChronicDiseasesEpidemiology.informationSources	Self-report (questionnaires or interviews), cases verified	CI_5	5
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Malignant neoplasms (C00-C97)	CC_0	0
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Type 2 Diabetes mellitus (E11-E14)	CC_1	1
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Hyperlipidaemia (E78)	CC_2	2
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Hypertensive diseases (I10-I15)	CC_3	3
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Ischaemic heart diseases (I20-I25)	CC_4	4
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Heart valve diseases (I34-I39)	CC_5	5
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Cardiac arrhythmia (I47-I49)	CC_6	6
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Heart failure (I50)	CC_7	7
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Cerebrovascular diseases (I60-I69)	CC_8	8
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Diseases of the circulatory system falling into multiple categories	CC_9	9
+	resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName	Data not collected for any of the above-listed diseases	CC_10	10
+	resource.customMetadata.chronicDiseasesEpidemiology.dataCollected	Prevalent	CD_0	0
+	resource.customMetadata.chronicDiseasesEpidemiology.dataCollected	Incident	CD_1	1
+	resource.customMetadata.chronicDiseasesEpidemiology.informationSources	Administrative databases	CI_0	0
+	resource.customMetadata.chronicDiseasesEpidemiology.informationSources	Biosamples	CI_1	1
+	resource.customMetadata.chronicDiseasesEpidemiology.informationSources	Other	CI_2	2
+	resource.customMetadata.chronicDiseasesEpidemiology.informationSources	Physical measures (e.g., clinical examination)	CI_3	3
+	resource.customMetadata.chronicDiseasesEpidemiology.informationSources	Self-report (questionnaires or interviews), cases not verified	CI_4	4
+	resource.customMetadata.chronicDiseasesEpidemiology.informationSources	Self-report (questionnaires or interviews), cases verified	CI_5	5
