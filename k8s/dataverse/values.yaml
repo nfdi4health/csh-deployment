@@ -19,10 +19,10 @@ dataverse:
       memory: "1Gi"
   pid:
     permalink:
+      type: "perma"
       authority:
-      shoulder:
-      base_url:
-      separator:
+      permalink_base_url:
+      permalink_separator:
 postgres:
   volume_size: "32Gi"
   number_instances: 2
