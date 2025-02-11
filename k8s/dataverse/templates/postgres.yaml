@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/component: postgres
     app.kubernetes.io/part-of: dataverse
 spec:
-  enableLogicalBackup: true
+  enableLogicalBackup: false
   teamId:  {{ .Release.Name }}
   volume:
     size: 32Gi

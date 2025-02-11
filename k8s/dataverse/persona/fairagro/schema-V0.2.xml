@@ -332,54 +332,9 @@
     <field name="MDS_fairagro.author.authorIdentifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.author.authorIdentifierScheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.author.authorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.author" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.author.authorAffiliation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.author.authorIdentifier" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.author.authorIdentifierScheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.author.authorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.contributor" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.contributor.contributorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.contributor.contributorType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.datasetContact" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.datasetContact.datasetContactAffiliation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.datasetContact.datasetContactEmail" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.datasetContact.datasetContactName" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.distributionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.dsDescription" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.dsDescription.dsDescriptionValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.keyword" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.keyword.keywordValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.keyword.keywordVocabulary" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.keyword.keywordVocabularyURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.language" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.otherId" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.otherId.otherIdAgency" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.otherId.otherIdValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.productionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.publication" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.publication.publicationCitation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.publication.publicationIDNumber" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.publication.publicationIDType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.publication.publicationURL" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.relatedDatasets" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.citation.title" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="MDS_fairagro.contributor" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.contributor.contributorName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.contributor.contributorType" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropCultivar" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropCultivarURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropResiduesBurning" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropResiduesIncorporation" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropResiduesRemoval" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropSowingPeriod" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropSpecies" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropSpeciesURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropVariety" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.crop.crop.cropVarietyURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.datasetContact" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.datasetContact.datasetContactAffiliation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.datasetContact.datasetContactEmail" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -387,16 +342,6 @@
     <field name="MDS_fairagro.distributionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="MDS_fairagro.dsDescription" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.dsDescription.dsDescriptionValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.accessRights" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.dataSource" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.resourceType" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.sourceDatasetURI" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.sourceRDI" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.sourceRDI.sourceRDIName" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.sourceRDI.sourceRDIURI" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.generalExtended.yieldMeasurementMethod" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="MDS_fairagro.geographicBoundingBox" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.geographicBoundingBox.eastLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.geographicBoundingBox.northLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -404,14 +349,6 @@
     <field name="MDS_fairagro.geographicBoundingBox.westLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.geographicCoverage" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.geographicCoverage.country" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicBoundingBox" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicBoundingBox.eastLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicBoundingBox.northLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicBoundingBox.southLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicBoundingBox.westLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicCoverage" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicCoverage.city" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.geographic.geographicCoverage.country" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.geographicUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.identifier" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="MDS_fairagro.keyword" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -423,14 +360,6 @@
     <field name="MDS_fairagro.otherId.otherIdValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.otherReferences" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.productionDate" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil" type="text_en" multiValued="false" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil.soil" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil.soil.soilBulkDensity" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil.soil.soilInitialSamplingDate" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil.soil.soilOrganicCarbon" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil.soil.soilPH" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil.soil.soilTexture" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="MDS_fairagro.soil.soil.soilTextureURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.subject" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="MDS_fairagro.title" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="northLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -677,54 +606,9 @@
     <copyField source="MDS_fairagro.author.authorIdentifier" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.author.authorIdentifierScheme" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.author.authorName" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.author" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.author.authorAffiliation" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.author.authorIdentifier" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.author.authorIdentifierScheme" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.author.authorName" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.contributor" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.contributor.contributorName" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.contributor.contributorType" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.datasetContact" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.datasetContact.datasetContactAffiliation" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.datasetContact.datasetContactEmail" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.datasetContact.datasetContactName" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.distributionDate" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.dsDescription" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.dsDescription.dsDescriptionValue" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.keyword" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.keyword.keywordValue" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.keyword.keywordVocabulary" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.keyword.keywordVocabularyURI" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.language" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.otherId" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.otherId.otherIdAgency" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.otherId.otherIdValue" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.productionDate" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.publication" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.publication.publicationCitation" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.publication.publicationIDNumber" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.publication.publicationIDType" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.publication.publicationURL" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.relatedDatasets" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.subject" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.citation.title" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.contributor" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.contributor.contributorName" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.contributor.contributorType" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropCultivar" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropCultivarURI" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropResiduesBurning" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropResiduesIncorporation" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropResiduesRemoval" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropSowingPeriod" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropSpecies" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropSpeciesURI" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropVariety" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.crop.crop.cropVarietyURI" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.datasetContact" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.datasetContact.datasetContactAffiliation" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.datasetContact.datasetContactEmail" dest="_text_" maxChars="3000"/>
@@ -732,16 +616,6 @@
     <copyField source="MDS_fairagro.distributionDate" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.dsDescription" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.dsDescription.dsDescriptionValue" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.accessRights" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.dataSource" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.resourceType" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.sourceDatasetURI" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.sourceRDI" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.sourceRDI.sourceRDIName" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.sourceRDI.sourceRDIURI" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.generalExtended.yieldMeasurementMethod" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.geographicBoundingBox" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.geographicBoundingBox.eastLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.geographicBoundingBox.northLongitude" dest="_text_" maxChars="3000"/>
@@ -749,14 +623,6 @@
     <copyField source="MDS_fairagro.geographicBoundingBox.westLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.geographicCoverage" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.geographicCoverage.country" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicBoundingBox" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicBoundingBox.eastLongitude" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicBoundingBox.northLongitude" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicBoundingBox.southLongitude" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicBoundingBox.westLongitude" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicCoverage" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicCoverage.city" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.geographic.geographicCoverage.country" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.geographicUnit" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.identifier" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.keyword" dest="_text_" maxChars="3000"/>
@@ -768,14 +634,6 @@
     <copyField source="MDS_fairagro.otherId.otherIdValue" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.otherReferences" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.productionDate" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil.soil" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil.soil.soilBulkDensity" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil.soil.soilInitialSamplingDate" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil.soil.soilOrganicCarbon" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil.soil.soilPH" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil.soil.soilTexture" dest="_text_" maxChars="3000"/>
-    <copyField source="MDS_fairagro.soil.soil.soilTextureURI" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.subject" dest="_text_" maxChars="3000"/>
     <copyField source="MDS_fairagro.title" dest="_text_" maxChars="3000"/>
     <copyField source="northLongitude" dest="_text_" maxChars="3000"/>
