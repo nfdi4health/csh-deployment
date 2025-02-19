@@ -17,7 +17,8 @@ dataverse:
       memory: "4Gi"
     requests:
       memory: "1Gi"
-  pid:
+  default_pid_provider: "permalink"
+  pid_providers:
     permalink:
       type: "perma"
       authority:
