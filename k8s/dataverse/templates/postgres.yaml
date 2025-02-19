@@ -10,14 +10,16 @@ metadata:
     app.kubernetes.io/component: postgres
     app.kubernetes.io/part-of: dataverse
 spec:
-  enableLogicalBackup: false
+  enableLogicalBackup: {{ .Values.postgres.logical_backup }}
   teamId:  {{ .Release.Name }}
   volume:
-    size: 32Gi
-  numberOfInstances: 2
+    size:  {{ .Values.postgres.volume_size }}
+  numberOfInstances: {{ int .Values.postgres.number_instances }}
+  {{ if gt (int .Values.postgres.number_instances) 1 }}
   enableConnectionPooler: true
   connectionPooler:
    mode: session
+  {{ end }}
   users:
     dataverse:  # database owner
     - superuser

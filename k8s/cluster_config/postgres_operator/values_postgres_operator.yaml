@@ -23,3 +23,5 @@ configLogicalBackup:
   logical_backup_s3_retention_time: "1 month"
   # backup schedule in the cron format
   logical_backup_schedule: "1 * * * *"
+# Only useful for non-productive installations https://github.com/zalando/postgres-operator/blob/master/docs/administrator.md#pod-disruption-budget**********
+enable_pod_disruption_budget: false

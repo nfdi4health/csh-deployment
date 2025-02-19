@@ -19,10 +19,21 @@ dataverse:
       memory: "1Gi"
   pid:
     permalink:
+      type: "perma"
       authority:
-      shoulder:
-      base_url:
-      separator:
+      permalink_base_url:
+      permalink_separator:
+postgres:
+  volume_size: "32Gi"
+  number_instances: 2
+  logical_backup: true
+solr:
+  volume_size: "2Gi"
+  resources:
+    limits:
+      memory: "4Gi"
+    requests:
+      memory: "1Gi"
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.2
-  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.3
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.5
+  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.5

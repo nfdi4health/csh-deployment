@@ -1,51 +1,51 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
-	DietAssessment		DietAssessment	
+	resource.customMetadata.dietAssessment		NFDI4Health Metadata Schema V3.3 – UC 5.1 Diet Assessment Block
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	DietAssessment	Diet assessment information collected in the [RESOURCE]	Group of items providing information on diet assessment.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		DietAssessment	
-	DietAssessment.instrument	Dietary assessment instrument used	Specification of the dietary assessment instrument used in the [RESOURCE]. Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.ffqItemsNumber	Number of items in FFQ	The number of items inquired by the food frequency questionnaire (FFQ).		int	2		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.mode	Mode(s) used to apply the dietary assessment instrument	Specification of how the dietary assessment instrument was applied to participants of the [RESOURCE]. Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.device	Device(s) used to apply the dietary assessment instrument	Specification of device(s) used to apply the dietary assessment instrument to participants of the [RESOURCE]. Select all that apply.		text	4		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.portionSizeEstimation	Portion size estimated by:	Specification of how the portion size is inquired in the dietary assessment instrument. Select all that apply.		text	5		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.referencePeriodUnit	Reference period unit	Indication of the reference period the dietary assessment instrument refers to (e.g. 24-h recall refers to the previous day). Select one value from the list.		text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.referencePeriodNumber	Numerical value of reference period units	Indication of the number of reference period units assessed.		int	7		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.repeat	Instrument applied repeatedly?	Indication whether the same instrument was applied repeatedly.		text	8		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.repeatFrequency	Frequency of instrument application	Indication of how often the dietary assessment instrument was repeatedly applied.		int	9		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.validity	Instrument validated?	Indication whether the dietary assessment instrument was validated.		text	10		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.validityReference	Reference describing the validation	Indication of the reference describing the validation.		text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.reliability	Instrument described according to reliability?	Indication whether the dietary assessment instrument was described according to its reliability.		text	12		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.reliabilityReference	Reference describing reliability measures	Indication of the reference describing the reliability measures.		text	13		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	DietAssessment	DietAssessment	
-	DietAssessment.dietarySupplements	Dietary supplements inquired?	Indication whether the dietary assessment instrument inquires information about dietary supplements.		text	14		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	DietAssessment	DietAssessment	
+	resource.customMetadata.dietAssessment	Diet assessment information collected in the [RESOURCE]	Group of items providing information on diet assessment.		none	0		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE		resource.customMetadata.dietAssessment	
+	resource.customMetadata.dietAssessment.instrument	Dietary assessment instrument used	Specification of the dietary assessment instrument used in the [RESOURCE]. Select one value from the list.		text	1		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.ffqItemsNumber	Number of items in FFQ	The number of items inquired by the food frequency questionnaire (FFQ).		int	2		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment	
+	resource.customMetadata.dietAssessment.mode	Mode(s) used to apply the dietary assessment instrument	Specification of how the dietary assessment instrument was applied to participants of the [RESOURCE]. Select all that apply.		text	3		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.device	Device(s) used to apply the dietary assessment instrument	Specification of device(s) used to apply the dietary assessment instrument to participants of the [RESOURCE]. Select all that apply.		text	4		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.portionSizeEstimation	Portion size estimated by:	Specification of how the portion size is inquired in the dietary assessment instrument. Select all that apply.		text	5		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.referencePeriodUnit	Reference period unit	Indication of the reference period the dietary assessment instrument refers to (e.g. 24-h recall refers to the previous day). Select one value from the list.		text	6		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.referencePeriodNumber	Numerical value of reference period units	Indication of the number of reference period units assessed.		int	7		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment	
+	resource.customMetadata.dietAssessment.repeat	Instrument applied repeatedly?	Indication whether the same instrument was applied repeatedly.		text	8		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.repeatFrequency	Frequency of instrument application	Indication of how often the dietary assessment instrument was repeatedly applied.		int	9		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment	
+	resource.customMetadata.dietAssessment.validity	Instrument validated?	Indication whether the dietary assessment instrument was validated.		text	10		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.validityReference	Reference describing the validation	Indication of the reference describing the validation.		text	11		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment	
+	resource.customMetadata.dietAssessment.reliability	Instrument described according to reliability?	Indication whether the dietary assessment instrument was described according to its reliability.		text	12		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
+	resource.customMetadata.dietAssessment.reliabilityReference	Reference describing reliability measures	Indication of the reference describing the reliability measures.		text	13		TRUE	FALSE	FALSE	FALSE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment	
+	resource.customMetadata.dietAssessment.dietarySupplements	Dietary supplements inquired?	Indication whether the dietary assessment instrument inquires information about dietary supplements.		text	14		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.customMetadata.dietAssessment	resource.customMetadata.dietAssessment
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder
-	DietAssessment.instrument	Food frequency questionnaire (FFQ)	DI_0	0
-	DietAssessment.instrument	Diet history	DI_1	1
-	DietAssessment.instrument	24-h dietary recall	DI_2	2
-	DietAssessment.instrument	Food record	DI_3	3
-	DietAssessment.instrument	Screener	DI_4	4
-	DietAssessment.instrument	Other	DI_5	5
-	DietAssessment.mode	Face-to-face interview	DM_0	0
-	DietAssessment.mode	Other	DM_1	1
-	DietAssessment.mode	Proxy-administered	DM_2	2
-	DietAssessment.mode	Self-administered	DM_3	3
-	DietAssessment.mode	Telephone interview	DM_4	4
-	DietAssessment.device	App-based	DD_0	0
-	DietAssessment.device	Online questionnaire	DD_1	1
-	DietAssessment.device	Other	DD_2	2
-	DietAssessment.device	Paper-based	DD_3	3
-	DietAssessment.portionSizeEstimation	Described portion sizes	DP_0	0
-	DietAssessment.portionSizeEstimation	None	DP_1	1
-	DietAssessment.portionSizeEstimation	Picture book/visual aids	DP_2	2
-	DietAssessment.portionSizeEstimation	Volume measures	DP_3	3
-	DietAssessment.portionSizeEstimation	Weighing	DP_4	4
-	DietAssessment.referencePeriodUnit	Days	DR_0	0
-	DietAssessment.referencePeriodUnit	Weeks	DR_1	1
-	DietAssessment.referencePeriodUnit	Months	DR_2	2
-	DietAssessment.referencePeriodUnit	Years	DR_3	3
-	DietAssessment.repeat	Yes	DR_1_0	0
-	DietAssessment.repeat	No	DR_1_1	1
-	DietAssessment.validity	Yes	DV_0	0
-	DietAssessment.validity	No	DV_1	1
-	DietAssessment.reliability	Yes	DR_2_0	0
-	DietAssessment.reliability	No	DR_2_1	1
-	DietAssessment.dietarySupplements	Yes	DD_1_0	0
-	DietAssessment.dietarySupplements	No	DD_1_1	1
+	resource.customMetadata.dietAssessment.instrument	Food frequency questionnaire (FFQ)	DI_0	0
+	resource.customMetadata.dietAssessment.instrument	Diet history	DI_1	1
+	resource.customMetadata.dietAssessment.instrument	24-h dietary recall	DI_2	2
+	resource.customMetadata.dietAssessment.instrument	Food record	DI_3	3
+	resource.customMetadata.dietAssessment.instrument	Screener	DI_4	4
+	resource.customMetadata.dietAssessment.instrument	Other	DI_5	5
+	resource.customMetadata.dietAssessment.mode	Face-to-face interview	DM_0	0
+	resource.customMetadata.dietAssessment.mode	Other	DM_1	1
+	resource.customMetadata.dietAssessment.mode	Proxy-administered	DM_2	2
+	resource.customMetadata.dietAssessment.mode	Self-administered	DM_3	3
+	resource.customMetadata.dietAssessment.mode	Telephone interview	DM_4	4
+	resource.customMetadata.dietAssessment.device	App-based	DD_0	0
+	resource.customMetadata.dietAssessment.device	Online questionnaire	DD_1	1
+	resource.customMetadata.dietAssessment.device	Other	DD_2	2
+	resource.customMetadata.dietAssessment.device	Paper-based	DD_3	3
+	resource.customMetadata.dietAssessment.portionSizeEstimation	Described portion sizes	DP_0	0
+	resource.customMetadata.dietAssessment.portionSizeEstimation	None	DP_1	1
+	resource.customMetadata.dietAssessment.portionSizeEstimation	Picture book/visual aids	DP_2	2
+	resource.customMetadata.dietAssessment.portionSizeEstimation	Volume measures	DP_3	3
+	resource.customMetadata.dietAssessment.portionSizeEstimation	Weighing	DP_4	4
+	resource.customMetadata.dietAssessment.referencePeriodUnit	Days	DR_0	0
+	resource.customMetadata.dietAssessment.referencePeriodUnit	Weeks	DR_1	1
+	resource.customMetadata.dietAssessment.referencePeriodUnit	Months	DR_2	2
+	resource.customMetadata.dietAssessment.referencePeriodUnit	Years	DR_3	3
+	resource.customMetadata.dietAssessment.repeat	Yes	DR_1_0	0
+	resource.customMetadata.dietAssessment.repeat	No	DR_1_1	1
+	resource.customMetadata.dietAssessment.validity	Yes	DV_0	0
+	resource.customMetadata.dietAssessment.validity	No	DV_1	1
+	resource.customMetadata.dietAssessment.reliability	Yes	DR_2_0	0
+	resource.customMetadata.dietAssessment.reliability	No	DR_2_1	1
+	resource.customMetadata.dietAssessment.dietarySupplements	Yes	DD_1_0	0
+	resource.customMetadata.dietAssessment.dietarySupplements	No	DD_1_1	1
