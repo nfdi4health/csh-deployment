@@ -752,6 +752,7 @@
     <copyField source="characteristicOfSources" dest="_text_" maxChars="3000"/>
     <copyField source="city" dest="_text_" maxChars="3000"/>
     <copyField source="city" dest="geographicCoverage" maxChars="3000"/>
+    <copyField source="city" dest="geospatial" maxChars="3000"/>
     <copyField source="cleaningOperations" dest="_text_" maxChars="3000"/>
     <copyField source="cleaningOperations" dest="socialscience" maxChars="3000"/>
     <copyField source="collectionMode" dest="_text_" maxChars="3000"/>
@@ -767,6 +768,7 @@
     <copyField source="controlOperations" dest="socialscience" maxChars="3000"/>
     <copyField source="country" dest="_text_" maxChars="3000"/>
     <copyField source="country" dest="geographicCoverage" maxChars="3000"/>
+    <copyField source="country" dest="geospatial" maxChars="3000"/>
     <copyField source="coverage.Depth" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Depth" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.ObjectCount" dest="_text_" maxChars="3000"/>
@@ -777,8 +779,10 @@
     <copyField source="coverage.Polarization" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Redshift.MaximumValue" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Redshift.MaximumValue" dest="coverage.RedshiftValue" maxChars="3000"/>
+    <copyField source="coverage.Redshift.MaximumValue" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Redshift.MinimumValue" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Redshift.MinimumValue" dest="coverage.RedshiftValue" maxChars="3000"/>
+    <copyField source="coverage.Redshift.MinimumValue" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.RedshiftValue" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.RedshiftValue" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.SkyFraction" dest="_text_" maxChars="3000"/>
@@ -791,16 +795,20 @@
     <copyField source="coverage.Spectral.CentralWavelength" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Spectral.MaximumWavelength" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Spectral.MaximumWavelength" dest="coverage.Spectral.Wavelength" maxChars="3000"/>
+    <copyField source="coverage.Spectral.MaximumWavelength" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Spectral.MinimumWavelength" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Spectral.MinimumWavelength" dest="coverage.Spectral.Wavelength" maxChars="3000"/>
+    <copyField source="coverage.Spectral.MinimumWavelength" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Spectral.Wavelength" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Spectral.Wavelength" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Temporal" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Temporal" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Temporal.StartTime" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Temporal.StartTime" dest="coverage.Temporal" maxChars="3000"/>
+    <copyField source="coverage.Temporal.StartTime" dest="astrophysics" maxChars="3000"/>
     <copyField source="coverage.Temporal.StopTime" dest="_text_" maxChars="3000"/>
     <copyField source="coverage.Temporal.StopTime" dest="coverage.Temporal" maxChars="3000"/>
+    <copyField source="coverage.Temporal.StopTime" dest="astrophysics" maxChars="3000"/>
     <copyField source="dataCollectionSituation" dest="_text_" maxChars="3000"/>
     <copyField source="dataCollectionSituation" dest="socialscience" maxChars="3000"/>
     <copyField source="dataCollector" dest="_text_" maxChars="3000"/>
@@ -843,6 +851,7 @@
     <copyField source="dsDescriptionValue" dest="dsDescription" maxChars="3000"/>
     <copyField source="eastLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="eastLongitude" dest="geographicBoundingBox" maxChars="3000"/>
+    <copyField source="eastLongitude" dest="geospatial" maxChars="3000"/>
     <copyField source="frequencyOfDataCollection" dest="_text_" maxChars="3000"/>
     <copyField source="frequencyOfDataCollection" dest="socialscience" maxChars="3000"/>
     <copyField source="geographicBoundingBox" dest="_text_" maxChars="3000"/>
@@ -860,10 +869,13 @@
     <copyField source="journalArticleType" dest="journal" maxChars="3000"/>
     <copyField source="journalIssue" dest="_text_" maxChars="3000"/>
     <copyField source="journalIssue" dest="journalVolumeIssue" maxChars="3000"/>
+    <copyField source="journalIssue" dest="journal" maxChars="3000"/>
     <copyField source="journalPubDate" dest="_text_" maxChars="3000"/>
     <copyField source="journalPubDate" dest="journalVolumeIssue" maxChars="3000"/>
+    <copyField source="journalPubDate" dest="journal" maxChars="3000"/>
     <copyField source="journalVolume" dest="_text_" maxChars="3000"/>
     <copyField source="journalVolume" dest="journalVolumeIssue" maxChars="3000"/>
+    <copyField source="journalVolume" dest="journal" maxChars="3000"/>
     <copyField source="journalVolumeIssue" dest="_text_" maxChars="3000"/>
     <copyField source="journalVolumeIssue" dest="journal" maxChars="3000"/>
     <copyField source="keyword" dest="_text_" maxChars="3000"/>
@@ -883,12 +895,14 @@
     <copyField source="mica.hasAnnotatedVariables" dest="mica" maxChars="3000"/>
     <copyField source="northLatitude" dest="_text_" maxChars="3000"/>
     <copyField source="northLatitude" dest="geographicBoundingBox" maxChars="3000"/>
+    <copyField source="northLatitude" dest="geospatial" maxChars="3000"/>
     <copyField source="notesText" dest="_text_" maxChars="3000"/>
     <copyField source="originOfSources" dest="_text_" maxChars="3000"/>
     <copyField source="otherDataAppraisal" dest="_text_" maxChars="3000"/>
     <copyField source="otherDataAppraisal" dest="socialscience" maxChars="3000"/>
     <copyField source="otherGeographicCoverage" dest="_text_" maxChars="3000"/>
     <copyField source="otherGeographicCoverage" dest="geographicCoverage" maxChars="3000"/>
+    <copyField source="otherGeographicCoverage" dest="geospatial" maxChars="3000"/>
     <copyField source="otherId" dest="_text_" maxChars="3000"/>
     <copyField source="otherIdAgency" dest="_text_" maxChars="3000"/>
     <copyField source="otherIdAgency" dest="otherId" maxChars="3000"/>
@@ -937,62 +951,106 @@
     <copyField source="resource.acronyms" dest="resource" maxChars="3000"/>
     <copyField source="resource.acronyms.language" dest="_text_" maxChars="3000"/>
     <copyField source="resource.acronyms.language" dest="resource.acronyms" maxChars="3000"/>
+    <copyField source="resource.acronyms.language" dest="resource" maxChars="3000"/>
     <copyField source="resource.acronyms.text" dest="_text_" maxChars="3000"/>
     <copyField source="resource.acronyms.text" dest="resource.acronyms" maxChars="3000"/>
+    <copyField source="resource.acronyms.text" dest="resource" maxChars="3000"/>
     <copyField source="resource.chronicDiseases" dest="_text_" maxChars="3000"/>
     <copyField source="resource.chronicDiseases" dest="resource" maxChars="3000"/>
     <copyField source="resource.classification" dest="_text_" maxChars="3000"/>
     <copyField source="resource.classification" dest="resource" maxChars="3000"/>
     <copyField source="resource.classification.type" dest="_text_" maxChars="3000"/>
     <copyField source="resource.classification.type" dest="resource.classification" maxChars="3000"/>
+    <copyField source="resource.classification.type" dest="resource" maxChars="3000"/>
     <copyField source="resource.classification.typeGeneral" dest="_text_" maxChars="3000"/>
     <copyField source="resource.classification.typeGeneral" dest="resource.classification" maxChars="3000"/>
+    <copyField source="resource.classification.typeGeneral" dest="resource" maxChars="3000"/>
     <copyField source="resource.collection" dest="_text_" maxChars="3000"/>
     <copyField source="resource.collection" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.address" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.address" dest="resource.contributors.affiliations" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.address" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.address" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.identifiers" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.identifiers" dest="resource.contributors.affiliations" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.identifiers.identifier" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.identifiers.identifier" dest="resource.contributors.affiliations.identifiers" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers.identifier" dest="resource.contributors.affiliations" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers.identifier" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers.identifier" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.identifiers.scheme" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.identifiers.scheme" dest="resource.contributors.affiliations.identifiers" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers.scheme" dest="resource.contributors.affiliations" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers.scheme" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.identifiers.scheme" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.name" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.name" dest="resource.contributors.affiliations" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.name" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.name" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.webpage" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.webpage" dest="resource.contributors.affiliations" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.webpage" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.affiliations.webpage" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.email" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.email" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.email" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.nameType" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.nameType" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.nameType" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.organisational" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.organisational" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.organisational" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.organisational.fundingIds" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.organisational.fundingIds" dest="resource.contributors.organisational" maxChars="3000"/>
+    <copyField source="resource.contributors.organisational.fundingIds" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.organisational.fundingIds" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.organisational.name" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.organisational.name" dest="resource.contributors.organisational" maxChars="3000"/>
+    <copyField source="resource.contributors.organisational.name" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.organisational.name" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.organisational.type" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.organisational.type" dest="resource.contributors.organisational" maxChars="3000"/>
+    <copyField source="resource.contributors.organisational.type" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.organisational.type" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.personal" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.personal" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.personal" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.personal.familyName" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.personal.familyName" dest="resource.contributors.personal" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.familyName" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.familyName" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.personal.givenName" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.personal.givenName" dest="resource.contributors.personal" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.givenName" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.givenName" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.personal.identifiers" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.personal.identifiers" dest="resource.contributors.personal" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.personal.identifiers.identifier" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.personal.identifiers.identifier" dest="resource.contributors.personal.identifiers" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers.identifier" dest="resource.contributors.personal" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers.identifier" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers.identifier" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.personal.identifiers.scheme" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.personal.identifiers.scheme" dest="resource.contributors.personal.identifiers" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers.scheme" dest="resource.contributors.personal" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers.scheme" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.identifiers.scheme" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.personal.type" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.personal.type" dest="resource.contributors.personal" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.type" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.personal.type" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors.phone" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.phone" dest="resource.contributors" maxChars="3000"/>
+    <copyField source="resource.contributors.phone" dest="resource" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName" dest="_text_" maxChars="3000"/>
     <copyField source="resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName" dest="resource.customMetadata.chronicDiseasesEpidemiology" maxChars="3000"/>
@@ -1077,36 +1135,50 @@
     <copyField source="resource.descriptions" dest="resource" maxChars="3000"/>
     <copyField source="resource.descriptions.language" dest="_text_" maxChars="3000"/>
     <copyField source="resource.descriptions.language" dest="resource.descriptions" maxChars="3000"/>
+    <copyField source="resource.descriptions.language" dest="resource" maxChars="3000"/>
     <copyField source="resource.descriptions.text" dest="_text_" maxChars="3000"/>
     <copyField source="resource.descriptions.text" dest="resource.descriptions" maxChars="3000"/>
+    <copyField source="resource.descriptions.text" dest="resource" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.endDate" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.endDate" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.endDate" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.ethicsCommitteeApproval" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.ethicsCommitteeApproval" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.ethicsCommitteeApproval" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.reasonStopped" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.reasonStopped" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.reasonStopped" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.recruitmentStatusRegister" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.recruitmentStatusRegister" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.recruitmentStatusRegister" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.stageStopped" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.stageStopped" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.stageStopped" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.startDate" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.startDate" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.startDate" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.status" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.status" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.status" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.statusEnrollingByInvitation" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.statusEnrollingByInvitation" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.statusEnrollingByInvitation" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.statusWhenIntervention" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.administrativeInformation.statusWhenIntervention" dest="resource.design.administrativeInformation" maxChars="3000"/>
+    <copyField source="resource.design.administrativeInformation.statusWhenIntervention" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.arms" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.arms" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.arms.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.arms.description" dest="resource.design.arms" maxChars="3000"/>
+    <copyField source="resource.design.arms.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.arms.label" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.arms.label" dest="resource.design.arms" maxChars="3000"/>
+    <copyField source="resource.design.arms.label" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.arms.type" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.arms.type" dest="resource.design.arms" maxChars="3000"/>
+    <copyField source="resource.design.arms.type" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.assessments" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.assessments" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.centers" dest="_text_" maxChars="3000"/>
@@ -1119,10 +1191,13 @@
     <copyField source="resource.design.conditions" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.conditions.classification" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.conditions.classification" dest="resource.design.conditions" maxChars="3000"/>
+    <copyField source="resource.design.conditions.classification" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.conditions.code" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.conditions.code" dest="resource.design.conditions" maxChars="3000"/>
+    <copyField source="resource.design.conditions.code" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.conditions.label" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.conditions.label" dest="resource.design.conditions" maxChars="3000"/>
+    <copyField source="resource.design.conditions.label" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataProviders" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataProviders" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataProvidersNumber" dest="_text_" maxChars="3000"/>
@@ -1131,154 +1206,226 @@
     <copyField source="resource.design.dataSharingPlan" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.accessCriteria" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.accessCriteria" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.accessCriteria" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.datashield" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.datashield" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.datashield" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.description" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.generally" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.generally" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.generally" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.recordLinkage" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.recordLinkage" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.recordLinkage" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.requestData" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.requestData" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.requestData" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.supportingInformation" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.supportingInformation" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.supportingInformation" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.timeFrame" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.timeFrame" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.timeFrame" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.url" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSharingPlan.url" dest="resource.design.dataSharingPlan" maxChars="3000"/>
+    <copyField source="resource.design.dataSharingPlan.url" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSource" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSource" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSource.biosamples" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSource.biosamples" dest="resource.design.dataSource" maxChars="3000"/>
+    <copyField source="resource.design.dataSource.biosamples" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSource.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSource.description" dest="resource.design.dataSource" maxChars="3000"/>
+    <copyField source="resource.design.dataSource.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSource.general" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSource.general" dest="resource.design.dataSource" maxChars="3000"/>
+    <copyField source="resource.design.dataSource.general" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSource.imaging" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSource.imaging" dest="resource.design.dataSource" maxChars="3000"/>
+    <copyField source="resource.design.dataSource.imaging" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.dataSource.omics" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.dataSource.omics" dest="resource.design.dataSource" maxChars="3000"/>
+    <copyField source="resource.design.dataSource.omics" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMax" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMax" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMax" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMax.number" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMax.number" dest="resource.design.eligibilityCriteria.ageMax" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMax.number" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMax.number" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMax.timeUnit" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMax.timeUnit" dest="resource.design.eligibilityCriteria.ageMax" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMax.timeUnit" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMax.timeUnit" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMin" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMin" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMin" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMin.number" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMin.number" dest="resource.design.eligibilityCriteria.ageMin" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMin.number" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMin.number" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMin.timeUnit" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.ageMin.timeUnit" dest="resource.design.eligibilityCriteria.ageMin" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMin.timeUnit" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.ageMin.timeUnit" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.exclusionCriteria" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.exclusionCriteria" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.exclusionCriteria" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.genders" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.genders" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.genders" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.inclusionCriteria" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.eligibilityCriteria.inclusionCriteria" dest="resource.design.eligibilityCriteria" maxChars="3000"/>
+    <copyField source="resource.design.eligibilityCriteria.inclusionCriteria" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.exposures" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.exposures" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.exposures.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.exposures.description" dest="resource.design.exposures" maxChars="3000"/>
+    <copyField source="resource.design.exposures.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.exposures.groupsLabel" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.exposures.groupsLabel" dest="resource.design.exposures" maxChars="3000"/>
+    <copyField source="resource.design.exposures.groupsLabel" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.exposures.name" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.exposures.name" dest="resource.design.exposures" maxChars="3000"/>
+    <copyField source="resource.design.exposures.name" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.exposures.type" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.exposures.type" dest="resource.design.exposures" maxChars="3000"/>
+    <copyField source="resource.design.exposures.type" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.focus" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.focus" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.focus.classification" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.focus.classification" dest="resource.design.focus" maxChars="3000"/>
+    <copyField source="resource.design.focus.classification" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.focus.code" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.focus.code" dest="resource.design.focus" maxChars="3000"/>
+    <copyField source="resource.design.focus.code" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.focus.label" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.focus.label" dest="resource.design.focus" maxChars="3000"/>
+    <copyField source="resource.design.focus.label" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.groups" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.groups" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.groups.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.groups.description" dest="resource.design.groups" maxChars="3000"/>
+    <copyField source="resource.design.groups.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.groups.label" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.groups.label" dest="resource.design.groups" maxChars="3000"/>
+    <copyField source="resource.design.groups.label" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.groupsOfDiseases" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.groupsOfDiseases" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.groupsOfDiseases.conditions" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.groupsOfDiseases.conditions" dest="resource.design.groupsOfDiseases" maxChars="3000"/>
+    <copyField source="resource.design.groupsOfDiseases.conditions" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.groupsOfDiseases.generally" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.groupsOfDiseases.generally" dest="resource.design.groupsOfDiseases" maxChars="3000"/>
+    <copyField source="resource.design.groupsOfDiseases.generally" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.hypotheses" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.hypotheses" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional.allocation" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional.allocation" dest="resource.design.interventional" maxChars="3000"/>
+    <copyField source="resource.design.interventional.allocation" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking" dest="resource.design.interventional" maxChars="3000"/>
+    <copyField source="resource.design.interventional.masking" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking.description" dest="resource.design.interventional.masking" maxChars="3000"/>
+    <copyField source="resource.design.interventional.masking.description" dest="resource.design.interventional" maxChars="3000"/>
+    <copyField source="resource.design.interventional.masking.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking.general" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking.general" dest="resource.design.interventional.masking" maxChars="3000"/>
+    <copyField source="resource.design.interventional.masking.general" dest="resource.design.interventional" maxChars="3000"/>
+    <copyField source="resource.design.interventional.masking.general" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking.roles" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional.masking.roles" dest="resource.design.interventional.masking" maxChars="3000"/>
+    <copyField source="resource.design.interventional.masking.roles" dest="resource.design.interventional" maxChars="3000"/>
+    <copyField source="resource.design.interventional.masking.roles" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional.offLabelUse" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional.offLabelUse" dest="resource.design.interventional" maxChars="3000"/>
+    <copyField source="resource.design.interventional.offLabelUse" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventional.phase" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventional.phase" dest="resource.design.interventional" maxChars="3000"/>
+    <copyField source="resource.design.interventional.phase" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventions" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventions" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventions.armsLabel" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventions.armsLabel" dest="resource.design.interventions" maxChars="3000"/>
+    <copyField source="resource.design.interventions.armsLabel" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventions.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventions.description" dest="resource.design.interventions" maxChars="3000"/>
+    <copyField source="resource.design.interventions.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventions.name" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventions.name" dest="resource.design.interventions" maxChars="3000"/>
+    <copyField source="resource.design.interventions.name" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.interventions.type" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.interventions.type" dest="resource.design.interventions" maxChars="3000"/>
+    <copyField source="resource.design.interventions.type" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.mortalityData" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.mortalityData" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.biospecimenDescription" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.biospecimenDescription" dest="resource.design.nonInterventional" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.biospecimenDescription" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.biospecimenRetention" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.biospecimenRetention" dest="resource.design.nonInterventional" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.biospecimenRetention" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration" dest="resource.design.nonInterventional" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.targetFollowUpDuration" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration.frequency" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration.frequency" dest="resource.design.nonInterventional.targetFollowUpDuration" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.targetFollowUpDuration.frequency" dest="resource.design.nonInterventional" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.targetFollowUpDuration.frequency" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration.number" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration.number" dest="resource.design.nonInterventional.targetFollowUpDuration" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.targetFollowUpDuration.number" dest="resource.design.nonInterventional" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.targetFollowUpDuration.number" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration.timeUnit" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.targetFollowUpDuration.timeUnit" dest="resource.design.nonInterventional.targetFollowUpDuration" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.targetFollowUpDuration.timeUnit" dest="resource.design.nonInterventional" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.targetFollowUpDuration.timeUnit" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.timePerspectives" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.nonInterventional.timePerspectives" dest="resource.design.nonInterventional" maxChars="3000"/>
+    <copyField source="resource.design.nonInterventional.timePerspectives" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.outcomes" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.outcomes" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.outcomes.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.outcomes.description" dest="resource.design.outcomes" maxChars="3000"/>
+    <copyField source="resource.design.outcomes.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.outcomes.timeFrame" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.outcomes.timeFrame" dest="resource.design.outcomes" maxChars="3000"/>
+    <copyField source="resource.design.outcomes.timeFrame" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.outcomes.title" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.outcomes.title" dest="resource.design.outcomes" maxChars="3000"/>
+    <copyField source="resource.design.outcomes.title" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.outcomes.type" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.outcomes.type" dest="resource.design.outcomes" maxChars="3000"/>
+    <copyField source="resource.design.outcomes.type" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.population" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.population" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.population.countries" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.population.countries" dest="resource.design.population" maxChars="3000"/>
+    <copyField source="resource.design.population.countries" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.population.coverage" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.population.coverage" dest="resource.design.population" maxChars="3000"/>
+    <copyField source="resource.design.population.coverage" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.population.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.population.description" dest="resource.design.population" maxChars="3000"/>
+    <copyField source="resource.design.population.description" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.population.obtainedSampleSize" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.population.obtainedSampleSize" dest="resource.design.population" maxChars="3000"/>
+    <copyField source="resource.design.population.obtainedSampleSize" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.population.region" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.population.region" dest="resource.design.population" maxChars="3000"/>
+    <copyField source="resource.design.population.region" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.population.targetSampleSize" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.population.targetSampleSize" dest="resource.design.population" maxChars="3000"/>
+    <copyField source="resource.design.population.targetSampleSize" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.primaryDesign" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.primaryDesign" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.primaryPurpose" dest="_text_" maxChars="3000"/>
@@ -1287,16 +1434,21 @@
     <copyField source="resource.design.sampling" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.sampling.method" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.sampling.method" dest="resource.design.sampling" maxChars="3000"/>
+    <copyField source="resource.design.sampling.method" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.sampling.nonProbabilityMethod" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.sampling.nonProbabilityMethod" dest="resource.design.sampling" maxChars="3000"/>
+    <copyField source="resource.design.sampling.nonProbabilityMethod" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.sampling.probabilityMethod" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.sampling.probabilityMethod" dest="resource.design.sampling" maxChars="3000"/>
+    <copyField source="resource.design.sampling.probabilityMethod" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.studyType" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.studyType" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.studyType.interventional" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.studyType.interventional" dest="resource.design.studyType" maxChars="3000"/>
+    <copyField source="resource.design.studyType.interventional" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.studyType.nonInterventional" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.studyType.nonInterventional" dest="resource.design.studyType" maxChars="3000"/>
+    <copyField source="resource.design.studyType.nonInterventional" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.design.subject" dest="_text_" maxChars="3000"/>
     <copyField source="resource.design.subject" dest="resource.design" maxChars="3000"/>
     <copyField source="resource.identifier" dest="_text_" maxChars="3000"/>
@@ -1307,90 +1459,138 @@
     <copyField source="resource.idsAlternative" dest="resource" maxChars="3000"/>
     <copyField source="resource.idsAlternative.identifier" dest="_text_" maxChars="3000"/>
     <copyField source="resource.idsAlternative.identifier" dest="resource.idsAlternative" maxChars="3000"/>
+    <copyField source="resource.idsAlternative.identifier" dest="resource" maxChars="3000"/>
     <copyField source="resource.idsAlternative.scheme" dest="_text_" maxChars="3000"/>
     <copyField source="resource.idsAlternative.scheme" dest="resource.idsAlternative" maxChars="3000"/>
+    <copyField source="resource.idsAlternative.scheme" dest="resource" maxChars="3000"/>
     <copyField source="resource.ids.identifier" dest="_text_" maxChars="3000"/>
     <copyField source="resource.ids.identifier" dest="resource.ids" maxChars="3000"/>
+    <copyField source="resource.ids.identifier" dest="resource" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health" dest="_text_" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health" dest="resource" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health.date" dest="_text_" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health.date" dest="resource.idsNfdi4health" maxChars="3000"/>
+    <copyField source="resource.idsNfdi4health.date" dest="resource" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health.identifier" dest="_text_" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health.identifier" dest="resource.idsNfdi4health" maxChars="3000"/>
+    <copyField source="resource.idsNfdi4health.identifier" dest="resource" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health.relationType" dest="_text_" maxChars="3000"/>
     <copyField source="resource.idsNfdi4health.relationType" dest="resource.idsNfdi4health" maxChars="3000"/>
+    <copyField source="resource.idsNfdi4health.relationType" dest="resource" maxChars="3000"/>
     <copyField source="resource.ids.relationType" dest="_text_" maxChars="3000"/>
     <copyField source="resource.ids.relationType" dest="resource.ids" maxChars="3000"/>
+    <copyField source="resource.ids.relationType" dest="resource" maxChars="3000"/>
     <copyField source="resource.ids.scheme" dest="_text_" maxChars="3000"/>
     <copyField source="resource.ids.scheme" dest="resource.ids" maxChars="3000"/>
+    <copyField source="resource.ids.scheme" dest="resource" maxChars="3000"/>
     <copyField source="resource.ids.typeGeneral" dest="_text_" maxChars="3000"/>
     <copyField source="resource.ids.typeGeneral" dest="resource.ids" maxChars="3000"/>
+    <copyField source="resource.ids.typeGeneral" dest="resource" maxChars="3000"/>
     <copyField source="resource.keywords" dest="_text_" maxChars="3000"/>
     <copyField source="resource.keywords" dest="resource" maxChars="3000"/>
     <copyField source="resource.keywords.code" dest="_text_" maxChars="3000"/>
     <copyField source="resource.keywords.code" dest="resource.keywords" maxChars="3000"/>
+    <copyField source="resource.keywords.code" dest="resource" maxChars="3000"/>
     <copyField source="resource.keywords.label" dest="_text_" maxChars="3000"/>
     <copyField source="resource.keywords.label" dest="resource.keywords" maxChars="3000"/>
+    <copyField source="resource.keywords.label" dest="resource" maxChars="3000"/>
     <copyField source="resource.languages" dest="_text_" maxChars="3000"/>
     <copyField source="resource.languages" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.format" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.format" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.format" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.authority" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.authority" dest="resource.nonStudyDetails.useRights.confirmations" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.authority" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.authority" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.authority" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.irrevocability" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.irrevocability" dest="resource.nonStudyDetails.useRights.confirmations" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.irrevocability" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.irrevocability" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.irrevocability" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.supportByLicensing" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.supportByLicensing" dest="resource.nonStudyDetails.useRights.confirmations" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.supportByLicensing" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.supportByLicensing" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.supportByLicensing" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.terms" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.confirmations.terms" dest="resource.nonStudyDetails.useRights.confirmations" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.terms" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.terms" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.confirmations.terms" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.description" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.description" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.description" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.description" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.label" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.label" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.label" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.label" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.link" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.useRights.link" dest="resource.nonStudyDetails.useRights" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.link" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.useRights.link" dest="resource" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.version" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nonStudyDetails.version" dest="resource.nonStudyDetails" maxChars="3000"/>
+    <copyField source="resource.nonStudyDetails.version" dest="resource" maxChars="3000"/>
     <copyField source="resource.nutritionalData" dest="_text_" maxChars="3000"/>
     <copyField source="resource.nutritionalData" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.dataSource" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.dataSource" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.dataSource" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.firstPostedDate" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.firstPostedDate" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.firstPostedDate" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.firstPostedUser" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.firstPostedUser" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.firstPostedUser" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.firstSubmittedDate" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.firstSubmittedDate" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.firstSubmittedDate" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.firstSubmittedUser" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.firstSubmittedUser" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.firstSubmittedUser" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdatePostedDate" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdatePostedDate" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.lastUpdatePostedDate" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdatePostedUser" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdatePostedUser" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.lastUpdatePostedUser" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdateSubmittedDate" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdateSubmittedDate" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.lastUpdateSubmittedDate" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdateSubmittedUser" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.lastUpdateSubmittedUser" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.lastUpdateSubmittedUser" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.resourceVersion" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.resourceVersion" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.resourceVersion" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.verificationDate" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.verificationDate" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.verificationDate" dest="resource" maxChars="3000"/>
     <copyField source="resource.provenance.verificationUser" dest="_text_" maxChars="3000"/>
     <copyField source="resource.provenance.verificationUser" dest="resource.provenance" maxChars="3000"/>
+    <copyField source="resource.provenance.verificationUser" dest="resource" maxChars="3000"/>
     <copyField source="resource.titles" dest="_text_" maxChars="3000"/>
     <copyField source="resource.titles" dest="resource" maxChars="3000"/>
     <copyField source="resource.titles.language" dest="_text_" maxChars="3000"/>
     <copyField source="resource.titles.language" dest="resource.titles" maxChars="3000"/>
+    <copyField source="resource.titles.language" dest="resource" maxChars="3000"/>
     <copyField source="resource.titles.text" dest="_text_" maxChars="3000"/>
     <copyField source="resource.titles.text" dest="resource.titles" maxChars="3000"/>
+    <copyField source="resource.titles.text" dest="resource" maxChars="3000"/>
     <copyField source="resource.webpage" dest="_text_" maxChars="3000"/>
     <copyField source="resource.webpage" dest="resource" maxChars="3000"/>
     <copyField source="responseRate" dest="_text_" maxChars="3000"/>
@@ -1408,10 +1608,13 @@
     <copyField source="socialScienceNotes" dest="socialscience" maxChars="3000"/>
     <copyField source="socialScienceNotesSubject" dest="_text_" maxChars="3000"/>
     <copyField source="socialScienceNotesSubject" dest="socialScienceNotes" maxChars="3000"/>
+    <copyField source="socialScienceNotesSubject" dest="socialscience" maxChars="3000"/>
     <copyField source="socialScienceNotesText" dest="_text_" maxChars="3000"/>
     <copyField source="socialScienceNotesText" dest="socialScienceNotes" maxChars="3000"/>
+    <copyField source="socialScienceNotesText" dest="socialscience" maxChars="3000"/>
     <copyField source="socialScienceNotesType" dest="_text_" maxChars="3000"/>
     <copyField source="socialScienceNotesType" dest="socialScienceNotes" maxChars="3000"/>
+    <copyField source="socialScienceNotesType" dest="socialscience" maxChars="3000"/>
     <copyField source="software" dest="_text_" maxChars="3000"/>
     <copyField source="softwareName" dest="_text_" maxChars="3000"/>
     <copyField source="softwareName" dest="software" maxChars="3000"/>
@@ -1419,8 +1622,10 @@
     <copyField source="softwareVersion" dest="software" maxChars="3000"/>
     <copyField source="southLatitude" dest="_text_" maxChars="3000"/>
     <copyField source="southLatitude" dest="geographicBoundingBox" maxChars="3000"/>
+    <copyField source="southLatitude" dest="geospatial" maxChars="3000"/>
     <copyField source="state" dest="_text_" maxChars="3000"/>
     <copyField source="state" dest="geographicCoverage" maxChars="3000"/>
+    <copyField source="state" dest="geospatial" maxChars="3000"/>
     <copyField source="studyAssayCellType" dest="_text_" maxChars="3000"/>
     <copyField source="studyAssayCellType" dest="biomedical" maxChars="3000"/>
     <copyField source="studyAssayMeasurementType" dest="_text_" maxChars="3000"/>
@@ -1451,10 +1656,12 @@
     <copyField source="subtitle" dest="_text_" maxChars="3000"/>
     <copyField source="targetSampleActualSize" dest="_text_" maxChars="3000"/>
     <copyField source="targetSampleActualSize" dest="targetSampleSize" maxChars="3000"/>
+    <copyField source="targetSampleActualSize" dest="socialscience" maxChars="3000"/>
     <copyField source="targetSampleSize" dest="_text_" maxChars="3000"/>
     <copyField source="targetSampleSize" dest="socialscience" maxChars="3000"/>
     <copyField source="targetSampleSizeFormula" dest="_text_" maxChars="3000"/>
     <copyField source="targetSampleSizeFormula" dest="targetSampleSize" maxChars="3000"/>
+    <copyField source="targetSampleSizeFormula" dest="socialscience" maxChars="3000"/>
     <copyField source="timeMethod" dest="_text_" maxChars="3000"/>
     <copyField source="timeMethod" dest="socialscience" maxChars="3000"/>
     <copyField source="timePeriodCovered" dest="_text_" maxChars="3000"/>
@@ -1478,6 +1685,7 @@
     <copyField source="weighting" dest="socialscience" maxChars="3000"/>
     <copyField source="westLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="westLongitude" dest="geographicBoundingBox" maxChars="3000"/>
+    <copyField source="westLongitude" dest="geospatial" maxChars="3000"/>
     <!-- SCHEMA-COPY-FIELDS::END -->
     
     <!-- This can be enabled, in case the client does not know what fields may be searched. It isn't enabled by default
