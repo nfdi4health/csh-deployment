@@ -401,6 +401,7 @@
     <field name="resource.contributors.personal.identifiers.scheme" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.contributors.personal.type" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.contributors.phone" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="resource.customMetadata" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="resource.customMetadata.chronicDiseasesEpidemiology" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="resource.customMetadata.chronicDiseasesEpidemiology.commonChronicDiseaseName" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.customMetadata.chronicDiseasesEpidemiology.dataCollected" type="string" multiValued="true" stored="true" indexed="true"/>
