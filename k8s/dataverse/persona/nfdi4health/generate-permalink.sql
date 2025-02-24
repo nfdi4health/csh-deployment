@@ -1,47 +1,33 @@
--- A script for creating, through a database stored procedure, sequential
--- 8 character identifiers from a base36 representation of current timestamp.
--- Adapted from: https://guides.dataverse.org/en/latest/_downloads/772201110a1c1b429e7c3336b6e9d36d/identifier_from_timestamp.sql
+-- Adapted from: https://github.com/IQSS/dataverse/blob/a36db2d7df0d9976c00179b82f11cfb338a6cfc8/doc/sphinx-guides/source/_static/util/createsequence.sql
 
-CREATE OR REPLACE FUNCTION base36_encode(
-  IN digits bigint, IN min_width int = 0)
-RETURNS varchar AS $$
+DO $$
 DECLARE
-chars char[];
-    ret varchar;
-    val bigint;
+last_val bigint;
 BEGIN
-    chars := ARRAY[
-      '0','1','2','3','4','5','6','7','8','9',
-      'A','B','C','D','E','F','G','H','I','J',
-      'K','L','M','N','O','P','Q','R','S','T',
-      'U','V','W','X','Y','Z'];
-    val := digits;
-    ret := '';
-    IF val < 0 THEN
-        val := val * -1;
-END IF;
-    WHILE val != 0 LOOP
-        ret := chars[(val % 36)+1] || ret;
-        val := val / 36;
-END LOOP;
+    -- Get the last value of the existing sequence
+    SELECT last_value INTO last_val FROM dvobject_id_seq;
 
-    IF min_width > 0 AND char_length(ret) < min_width THEN
-        ret := lpad(ret, min_width, '0');
-END IF;
+    -- Create the new sequence with the desired start and min values
+    EXECUTE format('
+            CREATE SEQUENCE datasetidentifier_seq
+            INCREMENT BY 1
+            MINVALUE %s
+            MAXVALUE 9223372036854775807
+            CACHE 1
+        ', last_val + 1);
+END $$;
 
-RETURN ret;
-END;
-$$ LANGUAGE plpgsql IMMUTABLE;
+ALTER TABLE datasetidentifier_seq OWNER TO "dataverse";
 
+-- And now create a PostgreSQL FUNCTION, for JPA to
+-- access as a NamedStoredProcedure:
 
 CREATE OR REPLACE FUNCTION generateIdentifierFromStoredProcedure()
 RETURNS varchar AS $$
 DECLARE
-curr_time_msec bigint;
-    identifier varchar;
+identifier varchar;
 BEGIN
-    curr_time_msec := extract(epoch from now())*1000;
-    identifier := base36_encode(curr_time_msec);
+    identifier := nextval('datasetidentifier_seq')::varchar;
 RETURN identifier;
 END;
 $$ LANGUAGE plpgsql IMMUTABLE;

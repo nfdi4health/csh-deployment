@@ -16,10 +16,10 @@ spec:
       - name: frontend
         image: {{ .Values.image }}
         resources:
-          limits:
-            memory: 8048Mi
           requests:
-            memory: 512Mi
+            memory: 4Gi
+          limits:
+            memory: 16Gi
         env:
 {{- if .Values.ingress.dns }}
           - name: SPRING_CSRF_ALLOWED
@@ -53,6 +53,8 @@ spec:
                 name: {{ .Release.Name }}-mongo-secret
                 key: password
                 optional: false
+          - name: JAVA_OPTS
+            value: -Xms4g -Xmx12g
         ports:
           - containerPort: 8082
         volumeMounts:
