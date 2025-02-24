@@ -100,19 +100,24 @@ spec:
             - name: DATAVERSE_DB_VALIDATION_CLASSNAME
               value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
             - name: DATAVERSE_PID_PROVIDERS
-              value: {{ quote (join "," (keys .Values.dataverse.pid_providers)) }}
+              {{- $pidProviderNames := list -}}
+              {{- range $pidProvider := .Values.dataverse.pid_providers -}}
+                {{- $pidProviderNames = append $pidProviderNames $pidProvider.name -}}
+              {{- end }}
+              value: {{ quote (join "," $pidProviderNames) }}
             - name: DATAVERSE_PID_DEFAULT_PROVIDER
               value: {{ .Values.dataverse.default_pid_provider }}
-          {{- range $provider_key, $provider_vals := .Values.dataverse.pid_providers -}}
-            {{- range $key, $val := $provider_vals }}
+          {{- range .Values.dataverse.pid_providers -}}
+            {{- $pid_provider := . }}
+            {{- range $key, $val := . }}
               {{- if eq $key "datacite_password" }}
-            - name: DATAVERSE_PID_{{ upper $provider_key }}_{{ upper $key }}
+            - name: DATAVERSE_PID_{{ upper $pid_provider.name }}_{{ upper $key }}
               valueFrom:
                 secretKeyRef:
                   name: {{ $.Release.Name }}-dataverse-pid-provider-secret
-                  key: {{ $provider_key }}-datacite-password
+                  key: {{ $pid_provider.name }}-datacite-password
               {{- else }}
-            - name: DATAVERSE_PID_{{ upper $provider_key }}_{{ upper $key }}
+            - name: DATAVERSE_PID_{{ upper $pid_provider.name }}_{{ upper $key }}
               value: {{ $val | quote }}
               {{- end }}
             {{- end -}}
