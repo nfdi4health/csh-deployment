@@ -105,8 +105,16 @@ spec:
               value: {{ .Values.dataverse.default_pid_provider }}
           {{- range $provider_key, $provider_vals := .Values.dataverse.pid_providers -}}
             {{- range $key, $val := $provider_vals }}
+              {{- if eq $key "datacite_password" }}
+            - name: DATAVERSE_PID_{{ upper $provider_key }}_{{ upper $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Release.Name }}-dataverse-pid-provider-secret
+                  key: {{ $provider_key }}-datacite-password
+              {{- else }}
             - name: DATAVERSE_PID_{{ upper $provider_key }}_{{ upper $key }}
               value: {{ $val | quote }}
+              {{- end }}
             {{- end -}}
           {{- end }}
             - name: DATAVERSE_DB_CONNECTION_VALIDATION_METHOD
@@ -224,3 +232,15 @@ metadata:
 type: Opaque
 data:
   mica: {{ randAlphaNum 20 | b64enc | quote }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-dataverse-pid-provider-secret
+type: Opaque
+data:
+  {{- range $key, $val := .Values.dataverse.pid_providers }}
+    {{- if hasKey $val "datacite_password" }}
+  {{ $key }}-datacite-password: {{ $val.datacite_password | b64enc | quote }}
+    {{- end }}
+  {{- end }}
