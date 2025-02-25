@@ -244,8 +244,8 @@ metadata:
   name: {{ .Release.Name }}-dataverse-pid-provider-secret
 type: Opaque
 data:
-  {{- range $key, $val := .Values.dataverse.pid_providers }}
-    {{- if hasKey $val "datacite_password" }}
-  {{ $key }}-datacite-password: {{ $val.datacite_password | b64enc | quote }}
+  {{- range .Values.dataverse.pid_providers }}
+    {{- if hasKey . "datacite_password" }}
+  {{ .name }}-datacite-password: {{ .datacite_password | b64enc | quote }}
     {{- end }}
   {{- end }}
