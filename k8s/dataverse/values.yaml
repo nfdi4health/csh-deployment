@@ -19,7 +19,7 @@ dataverse:
       memory: "1Gi"
   default_pid_provider: "permalink"
   pid_providers:
-    permalink:
+    - name: permalink
       type: "perma"
       authority:
       permalink_base_url:
