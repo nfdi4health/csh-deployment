@@ -377,7 +377,7 @@
     <field name="resource.acronyms.text" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.chronicDiseases" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.classification" type="text_en" multiValued="true" stored="false" indexed="true"/>
-    <field name="resource.classification.type" type="string" multiValued="true" stored="true" indexed="true"/>
+    <field name="resource.classification.type" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="resource.classification.typeGeneral" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.collection" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.contributors" type="text_en" multiValued="true" stored="false" indexed="true"/>
