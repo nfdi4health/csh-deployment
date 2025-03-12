@@ -300,6 +300,7 @@
     <field name="datasetContactAffiliation" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="datasetContactEmail" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="datasetContactName" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="datasetGroupId" type="string" multiValued="false" stored="true" indexed="true"/>
     <field name="datasetLevelErrorNotes" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="dataSources" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="dateOfCollection" type="text_en" multiValued="true" stored="false" indexed="true"/>
@@ -821,6 +822,7 @@
     <copyField source="datasetLevelErrorNotes" dest="_text_" maxChars="3000"/>
     <copyField source="datasetLevelErrorNotes" dest="socialscience" maxChars="3000"/>
     <copyField source="dataSources" dest="_text_" maxChars="3000"/>
+    <copyField source="datasetGroupId" dest="_text_" maxChars="3000"/>
     <copyField source="dateOfCollection" dest="_text_" maxChars="3000"/>
     <copyField source="dateOfCollectionEnd" dest="_text_" maxChars="3000"/>
     <copyField source="dateOfCollectionEnd" dest="dateOfCollection" maxChars="3000"/>
