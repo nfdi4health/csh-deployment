@@ -89,7 +89,7 @@ spec:
             value: "8983"
           - name: DATAVERSE_HOSTNAME
             value: {{ .Release.Name }}-dataverse-svc
-        command: [ "/bin/bash", "-c", 'mkdir -p /var/solr/data; /scripts/fix-fs-perms.sh solr; if [ -f "/solr-template/SETUP_DONE" ]; then echo "config already exits; no copy!"; else echo "copy template";cp -a /template/* /solr-template;echo "overwrite with configmap"; cp /schema/schema.xml /solr-template/conf/schema.xml; touch /solr-template/SETUP_DONE; fi;while true; do echo "LOOP and sleep for 600;Press CTRL+C to exit"; sleep 600; done' ]
+        command: [ "/bin/bash", "-c", 'mkdir -p /var/solr/data; /scripts/fix-fs-perms.sh solr; if [ -f "/solr-template/SETUP_DONE" ]; then echo "config already exits; no copy!"; else echo "copy template";cp -a /template/* /solr-template;echo "overwrite with configmap"; cp /schema/schema.xml /solr-template/conf/schema.xml; cp /schema/solrconfig.xml /solr-template/conf/solrconfig.xml; touch /solr-template/SETUP_DONE; fi;while true; do echo "LOOP and sleep for 600;Press CTRL+C to exit"; sleep 600; done' ]
         volumeMounts:
           - mountPath: /var/solr
             name: solr-data
@@ -98,7 +98,7 @@ spec:
           - mountPath: /schema/
             name: cfgmap
       - name: solr
-        image: solr:9.5.0
+        image: solr:9.8.0
         command: [ "/bin/bash", "-c" ]
         args: [ "sleep 30; precreate-core collection1 /solr-template; solr-foreground -Djetty.host=0.0.0.0" ]
         env:
