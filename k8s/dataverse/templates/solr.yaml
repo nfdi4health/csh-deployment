@@ -98,7 +98,7 @@ spec:
           - mountPath: /schema/
             name: cfgmap
       - name: solr
-        image: solr:9.5.0
+        image: solr:9.8.0
         command: [ "/bin/bash", "-c" ]
         args: [ "sleep 30; precreate-core collection1 /solr-template; solr-foreground -Djetty.host=0.0.0.0" ]
         env:
