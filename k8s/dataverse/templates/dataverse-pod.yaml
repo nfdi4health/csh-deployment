@@ -128,12 +128,12 @@ spec:
               value:  {{.Values.dataverse.s3.bucket_name}}
             - name: dataverse_files_s3_custom__endpoint__url
               value:  {{.Values.dataverse.s3.endpoint_url}}
-            - name: dataverse_files_s3_type
-              value: "s3"
-            - name: dataverse_files_s3_label
-              value: "s3"
-            - name: dataverse_files_storage__driver__id
-              value: "s3"
+            #- name: dataverse_files_s3_type
+            #  value: "s3"
+            #- name: dataverse_files_s3_label
+            #  value: "s3"
+            #- name: dataverse_files_storage__driver__id
+            #  value: "s3"
           ports:
             - containerPort: 8080
             - containerPort: 4848

@@ -1,0 +1,21 @@
+api:
+  backend_mode: dataverse
+  dataverse_oidc_id: oidc-keycloak
+  dataverse_host: http://niwe22-dv-dataverse-svc:8080
+ingress:
+  dns: fairagro-inventory.qa.km.k8s.zbmed.de
+  enableSSL: false
+  certIssuer:
+oidc:
+  frontend:
+    clientid: csh-ui
+    authority: https://sso.studyhub.nfdi4health.de/realms/nfdi4health
+  backend:
+    clientid: csh-backend
+    secret: gmt6yrdXzgZT5Wx16hUoOu4AzasCScbt
+    introspect: https://sso.studyhub.nfdi4health.de/realms/nfdi4health/protocol/openid-connect/token/introspect
+    user_url: https://keycloak.qa.km.k8s.zbmed.de/admin/realms/nfdi4health/users
+    oidc_connect_url: https://sso.studyhub.nfdi4health.de/realms/nfdi4health/.well-known/openid-configuration
+images:
+  backend: ghcr.io/nfdi4health/csh-ui/backend:455d4c01d2e8d3fc9e070cdd7edb13d1da44e453 #ghcr.io/nfdi4health/csh-ui/backend:5d02f8fbac9a61c49d4f3c0caf7f61c7236bf5d9
+  frontend: ghcr.io/nfdi4health/csh-ui/frontend:455d4c01d2e8d3fc9e070cdd7edb13d1da44e453 #ghcr.io/nfdi4health/csh-ui/frontend:5d02f8fbac9a61c49d4f3c0caf7f61c7236bf5d9

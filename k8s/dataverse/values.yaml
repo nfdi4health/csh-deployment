@@ -1,4 +1,4 @@
-persona: "nfdi4health"
+persona: "fairagro"
 ingress:
   dns:
 dataverse:
@@ -9,25 +9,32 @@ dataverse:
     bucket_name:
     endpoint_url:
   oidc:
-    issuer:
-    cliedid:
-    clientsecret:
+    issuer: "https://sso.studyhub.nfdi4health.de/realms/nfdi4health"
+    cliedid: "fairagro-dataverse"
+    clientsecret: "EnPM0x0tpyKGjkxAb8NhsbPjajE3pvAs"
   resources:
     limits:
       memory: "4Gi"
     requests:
       memory: "1Gi"
-  default_pid_provider: "permalink"
+  default_pid_provider: "fsh"
   pid_providers:
-    permalink:
+    fsh:
       type: "perma"
-      authority:
-      permalink_base_url:
-      permalink_separator:
+      label: "FAIRagro Search Hub Test-PIDs"
+      authority: "repository"
+      permalink_base_url: "https://fairagro.net/resource/"
+      permalink_separator: "/"
+    edal:
+      type: "perma"
+      label: "eDAL DOIs reused"
+      authority: "edal"
+      permalink_base_url: "https://doi.ipk-gatersleben.de:443/DOI/"
+      permalink_separator: "-"
 postgres:
   volume_size: "32Gi"
   number_instances: 2
-  logical_backup: true
+  logical_backup: false
 solr:
   volume_size: "2Gi"
   resources:
@@ -36,5 +43,5 @@ solr:
     requests:
       memory: "1Gi"
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.5
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:feat-pidreconcile
   configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.5
