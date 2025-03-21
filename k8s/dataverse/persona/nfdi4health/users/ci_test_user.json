@@ -1,0 +1,8 @@
+{
+      "authenticationProviderId": "oidc-keycloak",
+      "persistentUserId": "d4fa4339-1e9f-44cb-85f5-0b3d27089358",
+      "identifier": "@ci_test",
+      "firstName": "CI",
+      "lastName": "Test",
+      "email": "ci_test@example.com"
+}
