@@ -1,0 +1,5 @@
+dataverse:
+  name: ""
+  api_key: ""
+  publish_type: "updatecurrent" # "major", "minor" or "updatecurrent"
+  collections: "DRKS" # separated by spaces
