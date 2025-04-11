@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Name }}-dataverse-publish-job
+  name: dataverse-publish-job
 spec:
   template:
     spec:
@@ -12,24 +12,24 @@ spec:
             - name: DATAVERSE_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-dataverse-publish-job-secret
+                  name: dataverse-publish-job-secret
                   key: DATAVERSE_API_KEY
           command:
             - "python"
             - "-u" # unbuffered, so logs are immediately flushed
             - "scripts/publish_all_datasets.py"
-            - "-d http://{{ .Values.dataverse.name }}-svc:8080"
+            - "-d http://$DATAVERSE_NAME-svc:8080"
             - "-k"
             - "$(DATAVERSE_API_KEY)"
             - "-t"
-            - "{{ .Values.dataverse.publish_type }}"
+            - "$DATAVERSE_PUBLISH_TYPE"
             - "-c"
-            - "{{ .Values.dataverse.collections }}"
+            - "$DATAVERSE_COLLECTIONS"
       restartPolicy: OnFailure
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ .Release.Name }}-dataverse-publish-job-secret
+  name: dataverse-publish-job-secret
 data:
-  DATAVERSE_API_KEY: {{ .Values.dataverse.api_key | b64enc | quote }}
+  DATAVERSE_API_KEY: $DATAVERSE_API_KEY_B64

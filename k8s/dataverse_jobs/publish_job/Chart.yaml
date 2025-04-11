@@ -1,6 +1,0 @@
-apiVersion: v2
-name: dataverse_publish_job
-description: A job to publish datasets in a Dataverse
-type: application
-version: 0.1.0
-appVersion: "6.6.0"
