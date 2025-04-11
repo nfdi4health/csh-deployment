@@ -29,7 +29,7 @@ postgres:
   number_instances: 2
   logical_backup: true
 solr:
-  volume_size: "2Gi"
+  volume_size: "4Gi"
   resources:
     limits:
       memory: "4Gi"
