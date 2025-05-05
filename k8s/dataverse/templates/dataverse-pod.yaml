@@ -64,14 +64,14 @@ spec:
           name: dataverse
           env:
             - name: DATAVERSE_SITEURL
-              value: {{.Values.ingress.dns }}
+              value: {{.Values.dataverse.site_url }}
             - name: CT_DATAVERSE_FQDN
-              value: {{.Values.ingress.dns }}
+              value: {{.Values.dataverse.site_url }}
             # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
             - name: _CT_DATAVERSE_SITEURL
-              value: {{.Values.ingress.dns }}
+              value: {{.Values.dataverse.site_url }}
             - name: _CT_DATAVERSE_FQDN
-              value: {{.Values.ingress.dns }}
+              value: {{.Values.dataverse.site_url }}
             {{- if .Values.dataverse.mem_max_metaspace_size }}
             - name: MEM_MAX_METASPACE_SIZE
               value: {{.Values.dataverse.mem_max_metaspace_size }}

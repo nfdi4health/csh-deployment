@@ -24,6 +24,8 @@ dataverse:
       authority:
       permalink_base_url:
       permalink_separator:
+  site_url:
+  installation_name:
 postgres:
   volume_size: "32Gi"
   number_instances: 2
