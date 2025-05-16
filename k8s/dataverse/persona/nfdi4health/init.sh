@@ -77,9 +77,11 @@ while IFS= read -r ROLE; do
   echo
 done <<< "${ROLES}"
 
-echo "Updating root dataverse name"
-curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
-echo
+if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
+    echo "Updating root dataverse name"
+    curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
+    echo
+fi
 
 echo "Create dataverses"
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
