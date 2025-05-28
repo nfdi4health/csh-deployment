@@ -1,0 +1,25 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak-example
+spec:
+  instances: 1
+  db:
+    vendor: postgres
+    host: keycloak-example-postgres-pooler
+    database: keycloak
+    usernameSecret:
+      name: keycloak.keycloak-example-postgres.credentials.postgresql.acid.zalan.do
+      key: username
+    passwordSecret:
+      name: keycloak.keycloak-example-postgres.credentials.postgresql.acid.zalan.do
+      key: password
+  ingress:
+    enabled: false
+  proxy:
+    headers: xforwarded
+  http:
+    httpEnabled: true
+  hostname:
+    strict: false
+    strictBackchannel: true
