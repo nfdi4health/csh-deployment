@@ -27,6 +27,8 @@ spec:
           name: dataverse-configbaker
           command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","{{ .Values.persona }}" ]
           env:
+            - name: DATAVERSE_INSTALLATION_NAME
+              value: {{.Values.dataverse.installation_name}}
             - name: METADATABLOCKS_PATH
               value: "/metadatablocks"
             - name: LICENCE_PATH

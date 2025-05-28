@@ -6,18 +6,20 @@ metadata:
   labels:
     app.kubernetes.io/name: postgres
     app.kubernetes.io/instance: postgres-{{ .Release.Name }}
-    app.kubernetes.io/version: "14"
+    app.kubernetes.io/version: "17"
     app.kubernetes.io/component: postgres
     app.kubernetes.io/part-of: dataverse
 spec:
-  enableLogicalBackup: true
+  enableLogicalBackup: {{ .Values.postgres.logical_backup }}
   teamId:  {{ .Release.Name }}
   volume:
-    size: 32Gi
-  numberOfInstances: 2
+    size:  {{ .Values.postgres.volume_size }}
+  numberOfInstances: {{ int .Values.postgres.number_instances }}
+  {{ if gt (int .Values.postgres.number_instances) 1 }}
   enableConnectionPooler: true
   connectionPooler:
    mode: session
+  {{ end }}
   users:
     dataverse:  # database owner
     - superuser
@@ -25,5 +27,5 @@ spec:
   databases:
     dataverse: dataverse  # dbname: owner
   postgresql:
-    version: "14"
+    version: "17"
 ---

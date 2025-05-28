@@ -77,6 +77,12 @@ while IFS= read -r ROLE; do
   echo
 done <<< "${ROLES}"
 
+if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
+    echo "Updating root dataverse name"
+    curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
+    echo
+fi
+
 echo "Create dataverses"
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
 # parent dataverses are created before child dataverses, e.g. "nfdi4health.json" is created before
@@ -154,7 +160,7 @@ while IFS= read -r TSV; do
   echo "Loading ${TSV}:"
   curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_URL/api/admin/datasetfield/load --upload-file ${TSV}
   echo
-  METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk 'NR==2 {print $2}' $TSV)")
+  METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk -F'\t' 'NR==2 {print $2}' $TSV)")
 done <<< "${TSVS}"
 
 echo "Activating metadata blocks"
@@ -163,6 +169,9 @@ while IFS= read -r DATAVERSE; do
   curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/metadatablocks -d $(jq -c -n '$ARGS.positional' --args "${METADATABLOCK_NAMES[@]}")
   echo
 done <<< "${DATAVERSES}"
+
+echo "Activating metadata field facets"
+curl "$DATAVERSE_URL/api/datasetfields/facetables" | jq ".data | map(.name)" | curl -X POST -H "Content-Type: application/json" -d @- "$DATAVERSE_URL/api/dataverses/root/facets"
 
 echo
 echo
