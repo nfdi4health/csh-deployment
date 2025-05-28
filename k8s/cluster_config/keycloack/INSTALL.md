@@ -47,7 +47,7 @@ spec:
   databases:
     keycloak: keycloak
   postgresql:
-    version: "14"
+    version: "17"
 ```
 
 ✅ Creates a database `keycloak` owned by user `keycloak`, credentials stored in a Zalando-managed secret.
@@ -70,7 +70,8 @@ kind: Keycloak
 metadata:
   name: keycloak-example
 spec:
-  instances: 1
+  image: quay.io/keycloak/keycloak:26.2.5
+  instances: 2
   db:
     vendor: postgres
     host: keycloak-example-postgres-pooler

@@ -19,4 +19,4 @@ spec:
   databases:
     keycloak: keycloak
   postgresql:
-    version: "14"
+    version: "17"
