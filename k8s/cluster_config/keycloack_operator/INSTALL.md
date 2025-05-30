@@ -1,4 +1,4 @@
-# 🧰 Keycloak Deployment with PostgreSQL Operator and Backup Restore
+#Keycloak Deployment with PostgreSQL Operator and Backup Restore
 
 This guide explains how to deploy **Keycloak using the Keycloak Operator**, back it with a PostgreSQL cluster managed by the **Zalando Postgres Operator**, and securely **restore a realm backup** while avoiding exposure of the master realm.
 
@@ -10,7 +10,6 @@ This guide explains how to deploy **Keycloak using the Keycloak Operator**, back
   - [Keycloak Operator](https://www.keycloak.org/operator/installation) installed manually (without OLM)
   - [Zalando Postgres Operator](https://github.com/zalando/postgres-operator) installed
 - Access to `kubectl`
-- A `.sql` backup file created using `pg_dump`
 
 ---
 
@@ -142,9 +141,14 @@ spec:
 
 ---
 
-### 4. Restore Keycloak Backup
+### 4. Create Keycloak Backup
 
-Use the provided `import_backup.sh` script to restore your `.sql` dump:
+Only postgres data need to be kept, other information encoded in yaml files stored in repoistory.
+See postgres_operator/DOCUMENTATION.md for more details.
+
+### 5. Restore Keycloak Backup
+
+Use the provided `import_backup.sh` script to restore your `.sql.gz` dump:
 
 ```bash
 ./import_backup.sh
@@ -153,14 +157,12 @@ Use the provided `import_backup.sh` script to restore your `.sql` dump:
 Update these variables in the script before running:
 
 ```bash
-KUBE_CONTEXT="your-context"
+KUBE_CONTEXT=""
 NAMESPACE="default"
-
-DB_NAME="keycloak"
-CLUSTER_NAME="keycloak-example-postgres"
 KEYCLOAK_CR_NAME="keycloak-example"
 
-BACKUP_FILE="./keycloak_backup.sql"
+CLUSTER_NAME="keycloak-example-postgres"
+BACKUP_FILE=""
 ```
 
 ✅ The script will:
@@ -172,7 +174,7 @@ BACKUP_FILE="./keycloak_backup.sql"
 
 ---
 
-### 5. Access the Admin Console (`master` Realm)
+### 6. Access the Admin Console (`master` Realm)
 
 To access the admin UI (not exposed via Ingress), use port forwarding:
 
@@ -196,5 +198,5 @@ This deletes all the data! Run this only if you're sure you no longer need the d
 ```bash
 kubectl delete ingress keycloak-example-ingress
 kubectl delete keycloak keycloak-example
-kubectl delete postgres keycloak-example-postgres
+kubectl delete postgresql keycloak-example-postgres
 ```

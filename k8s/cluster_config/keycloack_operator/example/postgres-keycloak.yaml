@@ -8,7 +8,7 @@ spec:
   volume:
     size: 1Gi
   numberOfInstances: 2
-  enableLogicalBackup: true
+  #enableLogicalBackup: true # enable only for production databases
   enableConnectionPooler: true
   connectionPooler:
     mode: session

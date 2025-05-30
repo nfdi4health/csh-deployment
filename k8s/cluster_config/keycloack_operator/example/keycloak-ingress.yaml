@@ -11,7 +11,7 @@ spec:
     - host: keycloak-example.qa.km.k8s.zbmed.de
       http:
         paths:
-          - path: /realms/nfdi4health # adapt this name, and copy the section
+          - path: /realms/test # adapt this name, and copy the section if multiple realms are needed
             pathType: Prefix
             backend:
               service:
