@@ -69,35 +69,49 @@ kubectl wait --for=condition=Ready --timeout=-1s --context $DESTINATION_DATAVERS
 #curl http://localhost:$DATAVERSE_LOCAL_PORT/api/admin/index
 #echo
 
-echo "Checking age of latest backup of source Solr..."
-SOLR_BACKUP_RESPONSE=$(kubectl exec -it ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0 --context $SOURCE_DATAVERSE_CONTEXT --container solr -- curl localhost:8983/solr/collection1/replication?command=details)
-SOLR_BACKUP_STATUS=$(echo $SOLR_BACKUP_RESPONSE | jq -r '.details.backup.status')
-if [[ "$SOLR_BACKUP_STATUS" == "success" ]]; then
-    SOLR_BACKUP_TIMESTAMP=$(echo $SOLR_BACKUP_RESPONSE | jq -r '.details.backup.snapshotCompletedAt')
+need_to_create_solr_backup () {
+    echo "Checking age of latest backup of source Solr..."
+    SOLR_BACKUP_RESPONSE=$(kubectl exec -it ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0 --context $SOURCE_DATAVERSE_CONTEXT --container solr -- curl localhost:8983/solr/collection1/replication?command=details)
+    SOLR_BACKUP_STATUS=$(echo $SOLR_BACKUP_RESPONSE | jq -r '.details.backup.status')
+    if [[ "$SOLR_BACKUP_STATUS" == "success" ]]; then
+        SOLR_BACKUP_TIMESTAMP=$(echo $SOLR_BACKUP_RESPONSE | jq -r '.details.backup.snapshotCompletedAt')
 
-    SOLR_BACKUP_TIMESTAMP_DATE=$(echo $SOLR_BACKUP_TIMESTAMP | cut -d'T' -f1)
-    SOLR_BACKUP_TIMESTAMP_HOUR=$(echo $SOLR_BACKUP_TIMESTAMP | cut -d'T' -f2 | cut -d':' -f1)
+        SOLR_BACKUP_TIMESTAMP_DATE=$(echo $SOLR_BACKUP_TIMESTAMP | cut -d'T' -f1)
+        SOLR_BACKUP_TIMESTAMP_HOUR=$(echo $SOLR_BACKUP_TIMESTAMP | cut -d'T' -f2 | cut -d':' -f1)
 
-    CURRENT_DATE=$(date -u +"%Y-%m-%d")
-    CURRENT_HOUR=$(date -u +"%H")
+        CURRENT_DATE=$(date -u +"%Y-%m-%d")
+        CURRENT_HOUR=$(date -u +"%H")
 
-    if [[ "$SOLR_BACKUP_TIMESTAMP_DATE" == "$CURRENT_DATE" && "$SOLR_BACKUP_TIMESTAMP_HOUR" == "$CURRENT_HOUR" ]]; then
-        # The timestamp is within the current hour
-        echo "Backup is not too old."
-    else
-        echo "Backup is too old. Creating backup of source Solr..."
-        kubectl exec ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0 --context $SOURCE_DATAVERSE_CONTEXT --container solr -- curl -s "localhost:8983/solr/collection1/replication?command=backup&numberToKeep=1"; echo
-        while true; do
-            SOLR_BACKUP_RESPONSE=$(kubectl exec ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0 --context $SOURCE_DATAVERSE_CONTEXT --container solr -- curl localhost:8983/solr/collection1/replication?command=details)
-            SOLR_BACKUP_STATUS=$(echo $SOLR_BACKUP_RESPONSE | jq -r '.details.backup.status')
-            echo $SOLR_BACKUP_STATUS
-            if [[ "$SOLR_BACKUP_STATUS" == "success" ]]; then
-                break
-            fi
-            echo "Waiting for Solr backup to be completed..."
-            sleep 1
-        done
+        if [[ "$SOLR_BACKUP_TIMESTAMP_DATE" == "$CURRENT_DATE" && "$SOLR_BACKUP_TIMESTAMP_HOUR" == "$CURRENT_HOUR" ]]; then
+            # The timestamp is within the current hour
+            echo "Backup is not too old."
+            return 1
+        else
+            echo "Backup is too old."
+            return 0
+        fi
+    elif [[ "$SOLR_BACKUP_STATUS" == "null" ]]; then
+      echo "No backup exists."
+      return 0
     fi
+}
+
+create_solr_backup () {
+    echo "Creating backup of source Solr..."
+    kubectl exec ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0 --context $SOURCE_DATAVERSE_CONTEXT --container solr -- curl -s "localhost:8983/solr/collection1/replication?command=backup&numberToKeep=1"; echo
+    while true; do
+        SOLR_BACKUP_RESPONSE=$(kubectl exec ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0 --context $SOURCE_DATAVERSE_CONTEXT --container solr -- curl localhost:8983/solr/collection1/replication?command=details)
+        SOLR_BACKUP_STATUS=$(echo $SOLR_BACKUP_RESPONSE | jq -r '.details.backup.status')
+        if [[ "$SOLR_BACKUP_STATUS" == "success" ]]; then
+            break
+        fi
+        echo "Waiting for Solr backup to be completed..."
+        sleep 1
+    done
+}
+
+if need_to_create_solr_backup; then
+    create_solr_backup
 fi
 
 SOLR_BACKUP_NAME=$(echo $SOLR_BACKUP_RESPONSE | jq -r '.details.backup.directoryName')

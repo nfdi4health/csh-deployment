@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: postgres
     app.kubernetes.io/instance: postgres-{{ .Release.Name }}
-    app.kubernetes.io/version: "14"
+    app.kubernetes.io/version: "17"
     app.kubernetes.io/component: postgres
     app.kubernetes.io/part-of: dataverse
 spec:
@@ -27,5 +27,5 @@ spec:
   databases:
     dataverse: dataverse  # dbname: owner
   postgresql:
-    version: "14"
+    version: "17"
 ---
