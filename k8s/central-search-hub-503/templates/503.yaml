@@ -47,6 +47,7 @@ data:
     <html>
     <head>
       <title>Under Maintenance</title>
+      <link href="icon-32.png" rel="icon" sizes="32x32" type="image/png">
       <style>
         @font-face {
           font-family: "Roboto";
@@ -101,7 +102,9 @@ data:
     </body>
     </html>
   NFDI4Health_Logo_cmyk_RZ.svg: |
-    {{ .Files.Get "files/NFDI4Health_Logo_cmyk_RZ.svg" | nindent 4 | trim }}
+    {{ .Files.Get "files/images/NFDI4Health_Logo_cmyk_RZ.svg" | nindent 4 | trim }}
 binaryData:
+  icon-32.png: |
+    {{ .Files.Get "files/images/icon-32.png" | b64enc }}
   Roboto-Regular.ttf: |
     {{ .Files.Get "files/fonts/Roboto-Regular.ttf" | b64enc }}
