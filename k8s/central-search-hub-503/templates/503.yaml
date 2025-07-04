@@ -94,6 +94,10 @@ data:
       <h1>This service is currently under maintenance</h1>
       <p>We are performing maintenance work to improve our service. It will be back online soon, usually within a few hours.</p>
       <p>We apologize for any inconvenience and appreciate your understanding.</p>
+      <hr />
+      <div id="footer">
+        <p><a href="https://www.zbmed.de/en/legal-notice">Imprint</a> | <a href="https://www.zbmed.de/en/privacy-policy">Privacy Policy</a></p>
+      </div>
     </body>
     </html>
   NFDI4Health_Logo_cmyk_RZ.svg: |
