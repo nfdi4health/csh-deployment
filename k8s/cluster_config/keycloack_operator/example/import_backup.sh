@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # === CONFIGURATION ===
-KUBE_CONTEXT=""
+KUBE_CONTEXT="garden-419592--km-bonn-prod-external"
 NAMESPACE="default"
-KEYCLOAK_CR_NAME="keycloak-example"
+KEYCLOAK_CR_NAME="keycloak-nfdi4health"
 
-CLUSTER_NAME="keycloak-example-postgres"
-BACKUP_FILE=""
+CLUSTER_NAME="keycloak-nfdi4health-postgres"
+BACKUP_FILE="keycloak_backup_20250702_080622.sql.gz"
 
 
 # === MAIN SCRIPT ===

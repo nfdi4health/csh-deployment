@@ -1,4 +1,4 @@
-#Keycloak Deployment with PostgreSQL Operator and Backup Restore
+# Keycloak Deployment with PostgreSQL Operator and Backup Restore
 
 This guide explains how to deploy **Keycloak using the Keycloak Operator**, back it with a PostgreSQL cluster managed by the **Zalando Postgres Operator**, and securely **restore a realm backup** while avoiding exposure of the master realm.
 
@@ -61,7 +61,7 @@ Apply your Keycloak custom resource:
 kubectl apply -f keycloak-instance.yaml
 ```
 
-**`keycloak.yaml`:**
+**`keycloak-instance.yaml`:**
 
 ```yaml
 apiVersion: k8s.keycloak.org/v2alpha1
@@ -143,7 +143,7 @@ spec:
 
 ### 4. Create Keycloak Backup
 
-Only postgres data need to be kept, other information encoded in yaml files stored in repoistory.
+Only postgres data need to be kept, other information is encoded in yaml files stored in the repository.
 See postgres_operator/DOCUMENTATION.md for more details.
 
 ### 5. Restore Keycloak Backup

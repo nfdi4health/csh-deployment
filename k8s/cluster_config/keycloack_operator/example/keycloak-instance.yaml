@@ -1,19 +1,19 @@
 apiVersion: k8s.keycloak.org/v2alpha1
 kind: Keycloak
 metadata:
-  name: keycloak-example
+  name: keycloak-nfdi4health
 spec:
-  image: quay.io/keycloak/keycloak:26.2.5
+  #image: quay.io/keycloak/keycloak:26.2.5
   instances: 2
   db:
     vendor: postgres
-    host: keycloak-example-postgres-pooler
+    host: keycloak-nfdi4health-postgres-pooler
     database: keycloak
     usernameSecret:
-      name: keycloak.keycloak-example-postgres.credentials.postgresql.acid.zalan.do
+      name: keycloak.keycloak-nfdi4health-postgres.credentials.postgresql.acid.zalan.do
       key: username
     passwordSecret:
-      name: keycloak.keycloak-example-postgres.credentials.postgresql.acid.zalan.do
+      name: keycloak.keycloak-nfdi4health-postgres.credentials.postgresql.acid.zalan.do
       key: password
   ingress:
     enabled: false
