@@ -24,7 +24,7 @@ standards.
 > The `QB-IT` team is responsible for managing the S3 storage system and all associated audit logging. They ensure
 > compliance with internal IT security policies and regulatory frameworks.
 
-Backups use the Zalando Operator’s logical-backup feature abd are executed automatically through configured
+Backups use the Zalando Operator’s logical-backup feature and are executed automatically through configured
 Kubernetes `postgresql` custom resources (CRDs).
 
 ---
