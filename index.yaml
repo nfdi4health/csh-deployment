@@ -131,6 +131,17 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/central-search-hub-0.2.4/central-search-hub-0.2.4.tgz
     version: 0.2.4
+  central-search-hub-503:
+  - apiVersion: v2
+    created: "2025-07-04T10:27:54.976508875Z"
+    description: A Helm chart to deploy a simple maintenance page for the central
+      search hub.
+    digest: cd2cb2f9051dbc6da7d8c191de07829f2c0f16814222ac3b6f5635c827202044
+    name: central-search-hub-503
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/central-search-hub-503-0.1.0/central-search-hub-503-0.1.0.tgz
+    version: 0.1.0
   dataverse:
   - apiVersion: v2
     appVersion: 6.6.0
@@ -783,4 +794,4 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.1/mica-0.0.1.tgz
     version: 0.0.1
-generated: "2025-07-03T13:44:40.473933132Z"
+generated: "2025-07-04T10:27:54.976714302Z"
