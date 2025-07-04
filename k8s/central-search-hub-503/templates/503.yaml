@@ -49,6 +49,12 @@ data:
       <title>Under Maintenance - Health Study Hub</title>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
       <style>
+        @font-face {
+          font-family: "Roboto";
+          src: url("Roboto-Regular.ttf") format("truetype");
+          font-style: normal;
+        }
+    
         body {
           font-family: Roboto,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;
           background-color: rgb(229, 229, 229);
@@ -68,3 +74,6 @@ data:
     </html>
   NFDI4Health_Logo_cmyk_RZ.svg: |
     {{ .Files.Get "files/NFDI4Health_Logo_cmyk_RZ.svg" | nindent 4 | trim }}
+binaryData:
+  Roboto-Regular.ttf: |
+    {{ .Files.Get "files/fonts/Roboto-Regular.ttf" | b64enc }}
