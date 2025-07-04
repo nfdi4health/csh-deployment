@@ -46,8 +46,7 @@ data:
     <!DOCTYPE html>
     <html>
     <head>
-      <title>Under Maintenance - Health Study Hub</title>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
+      <title>Under Maintenance</title>
       <style>
         @font-face {
           font-family: "Roboto";
@@ -67,8 +66,8 @@ data:
     </head>
     <body>
       <img src="NFDI4Health_Logo_cmyk_RZ.svg" alt="NFDI4Health Logo" width="500">
-      <h1>The Health Study Hub is currently under maintenance</h1>
-      <p>We are performing maintenance work to improve our service. The Health Study Hub will be back online soon, usually within a few hours.</p>
+      <h1>This service is currently under maintenance</h1>
+      <p>We are performing maintenance work to improve our service. It will be back online soon, usually within a few hours.</p>
       <p>We apologize for any inconvenience and appreciate your understanding.</p>
     </body>
     </html>
