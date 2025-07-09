@@ -77,6 +77,12 @@ while IFS= read -r ROLE; do
   echo
 done <<< "${ROLES}"
 
+if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
+    echo "Updating root dataverse name"
+    curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
+    echo
+fi
+
 echo "Create dataverses"
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
 # parent dataverses are created before child dataverses, e.g. "nfdi4health.json" is created before
@@ -121,14 +127,14 @@ while IFS= read -r DATAVERSE; do
     curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPublisher"}'
     echo
   else
-    # The import client and the admin are currently the only automatically configured curator user, all other curators
-    # must be added manually
+    # The import client, CI test and admin account are currently the only automatically configured curators, all other
+    # curators must be added manually
     echo "Creating curator group"
     CURATOR_GROUP_ID=`curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/groups -d '{"description": "Curator users", "displayName": "Curators", "aliasInOwner": "curators"}' | jq .data.identifier -r`
     echo
 
     echo "Adding @service-account-import_client and @dataverseAdmin to curator group"
-    curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/groups/curators/roleAssignees -d '["@service-account-import_client", "@dataverseAdmin"]'
+    curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/groups/curators/roleAssignees -d '["@service-account-import_client", "@dataverseAdmin", "@ci_test"]'
     echo
 
     echo "Adding curator group as curator to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
