@@ -1,8 +1,0 @@
-{
-  "alias": "dsPublisher",
-  "name": "Dataset Publisher",
-  "description": "A person who can publish a dataset or link a dataset to a new dataverse.",
-  "permissions": [
-    "PublishDataset"
-  ]
-}
