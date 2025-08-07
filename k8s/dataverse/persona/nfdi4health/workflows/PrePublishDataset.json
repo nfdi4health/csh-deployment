@@ -1,0 +1,30 @@
+{
+    "name": "Update group IDs",
+    "steps": [
+        {
+            "provider":":internal",
+            "stepType":"log",
+            "parameters": {
+                "message": "Starting group ID update workflow."
+            }
+        },
+        {
+            "provider":":internal",
+            "stepType":"http/sr",
+            "parameters": {
+                "url":"http://172.18.0.1:5000/api/workflows/updateGroups",
+                "method":"POST",
+                "contentType":"text/plain",
+                "body":"${invocationId}\n${dataset.globalId}",
+                "expectedResponse":"OK.*"
+            }
+        },
+        {
+            "provider":":internal",
+            "stepType":"log",
+            "parameters": {
+                "message": "Finished group ID update workflow."
+            }
+        }
+    ]
+}

@@ -46,6 +46,10 @@ spec:
             value: {{ .Values.oidc.backend.user_url }}
           - name: OIDC_CONNECT_URL
             value: {{ .Values.oidc.backend.oidc_connect_url }}
+          - name: BACKEND_WRAPPER_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
         ports:
           - containerPort: 5000
 ---
