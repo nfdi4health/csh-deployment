@@ -1,0 +1,67 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ctgov-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: ctgov-data
+          emptyDir: {}
+      initContainers:
+        - name: s3-download
+          image: amazon/aws-cli:latest
+          command:
+            - sh
+            - -c
+            - aws s3 cp s3://km-bonn-prod-nfdi4health-etl-data/ctgov/2025-09-15 /opt/data --recursive --endpoint-url "$S3_ENDPOINT_URL"
+          volumeMounts:
+            - name: ctgov-data
+              mountPath: /opt/data
+          envFrom:
+            - secretRef:
+                name: s3-nfdi4health-etl-data-credentials
+            - configMapRef:
+                name: s3-nfdi4health-config
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline:experimental
+          volumeMounts:
+            - name: ctgov-data
+              mountPath: /opt/data
+          command:
+            - /opt/bitnami/spark/bin/spark-submit
+          args:
+            - --master
+            - k8s://https://kubernetes.default.svc
+            - --deploy-mode
+            - cluster
+            - --name
+            - ctgov-job
+            - --conf
+            - spark.kubernetes.container.image=ghcr.io/nfdi4health/csh-etl-pipeline:experimental
+            - --conf
+            - spark.jars.ivy=/tmp/.ivy
+            - local:///etljobs/main.py
+            - --job
+            - job-CT-gov
+            - --job-args
+            - /opt/data
+            - /opt/data/converted.parquet
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: s3-nfdi4health-etl-data-credentials
+type: Opaque
+stringData:
+  AWS_ACCESS_KEY_ID: # insert here
+  AWS_SECRET_ACCESS_KEY: # insert here
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-nfdi4health-config
+data:
+  S3_ENDPOINT_URL: https://s3.de-west-1.psmanaged.com
