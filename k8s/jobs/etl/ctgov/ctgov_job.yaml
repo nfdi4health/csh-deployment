@@ -8,12 +8,12 @@ spec:
       restartPolicy: Never
       containers:
         - name: spark-submit
-          image: ghcr.io/nfdi4health/csh-etl-pipeline:experimental-v7
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
           envFrom:
             - secretRef:
-                name: s3-nfdi4health-etl-data-credentials
+                name: etl-job-s3-credentials
             - configMapRef:
-                name: s3-nfdi4health-config
+                name: etl-job-s3-config
             - configMapRef:
                 name: ctgov-job-args
           command:
@@ -33,13 +33,11 @@ spec:
               --conf
               spark.kubernetes.authenticate.driver.serviceAccountName=spark
               --conf
-              spark.kubernetes.container.image=ghcr.io/nfdi4health/csh-etl-pipeline:experimental-v7
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
               --conf
               spark.jars.ivy=/tmp/.ivy
               --conf
               spark.hadoop.fs.s3a.endpoint="$S3_ENDPOINT_URL"
-              --conf
-              spark.hadoop.fs.s3a.endpoint.region="$S3_ENDPOINT_REGION"
               --conf
               spark.hadoop.fs.s3a.path.style.access=true
               --conf

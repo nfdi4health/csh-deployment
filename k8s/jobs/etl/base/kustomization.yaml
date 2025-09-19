@@ -1,9 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: spark
 resources:
-  - config.yaml
+  - rbac/config.yaml
+
+namespace: spark
+
 configMapGenerator:
-  - name: ctgov-job-args
+  - name: etl-job-s3-config
     literals:
-      - SOURCE_PATH="s3a://km-bonn-prod-nfdi4health-etl-data/ctgov/2025-09-15-test"
+      - S3_ENDPOINT_URL="" # TODO: Insert S3 endpoint URL. Example: https://s3.de-west-1.psmanaged.com
+
+secretGenerator:
+  - name: etl-job-s3-credentials
+    literals:
+      - AWS_ACCESS_KEY_ID="" # TODO: Insert S3 access key ID.
+      - AWS_SECRET_ACCESS_KEY="" # TODO: Insert S3 secret access key.
