@@ -8,10 +8,10 @@ namespace: spark
 
 images:
   - name: ghcr.io/nfdi4health/csh-etl-pipeline
-    newTag: "" # TODO: Insert tag of ETL pipeline image to be used.
+    newTag: "latest" # OPTIONAL: Insert tag of ETL pipeline image to be used (if not using latest).
 
 configMapGenerator:
   - name: ctgov-job-args
     literals:
       - SOURCE_PATH="" # TODO: Insert path where source data is located. Example: s3a://km-bonn-prod-nfdi4health-etl-data/ctgov/2025-09-15
-      - SPARK_CONTAINER_IMAGE_TAG="" # TODO: Insert tag of ETL pipeline image to be used.
+      - SPARK_CONTAINER_IMAGE_TAG="latest" # OPTIONAL: Insert tag of ETL pipeline image to be used (if not using latest).
