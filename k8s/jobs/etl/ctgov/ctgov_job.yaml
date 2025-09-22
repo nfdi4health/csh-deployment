@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ctgov-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: ctgov-job-args
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              /opt/bitnami/spark/bin/spark-submit
+              --master
+              k8s://https://kubernetes.default.svc
+              --deploy-mode
+              cluster
+              --name
+              ctgov-job
+              --conf
+              spark.kubernetes.namespace=spark
+              --conf
+              spark.kubernetes.authenticate.driver.serviceAccountName=spark
+              --conf
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
+              --conf
+              spark.jars.ivy=/tmp/.ivy
+              --conf
+              spark.hadoop.fs.s3a.endpoint="$S3_ENDPOINT_URL"
+              --conf
+              spark.hadoop.fs.s3a.path.style.access=true
+              --conf
+              spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
+              local:///src/etljobs/main.py
+              --job
+              job-CT-gov
+              --job-args
+              $SOURCE_PATH
+              $SOURCE_PATH-converted-$(date +%Y-%m-%d-%H-%M-%S).parquet
+      serviceAccountName: spark
