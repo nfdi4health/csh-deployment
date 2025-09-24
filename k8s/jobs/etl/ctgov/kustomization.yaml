@@ -13,5 +13,12 @@ images:
 configMapGenerator:
   - name: ctgov-job-args
     literals:
-      - SOURCE_PATH="" # TODO: Insert path where source data is located. Example: s3a://km-bonn-prod-nfdi4health-etl-data/ctgov/2025-09-15
+      - SOURCE_PATH="" # TODO: Insert path where source data is located. Example: "km-bonn-prod-nfdi4health-etl-data/ctgov/2025-09-15"
+      - COLLECTIONS_PATH="" # TODO: Insert path where collection JSON is located. Example: "km-bonn-prod-nfdi4health-etl-data/collections.json"
       - SPARK_CONTAINER_IMAGE_TAG="latest" # OPTIONAL: Insert tag of ETL pipeline image to be used (if not using latest).
+      - DATAVERSE_HOST="" # TODO: Insert Dataverse URL. Example: "http://my-dataverse-svc.default.svc.cluster.local:8080"
+
+secretGenerator:
+  - name: ctgov-job-credentials
+    literals:
+      - DATAVERSE_API_KEY="" # TODO: Insert Dataverse API key.

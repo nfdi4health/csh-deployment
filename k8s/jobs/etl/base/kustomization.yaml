@@ -8,7 +8,7 @@ namespace: spark
 configMapGenerator:
   - name: etl-job-s3-config
     literals:
-      - S3_ENDPOINT_URL="" # TODO: Insert S3 endpoint URL. Example: https://s3.de-west-1.psmanaged.com
+      - AWS_ENDPOINT_URL="" # TODO: Insert S3 endpoint URL. Example: https://s3.de-west-1.psmanaged.com
 
 secretGenerator:
   - name: etl-job-s3-credentials
