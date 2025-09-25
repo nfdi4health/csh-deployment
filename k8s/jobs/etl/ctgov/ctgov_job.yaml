@@ -33,7 +33,7 @@ spec:
             - -c
           args:
             - >
-              if aws s3 ls s3://$SOURCE_PATH-converted.parquet --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
+              if aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
               /opt/bitnami/spark/bin/spark-submit
               --master
               k8s://https://kubernetes.default.svc
@@ -83,7 +83,7 @@ spec:
                 name: etl-job-s3-config
             - configMapRef:
                 name: ctgov-job-args
-          command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH-converted.parquet --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
+          command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
       containers:
         - name: spark-submit
           image: ghcr.io/nfdi4health/csh-etl-pipeline
@@ -130,6 +130,12 @@ spec:
               spark.kubernetes.driverEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
               --conf
               spark.kubernetes.driverEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              --conf
+              spark.executorEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.executorEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.executorEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
               local:///src/etljobs/main.py
               --job
               submit_dataverse
