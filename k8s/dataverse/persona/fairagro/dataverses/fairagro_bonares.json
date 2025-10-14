@@ -1,0 +1,12 @@
+{
+  "name": "BonaRes",
+  "alias": "bonares",
+  "dataverseContacts": [
+    {
+      "contactEmail": "schneider@zbmed.de"
+    }
+  ],
+  "affiliation": "FAIRagro",
+  "description": "The BonaRes Repository makes your data visible to the world. It is a free infrastructure for researchers and the community to publish and find data related to soil, agriculture and ecology from Germany and the world. In our repository you can publish your data and receive a unique digital object identifier (DOI). We offer several additional services such as our long-term field experiment map, our soil profile data base, community engagement and soil data related materials.\n\nMore information can be found on [bonares.de](https://www.bonares.de/service-portal/data-repository).",
+  "dataverseType": "UNCATEGORIZED"
+}

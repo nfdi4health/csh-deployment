@@ -1,0 +1,12 @@
+{
+  "name": "OpenAgrar",
+  "alias": "openagrar",
+  "dataverseContacts": [
+    {
+      "contactEmail": "schneider@zbmed.de"
+    }
+  ],
+  "affiliation": "FAIRagro",
+  "description": "OpenAgrar is the collective repository of research institutions affiliated with the Federal Ministry of Agriculture, Food and Regional Identity (BMLEH) in Germany. Currently it is operated by the following institutions: German Biomass Research Centre (DBFZ), Federal Research Centre for Cultivated Plants (JKI), Federal Research Institute for Animal Health (FLI), Federal Research Institute of Nutrition and Food (MRI), Federal Research Institute for Rural Areas, Forestry and Fisheries (TI), German Federal Institute for risk assessment (BfR). It preserves the scholarly output of its members as a whole.\n\nOpenAgrar is an open access repository which publishes, stores, archives and distributes publications, publication references and research data. Its resources can be searched and used by everyone. It contains amongst others theses, reports, conference proceedings, journal articles, books, institutional documents, research datasets, videos and interviews. Currently 100.000 publications are recorded.\n\nMore information can be found on [openagrar.de](https://www.openagrar.de/content/index.xml).",
+  "dataverseType": "UNCATEGORIZED"
+}

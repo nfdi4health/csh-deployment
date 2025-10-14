@@ -1,0 +1,12 @@
+{
+  "name": "e!DAL",
+  "alias": "edal",
+  "dataverseContacts": [
+    {
+      "contactEmail": "schneider@zbmed.de"
+    }
+  ],
+  "affiliation": "FAIRagro",
+  "description": "The PGP Repository is an infrastructure to comprehensively publish plant research data.\n\nMore information can be found on [edal-pgp.ipk-gatersleben.de/](https://edal-pgp.ipk-gatersleben.de/).",
+  "dataverseType": "UNCATEGORIZED"
+}
