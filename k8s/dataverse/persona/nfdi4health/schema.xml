@@ -241,6 +241,7 @@
 
     <field name="license" type="string" stored="true" indexed="true" multiValued="false"/>
     <field name="fileCount" type="plong" stored="true" indexed="true" multiValued="false"/>
+    <field name="datasetCount" type="plong" stored="true" indexed="true" multiValued="false"/>
     
     <!--
         METADATA SCHEMA FIELDS
@@ -395,7 +396,6 @@
     <field name="resource.classification" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="resource.classification.type" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.classification.typeGeneral" type="string" multiValued="true" stored="true" indexed="true"/>
-    <field name="resource.collection" type="string" multiValued="true" stored="true" indexed="true"/>
     <field name="resource.contributors" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="resource.contributors.affiliations" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="resource.contributors.affiliations.address" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -990,8 +990,6 @@
     <copyField source="resource.classification.typeGeneral" dest="_text_" maxChars="3000"/>
     <copyField source="resource.classification.typeGeneral" dest="resource.classification" maxChars="3000"/>
     <copyField source="resource.classification.typeGeneral" dest="resource" maxChars="3000"/>
-    <copyField source="resource.collection" dest="_text_" maxChars="3000"/>
-    <copyField source="resource.collection" dest="resource" maxChars="3000"/>
     <copyField source="resource.contributors" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations" dest="_text_" maxChars="3000"/>
     <copyField source="resource.contributors.affiliations.address" dest="_text_" maxChars="3000"/>

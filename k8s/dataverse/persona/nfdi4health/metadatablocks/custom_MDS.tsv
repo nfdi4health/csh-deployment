@@ -1,7 +1,6 @@
 #metadataBlock	name	dataverseAlias	displayName	blockURI
 	resource		NFDI4Health Metadata Schema V3.3
 #datasetField	name	title	description	watermark	fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
-	resource.collection	Collection(s)	A collection groups items around common topics (e.g. COVID-19), projects (e.g. coverCHILD study platform), or institutions (e.g. BIPS).		text	0		TRUE	FALSE	TRUE	TRUE	TRUE	FALSE		resource
 	resource.identifier	ID of the [RESOURCE]	Unique identifier of the resource used for identification within the NFDI4Health.		text	0		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		resource
 	resource.classification	Resource classification	Group of items providing information about the classification of the resource within the predefined categories.		none	1		FALSE	FALSE	FALSE	FALSE	FALSE	TRUE		resource	
 	resource.classification.type	Type of the resource	A term describing the resource. You can register a study, a study protocol, a questionnaire, etc. Please only add follow up questionnaires if baseline questionnaires have already been registered.		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	resource.classification	resource

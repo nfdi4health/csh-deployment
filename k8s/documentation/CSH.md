@@ -70,7 +70,8 @@ As soon as there are no bugs in the new version. The step-by-step migration guid
 - **Remark**: Step 7-9 can be performed in parallel. 
 - **Assumption 5**: `blue` is now accessible to customer!
 - **Assumption 6**: `blue` is the current production environment, and `green` the stand-by.
-- Step 10: Verify that the automatic backup jobs are executed as planned.
+- Step 10: Deactivate automatic backups for the new stand-by system (`green`) and activate automatic backups for the new production system (`blue`). Whether automatic backups are performed is controlled by the [`logical_backup` configuration value](https://github.com/nfdi4health/csh-deployment/blob/main/k8s/dataverse/values.yaml#L32) in the helm deployment.
+- Step 11: Verify that the automatic backup jobs are executed as planned.
 
 
 **Fallback procedure:** If something does not work between Step 2-9:
