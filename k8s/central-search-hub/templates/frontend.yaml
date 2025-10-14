@@ -26,6 +26,12 @@ spec:
             value: {{ .Values.oidc.frontend.authority }}
           - name: KEYCLOAK_CLIENTID
             value: {{ .Values.oidc.frontend.clientid }}
+          - name: LANDING_URL
+            value: {{ .Values.sharedLinks.landingUrl }}
+          - name: DATASETS_URL
+            value: {{ .Values.sharedLinks.datasetsUrl }}
+          - name: REPOSITORIES_URL
+            value: {{ .Values.sharedLinks.repositoriesUrl }}
         ports:
           - containerPort: 80
 ---
