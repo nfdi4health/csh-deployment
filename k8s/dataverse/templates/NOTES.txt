@@ -26,7 +26,7 @@ Obtains the schema from dataverse and apply it to the default solr template
 `curl "http://${DATAVERSE_HOSTNAME}:8080/api/admin/index/solr/schema" | /scripts/update-fields.sh /template/conf/schema.xml`
 
 Copies the schema into the core
-`cp /template/conf/schema.xml /var/solr/data/collection1/schema.xml`
+`cp /template/conf/schema.xml /var/solr/data/collection1/conf/schema.xml`
 
 Tell SOLR to reload the configuration.
 `curl "http://localhost:8983/solr/admin/cores?action=RELOAD&core=collection1"`
