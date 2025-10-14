@@ -120,11 +120,8 @@ while IFS= read -r DATAVERSE; do
   fi
 
   if [[ $PARENT_DATAVERSE == "nfdi4health" ]]; then
-    # We add the "Publish permission" for all users only to the sub-dataverses (collection dataverses, e.g. "COVID-19")
-    # of "NFDI4Health" where no datasets are created so it can only be used for linking, not publishing
-    # (only curators should be able to publish)
     echo "Adding :authenticated-users as dataset publisher to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
-    curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPublisher"}'
+    curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsLinker"}'
     echo
   else
     # The import client, CI test and admin account are currently the only automatically configured curators, all other
