@@ -142,6 +142,13 @@ spec:
               value: "s3"
             - name: dataverse_files_storage__driver__id
               value: "s3"
+            # Add "Authorization" to list of headers allowed in CORS requests
+            - name: DATAVERSE_CORS_HEADERS_ALLOW
+              value: Accept, Content-Type, X-Dataverse-key, Range, Authorization
+            # Set single allowed origin for CORS requests
+            # Regarding multiple origins, see: https://github.com/IQSS/dataverse/pull/11745
+            - name: DATAVERSE_CORS_ORIGIN
+              value: {{ coalesce .Values.dataverse.cors.origin .Values.dataverse.site_url }}
           ports:
             - containerPort: 8080
             - containerPort: 4848
