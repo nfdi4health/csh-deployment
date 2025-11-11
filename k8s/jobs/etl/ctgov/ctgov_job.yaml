@@ -34,7 +34,7 @@ spec:
           args:
             - >
               if aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
-              /opt/bitnami/spark/bin/spark-submit
+              /opt/spark/bin/spark-submit
               --master
               k8s://https://kubernetes.default.svc
               --deploy-mode
@@ -101,7 +101,7 @@ spec:
             - -c
           args:
             - >
-              /opt/bitnami/spark/bin/spark-submit
+              /opt/spark/bin/spark-submit
               --master
               k8s://https://kubernetes.default.svc
               --deploy-mode
