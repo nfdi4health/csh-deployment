@@ -2,6 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Name }}-dataverse-solr-svc
+  labels:
+      app.kubernetes.io/name: solr
+      app.kubernetes.io/instance: solr-{{ .Release.Name }}
+      app.kubernetes.io/version: "9.5.0"
+      app.kubernetes.io/component: solr
+      app.kubernetes.io/part-of: dataverse
 spec:
   ports:
     - port: 8983
@@ -13,6 +19,31 @@ spec:
       app.kubernetes.io/version: "9.5.0"
       app.kubernetes.io/component: solr
       app.kubernetes.io/part-of: dataverse
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Release.Name }}-dataverse-solr-servicemonitor
+  labels:
+    release: prometheus  # must match your Prometheus Operator release label
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: solr
+      app.kubernetes.io/instance: solr-{{ .Release.Name }}
+      app.kubernetes.io/version: "9.5.0"
+      app.kubernetes.io/component: solr
+      app.kubernetes.io/part-of: dataverse
+  namespaceSelector:
+    matchNames:
+      - default  # or your Solr namespace
+  endpoints:
+    - port: "8983"
+      path: /solr/admin/metrics
+      params:
+        wt: ["prometheus"]
+      interval: 30s
+      scrapeTimeout: 10s
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -103,6 +134,8 @@ spec:
         command: [ "/bin/bash", "-c" ]
         args: [ "sleep 30; precreate-core collection1 /solr-template; solr-foreground -Djetty.host=0.0.0.0" ]
         env:
+          - name: SOLR_PROMETHEUS_EXPORTER_ENABLED
+            value: "true" 
           - name: SOLR_JETTY_HOST
             value: "0.0.0.0"
           - name: SOLR_OPTS
