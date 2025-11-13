@@ -39,6 +39,8 @@ spec:
               value: "/roles"
             - name: USERS_PATH
               value: "/users"
+            - name: CONFIG_PATH
+              value: "/config"
             - name: DATAVERSE_DB_HOST
               value: "{{ .Release.Name }}-dataverse-postgres-pooler"
             - name: DATAVERSE_DB_PASSWORD
@@ -64,6 +66,8 @@ spec:
               mountPath: "/roles"
             - name: users
               mountPath: "/users"
+            - name: config
+              mountPath: "/config"
       volumes:
         - name: script
           configMap:
@@ -84,6 +88,9 @@ spec:
         - name: users
           configMap:
             name: {{ .Release.Name }}-dataverse-bootstrap-users
+        - name: config
+          configMap:
+            name: {{ .Release.Name }}-dataverse-bootstrap-config
       restartPolicy: Never
       initContainers:
         - name: check-dataverse-ready
@@ -128,6 +135,13 @@ metadata:
   name: {{ .Release.Name }}-dataverse-bootstrap-users
 data:
 {{ (.Files.Glob (print "persona/" .Values.persona "/users/*")).AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dataverse-bootstrap-config
+data:
+{{ (.Files.Glob (print "persona/" .Values.persona "/config/*")).AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap
