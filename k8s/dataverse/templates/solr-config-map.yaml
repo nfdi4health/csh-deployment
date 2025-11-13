@@ -9,7 +9,4 @@ metadata:
     app.kubernetes.io/component: solr
     app.kubernetes.io/part-of: dataverse
 data:
-  schema.xml: >
-{{ (.Files.Get (print "persona/" .Values.persona "/schema.xml")) | indent 4}}
-  solrconfig.xml: >
-{{ (.Files.Get (print "persona/" .Values.persona "/solrconfig.xml")) | indent 4}}
+  {{ (.Files.Glob (print "persona/" .Values.persona "/solr/*")).AsConfig | indent 2 }}
