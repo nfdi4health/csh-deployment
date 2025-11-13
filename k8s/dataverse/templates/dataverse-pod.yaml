@@ -149,6 +149,10 @@ spec:
             # Regarding multiple origins, see: https://github.com/IQSS/dataverse/pull/11745
             - name: DATAVERSE_CORS_ORIGIN
               value: {{ coalesce .Values.dataverse.cors.origin .Values.dataverse.site_url }}
+{{- if .Values.dataverse.multipleLanguageSupport.enabled }}
+            - name: JVM_ARGS
+              value: -Ddataverse.lang.directory=/dv/lang
+{{- end }}
           ports:
             - containerPort: 8080
             - containerPort: 4848
@@ -216,6 +220,26 @@ spec:
           command: [ 'sh', '-c',
             'until curl -sS -f "http://${DATAVERSE_SOLR_HOST}:${DATAVERSE_SOLR_PORT}/solr/collection1/admin/ping" 2>&1 | grep "status.:.OK";
             do echo waiting for solr; sleep 3; done;echo SOLR available!' ]
+{{- if .Values.dataverse.multipleLanguageSupport.enabled }}
+        - name: load-languages
+          image: alpine/git
+          command: ["sh", "-c"]
+          args:
+            - |
+              git clone https://github.com/GlobalDataverseCommunityConsortium/dataverse-language-packs.git /tmp/dataverse-language-packs
+              cd /tmp/dataverse-language-packs
+              git checkout dataverse-v6.8
+              mkdir /dv/lang
+              {{- range .Values.dataverse.multipleLanguageSupport.languages }}
+              cp {{ . }}/*.properties /dv/lang
+              {{- end }}
+              {{- if .Values.dataverse.multipleLanguageSupport.customCommands }}
+              {{ .Values.dataverse.multipleLanguageSupport.customCommands }}
+              {{- end }}
+          volumeMounts:
+            - mountPath: /dv
+              name: dev-dataverse-claim0
+{{- end }}
       volumes:
         - name: dev-dataverse-claim0
           persistentVolumeClaim:
