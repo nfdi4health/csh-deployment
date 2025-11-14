@@ -42,7 +42,12 @@ echo "Setting up multiple languages"
 curl -X PUT $DATAVERSE_URL/api/admin/settings/:Languages -d '[{"locale":"en","title":"English"},{"locale":"de","title":"Deutsch"}]'
 echo
 
+echo "Setting up external tools"
+"${SELF_LOCATION}"/init-external-tools.sh
+echo
+
 # Last step as existence of one block is the indicator for a complete bootstrapped installation
+# (see https://github.com/IQSS/dataverse/blob/v6.8/modules/container-configbaker/scripts/bootstrap.sh#L53-L58)
 echo "Load custom metadata blocks"
 # Find all TSV files
 TSVS=$(find "${METADATABLOCKS_PATH}" -maxdepth 1 -iname '*.tsv')
