@@ -2,7 +2,7 @@ persona: "nfdi4health"
 ingress:
   dns:
 dataverse:
-  mem_max_metaspace_size:
+  mem_max_metaspace_size: 4g
   s3:
     access_key:
     secret_key:
@@ -26,6 +26,8 @@ dataverse:
       permalink_separator:
   site_url:
   installation_name:
+  cors:
+    origin:
 postgres:
   volume_size: "32Gi"
   number_instances: 2

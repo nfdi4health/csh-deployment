@@ -1,0 +1,26 @@
+persona: "frl"
+dataverse:
+  s3:
+    access_key: "<REPLACE_ME>"
+    secret_key: "<REPLACE_ME>"
+    bucket_name: "<REPLACE_ME>"
+    endpoint_url: "<REPLACE_ME>"
+  site_url: "<REPLACE_ME>"
+  default_pid_provider: "fakedoi"
+  pid_providers:
+    - name: fakedoi
+      type: "FAKE"
+      label: "Fake DOI Provider"
+      authority: "10.5072"
+      shoulder: "FK2/"
+  multipleLanguageSupport:
+    enabled: true
+    languages:
+      - en_US
+      - de-DE
+    customCommands: |
+      sed -i '/^datasetfieldtype.grantNumberValue.title/c\datasetfieldtype.grantNumberValue.title=Project Identifier' /dv/lang/citation.properties
+postgres:
+  logical_backup: false
+images:
+  backend: gdcc/dataverse:6.8-noble
