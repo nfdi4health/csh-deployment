@@ -153,6 +153,10 @@ spec:
             - name: JVM_ARGS
               value: -Ddataverse.lang.directory=/dv/lang
 {{- end }}
+{{- if .Values.dataverse.exporters }}
+            - name: DATAVERSE_SPI_EXPORTERS_DIRECTORY
+              value: "/dv/exporters"
+{{- end }}
           ports:
             - containerPort: 8080
             - containerPort: 4848
@@ -235,6 +239,20 @@ spec:
               {{- end }}
               {{- if .Values.dataverse.multiple_language_support.custom_commands }}
               {{ .Values.dataverse.multiple_language_support.custom_commands }}
+              {{- end }}
+          volumeMounts:
+            - mountPath: /dv
+              name: dev-dataverse-claim0
+{{- end }}
+{{- if .Values.dataverse.exporters }}
+        - name: load-exporters
+          image: giantswarm/tiny-tools
+          command: ["sh", "-c"]
+          args:
+            - |
+              mkdir /dv/exporters
+              {{- range .Values.dataverse.exporters }}
+              wget -q -O /dv/exporters/{{ base . }} {{ . }}
               {{- end }}
           volumeMounts:
             - mountPath: /dv

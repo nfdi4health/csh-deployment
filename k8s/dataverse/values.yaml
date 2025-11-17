@@ -28,6 +28,9 @@ dataverse:
   installation_name:
   cors:
     origin:
+  multiple_language_support:
+    enabled: false
+  exporters: []
 postgres:
   volume_size: "32Gi"
   number_instances: 2
