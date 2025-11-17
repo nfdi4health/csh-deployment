@@ -13,12 +13,12 @@ dataverse:
       label: "Fake DOI Provider"
       authority: "10.5072"
       shoulder: "FK2/"
-  multipleLanguageSupport:
+  multiple_language_support:
     enabled: true
     languages:
       - en_US
       - de-DE
-    customCommands: |
+    custom_commands: |
       sed -i '/^datasetfieldtype.grantNumberValue.title/c\datasetfieldtype.grantNumberValue.title=Project Identifier' /dv/lang/citation.properties
 postgres:
   logical_backup: false
