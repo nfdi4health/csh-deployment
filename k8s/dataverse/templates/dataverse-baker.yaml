@@ -31,8 +31,8 @@ spec:
               value: {{.Values.dataverse.installation_name}}
             - name: METADATABLOCKS_PATH
               value: "/metadatablocks"
-            - name: LICENCE_PATH
-              value: "/licence"
+            - name: LICENSES_PATH
+              value: "/licenses"
             - name: DATAVERSES_PATH
               value: "/dataverses"
             - name: ROLES_PATH
@@ -58,8 +58,8 @@ spec:
               mountPath: "/scripts/bootstrap/{{ .Values.persona }}"
             - name: metadatablocks
               mountPath: "/metadatablocks"
-            - name: licence
-              mountPath: "/licence"
+            - name: licenses
+              mountPath: "/licenses"
             - name: dataverses
               mountPath: "/dataverses"
             - name: roles
@@ -76,9 +76,9 @@ spec:
         - name: metadatablocks
           configMap:
             name: {{ .Release.Name }}-dataverse-bootstrap-metadatablocks
-        - name: licence
+        - name: licenses
           configMap:
-            name: {{ .Release.Name }}-dataverse-bootstrap-licences
+            name: {{ .Release.Name }}-dataverse-bootstrap-licenses
         - name: dataverses
           configMap:
             name: {{ .Release.Name }}-dataverse-bootstrap-dataverses
@@ -111,9 +111,9 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-dataverse-bootstrap-licences
+  name: {{ .Release.Name }}-dataverse-bootstrap-licenses
 data:
-{{ (.Files.Glob (print "persona/" .Values.persona "/licence/*")).AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/licenses/*")).AsConfig | indent 2 }}
 ---
 apiVersion: v1
 kind: ConfigMap

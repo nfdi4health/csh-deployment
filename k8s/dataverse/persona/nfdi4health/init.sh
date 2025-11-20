@@ -49,7 +49,7 @@ echo
 echo "Upload licenses"
 #curl -X POST -H "Content-Type: application/json" -H "X-Dataverse-key:$DATAVERSE_API_KEY" $DATAVERSE_HOST/api/licenses --upload-file license-CC0-1.0.json
 # Find all licence files
-TSVS=$(find "${LICENCE_PATH}" -maxdepth 1 -iname 'license-*.json')
+TSVS=$(find "${LICENSES_PATH}" -maxdepth 1 -iname 'license*.json')
 # Load licences
 while IFS= read -r TSV; do
   echo "Loading ${TSV}: "

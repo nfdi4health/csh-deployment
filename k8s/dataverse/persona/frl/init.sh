@@ -46,6 +46,14 @@ echo "Setting up external tools"
 "${SELF_LOCATION}"/init-external-tools.sh
 echo
 
+echo "Upload licenses"
+LICENSES=$(find "${LICENSES_PATH}" -maxdepth 1 -iname 'license*.json')
+while IFS= read -r LICENSE; do
+  echo "Loading ${LICENSE}: "
+  curl -X POST -H "Content-type: application/json" $DATAVERSE_URL/api/licenses --upload-file ${LICENSE}
+  echo
+done <<< "${LICENSES}"
+
 # Last step as existence of one block is the indicator for a complete bootstrapped installation
 # (see https://github.com/IQSS/dataverse/blob/v6.8/modules/container-configbaker/scripts/bootstrap.sh#L53-L58)
 echo "Load custom metadata blocks"
