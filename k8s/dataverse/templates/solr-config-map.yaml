@@ -9,4 +9,4 @@ metadata:
     app.kubernetes.io/component: solr
     app.kubernetes.io/part-of: dataverse
 data:
-  {{ (.Files.Glob (print "persona/" .Values.persona "/solr/*")).AsConfig | indent 2 }}
+{{ (.Files.Glob (print "persona/" .Values.persona "/solr/*")).AsConfig | indent 2 }}
