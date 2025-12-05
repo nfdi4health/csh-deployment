@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ctgov-transform-job
+  name: drks-transform-job
 spec:
   template:
     spec:
@@ -16,7 +16,7 @@ spec:
             - configMapRef:
                 name: etl-job-s3-config
             - configMapRef:
-                name: ctgov-job-args
+                name: drks-job-args
           command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10 && echo \"Waiting for s3://$SOURCE_PATH...\"; done"]
       containers:
         - name: spark-submit
@@ -27,7 +27,7 @@ spec:
             - configMapRef:
                 name: etl-job-s3-config
             - configMapRef:
-                name: ctgov-job-args
+                name: drks-job-args
           command:
             - /bin/sh
             - -c
@@ -40,7 +40,7 @@ spec:
               --deploy-mode
               cluster
               --name
-              ctgov-transform-job
+              drks-transform-job
               --conf
               spark.kubernetes.namespace=spark
               --conf
@@ -59,7 +59,7 @@ spec:
               spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
               local:///src/etljobs/main.py
               --job
-              job-CT-gov
+              job-DRKS
               --job-args
               s3a://$SOURCE_PATH
               s3a://$SOURCE_PATH-converted.parquet
@@ -67,7 +67,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ctgov-load-job
+  name: drks-load-job
 spec:
   template:
     spec:
@@ -82,7 +82,7 @@ spec:
             - configMapRef:
                 name: etl-job-s3-config
             - configMapRef:
-                name: ctgov-job-args
+                name: drks-job-args
           command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
       containers:
         - name: spark-submit
@@ -93,9 +93,9 @@ spec:
             - configMapRef:
                 name: etl-job-s3-config
             - configMapRef:
-                name: ctgov-job-args
+                name: drks-job-args
             - secretRef:
-                name: ctgov-job-credentials
+                name: drks-job-credentials
           command:
             - /bin/sh
             - -c
@@ -107,7 +107,7 @@ spec:
               --deploy-mode
               cluster
               --name
-              ctgov-load-job
+              drks-load-job
               --conf
               spark.kubernetes.namespace=spark
               --conf
