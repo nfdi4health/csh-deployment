@@ -69,13 +69,59 @@ while IFS= read -r USER; do
   echo
 done <<< "${USERS}"
 
-echo "Creating roles"
-ROLES=$(find $ROLES_PATH -maxdepth 1 -iname '*.json')
-while IFS= read -r ROLE; do
-  echo "Creating role $(basename $ROLE .json):"
-  curl -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/roles --upload-file $ROLE
+echo "Syncing roles"
+
+# Collect roles defined locally
+mapfile -t LOCAL_ROLES < <(find "$ROLES_PATH" -maxdepth 1 -iname '*.json')
+
+# Collect aliases we will keep (for later cleanup)
+declare -A KEEP_ALIASES=()
+
+for ROLE_FILE in "${LOCAL_ROLES[@]}"; do
+  ALIAS=$(jq -r '.alias' "$ROLE_FILE")
+  KEEP_ALIASES["$ALIAS"]=1
+
+  echo "Processing role: $ALIAS"
+
+  # Check if role exists
+  # (Temporarily allow this command to fail because there may be a 404)
+  set +e
+  GET_RES=$(curl -o /tmp/role_get.json -w "%{http_code}" "$DATAVERSE_URL/api/roles/:alias?alias=$ALIAS")
+  set -e
   echo
-done <<< "${ROLES}"
+
+  if [[ "$GET_RES" == "404" ]]; then
+    echo "Creating role $ALIAS"
+    curl -X POST -H "Content-type:application/json" --upload-file "$ROLE_FILE" "$DATAVERSE_URL/api/admin/roles"
+    echo
+  elif [[ "$GET_RES" == "200" ]]; then
+    ID=$(jq -r '.data.id' /tmp/role_get.json)
+
+    echo "Updating role $ALIAS (id=$ID)"
+    curl -X PUT -H "Content-type:application/json" --upload-file "$ROLE_FILE" "$DATAVERSE_URL/api/admin/roles/$ID"
+    echo
+  else
+    # On any error except 404, fail the script
+    exit 1
+  fi
+
+  echo
+done
+
+echo "Removing obsolete roles"
+curl "$DATAVERSE_URL/api/admin/roles" > /tmp/roles_all.json
+mapfile -t EXISTING < <(jq -c '.data[]' /tmp/roles_all.json)
+
+for R in "${EXISTING[@]}"; do
+  ALIAS=$(jq -r '.alias' <<< "$R")
+  ID=$(jq -r '.id' <<< "$R")
+
+  if [[ -z "${KEEP_ALIASES[$ALIAS]+x}" ]]; then
+    echo "Deleting role $ALIAS (id=$ID)"
+    curl -X DELETE "$DATAVERSE_URL/api/admin/roles/$ID"
+    echo
+  fi
+done
 
 if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
     echo "Updating root dataverse name"
@@ -112,10 +158,6 @@ while IFS= read -r DATAVERSE; do
   if [[ $DATAVERSE_ID == "nfdi4health" ]]; then
     echo "Adding :authenticated-users as dataset creators to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
     curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsContributor"}'
-    echo
-
-    echo "Adding :authenticated-users as dataset permission admins to dataverse $PARENT_DATAVERSE/$DATAVERSE_ID:"
-    curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/assignments -d '{"assignee": ":authenticated-users", "role": "dsPermAdmin"}'
     echo
   fi
 
