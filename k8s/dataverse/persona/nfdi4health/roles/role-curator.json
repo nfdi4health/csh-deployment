@@ -1,0 +1,18 @@
+{
+    "alias":"curator",
+    "name":"Curator",
+    "description":"Can view and manage unpublished entries, and publish reviewed entries.",
+    "permissions":[
+        "ViewUnpublishedDataset",
+        "EditDataset",
+        "DownloadFile",
+        "DeleteDatasetDraft",
+        "PublishDataset",
+        "LinkDataset",
+        "ManageDatasetPermissions",
+        "ManageFilePermissions",
+        "AddDataverse",
+        "AddDataset",
+        "ViewUnpublishedDataverse"
+    ]
+}

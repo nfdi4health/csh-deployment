@@ -1,0 +1,12 @@
+{
+    "alias":"contributor",
+    "name":"Contributor",
+    "description": "Can view and manage this entry. Managing includes editing, deleting, managing team access and submitting for review.",
+    "permissions":[
+        "ViewUnpublishedDataset",
+        "EditDataset",
+        "DownloadFile",
+        "DeleteDatasetDraft",
+        "ManageDatasetPermissions"
+    ]
+}

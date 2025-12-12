@@ -44,4 +44,4 @@ solr:
       memory: "1Gi"
 images:
   backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.6-pidreconcile
-  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.6
+  configbaker: gdcc/configbaker:6.8-noble

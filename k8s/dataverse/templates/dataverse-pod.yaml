@@ -62,6 +62,7 @@ spec:
       containers:
         - image: {{ .Values.images.backend}}
           name: dataverse
+          imagePullPolicy: Always
           env:
             - name: DATAVERSE_SITEURL
               value: {{.Values.dataverse.site_url }}
@@ -238,7 +239,7 @@ spec:
               cp {{ . }}/*.properties /dv/lang
               {{- end }}
               {{- if .Values.dataverse.multiple_language_support.custom_commands }}
-              {{ .Values.dataverse.multiple_language_support.custom_commands }}
+              {{ .Values.dataverse.multiple_language_support.custom_commands | nindent 14 }}
               {{- end }}
           volumeMounts:
             - mountPath: /dv
