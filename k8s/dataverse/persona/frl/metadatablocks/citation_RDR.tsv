@@ -8084,3 +8084,4 @@
 	publicationRelationType	IsSupplementedBy	RT4	4																	
 	publicationRelationType	IsReferencedBy	RT5	5																	
 	publicationRelationType	References	RT6	6																	
+	publicationRelationType	IsPartOf	RDI-CT1	7																	
