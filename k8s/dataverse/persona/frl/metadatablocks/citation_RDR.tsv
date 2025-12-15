@@ -53,10 +53,10 @@
 	contributorIdentifier	Identifier	Uniquely identifies the contributor when paired with an identifier type		text	49	#VALUE	FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	contributor	citation	http://purl.org/spar/datacite/AgentIdentifier
 	grantNumber	Funding Information	Information about the Dataset's financial support		none	50		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		citation	https://schema.org/sponsor
 	grantNumberAgency	Agency	The agency that provided financial support for the Dataset	Organization XYZ	text	51	#VALUE	TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	grantNumber	citation						
-	grantNumberAgencyIdentifierScheme	Identifier Type	The type of identifier that uniquely identifies the agency (e.g. CrossRef Funder ID, GRID)		text	52	- #VALUE:	FALSE	TRUE	FALSE	FALSE	TRUE	FALSE	grantNumber	citation	http://purl.org/spar/datacite/AgentIdentifierScheme
-	grantNumberAgencyIdentifier	Identifier	Uniquely identifies the agency when paired with an identifier type		text	53	#VALUE	FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	grantNumber	citation	http://purl.org/spar/datacite/AgentIdentifier
-	grantNumberValue	Project Identifier	The grant identifier or contract identifier of the agency that provided financial support for the Dataset		text	54	- #VALUE	TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	grantNumber	citation
-	grantNumberProjectName	Project Name			text	55	(#VALUE)	TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	grantNumber	citation
+	grantNumberAgencyIdentifierScheme	Identifier Type	The type of identifier that uniquely identifies the agency (e.g. CrossRef Funder ID, GRID)		text	52	- #VALUE:	FALSE	TRUE	FALSE	FALSE	TRUE	FALSE	grantNumber	citation	http://purl.org/spar/datacite/AgentIdentifierScheme					
+	grantNumberAgencyIdentifier	Identifier	Uniquely identifies the agency when paired with an identifier type		text	53	#VALUE	FALSE	FALSE	FALSE	FALSE	TRUE	FALSE	grantNumber	citation	http://purl.org/spar/datacite/AgentIdentifier					
+	grantNumberValue	Project Identifier	The grant identifier or contract identifier of the agency that provided financial support for the Dataset		text	54	- #VALUE	TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	grantNumber	citation						
+	grantNumberProjectName	Project Name	The name of the project, given by the agency that provided financial support for the Dataset		text	55	(#VALUE)	TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	grantNumber	citation						
 	distributor	Distributor	The entity, such as a person or organization, designated to generate copies of the Dataset, including any editions or revisions		none	56		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		citation						
 	distributorName	Name	The name of the entity, e.g. the person's name or the name of an organization	1) FamilyName, GivenName or 2) Organization	text	57	#VALUE	TRUE	FALSE	FALSE	TRUE	FALSE	FALSE	distributor	citation						
 	distributorAffiliation	Affiliation	The name of the entity affiliated with the distributor, e.g. an organization's name	Organization XYZ	text	58	(#VALUE)	FALSE	FALSE	FALSE	FALSE	FALSE	FALSE	distributor	citation						
@@ -86,7 +86,7 @@
 	originOfSources	Origin of Historical Sources	For historical sources, the origin and any rules followed in establishing them as sources		textbox	82		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation						
 	characteristicOfSources	Characteristic of Sources	Characteristics not already noted elsewhere		textbox	83		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation						
 	accessToSources	Documentation and Access to Sources	1) Methods or procedures for accessing data sources and 2) any special permissions needed for access		textbox	84		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation						
-	yearOfCopyright	Copyright Year			text	85		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation	85
+	yearOfCopyright	Copyright Year	Documented date on which the resource acquires the status of a copyrighted work. Not required for research data; only used if the data itself is subject to a separate copyright		text	85		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation	85					
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder																	
 	subject	Agricultural Sciences	D01	0																	
 	subject	Arts and Humanities	D0	1																	
@@ -8084,3 +8084,4 @@
 	publicationRelationType	IsSupplementedBy	RT4	4																	
 	publicationRelationType	IsReferencedBy	RT5	5																	
 	publicationRelationType	References	RT6	6																	
+	publicationRelationType	IsPartOf	RDI-CT1	7																	
