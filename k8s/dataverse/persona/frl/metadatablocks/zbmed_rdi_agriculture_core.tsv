@@ -45,35 +45,20 @@
 	ventilationSystemsControlled	forced ventilation		0												
 	ventilationSystemsControlled	hybrid ventilation		1												
 	ventilationSystemsControlled	natural ventilation		2												
-	housingSystemsControlled	broiler fattening		0												
-	housingSystemsControlled	calf boxes		1												
-	housingSystemsControlled	calf fattening		2												
-	housingSystemsControlled	calf raising		3												
-	housingSystemsControlled	cattle fattening		4												
-	housingSystemsControlled	cubicle housing		5												
-	housingSystemsControlled	dairy cattle farming		6												
-	housingSystemsControlled	duck fattening		7												
-	housingSystemsControlled	farrowing area, multiple area pen		8												
-	housingSystemsControlled	farrowing area, single area pen		9												
-	housingSystemsControlled	floor housing		10												
-	housingSystemsControlled	floor housing with aviaries		11												
-	housingSystemsControlled	igloo or hut housing		12												
-	housingSystemsControlled	laying hen farming		13												
-	housingSystemsControlled	loose housing system with single type flooring		14												
-	housingSystemsControlled	loose housing system with two type flooring		15												
-	housingSystemsControlled	mobile housing		16												
-	housingSystemsControlled	multiple area pen		17												
-	housingSystemsControlled	pig fattening		18												
-	housingSystemsControlled	piglet production		19												
-	housingSystemsControlled	piglet raising		20												
-	housingSystemsControlled	single area pen		21												
-	housingSystemsControlled	suckler cow farming		22												
-	housingSystemsControlled	turkey fattening		23												
-	housingSystemsControlled	turkey raising		24												
-	housingSystemsControlled	waiting and mating area, multiple area pen		25												
-	housingSystemsControlled	young cattle farming		26												
-	housingSystemsControlled	young hen farming		27												
-	housingSystemsControlled	others		28												
+	housingSystemsControlled	calf boxes		0
+	housingSystemsControlled	cubicle housing		1
+	housingSystemsControlled	farrowing area, multiple area pen		2
+	housingSystemsControlled	farrowing area, single area pen		3
+	housingSystemsControlled	floor housing		4
+	housingSystemsControlled	floor housing with aviaries		5
+	housingSystemsControlled	igloo or hut housing		6
+	housingSystemsControlled	loose housing system with single type flooring		7
+	housingSystemsControlled	loose housing system with two type flooring		8
+	housingSystemsControlled	mobile housing		9
+	housingSystemsControlled	multiple area pen		10
+	housingSystemsControlled	single area pen		11
+	housingSystemsControlled	waiting and mating area, multiple area pen		12
+	housingSystemsControlled	others		13
 	additionalHousingSystemsControlled	liquid manure		0												
 	additionalHousingSystemsControlled	manure belt		1												
 	additionalHousingSystemsControlled	pastures		2												
