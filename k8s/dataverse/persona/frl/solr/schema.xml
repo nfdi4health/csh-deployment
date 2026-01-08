@@ -275,6 +275,8 @@
     <field name="3dWidth" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="accessToSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="actionsToMinimizeLoss" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="additionalHousingSystemsControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="additionalHousingSystemsFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="alternativeTitle" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="alternativeURL" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="astroFacility" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -340,6 +342,12 @@
     <field name="dsDescriptionDate" type="date_range" multiValued="true" stored="true" indexed="true"/>
     <field name="dsDescriptionValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="eastLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="emi_measurement_techniquesControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="emi_measurement_techniquesFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="emissionsControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="emissionsFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="emissionsReductionMethodsControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="emissionsReductionMethodsFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="frequencyOfDataCollection" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="geographicBoundingBox" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="geographicCoverage" type="text_en" multiValued="true" stored="true" indexed="true"/>
@@ -350,6 +358,8 @@
     <field name="grantNumberAgencyIdentifierScheme" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="grantNumberProjectName" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="grantNumberValue" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="housingSystemsControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="housingSystemsFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalArticleType" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalIssue" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="journalPubDate" type="date_range" multiValued="true" stored="true" indexed="true"/>
@@ -362,6 +372,10 @@
     <field name="keywordVocabularyURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="kindOfData" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="language" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="livestockCategoryControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="livestockCategoryFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="livestockProductionControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="livestockProductionFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="northLatitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="notesText" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="originOfSources" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -426,6 +440,8 @@
     <field name="targetSampleActualSize" type="plong" multiValued="false" stored="true" indexed="true"/>
     <field name="targetSampleSize" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="targetSampleSizeFormula" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="testDesignControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="testDesignFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="timeMethod" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="timePeriodCovered" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="timePeriodCoveredEnd" type="date_range" multiValued="true" stored="true" indexed="true"/>
@@ -437,9 +453,11 @@
     <field name="topicClassVocabURI" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="unitOfAnalysis" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="universe" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ventilationSystemsControlled" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="ventilationSystemsFree" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="weighting" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="westLongitude" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="yearOfCopyright" type="text_en" multiValued="true" stored="true" indexed="true"/>
+    <field name="yearOfCopyright" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <!-- SCHEMA-FIELDS::END -->
     
 
@@ -538,6 +556,8 @@
     <copyField source="3dWidth" dest="_text_" maxChars="3000"/>
     <copyField source="accessToSources" dest="_text_" maxChars="3000"/>
     <copyField source="actionsToMinimizeLoss" dest="_text_" maxChars="3000"/>
+    <copyField source="additionalHousingSystemsControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="additionalHousingSystemsFree" dest="_text_" maxChars="3000"/>
     <copyField source="alternativeTitle" dest="_text_" maxChars="3000"/>
     <copyField source="alternativeURL" dest="_text_" maxChars="3000"/>
     <copyField source="astroFacility" dest="_text_" maxChars="3000"/>
@@ -603,6 +623,12 @@
     <copyField source="dsDescriptionDate" dest="_text_" maxChars="3000"/>
     <copyField source="dsDescriptionValue" dest="_text_" maxChars="3000"/>
     <copyField source="eastLongitude" dest="_text_" maxChars="3000"/>
+    <copyField source="emi_measurement_techniquesControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="emi_measurement_techniquesFree" dest="_text_" maxChars="3000"/>
+    <copyField source="emissionsControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="emissionsFree" dest="_text_" maxChars="3000"/>
+    <copyField source="emissionsReductionMethodsControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="emissionsReductionMethodsFree" dest="_text_" maxChars="3000"/>
     <copyField source="frequencyOfDataCollection" dest="_text_" maxChars="3000"/>
     <copyField source="geographicBoundingBox" dest="_text_" maxChars="3000"/>
     <copyField source="geographicCoverage" dest="_text_" maxChars="3000"/>
@@ -613,6 +639,8 @@
     <copyField source="grantNumberAgencyIdentifierScheme" dest="_text_" maxChars="3000"/>
     <copyField source="grantNumberProjectName" dest="_text_" maxChars="3000"/>
     <copyField source="grantNumberValue" dest="_text_" maxChars="3000"/>
+    <copyField source="housingSystemsControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="housingSystemsFree" dest="_text_" maxChars="3000"/>
     <copyField source="journalArticleType" dest="_text_" maxChars="3000"/>
     <copyField source="journalIssue" dest="_text_" maxChars="3000"/>
     <copyField source="journalPubDate" dest="_text_" maxChars="3000"/>
@@ -625,6 +653,10 @@
     <copyField source="keywordVocabularyURI" dest="_text_" maxChars="3000"/>
     <copyField source="kindOfData" dest="_text_" maxChars="3000"/>
     <copyField source="language" dest="_text_" maxChars="3000"/>
+    <copyField source="livestockCategoryControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="livestockCategoryFree" dest="_text_" maxChars="3000"/>
+    <copyField source="livestockProductionControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="livestockProductionFree" dest="_text_" maxChars="3000"/>
     <copyField source="northLatitude" dest="_text_" maxChars="3000"/>
     <copyField source="notesText" dest="_text_" maxChars="3000"/>
     <copyField source="originOfSources" dest="_text_" maxChars="3000"/>
@@ -689,6 +721,8 @@
     <copyField source="targetSampleActualSize" dest="_text_" maxChars="3000"/>
     <copyField source="targetSampleSize" dest="_text_" maxChars="3000"/>
     <copyField source="targetSampleSizeFormula" dest="_text_" maxChars="3000"/>
+    <copyField source="testDesignControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="testDesignFree" dest="_text_" maxChars="3000"/>
     <copyField source="timeMethod" dest="_text_" maxChars="3000"/>
     <copyField source="timePeriodCovered" dest="_text_" maxChars="3000"/>
     <copyField source="timePeriodCoveredEnd" dest="_text_" maxChars="3000"/>
@@ -700,6 +734,8 @@
     <copyField source="topicClassVocabURI" dest="_text_" maxChars="3000"/>
     <copyField source="unitOfAnalysis" dest="_text_" maxChars="3000"/>
     <copyField source="universe" dest="_text_" maxChars="3000"/>
+    <copyField source="ventilationSystemsControlled" dest="_text_" maxChars="3000"/>
+    <copyField source="ventilationSystemsFree" dest="_text_" maxChars="3000"/>
     <copyField source="weighting" dest="_text_" maxChars="3000"/>
     <copyField source="westLongitude" dest="_text_" maxChars="3000"/>
     <copyField source="yearOfCopyright" dest="_text_" maxChars="3000"/>
