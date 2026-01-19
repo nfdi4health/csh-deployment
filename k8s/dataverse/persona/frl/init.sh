@@ -46,6 +46,10 @@ echo "Setting up external tools"
 "${SELF_LOCATION}"/init-external-tools.sh
 echo
 
+echo "Enabling file-level embargoes"
+curl -X PUT $DATAVERSE_URL/api/admin/settings/:MaxEmbargoDurationInMonths -d -1
+echo
+
 echo "Upload licenses"
 LICENSES=$(find "${LICENSES_PATH}" -maxdepth 1 -iname 'license*.json')
 while IFS= read -r LICENSE; do
