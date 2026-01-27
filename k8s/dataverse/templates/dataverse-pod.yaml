@@ -143,6 +143,12 @@ spec:
               value: "s3"
             - name: dataverse_files_storage__driver__id
               value: "s3"
+            # Place temporary files related to data upload in /tmp, so they get cleared regularly
+            # See https://github.com/IQSS/dataverse/issues/10667#issuecomment-2316041237
+            - name: DATAVERSE_FILES_DIRECTORY
+              value: "/tmp/dataverse"
+            - name: DATAVERSE_FILES_UPLOADS
+              value: "/tmp/uploads"
             # Add "Authorization" to list of headers allowed in CORS requests
             - name: DATAVERSE_CORS_HEADERS_ALLOW
               value: Accept, Content-Type, X-Dataverse-key, Range, Authorization

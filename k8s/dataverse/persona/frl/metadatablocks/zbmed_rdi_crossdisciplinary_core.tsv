@@ -1,0 +1,8 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI												
+	zbmed_rdi_crossdisciplinary_core		Crossdisciplinary Metadata	https://dataverse.org/schema/zbmed_rdi_crossdisciplinary_core/												
+#datasetField	name	title	description	watermark	 fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	testDesignControlled	Test Design Controlled	Test design used to collect the data (Controlled Vocabulary)		text	1		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_crossdisciplinary_core	
+	testDesignFree	Test Design Free	Test design used to collect the data (Free Terms)		text	2		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_crossdisciplinary_core	
+#controlledVocabulary	DatasetField		identifier	displayOrder												
+	testDesignControlled	case control		0												
+	testDesignControlled	multi site		1												

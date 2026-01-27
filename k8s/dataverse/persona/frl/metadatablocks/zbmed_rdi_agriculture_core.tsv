@@ -1,0 +1,105 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI												
+	zbmed_rdi_agriculture_core		Agriculture Metadata	https://dataverse.org/schema/zbmed_rdi_agriculture_core/												
+#datasetField	name	title	description	watermark	 fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	livestockCategoryControlled	Livestock Category (controlled terms)	Category of the livestock (Controlled Vocabulary)		text	1		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	livestockCategoryFree	Livestock Category (free terms)	Category of the livestock (Free Terms)		text	2		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	livestockProductionControlled	Livestock Production (controlled terms)	Type of production system (e.g. dairy, beef, meat, eggs) (Controlled Vocabulary)		text	3		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	livestockProductionFree	Livestock Production (free terms)	Type of production system (e.g. dairy, beef, meat, eggs) (Free Terms)		text	4		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	ventilationSystemsControlled	Ventilation System (controlled terms)	Type and main characteristics of the ventilation system (Controlled Vocabulary)		text	5		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	ventilationSystemsFree	Ventilation System (free terms)	Type and main characteristics of the ventilation system (Free Terms)		text	6		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	housingSystemsControlled	Housing Systems (controlled terms)	Type and main characteristics of the livestock housing system (Controlled Vocabulary)		text	7		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	housingSystemsFree	Housing Systems (free terms)	Type and main characteristics of the livestock housing system (Free Terms)		text	8		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	additionalHousingSystemsControlled	Additional Housing Systems (controlled terms)	Further details of the housing system (e.g. floor type, bedding, stocking density) (Controlled Vocabulary)		text	9		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	additionalHousingSystemsFree	Additional Housing Systems (free terms)	Further details of the housing system (e.g. floor type, bedding, stocking density) (Free Terms)		text	10		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	emi_measurement_techniquesControlled	Emissions Measurement Techniques (controlled terms)	Methods and instruments used to measure emissions (Controlled Vocabulary)		text	11		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	emi_measurement_techniquesFree	Emissions Measurement Techniques (free terms)	Methods and instruments used to measure emissions (Free Terms)		text	12		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	emissionsControlled	Emissions (controlled terms)	Type of emission measured (e.g. NH3, CH4, N2O, CO2, dust) (Controlled Vocabulary)		text	13		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	emissionsFree	Emissions (free terms)	Type of emission measured (e.g. NH3, CH4, N2O, CO2, dust) (Free Terms)		text	14		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	emissionsReductionMethodsControlled	Emissions Reduction Methods (controlled terms)	Measures applied to reduce emissions from the housing or animals (Controlled Vocabulary)		text	15		TRUE	TRUE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+	emissionsReductionMethodsFree	Emissions Reduction Methods (free terms)	Measures applied to reduce emissions from the housing or animals (Free Terms)		text	16		FALSE	FALSE	TRUE	FALSE	FALSE	FALSE		zbmed_rdi_agriculture_core
+#controlledVocabulary	DatasetField		identifier	displayOrder
+	livestockCategoryControlled	cattle		0
+	livestockCategoryControlled	chicken		1
+	livestockCategoryControlled	duck		2
+	livestockCategoryControlled	goat		3
+	livestockCategoryControlled	goose		4
+	livestockCategoryControlled	horse		5
+	livestockCategoryControlled	pig		6
+	livestockCategoryControlled	sheep		7
+	livestockCategoryControlled	turkey		8
+	livestockProductionControlled	broiler fattening		0
+	livestockProductionControlled	calf fattening		1
+	livestockProductionControlled	calf raising		2
+	livestockProductionControlled	cattle fattening		3
+	livestockProductionControlled	dairy cattle farming		4
+	livestockProductionControlled	duck fattening		5
+	livestockProductionControlled	laying hen farming		6
+	livestockProductionControlled	pig fattening		7
+	livestockProductionControlled	piglet production		8
+	livestockProductionControlled	piglet raising		9
+	livestockProductionControlled	suckler cow farming		10
+	livestockProductionControlled	turkey fattening		11
+	livestockProductionControlled	turkey raising		12
+	livestockProductionControlled	young cattle farming		13
+	livestockProductionControlled	young hen farming		14
+	ventilationSystemsControlled	forced ventilation		0
+	ventilationSystemsControlled	hybrid ventilation		1
+	ventilationSystemsControlled	natural ventilation		2
+	housingSystemsControlled	calf boxes		0
+	housingSystemsControlled	cubicle housing		1
+	housingSystemsControlled	farrowing area, multiple area pen		2
+	housingSystemsControlled	farrowing area, single area pen		3
+	housingSystemsControlled	floor housing		4
+	housingSystemsControlled	floor housing with aviaries		5
+	housingSystemsControlled	igloo or hut housing		6
+	housingSystemsControlled	loose housing system with single type flooring		7
+	housingSystemsControlled	loose housing system with two type flooring		8
+	housingSystemsControlled	mobile housing		9
+	housingSystemsControlled	multiple area pen		10
+	housingSystemsControlled	single area pen		11
+	housingSystemsControlled	waiting and mating area, multiple area pen		12
+	housingSystemsControlled	others		13
+	additionalHousingSystemsControlled	liquid manure		0
+	additionalHousingSystemsControlled	manure belt		1
+	additionalHousingSystemsControlled	pastures		2
+	additionalHousingSystemsControlled	perforated floor		3
+	additionalHousingSystemsControlled	solid floor		4
+	additionalHousingSystemsControlled	solid manure		5
+	additionalHousingSystemsControlled	veranda		6
+	additionalHousingSystemsControlled	yard		7
+	additionalHousingSystemsControlled	others		8
+	emi_measurement_techniquesControlled	concentration measurement		0
+	emi_measurement_techniquesControlled	dynamic chamber measurements		1
+	emi_measurement_techniquesControlled	static chamber measurements		2
+	emi_measurement_techniquesControlled	tracer gas method		3
+	emi_measurement_techniquesControlled	volume flow measurement		4
+	emissionsControlled	bioaerosols		0
+	emissionsControlled	CH4 (methane)		1
+	emissionsControlled	CO2 (carbon dioxide)		2
+	emissionsControlled	N2O (nitrous oxide)		3
+	emissionsControlled	NH3 (ammonia)		4
+	emissionsControlled	odour		5
+	emissionsControlled	particles (dust)		6
+	emissionsControlled	others		7
+	emissionsReductionMethodsControlled	above floor scraper (AFS)		0
+	emissionsReductionMethodsControlled	air cleaning (AC)		1
+	emissionsReductionMethodsControlled	faeces urine separation (FUS)		2
+	emissionsReductionMethodsControlled	feed supplements (FS)		3
+	emissionsReductionMethodsControlled	grooved floor with finger scraper (GFFS)		4
+	emissionsReductionMethodsControlled	incoming air cooling (IAC)		5
+	emissionsReductionMethodsControlled	increased manure removal interval (IMRI)		6
+	emissionsReductionMethodsControlled	litter aeration (LA)		7
+	emissionsReductionMethodsControlled	manure belt (MB)		8
+	emissionsReductionMethodsControlled	manure drying (MD)		9
+	emissionsReductionMethodsControlled	nutrition reduced feeding (NRF)		10
+	emissionsReductionMethodsControlled	reduced slat ratio (RSR)		11
+	emissionsReductionMethodsControlled	slit sealing flaps		12
+	emissionsReductionMethodsControlled	slurry acidification (SA)		13												
+	emissionsReductionMethodsControlled	slurry channel flushing system (SCFS)		14												
+	emissionsReductionMethodsControlled	slurry channel reduction (SCR)		15												
+	emissionsReductionMethodsControlled	slurry cooling (SC)		16												
+	emissionsReductionMethodsControlled	slurry treatment whey (W)		17												
+	emissionsReductionMethodsControlled	underfloor scraper (US)		18												
+	emissionsReductionMethodsControlled	underfloor scraper with faeces and urine separation (USFUS)		19												
+	emissionsReductionMethodsControlled	urease inhibitor (UI)		20												
+	emissionsReductionMethodsControlled	others		21												

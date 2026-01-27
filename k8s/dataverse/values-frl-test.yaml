@@ -13,6 +13,15 @@ dataverse:
       label: "Fake DOI Provider"
       authority: "10.5072"
       shoulder: "FK2/"
+    - name: "testdoi"
+      type: "datacite"
+      label: "DataCite Fabrica Test"
+      authority: "<REPLACE_ME>"
+      shoulder: ""
+      datacite_mds_api_url: "https://mds.test.datacite.org/"
+      datacite_rest_api_url: "https://api.test.datacite.org/"
+      datacite_username: "<REPLACE_ME>"
+      datacite_password: "<REPLACE_ME>"
   multiple_language_support:
     enabled: true
     languages:
