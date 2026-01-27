@@ -73,5 +73,12 @@ dataverse:
       label: "DRKS Permalink Provider"
       authority: "DRKS"
       permalink_base_url: "https://drks.de/search/de/trial/"
+  multiple_language_support:
+    enabled: true
+    languages:
+      - en_US
+    custom_commands: |
+      sed -i '/^permission.anyoneWithAccount/c\permission.anyoneWithAccount=Anyone with a Health Study Hub account' /dv/lang/Bundle.properties
+      echo > /dv/lang/BuiltInRoles.properties
   site_url: "https://health-study-hub.de"
   installation_name: "NFDI4Health Health Study Hub"
