@@ -144,6 +144,16 @@ entries:
     version: 0.1.0
   dataverse:
   - apiVersion: v2
+    appVersion: 6.8.0
+    created: "2026-01-28T10:13:40.430955404Z"
+    description: A Helm chart to deploy the dataverse
+    digest: 277f2f88794f8a8441ea72730efd68018a3a0e2e96795455e6a3ddb6d1218697
+    name: dataverse
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/dataverse-0.17.0/dataverse-0.17.0.tgz
+    version: 0.17.0
+  - apiVersion: v2
     appVersion: 6.6.0
     created: "2026-01-22T15:33:09.775239683Z"
     description: A Helm chart to deploy the dataverse
@@ -884,4 +894,4 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.1/mica-0.0.1.tgz
     version: 0.0.1
-generated: "2026-01-22T15:33:09.775505738Z"
+generated: "2026-01-28T10:13:40.43131652Z"
