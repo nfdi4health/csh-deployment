@@ -1,0 +1,84 @@
+dataverse:
+  s3:
+    access_key: "<REPLACE_ME>"
+    secret_key: "<REPLACE_ME>"
+    bucket_name: "<REPLACE_ME>"
+    endpoint_url: "<REPLACE_ME>"
+  oidc:
+    issuer: "<REPLACE_ME>"
+    cliedid: "<REPLACE_ME>"
+    clientsecret: "<REPLACE_ME>"
+  resources:
+    limits:
+      memory: "4Gi"
+    requests:
+      memory: "4Gi"
+  default_pid_provider: "csh"
+  pid_providers:
+    - name: csh
+      type: "perma"
+      label: "Study Hub Permalink Provider"
+      authority: "nfdi4health"
+      permalink_base_url: "https://health-study-hub.de/resource/"
+      permalink_separator: "-"
+      identifier_generation_style: "storedProcGenerated"
+    - name: doi
+      type: "datacite"
+      label: "NFDI4Health DOI Provider"
+      authority: "<REPLACE_ME>"
+      shoulder: "nfdi4health-"
+      datacite_mds_api_url: "https://mds.datacite.org/"
+      datacite_rest_api_url: "https://api.datacite.org/"
+      datacite_username: "<REPLACE_ME>"
+      datacite_password: "<REPLACE_ME>"
+    - name: ctgov
+      type: "perma"
+      label: "CT.gov Permalink Provider"
+      authority: "NCT"
+      permalink_base_url: "https://clinicaltrials.gov/study/"
+    - name: euctr
+      type: "perma"
+      label: "ICTRP EUCTR Permalink Provider"
+      authority: "EUCTR"
+      permalink_base_url: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+    - name: per
+      type: "perma"
+      label: "ICTRP PER Permalink Provider"
+      authority: "PER"
+      permalink_base_url: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+      permalink_separator: "-"
+    - name: isrctn
+      type: "perma"
+      label: "ICTRP ISRCTN Permalink Provider"
+      authority: "ISRCTN"
+      permalink_base_url: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+    - name: ctri
+      type: "perma"
+      label: "ICTRP CTRI Permalink Provider"
+      authority: "CTRI"
+      permalink_base_url: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+      permalink_separator: "/"
+    - name: jprn
+      type: "perma"
+      label: "ICTRP JPRN Permalink Provider"
+      authority: "JPRN-jRCT"
+      permalink_base_url: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+    - name: actrn
+      type: "perma"
+      label: "ICTRP ACTRN Permalink Provider"
+      authority: "ACTRN"
+      permalink_base_url: "https://trialsearch.who.int/Trial2.aspx?TrialID="
+    - name: drks
+      type: "perma"
+      label: "DRKS Permalink Provider"
+      authority: "DRKS"
+      permalink_base_url: "https://drks.de/search/de/trial/"
+  multiple_language_support:
+    enabled: true
+    languages:
+      - en_US
+    custom_commands: |
+      sed -i '/^permission.anyoneWithAccount/c\permission.anyoneWithAccount=Anyone with a Health Study Hub account' /dv/lang/Bundle.properties
+      echo > /dv/lang/BuiltInRoles.properties
+  site_url: "https://health-study-hub.de"
+  installation_name: "NFDI4Health Health Study Hub"
