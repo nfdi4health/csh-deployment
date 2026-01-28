@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 LOGICAL_BACKUP_S3_BUCKET=
 SCOPE=
 LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX=
@@ -125,7 +127,7 @@ else
     kubectl exec ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0 --container solr --context $SOURCE_DATAVERSE_CONTEXT -n $SOURCE_DATAVERSE_NAMESPACE -- tar -zcf /tmp/${SOLR_BACKUP_NAME}.tar.gz -C /var/solr/data/collection1/data/ ${SOLR_BACKUP_NAME} > /dev/null
     kubectl cp ${SOURCE_DATAVERSE_NAME}-dataverse-solr-0:/tmp/${SOLR_BACKUP_NAME}.tar.gz ${SOLR_BACKUP_NAME}.tar.gz --container solr --context $SOURCE_DATAVERSE_CONTEXT -n $SOURCE_DATAVERSE_NAMESPACE --retries=-1 > /dev/null
     kubectl cp ${SOLR_BACKUP_NAME}.tar.gz ${DESTINATION_DATAVERSE_NAME}-dataverse-solr-0:/tmp/ --container solr --context $DESTINATION_DATAVERSE_CONTEXT -n $DESTINATION_DATAVERSE_NAMESPACE --retries=-1 > /dev/null
-    kubectl exec ${DESTINATION_DATAVERSE_NAME}-dataverse-solr-0 --container solr --context $DESTINATION_DATAVERSE_CONTEXT -n $DESTINATION_DATAVERSE_NAMESPACE -- rm -r /var/solr/data/collection1/data/snapshot.*
+    kubectl exec ${DESTINATION_DATAVERSE_NAME}-dataverse-solr-0 --container solr --context $DESTINATION_DATAVERSE_CONTEXT -n $DESTINATION_DATAVERSE_NAMESPACE -- rm -rf /var/solr/data/collection1/data/snapshot.*
     kubectl exec ${DESTINATION_DATAVERSE_NAME}-dataverse-solr-0 --container solr --context $DESTINATION_DATAVERSE_CONTEXT -n $DESTINATION_DATAVERSE_NAMESPACE -- tar -zxf /tmp/${SOLR_BACKUP_NAME}.tar.gz -C /var/solr/data/collection1/data/
 fi
 
