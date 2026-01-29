@@ -102,6 +102,7 @@ for ROLE_FILE in "${LOCAL_ROLES[@]}"; do
     echo
   else
     # On any error except 404, fail the script
+    echo "ERR: Getting role $ALIAS failed with $GET_RES"
     exit 1
   fi
 
