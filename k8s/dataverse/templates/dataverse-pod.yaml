@@ -239,7 +239,7 @@ spec:
             - |
               git clone https://github.com/GlobalDataverseCommunityConsortium/dataverse-language-packs.git /tmp/dataverse-language-packs
               cd /tmp/dataverse-language-packs
-              git checkout dataverse-v6.8
+              git checkout dataverse-v6.9
               mkdir /dv/lang
               {{- range .Values.dataverse.multiple_language_support.languages }}
               cp {{ . }}/*.properties /dv/lang
