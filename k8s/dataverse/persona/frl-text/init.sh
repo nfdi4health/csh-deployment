@@ -42,19 +42,19 @@ echo "Setting up multiple languages"
 curl -X PUT $DATAVERSE_URL/api/admin/settings/:Languages -d '[{"locale":"en","title":"English"},{"locale":"de","title":"Deutsch"}]'
 echo
 
-echo "Setting up external tools"
-"${SELF_LOCATION}"/init-external-tools.sh
-echo
+#echo "Setting up external tools"
+#"${SELF_LOCATION}"/init-external-tools.sh
+#echo
 
 echo "Enabling file-level embargoes"
 curl -X PUT $DATAVERSE_URL/api/admin/settings/:MaxEmbargoDurationInMonths -d -1
 echo
 
 echo "Configuring dataset summary fields"
-curl -X PUT $DATAVERSE_URL/api/admin/settings/:CustomDatasetSummaryFields -d 'dsDescription,author,datasetContact,subject,keyword,publication,grantNumber,publicationDate'
+curl -X PUT $DATAVERSE_URL/api/admin/settings/:CustomDatasetSummaryFields -d 'dsDescription,author,datasetContact,subject,keyword,publication,grantNumber,yearOfCopyright'
 echo
 
-# TODO Currently, the CSS file must be *manually* copied to /dv/branding and then configured via API
+# TODO Currently, the CSS file must be manually copied to /dv/branding
 #echo "Configuring custom CSS"
 #curl -X PUT -d '/dv/branding/style.css' http://localhost:8080/api/admin/settings/:StyleCustomizationFile
 #echo

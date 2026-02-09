@@ -1,0 +1,39 @@
+persona: "frl-text"
+ingress:
+  dns: "<REPLACE_ME>"
+dataverse:
+  s3:
+    access_key: "<REPLACE_ME>"
+    secret_key: "<REPLACE_ME>"
+    bucket_name: "<REPLACE_ME>"
+    endpoint_url: "<REPLACE_ME>"
+  site_url: "<REPLACE_ME>"
+  default_pid_provider: "fakedoi"
+  pid_providers:
+    - name: fakedoi
+      type: "FAKE"
+      label: "Fake DOI Provider"
+      authority: "10.5072"
+      shoulder: "FK2/"
+    - name: "testdoi"
+      type: "datacite"
+      label: "DataCite Fabrica Test"
+      authority: "<REPLACE_ME>"
+      shoulder: ""
+      datacite_mds_api_url: "https://mds.test.datacite.org/"
+      datacite_rest_api_url: "https://api.test.datacite.org/"
+      datacite_username: "<REPLACE_ME>"
+      datacite_password: "<REPLACE_ME>"
+  multiple_language_support:
+    enabled: true
+    languages:
+      - en_US
+      - de-DE
+    custom_commands: |
+      sed -i '/^datasetfieldtype.grantNumberValue.title/c\datasetfieldtype.grantNumberValue.title=Project Identifier' /dv/lang/citation.properties
+  exporters:
+    - https://repo1.maven.org/maven2/io/gdcc/export/croissant/0.1.6/croissant-0.1.6.jar
+postgres:
+  logical_backup: false
+images:
+  backend: gdcc/dataverse:6.8-noble
