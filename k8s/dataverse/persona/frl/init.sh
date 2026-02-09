@@ -51,7 +51,7 @@ curl -X PUT $DATAVERSE_URL/api/admin/settings/:MaxEmbargoDurationInMonths -d -1
 echo
 
 echo "Configuring dataset summary fields"
-curl -X PUT $DATAVERSE_URL/api/admin/settings/:CustomDatasetSummaryFields -d 'dsDescription,author,datasetContact,subject,keyword,publication,grantNumber,yearOfCopyright'
+curl -X PUT $DATAVERSE_URL/api/admin/settings/:CustomDatasetSummaryFields -d 'dsDescription,author,datasetContact,subject,keyword,publication,grantNumber,publicationDate'
 echo
 
 # TODO Currently, the CSS file must be *manually* copied to /dv/branding and then configured via API
