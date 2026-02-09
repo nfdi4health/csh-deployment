@@ -8085,4 +8085,4 @@
 	publicationRelationType	IsReferencedBy	RT5	5																	
 	publicationRelationType	References	RT6	6																	
 	publicationRelationType	IsPartOf	RDI-CT1	7																	
-	publicationRelationType	hasPart	RDI-CT2	8
+	publicationRelationType	HasPart	RDI-CT2	8
