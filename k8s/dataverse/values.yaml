@@ -2,7 +2,7 @@ persona: "nfdi4health"
 ingress:
   dns:
 dataverse:
-  mem_max_metaspace_size:
+  mem_max_metaspace_size: 4g
   s3:
     access_key:
     secret_key:
@@ -26,6 +26,11 @@ dataverse:
       permalink_separator:
   site_url:
   installation_name:
+  cors:
+    origin:
+  multiple_language_support:
+    enabled: false
+  exporters: []
 postgres:
   volume_size: "32Gi"
   number_instances: 2
@@ -38,5 +43,5 @@ solr:
     requests:
       memory: "1Gi"
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.6-pidreconcile
-  configbaker: ghcr.io/nfdi4health/csh-ui/dataverse-baker:6.6
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.8-fork-v1
+  configbaker: gdcc/configbaker:6.8-noble

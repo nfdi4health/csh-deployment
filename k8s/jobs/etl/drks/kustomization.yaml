@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+  - drks_job.yaml
+
+namespace: spark
+
+images:
+  - name: ghcr.io/nfdi4health/csh-etl-pipeline
+    newTag: "latest" # OPTIONAL: Insert tag of ETL pipeline image to be used (if not using latest).
+
+configMapGenerator:
+  - name: drks-job-args
+    literals:
+      - SOURCE_PATH="" # TODO: Insert path where source data is located. Example: "km-bonn-prod-nfdi4health-etl-data/drks/2025-09-15"
+      - COLLECTIONS_PATH="" # TODO: Insert path where collection JSON is located. Example: "km-bonn-prod-nfdi4health-etl-data/collections.json"
+      - SPARK_CONTAINER_IMAGE_TAG="latest" # OPTIONAL: Insert tag of ETL pipeline image to be used (if not using latest).
+      - DATAVERSE_HOST="" # TODO: Insert Dataverse URL. Example: "http://my-dataverse-svc.default.svc.cluster.local:8080"
+
+secretGenerator:
+  - name: drks-job-credentials
+    literals:
+      - DATAVERSE_API_KEY="" # TODO: Insert Dataverse API key.

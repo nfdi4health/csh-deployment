@@ -1,0 +1,146 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: drks-transform-job
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-extract
+          image: amazon/aws-cli
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: drks-job-args
+          command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10 && echo \"Waiting for s3://$SOURCE_PATH...\"; done"]
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: drks-job-args
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              if aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
+              /opt/spark/bin/spark-submit
+              --master
+              k8s://https://kubernetes.default.svc
+              --deploy-mode
+              cluster
+              --name
+              drks-transform-job
+              --conf
+              spark.kubernetes.namespace=spark
+              --conf
+              spark.kubernetes.authenticate.driver.serviceAccountName=spark
+              --conf
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
+              --conf
+              spark.jars.ivy=/tmp/.ivy
+              --conf
+              spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
+              --conf
+              spark.hadoop.fs.s3a.path.style.access=true
+              --conf
+              spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
+              local:///src/etljobs/main.py
+              --job
+              job-DRKS
+              --job-args
+              s3a://$SOURCE_PATH
+              s3a://$SOURCE_PATH-converted.parquet
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: drks-load-job
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-transform
+          image: amazon/aws-cli
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: drks-job-args
+          command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: drks-job-args
+            - secretRef:
+                name: drks-job-credentials
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              /opt/spark/bin/spark-submit
+              --master
+              k8s://https://kubernetes.default.svc
+              --deploy-mode
+              cluster
+              --name
+              drks-load-job
+              --conf
+              spark.kubernetes.namespace=spark
+              --conf
+              spark.kubernetes.authenticate.driver.serviceAccountName=spark
+              --conf
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
+              --conf
+              spark.jars.ivy=/tmp/.ivy
+              --conf
+              spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
+              --conf
+              spark.hadoop.fs.s3a.path.style.access=true
+              --conf
+              spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.kubernetes.driverEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.kubernetes.driverEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.kubernetes.driverEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              --conf
+              spark.executorEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.executorEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.executorEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              local:///src/etljobs/main.py
+              --job
+              submit_dataverse
+              --job-args
+              s3a://$SOURCE_PATH-converted.parquet
+              $DATAVERSE_HOST
+              $DATAVERSE_API_KEY
+              s3://$COLLECTIONS_PATH

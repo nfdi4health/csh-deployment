@@ -157,7 +157,8 @@
     <field name="dvSubject" type="string" stored="true" indexed="true" multiValued="true"/>
 
     <field name="publicationStatus" type="string" stored="true" indexed="true" multiValued="true"/>
-    <field name="externalStatus" type="string" stored="true" indexed="true" multiValued="false"/>
+    <field name="curationStatus" type="string" stored="true" indexed="true" multiValued="false"/>
+    <field name="curationStatusCreateTime" type="pdate" indexed="true" stored="true"/>
     <field name="embargoEndDate" type="plong" stored="true" indexed="true" multiValued="false"/>
     <field name="retentionEndDate" type="plong" stored="true" indexed="true" multiValued="false"/>
 
@@ -268,7 +269,7 @@
     <field name="3dLightingSetup" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="3dMasterFilePolygonCount" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="3dMaterialComposition" type="text_en" multiValued="true" stored="true" indexed="true"/>
-    <field name="3dObjectDimensions" type="text_en" multiValued="false" stored="true" indexed="true"/>
+    <field name="3dObjectDimensions" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="3dUnit" type="text_en" multiValued="true" stored="true" indexed="true"/>
     <field name="3dWeight" type="text_en" multiValued="false" stored="true" indexed="true"/>
     <field name="3dWidth" type="text_en" multiValued="false" stored="true" indexed="true"/>
@@ -659,11 +660,12 @@
     <field name="astrophysics" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="biomedical" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="journal" type="text_en" multiValued="true" stored="false" indexed="true"/>
-    <field name="resource" type="text_en" multiValued="true" stored="false" indexed="true"/>
-    <field name="resource.design" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="resource.customMetadata.recordLinkage" type="text_en" multiValued="true" stored="false" indexed="true"/>
-    <field name="mica" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <field name="link" type="text_en" multiValued="true" stored="false" indexed="true"/>
+    <field name="resource.design" type="text_en" multiValued="true" stored="false" indexed="true"/>
+    <field name="resource" type="text_en" multiValued="true" stored="false" indexed="true"/>
+    <field name="mica" type="text_en" multiValued="true" stored="false" indexed="true"/>
+    <field name="3dobjects" type="text_en" multiValued="true" stored="false" indexed="true"/>
     <!-- SCHEMA-FIELDS::END -->
     
 
@@ -746,20 +748,39 @@
     -->
     <!-- SCHEMA-COPY-FIELDS::BEGIN -->
     <copyField source="3d3DTechnique" dest="_text_" maxChars="3000"/>
+    <copyField source="3d3DTechnique" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dAltText" dest="_text_" maxChars="3000"/>
+    <copyField source="3dAltText" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dEquipment" dest="_text_" maxChars="3000"/>
+    <copyField source="3dEquipment" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dExportedFileFormat" dest="_text_" maxChars="3000"/>
+    <copyField source="3dExportedFileFormat" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dExportedFilePolygonCount" dest="_text_" maxChars="3000"/>
+    <copyField source="3dExportedFilePolygonCount" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dHandling" dest="_text_" maxChars="3000"/>
+    <copyField source="3dHandling" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dHeight" dest="_text_" maxChars="3000"/>
+    <copyField source="3dHeight" dest="3dObjectDimensions" maxChars="3000"/>
+    <copyField source="3dHeight" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dLength" dest="_text_" maxChars="3000"/>
+    <copyField source="3dLength" dest="3dObjectDimensions" maxChars="3000"/>
+    <copyField source="3dLength" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dLightingSetup" dest="_text_" maxChars="3000"/>
+    <copyField source="3dLightingSetup" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dMasterFilePolygonCount" dest="_text_" maxChars="3000"/>
+    <copyField source="3dMasterFilePolygonCount" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dMaterialComposition" dest="_text_" maxChars="3000"/>
+    <copyField source="3dMaterialComposition" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dObjectDimensions" dest="_text_" maxChars="3000"/>
     <copyField source="3dUnit" dest="_text_" maxChars="3000"/>
+    <copyField source="3dUnit" dest="3dObjectDimensions" maxChars="3000"/>
+    <copyField source="3dUnit" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dWeight" dest="_text_" maxChars="3000"/>
+    <copyField source="3dWeight" dest="3dObjectDimensions" maxChars="3000"/>
+    <copyField source="3dWeight" dest="3dobjects" maxChars="3000"/>
     <copyField source="3dWidth" dest="_text_" maxChars="3000"/>
+    <copyField source="3dWidth" dest="3dObjectDimensions" maxChars="3000"/>
+    <copyField source="3dWidth" dest="3dobjects" maxChars="3000"/>
     <copyField source="accessToSources" dest="_text_" maxChars="3000"/>
     <copyField source="actionsToMinimizeLoss" dest="_text_" maxChars="3000"/>
     <copyField source="actionsToMinimizeLoss" dest="socialscience" maxChars="3000"/>

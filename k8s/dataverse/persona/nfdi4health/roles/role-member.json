@@ -1,0 +1,10 @@
+{
+    "alias":"member",
+    "name":"Member",
+    "description":"Can view, but not edit or delete, an unpublished entry.",
+    "permissions":[
+        "ViewUnpublishedDataset",
+        "ViewUnpublishedDataverse",
+        "DownloadFile"
+    ]
+}
