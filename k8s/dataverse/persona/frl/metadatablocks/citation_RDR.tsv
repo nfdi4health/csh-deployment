@@ -86,7 +86,7 @@
 	originOfSources	Origin of Historical Sources	For historical sources, the origin and any rules followed in establishing them as sources		textbox	45		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation
 	characteristicOfSources	Characteristic of Sources	Characteristics not already noted elsewhere		textbox	46		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation
 	accessToSources	Documentation and Access to Sources	1) Methods or procedures for accessing data sources and 2) any special permissions needed for access		textbox	47		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation
-	yearOfCopyright	Copyright Year	Documented date on which the resource acquires the status of a copyrighted work. Not required for research data; only used if the data itself is subject to a separate copyright		text	85		FALSE	FALSE	FALSE	FALSE	FALSE	FALSE		citation	85
+	yearOfCopyright	Copyright Year	Documented date on which the resource acquires the status of a copyrighted work. Not required for research data; only used if the data itself is subject to a separate copyright		text	85		TRUE	FALSE	FALSE	TRUE	FALSE	FALSE		citation	85
 #controlledVocabulary	DatasetField	Value	identifier	displayOrder																	
 	subject	Agricultural Sciences	D01	0																	
 	subject	Arts and Humanities	D0	1																	
