@@ -197,6 +197,7 @@ spec:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
               name: dev-dataverse-claim0
+{{/* Using directory config source (default: /secrets), see https://docs.payara.fish/community/docs/Technical%20Documentation/MicroProfile/Config/Directory.html */}}
             - mountPath: /secrets/dataverse/mail/mta
               name: dataverse-mail-secret
           readinessProbe:
