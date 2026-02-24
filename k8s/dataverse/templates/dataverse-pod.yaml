@@ -155,7 +155,7 @@ spec:
             # Set single allowed origin for CORS requests
             # Regarding multiple origins, see: https://github.com/IQSS/dataverse/pull/11745
             - name: DATAVERSE_CORS_ORIGIN
-              value: {{ coalesce .Values.dataverse.cors.origin .Values.dataverse.site_url }}
+              value: "{{ coalesce .Values.dataverse.cors.origin .Values.dataverse.site_url }}"
 {{- if .Values.dataverse.multiple_language_support.enabled }}
             - name: JVM_ARGS
               value: -Ddataverse.lang.directory=/dv/lang
@@ -163,6 +163,26 @@ spec:
 {{- if .Values.dataverse.exporters }}
             - name: DATAVERSE_SPI_EXPORTERS_DIRECTORY
               value: "/dv/exporters"
+{{- end }}
+{{- if not (empty .Values.dataverse.mail) }}
+            - name: DATAVERSE_MAIL_SYSTEM_EMAIL
+              value: {{.Values.dataverse.mail.system_email}}
+            - name: DATAVERSE_MAIL_MTA_HOST
+              value: {{.Values.dataverse.mail.mta.host}}
+            - name: DATAVERSE_MAIL_MTA_PORT
+              value: "{{.Values.dataverse.mail.mta.port}}"
+            - name: DATAVERSE_MAIL_MTA_AUTH
+              value: "{{.Values.dataverse.mail.mta.auth}}"
+            - name: DATAVERSE_MAIL_MTA_USER
+              value: {{.Values.dataverse.mail.mta.user}}
+{{- if eq (dig "ssl" "enable" false .Values.dataverse.mail.mta) true }}
+            - name: DATAVERSE_MAIL_MTA_SSL_ENABLE
+              value: "{{.Values.dataverse.mail.mta.ssl.enable}}"
+{{- end }}
+{{- if eq (dig "starttls" "enable" false .Values.dataverse.mail.mta) true }}
+            - name: DATAVERSE_MAIL_MTA_STARTTLS_ENABLE
+              value: "{{.Values.dataverse.mail.mta.starttls.enable}}"
+{{- end }}
 {{- end }}
           ports:
             - containerPort: 8080
@@ -177,6 +197,8 @@ spec:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
               name: dev-dataverse-claim0
+            - mountPath: /secrets/dataverse/mail/mta
+              name: dataverse-mail-secret
           readinessProbe:
             httpGet:
               path: /api/info/version
@@ -269,6 +291,9 @@ spec:
         - name: dev-dataverse-claim0
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-dataverse-claim0
+        - name: dataverse-mail-secret
+          secret:
+            secretName: {{ .Release.Name }}-dataverse-mail-secret
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -300,3 +325,13 @@ data:
   {{ .name }}-datacite-password: {{ .datacite_password | b64enc | quote }}
     {{- end }}
   {{- end }}
+{{- if not (empty (dig "mail" "mta" "password" "" .Values.dataverse)) }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-dataverse-mail-secret
+type: Opaque
+stringData:
+  password: {{.Values.dataverse.mail.mta.password}}
+{{- end }}

@@ -31,6 +31,7 @@ dataverse:
   multiple_language_support:
     enabled: false
   exporters: []
+  mail: {}
 postgres:
   volume_size: "32Gi"
   number_instances: 2
