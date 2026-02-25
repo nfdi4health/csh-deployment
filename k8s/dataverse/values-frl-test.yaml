@@ -6,6 +6,8 @@ dataverse:
     bucket_name: "<REPLACE_ME>"
     endpoint_url: "<REPLACE_ME>"
   site_url: "<REPLACE_ME>"
+    direct_upload: true
+    direct_download: true
   default_pid_provider: "fakedoi"
   pid_providers:
     - name: fakedoi

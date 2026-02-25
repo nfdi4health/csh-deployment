@@ -156,9 +156,19 @@ spec:
             # Regarding multiple origins, see: https://github.com/IQSS/dataverse/pull/11745
             - name: DATAVERSE_CORS_ORIGIN
               value: "{{ coalesce .Values.dataverse.cors.origin .Values.dataverse.site_url }}"
+{{ $jvm_args := "" -}}
 {{- if .Values.dataverse.multiple_language_support.enabled }}
+  {{- $jvm_args = cat $jvm_args "-Ddataverse.lang.directory=/dv/lang"}}
+{{- end }}
+{{- if .Values.dataverse.s3.direct_download }}
+  {{- $jvm_args = cat $jvm_args "-Ddataverse.files.s3.download-redirect=true"}}
+{{- end }}
+{{- if .Values.dataverse.s3.direct_upload }}
+  {{- $jvm_args = cat $jvm_args "-Ddataverse.files.s3.upload-redirect=true"}}
+{{- end }}
+{{- if not (empty $jvm_args) }}
             - name: JVM_ARGS
-              value: -Ddataverse.lang.directory=/dv/lang
+              value: {{$jvm_args}}
 {{- end }}
 {{- if .Values.dataverse.exporters }}
             - name: DATAVERSE_SPI_EXPORTERS_DIRECTORY
@@ -334,5 +344,5 @@ metadata:
   name: {{ .Release.Name }}-dataverse-mail-secret
 type: Opaque
 stringData:
-  password: {{.Values.dataverse.mail.mta.password}}
+  password: "{{.Values.dataverse.mail.mta.password}}"
 {{- end }}
