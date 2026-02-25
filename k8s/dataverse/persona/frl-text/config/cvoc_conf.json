@@ -1,0 +1,154 @@
+[
+    {
+        "field-name": "author",
+        "term-uri-field": "authorIdentifier",
+        "js-url": ["https://nfdi4health.github.io/dataverse-external-vocab-support/scripts/people.js","https://nfdi4health.github.io/dataverse-external-vocab-support/scripts/cvocutils.js"],
+        "protocol": "orcid",
+        "cvoc-url": "https://orcid.org/",
+        "retrieval-uri": "https://pub.orcid.org/v3.0/{0}/person",
+        "allow-free-text": true,
+        "prefix": "https://orcid.org/",
+        "managed-fields": {
+            "personName":"authorName",
+            "idType":"authorIdentifierScheme"
+        },
+        "languages":"en",
+        "vocabs": {
+            "orcid": {
+                "uriSpace": "https://orcid.org/"
+            }
+        },
+        "retrieval-filtering": {
+            "@context": {
+                "personName": "https://schema.org/name",
+                "scheme": "http://www.w3.org/2004/02/skos/core#inScheme"
+            },
+            "personName": {
+                "pattern": "{0}, {1}",
+                "params": ["/name/family-name/value", "/name/given-names/value"]
+            },
+            "@id": {
+                "pattern": "{0}",
+                "params": ["@id"]
+            },
+            "scheme": {
+                "pattern": "ORCID"
+            },
+            "@type": {
+                "pattern": "https://schema.org/Person"
+            }
+        }
+    },
+    {
+        "field-name": "contributor",
+        "term-uri-field": "contributorIdentifier",
+        "js-url": ["https://nfdi4health.github.io/dataverse-external-vocab-support/scripts/people.js","https://nfdi4health.github.io/dataverse-external-vocab-support/scripts/cvocutils.js"],
+        "protocol": "orcid",
+        "cvoc-url": "https://orcid.org/",
+        "retrieval-uri": "https://pub.orcid.org/v3.0/{0}/person",
+        "allow-free-text": true,
+        "prefix": "https://orcid.org/",
+        "managed-fields": {
+            "personName":"contributorName",
+            "idType":"contributorIdentifierScheme"
+        },
+        "languages":"en",
+        "vocabs": {
+            "orcid": {
+                "uriSpace": "https://orcid.org/"
+            }
+        },
+        "retrieval-filtering": {
+            "@context": {
+                "personName": "https://schema.org/name",
+                "scheme": "http://www.w3.org/2004/02/skos/core#inScheme"
+            },
+            "personName": {
+                "pattern": "{0}, {1}",
+                "params": ["/name/family-name/value", "/name/given-names/value"]
+            },
+            "@id": {
+                "pattern": "{0}",
+                "params": ["@id"]
+            },
+            "scheme": {
+                "pattern": "ORCID"
+            },
+            "@type": {
+                "pattern": "https://schema.org/Person"
+            }
+        }
+    },
+    {
+        "field-name": "keyword",
+        "term-uri-field": "keywordTermURI",
+        "cvoc-url": "https://data.bioontology.org",
+        "js-url": "https://nfdi4health.github.io/dataverse-external-vocab-support/scripts/ontoportal.js",
+        "headers": {
+            "Authorization": "apikey token=<INSERT_API_TOKEN>"
+        },
+        "protocol": "ontoportal",
+        "retrieval-uri": "https://data.bioontology.org/ontologies/{encodeUrl:keywordVocabulary}/classes/{encodeUrl:keywordTermURI}?lang=en",
+        "term-parent-uri": "",
+        "allow-free-text": true,
+        "languages": "en",
+        "vocabs": {
+            "MESH": {
+                "vocabularyUri": "https://data.bioontology.org/ontologies/MESH",
+                "uriSpace": "http"
+            },
+            "SNOMEDCT": {
+                "vocabularyUri": "https://data.bioontology.org/ontologies/SNOMEDCT",
+                "uriSpace": "http"
+            },
+            "RCD": {
+                "vocabularyUri": "https://data.bioontology.org/ontologies/RCD",
+                "uriSpace": "http"
+            },
+            "NCBITAXON": {
+                "vocabularyUri": "https://data.bioontology.org/ontologies/NCBITAXON",
+                "uriSpace": "http"
+            }
+        },
+        "managed-fields": {
+            "vocabularyName": "keywordVocabulary",
+            "termName": "keywordValue",
+            "vocabularyUri": "keywordVocabularyURI"
+        },
+        "retrieval-filtering": {
+            "@context": {
+                "termName": "https://schema.org/name",
+                "vocabularyName": "https://dataverse.org/schema/vocabularyName",
+                "vocabularyUri": "https://dataverse.org/schema/vocabularyUri",
+                "lang": "@language",
+                "value": "@value"
+            },
+            "@id": {
+                "pattern": "{0}",
+                "params": [
+                    "@id"
+                ]
+            },
+            "termName": {
+                "pattern": "{0}",
+                "params": [
+                    "/prefLabel"
+                ],
+                "indexIn": "keywordValue"
+            },
+            "vocabularyUri": {
+                "pattern": "{0}",
+                "params": [
+                    "/links/ontology"
+                ]
+            },
+            "synonyms": {
+                "pattern": "{0}",
+                "params": [
+                    "/synonym"
+                ],
+                "indexIn": "keywordValue"
+            }
+        }
+    }
+]

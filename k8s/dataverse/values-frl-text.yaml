@@ -1,4 +1,6 @@
-persona: "frl"
+persona: "frl-text"
+ingress:
+  dns: "<REPLACE_ME>"
 dataverse:
   s3:
     access_key: "<REPLACE_ME>"
@@ -6,8 +8,6 @@ dataverse:
     bucket_name: "<REPLACE_ME>"
     endpoint_url: "<REPLACE_ME>"
   site_url: "<REPLACE_ME>"
-    direct_upload: true
-    direct_download: true
   default_pid_provider: "fakedoi"
   pid_providers:
     - name: fakedoi
@@ -33,18 +33,6 @@ dataverse:
       sed -i '/^datasetfieldtype.grantNumberValue.title/c\datasetfieldtype.grantNumberValue.title=Project Identifier' /dv/lang/citation.properties
   exporters:
     - https://repo1.maven.org/maven2/io/gdcc/export/croissant/0.1.6/croissant-0.1.6.jar
-  mail:
-    system_email: "<REPLACE_ME>"
-    mta:
-      host: "<REPLACE_ME>"
-      port: 587
-      auth: true
-      user: "<REPLACE_ME>"
-      password: "<REPLACE_ME>"
-      starttls:
-        enable: true
-  cors:
-    origin: "*"
 postgres:
   logical_backup: false
 images:

@@ -8,6 +8,8 @@ dataverse:
     secret_key:
     bucket_name:
     endpoint_url:
+    direct_upload: false
+    direct_download: false
   oidc:
     issuer:
     cliedid:
@@ -31,6 +33,7 @@ dataverse:
   multiple_language_support:
     enabled: false
   exporters: []
+  mail: {}
 postgres:
   volume_size: "32Gi"
   number_instances: 2
