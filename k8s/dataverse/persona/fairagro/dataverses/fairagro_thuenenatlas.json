@@ -1,0 +1,12 @@
+{
+  "name": "Thünen-Atlas",
+  "alias": "thuenenatlas",
+  "dataverseContacts": [
+    {
+      "contactEmail": "schneider@zbmed.de"
+    }
+  ],
+  "affiliation": "FAIRagro",
+  "description": "The German agricultural statistics on land use and live stocks is an important indicator to assess environmental impacts. The statistics are the basis to estimate trends and policy impacts in the Thünen-Modellverbund. The access at small-scale level, like at community level, is limited by data security issues and the renewal of regional borderlines or new classification of data collection characters make it difficult to compile comparisons for longer time periods. Consequently, it is challenging to derive a data set, which is coherent over time.To solve this challenge is the aim of the project Thünen agricultural atlas: we intend to create such a data set at community level from 1999 until present by using the Farm Structure Survey, agricultural statistics and geo-referenced land use data and fulfill all data security issues, which allows for making the data set publicly available. The results of the project are part of the work regarding geo-referenced data infrastructure at the Thünen-Institute and will be published in this context.\n\nMore information can be found on [atlas.thuenen.de](https://atlas.thuenen.de/atlanten/agraratlas).",
+  "dataverseType": "UNCATEGORIZED"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "PUBLISSO - Repository for Life Sciences",
+  "alias": "frl",
+  "dataverseContacts": [
+    {
+      "contactEmail": "schneider@zbmed.de"
+    }
+  ],
+  "affiliation": "FAIRagro",
+  "description": "In the spirit of Open Science, PUBLISSO – Repository for Life Sciences (FRL) offers authors the opportunity to publish their work and research data from the various disciplines of the life sciences permanently and in Open Access free of charge up to 1 terabyte.\n\nThe specialist publications are made permanently available on the internet in compliance with copyright law and are archived for the long term. They are given a high degree of visibility through their integration in subject portals that can be searched worldwide, a reliable citation capability through the assignment of a permanent identifier (DOI) and a stable internet address, as well as guaranteed data security even in the case of technical conversions.\n\nWe offer a special service to institutions in the life sciences that do not have their own repository. These have the option of offering their publications coherently filtered via the FRL.\n\nMore information can be found on [publisso.de](https://www.publisso.de/en/publishing/repositories/repository-for-life-sciences).",
+  "dataverseType": "UNCATEGORIZED"
+}
