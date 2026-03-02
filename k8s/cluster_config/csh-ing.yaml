@@ -12,17 +12,31 @@ spec:
     - host: csh.nfdi4health.de
       http:
         paths:
-        - path: /api/
-          pathType: Prefix
-          backend:
-            service:
-              name: csh-ui-blue-backend
-              port:
-                number: 5000
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: csh-ui-blue-frontend
-              port:
-                number: 80
+          - path: /api/
+            pathType: Prefix
+            backend:
+              service:
+                name: csh-ui-blue-backend
+                port:
+                  number: 5000
+          - path: /resource/mine
+            pathType: Exact
+            backend:
+              service:
+                name: csh-ui-blue-frontend
+                port:
+                  number: 80
+          - path: /resource
+            pathType: Prefix
+            backend:
+              service:
+                name: csh-ui-blue-frontend-ssr
+                port:
+                  number: 3000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: csh-ui-blue-frontend
+                port:
+                  number: 80

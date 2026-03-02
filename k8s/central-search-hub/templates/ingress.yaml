@@ -30,6 +30,20 @@ spec:
               name: {{ .Release.Name }}-backend
               port:
                 number: 5000
+        - path: /resource/mine
+          pathType: Exact
+          backend:
+            service:
+              name: {{ .Release.Name }}-frontend
+              port:
+                number: 80
+        - path: /resource
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Release.Name }}-frontend-ssr
+              port:
+                number: 3000
         - path: /
           pathType: Prefix
           backend:
