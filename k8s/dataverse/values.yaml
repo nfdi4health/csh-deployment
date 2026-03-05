@@ -8,6 +8,8 @@ dataverse:
     secret_key:
     bucket_name:
     endpoint_url:
+  files:
+    hide_schema_dot_org_download_urls: false
   oidc:
     issuer:
     cliedid:

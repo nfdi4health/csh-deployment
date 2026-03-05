@@ -149,6 +149,10 @@ spec:
               value: "/tmp/dataverse"
             - name: DATAVERSE_FILES_UPLOADS
               value: "/tmp/uploads"
+{{- if .Values.dataverse.files.hide_schema_dot_org_download_urls }}
+            - name: DATAVERSE_FILES_HIDE_SCHEMA_DOT_ORG_DOWNLOAD_URLS
+              value: "1"
+{{- end }}
             # Add "Authorization" to list of headers allowed in CORS requests
             - name: DATAVERSE_CORS_HEADERS_ALLOW
               value: Accept, Content-Type, X-Dataverse-key, Range, Authorization
