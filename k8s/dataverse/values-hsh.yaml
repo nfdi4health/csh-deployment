@@ -4,6 +4,8 @@ dataverse:
     secret_key: "<REPLACE_ME>"
     bucket_name: "<REPLACE_ME>"
     endpoint_url: "<REPLACE_ME>"
+  files:
+    hide_schema_dot_org_download_urls: true
   oidc:
     issuer: "<REPLACE_ME>"
     cliedid: "<REPLACE_ME>"
