@@ -102,6 +102,7 @@ for ROLE_FILE in "${LOCAL_ROLES[@]}"; do
     echo
   else
     # On any error except 404, fail the script
+    echo "ERR: Getting role $ALIAS failed with $GET_RES"
     exit 1
   fi
 
@@ -128,6 +129,22 @@ if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
     curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
     echo
 fi
+
+echo "Creating workflows"
+WORKFLOWS=$(find $WORKFLOWS_PATH -maxdepth 1 -iname '*.json')
+while IFS= read -r WORKFLOW; do
+  WORKFLOW_NAME=$(basename "$WORKFLOW" .json)
+  if [[ "WORKFLOW_NAME" != "PrePublishDataset" && "WORKFLOW_NAME" != "PostPublishDataset" ]]; then
+    echo "ERROR: Workflow file name must be 'PrePublishDataset.json' or 'PostPublishDataset.json'"
+    continue
+  fi
+
+  echo "Creating workflow $WORKFLOW_NAME:"
+  RESPONSE=$(curl -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/workflows --upload-file $WORKFLOW)
+  WORKFLOW_ID=$(echo "$RESPONSE" | jq -r '.data.id')
+  curl -X PUT http://localhost:8080/api/admin/workflows/default/$WORKFLOW_NAME -d $WORKFLOW_ID
+  echo
+done <<< "${WORKFLOWS}"
 
 echo "Create dataverses"
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
