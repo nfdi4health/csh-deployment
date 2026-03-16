@@ -141,6 +141,8 @@ spec:
               value: "s3"
             - name: dataverse_files_s3_label
               value: "s3"
+            - name: DATAVERSE_FILES_S3_DISABLE_TAGGING
+              value: "1"
             - name: dataverse_files_storage__driver__id
               value: "s3"
             # Place temporary files related to data upload in /tmp, so they get cleared regularly
