@@ -143,6 +143,8 @@ spec:
               value: "s3"
             - name: DATAVERSE_FILES_S3_DISABLE_TAGGING
               value: "1"
+            - name: DATAVERSE_FILES_S3_MIN_PART_SIZE
+              value: "134217728" # 128 MB
             - name: dataverse_files_storage__driver__id
               value: "s3"
             # Place temporary files related to data upload in /tmp, so they get cleared regularly
