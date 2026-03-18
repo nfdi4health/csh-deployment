@@ -1,0 +1,235 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fairagro-clone-job
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      containers:
+        - name: fairagro-clone-job
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: fairagro-job-args
+            - secretRef:
+                name: fairagro-job-credentials
+          command: ["/bin/sh", "-c"]
+          args:
+            - "python3 etljobs/spark/job_fairagro_clone_middleware.py --github-token=$GITHUB_MIDDLEWARE_TOKEN --s3-bucket=$SOURCE_BUCKET"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fairagro-transform-job
+spec:
+  completions: 5
+  parallelism: 5
+  completionMode: Indexed
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      containers:
+        - name: fairagro-transform-job
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: fairagro-job-args
+          command: ["/bin/sh", "-c"]
+          args:
+            - "python3 etljobs/spark/job_fairagro_jq_transform.py --s3-bucket=$SOURCE_BUCKET"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fairagro-wrap-parquet-job
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: fairagro-job-args
+            - secretRef:
+                name: fairagro-job-credentials
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              /opt/spark/bin/spark-submit
+              --master
+              k8s://https://kubernetes.default.svc
+              --deploy-mode
+              cluster
+              --name
+              fairagro-wrap-parquet-job
+              --conf
+              spark.kubernetes.namespace=spark
+              --conf
+              spark.kubernetes.authenticate.driver.serviceAccountName=spark
+              --conf
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
+              --conf
+              spark.jars.ivy=/tmp/.ivy
+              --conf
+              spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
+              --conf
+              spark.hadoop.fs.s3a.path.style.access=true
+              --conf
+              spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.kubernetes.driverEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.kubernetes.driverEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.kubernetes.driverEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              --conf
+              spark.executorEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.executorEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.executorEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              local:///src/etljobs/main.py
+              --job
+              job_fairagro_wrap_parquet
+              --job-args
+              s3a://$SOURCE_BUCKET/all_rdi_datasets
+              s3a://$SOURCE_BUCKET/all_rdi_datasets-converted.parquet
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fairagro-load-job
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-transform
+          image: amazon/aws-cli
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: ctgov-job-args
+          command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_BUCKET/all_rdi_datasets-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: fairagro-job-args
+            - secretRef:
+                name: fairagro-job-credentials
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              /opt/spark/bin/spark-submit
+              --master
+              k8s://https://kubernetes.default.svc
+              --deploy-mode
+              cluster
+              --name
+              fairagro-load-job
+              --conf
+              spark.kubernetes.namespace=spark
+              --conf
+              spark.kubernetes.authenticate.driver.serviceAccountName=spark
+              --conf
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
+              --conf
+              spark.jars.ivy=/tmp/.ivy
+              --conf
+              spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
+              --conf
+              spark.hadoop.fs.s3a.path.style.access=true
+              --conf
+              spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.kubernetes.driverEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.kubernetes.driverEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.kubernetes.driverEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              --conf
+              spark.executorEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              --conf
+              spark.executorEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              --conf
+              spark.executorEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              local:///src/etljobs/main.py
+              --job
+              submit_dataverse
+              --job-args
+              s3a://$SOURCE_BUCKET/all_rdi_datasets-converted.parquet
+              $DATAVERSE_HOST
+              $DATAVERSE_API_KEY
+#              s3://$COLLECTIONS_PATH
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fairagro-publish-job
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-load
+          image: amazon/aws-cli
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: ctgov-job-args
+          command: [ "sh", "-c", "until aws s3 ls s3://$SOURCE_BUCKET/all_rdi_datasets-converted.parquet/_DV_SUBMITTED/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done" ]
+      containers:
+        - name: fairagro-publish-job
+          image: ghcr.io/nfdi4health/csh-etl-pipeline
+          envFrom:
+            - secretRef:
+                name: etl-job-s3-credentials
+            - configMapRef:
+                name: etl-job-s3-config
+            - configMapRef:
+                name: fairagro-job-args
+            - secretRef:
+                name: fairagro-job-credentials
+          command: ["/bin/sh", "-c"]
+          args:
+            - "python3 scripts/publish_all_datasets.py -d=$DATAVERSE_HOST -k=$DATAVERSE_API_KEY -c=$DATAVERSE_COLLECTION"
