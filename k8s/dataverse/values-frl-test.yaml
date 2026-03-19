@@ -45,6 +45,9 @@ dataverse:
         enable: true
   cors:
     origin: "*"
+  api:
+    blocked:
+      policy: "unblock-key"
 postgres:
   logical_backup: false
 images:

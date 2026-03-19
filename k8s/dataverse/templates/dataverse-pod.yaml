@@ -198,6 +198,10 @@ spec:
               value: "{{.Values.dataverse.mail.mta.starttls.enable}}"
 {{- end }}
 {{- end }}
+            - name: DATAVERSE_API_BLOCKED_ENDPOINTS
+              value: {{ .Values.dataverse.api.blocked.endpoints }}
+            - name: DATAVERSE_API_BLOCKED_POLICY
+              value: {{ .Values.dataverse.api.blocked.policy }}
           ports:
             - containerPort: 8080
             - containerPort: 4848
@@ -211,9 +215,15 @@ spec:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
               name: dev-dataverse-claim0
+{{- if not (empty .Values.dataverse.mail) }}
 {{/* Using directory config source (default: /secrets), see https://docs.payara.fish/community/docs/Technical%20Documentation/MicroProfile/Config/Directory.html */}}
             - mountPath: /secrets/dataverse/mail/mta
               name: dataverse-mail-secret
+{{- end }}
+{{- if eq .Values.dataverse.api.blocked.policy "unblock-key" }}
+            - mountPath: /secrets/dataverse/api/blocked
+              name: dataverse-api-unblock-key-secret
+{{- end }}
           readinessProbe:
             httpGet:
               path: /api/info/version
@@ -306,9 +316,16 @@ spec:
         - name: dev-dataverse-claim0
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-dataverse-claim0
+{{- if not (empty .Values.dataverse.mail) }}
         - name: dataverse-mail-secret
           secret:
             secretName: {{ .Release.Name }}-dataverse-mail-secret
+{{- end }}
+{{- if eq .Values.dataverse.api.blocked.policy "unblock-key" }}
+        - name: dataverse-api-unblock-key-secret
+          secret:
+            secretName: {{ .Release.Name }}-dataverse-api-unblock-key-secret
+{{- end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -349,4 +366,20 @@ metadata:
 type: Opaque
 stringData:
   password: "{{.Values.dataverse.mail.mta.password}}"
+{{- end }}
+{{- if eq .Values.dataverse.api.blocked.policy "unblock-key" }}
+  {{- $unblock_key_secret_name := printf "%s-dataverse-api-unblock-key-secret" .Release.Name }}
+  {{- $existing := lookup "v1" "Secret" .Release.Namespace $unblock_key_secret_name }}
+  {{- $unblock_key := randAlphaNum 32 }}
+  {{- if $existing }}
+    {{- $unblock_key = index $existing.data "key" | b64dec }}
+  {{- end }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-dataverse-api-unblock-key-secret
+type: Opaque
+stringData:
+  key: {{ $unblock_key | quote }}
 {{- end }}

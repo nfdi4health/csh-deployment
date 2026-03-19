@@ -83,11 +83,6 @@ echo "Activating metadata blocks"
 curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/:root/metadatablocks -d "[\"citation\",\"geospatial\"]"
 echo
 
-echo "Restricting sensitive API endpoints..."
-curl -X DELETE "${DATAVERSE_URL}/api/admin/settings/BuiltinUsers.KEY"
-curl -X PUT "${DATAVERSE_URL}/api/admin/settings/:BlockedApiEndpoints" -d 'admin,builtin-users'
-echo
-
 echo
 echo
 echo "...DONE!"

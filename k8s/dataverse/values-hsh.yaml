@@ -82,3 +82,6 @@ dataverse:
       echo > /dv/lang/BuiltInRoles.properties
   site_url: "https://health-study-hub.de"
   installation_name: "NFDI4Health Health Study Hub"
+  api:
+    blocked:
+      policy: "localhost-only"

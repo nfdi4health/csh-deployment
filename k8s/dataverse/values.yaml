@@ -34,6 +34,10 @@ dataverse:
     enabled: false
   exporters: []
   mail: {}
+  api:
+    blocked:
+      endpoints: "admin,builtin-users"
+      policy: "drop"
 postgres:
   volume_size: "32Gi"
   number_instances: 2
