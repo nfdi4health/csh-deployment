@@ -56,7 +56,12 @@ echo
 
 # TODO Currently, the CSS file must be *manually* copied to /dv/branding and then configured via API
 #echo "Configuring custom CSS"
-#curl -X PUT -d '/dv/branding/style.css' http://localhost:8080/api/admin/settings/:StyleCustomizationFile
+#curl -X PUT -d '/dv/branding/style.css' $DATAVERSE_URL/api/admin/settings/:StyleCustomizationFile
+#echo
+
+# TODO Currently, the HTML file must be *manually* copied to /dv/branding and then configured via API
+#echo "Configuring custom analytics code"
+#curl -X PUT -d '/dv/branding/matomo.html' $DATAVERSE_URL/api/admin/settings/:WebAnalyticsCode
 #echo
 
 echo "Upload licenses"
