@@ -181,6 +181,14 @@ spec:
 {{- if not (empty .Values.dataverse.mail) }}
             - name: DATAVERSE_MAIL_SYSTEM_EMAIL
               value: {{.Values.dataverse.mail.system_email}}
+  {{- if not (empty .Values.dataverse.mail.support_email) }}
+            - name: DATAVERSE_MAIL_SUPPORT_EMAIL
+              value: {{.Values.dataverse.mail.support_email}}
+  {{- end }}
+  {{- if eq (dig "cc_support_on_contact_email" false .Values.dataverse.mail) true }}
+            - name: DATAVERSE_MAIL_CC_SUPPORT_ON_CONTACT_EMAIL
+              value: "true"
+  {{- end }}
             - name: DATAVERSE_MAIL_MTA_HOST
               value: {{.Values.dataverse.mail.mta.host}}
             - name: DATAVERSE_MAIL_MTA_PORT
@@ -365,7 +373,7 @@ metadata:
   name: {{ .Release.Name }}-dataverse-mail-secret
 type: Opaque
 stringData:
-  password: "{{.Values.dataverse.mail.mta.password}}"
+  password: {{.Values.dataverse.mail.mta.password | quote }}
 {{- end }}
 {{- if eq .Values.dataverse.api.blocked.policy "unblock-key" }}
   {{- $unblock_key_secret_name := printf "%s-dataverse-api-unblock-key-secret" .Release.Name }}
