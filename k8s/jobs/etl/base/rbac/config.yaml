@@ -18,6 +18,19 @@ rules:
       - watch
       - get
       - list
+  - apiGroups:
+      - "batch"
+    resources:
+      - jobs
+      - cronjobs
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
 ---
 apiVersion: v1
 kind: ServiceAccount
