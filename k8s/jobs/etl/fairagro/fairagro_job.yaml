@@ -1,6 +1,34 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
+  name: fairagro-s3-cleanup-job-template
+spec:
+  # This cronjob should never be scheduled. It serves as a template for fairagro-pipeline-runner.
+  schedule: "0 0 31 2 *"
+  suspend: true
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: spark
+          restartPolicy: Never
+          containers:
+            - name: fairagro-s3-cleanup-job
+              image: amazon/aws-cli
+              envFrom:
+                - secretRef:
+                    name: etl-job-s3-credentials
+                - configMapRef:
+                    name: etl-job-s3-config
+                - configMapRef:
+                    name: fairagro-job-args
+              command: ["/bin/sh", "-c"]
+              args:
+                - aws s3 rm s3://$SOURCE_BUCKET/ingest_pipeline/ --recursive --endpoint-url=$AWS_ENDPOINT_URL
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
   name: fairagro-clone-job-template
 spec:
   # This cronjob should never be scheduled. It serves as a template for fairagro-pipeline-runner.
