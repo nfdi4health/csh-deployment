@@ -54,6 +54,10 @@ echo "Configuring dataset summary fields"
 curl -X PUT $DATAVERSE_URL/api/admin/settings/:CustomDatasetSummaryFields -d 'dsDescription,author,datasetContact,subject,keyword,publication,grantNumber'
 echo
 
+echo "Configuring ZIP download limit (10GB)"
+curl -X PUT $DATAVERSE_URL/api/admin/settings/:ZipDownloadLimit -d 10000000000
+echo
+
 # TODO Currently, the CSS file must be *manually* copied to /dv/branding and then configured via API
 #echo "Configuring custom CSS"
 #curl -X PUT -d '/dv/branding/style.css' $DATAVERSE_URL/api/admin/settings/:StyleCustomizationFile
