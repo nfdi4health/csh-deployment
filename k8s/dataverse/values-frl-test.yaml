@@ -8,6 +8,8 @@ dataverse:
   site_url: "<REPLACE_ME>"
     direct_upload: true
     direct_download: true
+    url_expiration_minutes: 2880 # 48 * 60
+  site_url: "https://frl-test-dv.qa.km.k8s.zbmed.de"
   default_pid_provider: "fakedoi"
   pid_providers:
     - name: fakedoi

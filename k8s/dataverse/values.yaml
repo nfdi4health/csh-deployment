@@ -10,6 +10,8 @@ dataverse:
     endpoint_url:
     direct_upload: false
     direct_download: false
+    min_part_size:
+    url_expiration_minutes:
   oidc:
     issuer:
     cliedid:

@@ -143,8 +143,14 @@ spec:
               value: "s3"
             - name: DATAVERSE_FILES_S3_DISABLE_TAGGING
               value: "1"
+{{- if not (empty .Values.dataverse.s3.min_part_size) }}
             - name: DATAVERSE_FILES_S3_MIN_PART_SIZE
-              value: "134217728" # 128 MB
+              value: {{ .Values.dataverse.s3.min_part_size | quote }}
+{{- end }}
+{{- if not (empty .Values.dataverse.s3.url_expiration_minutes) }}
+            - name: DATAVERSE_FILES_S3_URL_EXPIRATION_MINUTES
+              value: {{ .Values.dataverse.s3.url_expiration_minutes | quote }}
+{{- end }}
             - name: dataverse_files_storage__driver__id
               value: "s3"
             # Place temporary files related to data upload in /tmp, so they get cleared regularly
