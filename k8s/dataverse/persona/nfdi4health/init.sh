@@ -46,6 +46,10 @@ echo "Setting file upload limit to 5Gi"
 curl -X PUT -d 5368709120 "${DATAVERSE_URL}/api/admin/settings/:MaxFileUploadSizeInBytes"
 echo
 
+echo "Hiding email addresses from exports"
+curl -X PUT -d true "${DATAVERSE_URL}/api/admin/settings/:ExcludeEmailFromExport"
+echo
+
 echo "Upload licenses"
 #curl -X POST -H "Content-Type: application/json" -H "X-Dataverse-key:$DATAVERSE_API_KEY" $DATAVERSE_HOST/api/licenses --upload-file license-CC0-1.0.json
 # Find all licence files
@@ -102,6 +106,7 @@ for ROLE_FILE in "${LOCAL_ROLES[@]}"; do
     echo
   else
     # On any error except 404, fail the script
+    echo "ERR: Getting role $ALIAS failed with $GET_RES"
     exit 1
   fi
 
