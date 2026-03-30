@@ -1,0 +1,22 @@
+#https://github.com/zalando/postgres-operator/blob/master/docs/quickstart.md
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: keycloak-example-postgres
+spec:
+  teamId: "keycloak"
+  volume:
+    size: 1Gi
+  numberOfInstances: 2
+  #enableLogicalBackup: true # enable only for production databases
+  enableConnectionPooler: true
+  connectionPooler:
+    mode: session
+  users:
+    keycloak:
+      - superuser
+      - createdb
+  databases:
+    keycloak: keycloak
+  postgresql:
+    version: "17"

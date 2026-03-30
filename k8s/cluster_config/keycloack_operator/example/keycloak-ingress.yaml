@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-nfdi4health-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: sso.studyhub.nfdi4health.de
+      http:
+        paths:
+          - path: /realms/nfdi4health # adapt this name, and copy the section if multiple realms are needed
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak-nfdi4health-service
+                port:
+                  number: 8080
+          - path: /resources/
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak-nfdi4health-service
+                port:
+                  number: 8080
