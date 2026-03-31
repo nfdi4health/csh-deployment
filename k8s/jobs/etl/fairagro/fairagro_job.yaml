@@ -268,7 +268,7 @@ kind: CronJob
 metadata:
   name: fairagro-pipeline-runner
 spec:
-  schedule: "0 3 * * 0" # runs weekly, Sun 03:00
+  schedule: "0 3 * * 6" # runs weekly, Sat 03:00
   jobTemplate:
     spec:
       template:
@@ -287,8 +287,13 @@ spec:
                     echo "Running $job from cronjob/$job-template..."
                     kubectl delete job $job --ignore-not-found=true
                     kubectl create job $job --from=cronjob/$job-template
-                    echo "Waiting for $job to complete..."
-                    kubectl wait --for=condition=complete job/$job --timeout=3600s
+                    
+                    echo "Waiting for $job to complete (timeout: 12 hrs)..."
+                    if ! kubectl wait --for=condition=complete job/$job --timeout=43200s; then
+                      echo "ERROR: $job timed out or failed, details logged."
+                      kubectl describe job $job
+                      exit 1
+                    fi
                     echo "$job completed."
                   done
                   echo "Pipeline completed successfully: FAIRagro middleware contents cloned, transformed, and ingested."
