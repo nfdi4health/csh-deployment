@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-frontend-ssr
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Release.Name }}-frontend-ssr
+  template:
+    metadata:
+      labels:
+        name: {{ .Release.Name }}-frontend-ssr
+    spec:
+      containers:
+        - name: frontend-ssr
+          image: {{ .Values.images.frontend-ssr }}
+          resources:
+            limits:
+              memory: 500Mi
+            requests:
+              memory: 100Mi
+          env:
+            - name: API_PASS
+              value: http://{{ .Release.Name }}-backend:5000
+            - name: KEYCLOAK_URL
+              value: {{ .Values.oidc.frontend.authority }}
+            - name: KEYCLOAK_CLIENTID
+              value: {{ .Values.oidc.frontend.clientid }}
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-frontend-ssr
+spec:
+  ports:
+    - name: "3000"
+      port: 3000
+      targetPort: 3000
+  selector:
+    name: {{ .Release.Name }}-frontend-ssr
