@@ -721,6 +721,11 @@
           resource.classification.type:Study^=100
           resource.classification.type:Substudy^=50
       </str>
+      <!-- Multiplicative boost based on number of related datasets -->
+      <!-- Boost factor is between 1 (no boosting) for 0 related datasets and then increasing logarithmically -->
+      <str name="boost">
+        log(sum(relatedDatasetCount,2))
+      </str>
     </lst>
   </requestHandler>
 
