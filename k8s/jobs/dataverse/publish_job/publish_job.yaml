@@ -15,10 +15,10 @@ spec:
                   name: dataverse-publish-job-secret
                   key: DATAVERSE_API_KEY
           command:
-            - "python"
+            - "python3"
             - "-u" # unbuffered, so logs are immediately flushed
             - "scripts/publish_all_datasets.py"
-            - "-d http://$DATAVERSE_NAME-svc:8080"
+            - "-d http://$DATAVERSE_NAME-dataverse-svc:8080"
             - "-k"
             - "$(DATAVERSE_API_KEY)"
             - "-t"
