@@ -40,7 +40,7 @@ spec:
             - -c
           args:
             - >
-              if aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
+              if aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
               /opt/spark/bin/spark-submit
               --master
               local[*]
@@ -61,7 +61,7 @@ spec:
               job-$SOURCE
               --job-args
               s3a://$SOURCE_PATH
-              s3a://$SOURCE_PATH-converted.parquet
+              s3a://$OUTPUT_PATH
 ---
 apiVersion: batch/v1
 kind: Job
@@ -79,7 +79,7 @@ spec:
           envFrom:
             - secretRef:
                 name: etl-job-credentials-$PIPELINE_RUN_NAME
-          command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
+          command: ["sh", "-c", "until aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
       containers:
         - name: spark-submit
           image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
@@ -135,7 +135,7 @@ spec:
               --job
               submit_dataverse
               --job-args
-              s3a://$SOURCE_PATH-converted.parquet
+              s3a://${OUTPUT_PATH}
               $DATAVERSE_HOST
               $DATAVERSE_API_KEY
               s3://$COLLECTIONS_PATH

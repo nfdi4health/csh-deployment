@@ -68,10 +68,13 @@ export ETL_PIPELINE_IMAGE_TAG=${ETL_PIPELINE_IMAGE_TAG:-latest}
 # Generate name of this pipeline run
 export PIPELINE_RUN_NAME=$(echo "$(echo $SOURCE | tr '[:upper:]' '[:lower:]')-$(date +%d-%m-%y--%H-%M-%S)")
 
+# Generate output path for transform job
+export OUTPUT_PATH=${SOURCE_PATH%.parquet}-converted.parquet
+
 # Create k8s objects
 cat $SCRIPT_DIR/secrets.yaml | envsubst '$NAMESPACE $PIPELINE_RUN_NAME $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $DATAVERSE_API_KEY' | kubectl apply -f -
 cat $SCRIPT_DIR/rbac.yaml | envsubst '$NAMESPACE' | kubectl apply -f -
-cat $SCRIPT_DIR/etl_jobs.yaml | envsubst '$NAMESPACE $PIPELINE_RUN_NAME $SOURCE $AWS_ENDPOINT_URL $SOURCE_PATH $COLLECTIONS_PATH $ETL_PIPELINE_IMAGE_TAG $DATAVERSE_HOST' | kubectl apply -f -
+cat $SCRIPT_DIR/etl_jobs.yaml | envsubst '$NAMESPACE $PIPELINE_RUN_NAME $SOURCE $AWS_ENDPOINT_URL $SOURCE_PATH $OUTPUT_PATH $COLLECTIONS_PATH $ETL_PIPELINE_IMAGE_TAG $DATAVERSE_HOST' | kubectl apply -f -
 
 echo
 echo "INFO: To clean up, call:"
