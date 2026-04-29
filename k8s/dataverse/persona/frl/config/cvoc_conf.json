@@ -85,7 +85,7 @@
         "cvoc-url": "https://data.bioontology.org",
         "js-url": "https://nfdi4health.github.io/dataverse-external-vocab-support/scripts/ontoportal.js",
         "headers": {
-            "Authorization": "apikey token=<INSERT_API_TOKEN>"
+            "Authorization": "apikey token=28326c7e-8174-4772-804d-b29b4e57309d"
         },
         "protocol": "ontoportal",
         "retrieval-uri": "https://data.bioontology.org/ontologies/{encodeUrl:keywordVocabulary}/classes/{encodeUrl:keywordTermURI}?lang=en",

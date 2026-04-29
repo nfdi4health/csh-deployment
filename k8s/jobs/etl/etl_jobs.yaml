@@ -1,7 +1,8 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: drks-transform-job
+  name: etl-job-transform-$PIPELINE_RUN_NAME
+  namespace: $NAMESPACE
 spec:
   template:
     spec:
@@ -12,22 +13,14 @@ spec:
           image: amazon/aws-cli
           envFrom:
             - secretRef:
-                name: etl-job-s3-credentials
-            - configMapRef:
-                name: etl-job-s3-config
-            - configMapRef:
-                name: drks-job-args
+                name: etl-job-credentials-$PIPELINE_RUN_NAME
           command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10 && echo \"Waiting for s3://$SOURCE_PATH...\"; done"]
       containers:
         - name: spark-submit
           image: ghcr.io/nfdi4health/csh-etl-pipeline
           envFrom:
             - secretRef:
-                name: etl-job-s3-credentials
-            - configMapRef:
-                name: etl-job-s3-config
-            - configMapRef:
-                name: drks-job-args
+                name: etl-job-credentials-$PIPELINE_RUN_NAME
           command:
             - /bin/sh
             - -c
@@ -40,13 +33,13 @@ spec:
               --deploy-mode
               cluster
               --name
-              drks-transform-job
+              etl-job-transform-$PIPELINE_RUN_NAME
               --conf
-              spark.kubernetes.namespace=spark
+              spark.kubernetes.namespace=$NAMESPACE
               --conf
               spark.kubernetes.authenticate.driver.serviceAccountName=spark
               --conf
-              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$ETL_PIPELINE_IMAGE_TAG"
               --conf
               spark.jars.ivy=/tmp/.ivy
               --conf
@@ -59,7 +52,7 @@ spec:
               spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
               local:///src/etljobs/main.py
               --job
-              job-DRKS
+              job-$SOURCE
               --job-args
               s3a://$SOURCE_PATH
               s3a://$SOURCE_PATH-converted.parquet
@@ -67,7 +60,8 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: drks-load-job
+  name: etl-job-load-$PIPELINE_RUN_NAME
+  namespace: $NAMESPACE
 spec:
   template:
     spec:
@@ -78,24 +72,14 @@ spec:
           image: amazon/aws-cli
           envFrom:
             - secretRef:
-                name: etl-job-s3-credentials
-            - configMapRef:
-                name: etl-job-s3-config
-            - configMapRef:
-                name: drks-job-args
+                name: etl-job-credentials-$PIPELINE_RUN_NAME
           command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
       containers:
         - name: spark-submit
           image: ghcr.io/nfdi4health/csh-etl-pipeline
           envFrom:
             - secretRef:
-                name: etl-job-s3-credentials
-            - configMapRef:
-                name: etl-job-s3-config
-            - configMapRef:
-                name: drks-job-args
-            - secretRef:
-                name: drks-job-credentials
+                name: etl-job-credentials-$PIPELINE_RUN_NAME
           command:
             - /bin/sh
             - -c
@@ -107,13 +91,13 @@ spec:
               --deploy-mode
               cluster
               --name
-              drks-load-job
+              etl-job-load-$PIPELINE_RUN_NAME
               --conf
-              spark.kubernetes.namespace=spark
+              spark.kubernetes.namespace=$NAMESPACE
               --conf
               spark.kubernetes.authenticate.driver.serviceAccountName=spark
               --conf
-              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$SPARK_CONTAINER_IMAGE_TAG"
+              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$ETL_PIPELINE_IMAGE_TAG"
               --conf
               spark.jars.ivy=/tmp/.ivy
               --conf
