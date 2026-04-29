@@ -17,10 +17,24 @@ spec:
           command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10 && echo \"Waiting for s3://$SOURCE_PATH...\"; done"]
       containers:
         - name: spark-submit
-          image: ghcr.io/nfdi4health/csh-etl-pipeline
-          envFrom:
-            - secretRef:
-                name: etl-job-credentials-$PIPELINE_RUN_NAME
+          image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+          env:
+            - name: NO_PROXY
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: no_proxy
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_ENDPOINT_URL
+              value: "$AWS_ENDPOINT_URL"
           command:
             - /bin/sh
             - -c
@@ -29,17 +43,9 @@ spec:
               if aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
               /opt/spark/bin/spark-submit
               --master
-              k8s://https://kubernetes.default.svc
-              --deploy-mode
-              cluster
+              local[*]
               --name
               etl-job-transform-$PIPELINE_RUN_NAME
-              --conf
-              spark.kubernetes.namespace=$NAMESPACE
-              --conf
-              spark.kubernetes.authenticate.driver.serviceAccountName=spark
-              --conf
-              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$ETL_PIPELINE_IMAGE_TAG"
               --conf
               spark.jars.ivy=/tmp/.ivy
               --conf
@@ -76,10 +82,29 @@ spec:
           command: ["sh", "-c", "until aws s3 ls s3://$SOURCE_PATH-converted.parquet/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
       containers:
         - name: spark-submit
-          image: ghcr.io/nfdi4health/csh-etl-pipeline
-          envFrom:
-            - secretRef:
-                name: etl-job-credentials-$PIPELINE_RUN_NAME
+          image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+          env:
+            - name: NO_PROXY
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: no_proxy
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: DATAVERSE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: DATAVERSE_API_KEY
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_ENDPOINT_URL
+              value: "$AWS_ENDPOINT_URL"
           command:
             - /bin/sh
             - -c
@@ -87,17 +112,9 @@ spec:
             - >
               /opt/spark/bin/spark-submit
               --master
-              k8s://https://kubernetes.default.svc
-              --deploy-mode
-              cluster
+              local[*]
               --name
               etl-job-load-$PIPELINE_RUN_NAME
-              --conf
-              spark.kubernetes.namespace=$NAMESPACE
-              --conf
-              spark.kubernetes.authenticate.driver.serviceAccountName=spark
-              --conf
-              spark.kubernetes.container.image="ghcr.io/nfdi4health/csh-etl-pipeline:$ETL_PIPELINE_IMAGE_TAG"
               --conf
               spark.jars.ivy=/tmp/.ivy
               --conf
@@ -108,12 +125,6 @@ spec:
               spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
               --conf
               spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
-              --conf
-              spark.kubernetes.driverEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
-              --conf
-              spark.kubernetes.driverEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
-              --conf
-              spark.kubernetes.driverEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
               --conf
               spark.executorEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
               --conf
@@ -128,3 +139,5 @@ spec:
               $DATAVERSE_HOST
               $DATAVERSE_API_KEY
               s3://$COLLECTIONS_PATH
+              --threads=8
+              --skip-collection-updates
