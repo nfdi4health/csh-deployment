@@ -53,9 +53,9 @@ spec:
               --conf
               spark.hadoop.fs.s3a.path.style.access=true
               --conf
-              spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
+              spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
               --conf
-              spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
+              spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
               local:///src/etljobs/main.py
               --job
               job-$SOURCE
@@ -122,13 +122,13 @@ spec:
               --conf
               spark.hadoop.fs.s3a.path.style.access=true
               --conf
-              spark.hadoop.fs.s3a.access.key="$AWS_ACCESS_KEY_ID"
+              spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
               --conf
-              spark.hadoop.fs.s3a.secret.key="$AWS_SECRET_ACCESS_KEY"
+              spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
               --conf
-              spark.executorEnv.AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+              spark.executorEnv.AWS_ACCESS_KEY_ID="$(AWS_ACCESS_KEY_ID)"
               --conf
-              spark.executorEnv.AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+              spark.executorEnv.AWS_SECRET_ACCESS_KEY="$(AWS_SECRET_ACCESS_KEY)"
               --conf
               spark.executorEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
               local:///src/etljobs/main.py
@@ -137,7 +137,7 @@ spec:
               --job-args
               s3a://${OUTPUT_PATH}
               $DATAVERSE_HOST
-              $DATAVERSE_API_KEY
+              $(DATAVERSE_API_KEY)
               s3://$COLLECTIONS_PATH
               --threads=8
               --skip-collection-updates
