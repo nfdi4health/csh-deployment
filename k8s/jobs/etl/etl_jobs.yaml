@@ -35,6 +35,11 @@ spec:
                   key: AWS_SECRET_ACCESS_KEY
             - name: AWS_ENDPOINT_URL
               value: "$AWS_ENDPOINT_URL"
+          resources:
+            requests:
+              memory: "8Gi"
+            limits:
+              memory: "8Gi"
           command:
             - /bin/sh
             - -c
@@ -44,6 +49,8 @@ spec:
               /opt/spark/bin/spark-submit
               --master
               local[*]
+              --driver-memory
+              4G
               --name
               etl-job-transform-$PIPELINE_RUN_NAME
               --conf
