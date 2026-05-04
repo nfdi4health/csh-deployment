@@ -88,8 +88,6 @@ spec:
                   key: username
             - name: DATAVERSE_DB_IS_CONNECTION_VALIDATION_REQUIRED
               value: "1"
-            - name: DATAVERSE_DB_VALIDATION_CLASSNAME
-              value: "org.glassfish.api.jdbc.validation.PostgresConnectionValidation"
             - name: DATAVERSE_PID_PROVIDERS
               {{- $pidProviderNames := list -}}
               {{- range $pidProvider := .Values.dataverse.pid_providers -}}
@@ -114,7 +112,11 @@ spec:
             {{- end -}}
           {{- end }}
             - name: DATAVERSE_DB_CONNECTION_VALIDATION_METHOD
-              value: "custom-validation"
+              value: "table"
+            - name: DATAVERSE_DB_VALIDATION_TABLE_NAME
+              value: "setting"
+            - name: DATAVERSE_DB_VALIDATE_ATMOST_ONCE_PERIOD_IN_SECONDS
+              value: "60"
             # hack for https://dataverse.zulipchat.com/#narrow/stream/375812-containers/topic/MPC.20profile.20problem
             - name: _CT_DATAVERSE_SOLR_HOST
               value: {{ .Release.Name }}-dataverse-solr-svc
