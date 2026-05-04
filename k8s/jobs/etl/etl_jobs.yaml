@@ -36,7 +36,7 @@ spec:
           envFrom:
             - secretRef:
                 name: etl-job-credentials-$PIPELINE_RUN_NAME
-          command: ["sh", "-c", "until aws s3 ls s3://$EXTRACT_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10 && echo \"Waiting for s3://$EXTRACT_PATH...\"; done"]
+          command: ["sh", "-c", "until aws s3 ls s3://$EXTRACT_PATH/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10 && echo \"Waiting for s3://$EXTRACT_PATH...\"; done"]
       containers:
         - name: spark-submit
           image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
