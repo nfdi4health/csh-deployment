@@ -1,5 +1,5 @@
 {
-  "name": "BonaRes",
+  "name": "BonaRes Repository",
   "alias": "bonares",
   "dataverseContacts": [
     {
@@ -7,6 +7,6 @@
     }
   ],
   "affiliation": "FAIRagro",
-  "description": "The BonaRes Repository makes your data visible to the world. It is a free infrastructure for researchers and the community to publish and find data related to soil, agriculture and ecology from Germany and the world. In our repository you can publish your data and receive a unique digital object identifier (DOI). We offer several additional services such as our long-term field experiment map, our soil profile data base, community engagement and soil data related materials.\n\nMore information can be found on [bonares.de](https://www.bonares.de/service-portal/data-repository).",
+  "description": "The BonaRes Repository stores, manage and publishes soil, agricultural and landscape research data from research projects, agricultural long-term field experiments and soil profiles which contribute significantly to the understanding of agriculture and landscape research. This can for instance be changes of soil and soil functions over the long term. Research data are described by the metadata following the [BonaRes Metadata Schema](https://doi.org/10.20387/BonaRes-5PGG-8YRP) which combines international recognized standards for the description of geospatial data (INSPIRE Directive) and research data (DataCite 4.0). Metadata includes AGROVOC keywords. Within the BonaRes Repository research data is provided for free reuse under the CC License and can be discovered by advanced text and map search via a number of criteria.\n\nMore information can be found on [bonares.de](https://www.bonares.de/service-portal/data-repository).",
   "dataverseType": "UNCATEGORIZED"
 }

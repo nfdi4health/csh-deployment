@@ -1,0 +1,12 @@
+{
+  "name": "DaKS (University of Kassel)",
+  "alias": "daks",
+  "dataverseContacts": [
+    {
+      "contactEmail": "schneider@zbmed.de"
+    }
+  ],
+  "affiliation": "FAIRagro",
+  "description": "DaKS is the institutional repository of the University of Kassel for research data. It offers structured storage of research data alongside with descriptive metadata, long-term archiving for at least 10 years and – if requested – the publication of the dataset with a DOI.\\n\\nMore information can be found on [daks.uni-kassel.de/](https://daks.uni-kassel.de/home).",
+  "dataverseType": "UNCATEGORIZED"
+}
