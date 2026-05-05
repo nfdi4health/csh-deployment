@@ -25,13 +25,15 @@ spec:
             - name: AWS_ENDPOINT_URL
               value: "$AWS_ENDPOINT_URL"
           command:
-            - "python3"
-            - "-u" # unbuffered, so logs are immediately flushed
-            - "etljobs/extract/extract_ctis_data.py"
-            - "--temp-dir"
-            - "/tmp/extract"
-            - "--output"
-            - "s3://$EXTRACT_PATH"
+            - /bin/sh
+            - -c
+          args:
+            - >
+              if aws s3 ls s3://${EXTRACT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
+                echo "Parquet file already exists, skipping."
+                exit 0
+              fi;
+              python3 -u etljobs/extract/extract_ctis_data.py --temp-dir /tmp/extract --output s3://$EXTRACT_PATH
 ---
 apiVersion: batch/v1
 kind: Job
@@ -80,7 +82,10 @@ spec:
             - -c
           args:
             - >
-              if aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then echo "Parquet file already exists, skipping." && exit 0; fi;
+              if aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
+                echo "Parquet file already exists, skipping."
+                exit 0
+              fi;
               /opt/spark/bin/spark-submit
               --master
               local[*]
