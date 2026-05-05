@@ -69,7 +69,7 @@ export ETL_PIPELINE_IMAGE_TAG=${ETL_PIPELINE_IMAGE_TAG:-latest}
 export PIPELINE_RUN_NAME=$(echo "$(echo $SOURCE | tr '[:upper:]' '[:lower:]')-$(date +%d-%m-%y--%H-%M-%S)")
 
 # Generate output path for extract job
-export EXTRACT_PATH=$(echo "${S3_PATH}/$(echo $SOURCE | tr '[:upper:]' '[:lower:]')/$(date +%d-%m-%y).parquet")
+export EXTRACT_PATH=$(echo "${S3_PATH}/$(echo $SOURCE | tr '[:upper:]' '[:lower:]')/$(date +%y-%m-%d).parquet")
 
 # Generate output path for transform job
 export OUTPUT_PATH=${EXTRACT_PATH%.parquet}-converted.parquet
@@ -84,4 +84,4 @@ cat $SCRIPT_DIR/etl_jobs.yaml | envsubst '$NAMESPACE $PIPELINE_RUN_NAME $SOURCE 
 
 echo
 echo "INFO: To clean up, call:"
-echo "  kubectl -n $NAMESPACE delete job etl-job-transform-$PIPELINE_RUN_NAME etl-job-load-$PIPELINE_RUN_NAME && kubectl -n $NAMESPACE delete secret etl-job-credentials-$PIPELINE_RUN_NAME"
+echo "  kubectl -n $NAMESPACE delete job etl-job-extract-$PIPELINE_RUN_NAME etl-job-transform-$PIPELINE_RUN_NAME etl-job-load-$PIPELINE_RUN_NAME etl-job-publish-$PIPELINE_RUN_NAME && kubectl -n $NAMESPACE delete secret etl-job-credentials-$PIPELINE_RUN_NAME"
