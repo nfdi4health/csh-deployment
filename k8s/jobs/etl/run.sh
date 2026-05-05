@@ -69,7 +69,7 @@ export ETL_PIPELINE_IMAGE_TAG=${ETL_PIPELINE_IMAGE_TAG:-latest}
 export PIPELINE_RUN_NAME=$(echo "$(echo $SOURCE | tr '[:upper:]' '[:lower:]')-$(date +%d-%m-%y--%H-%M-%S)")
 
 # Generate output path for extract job
-export EXTRACT_PATH=$(echo "${S3_PATH}/$(echo $SOURCE | tr '[:upper:]' '[:lower:]')/$(date +%y-%m-%d).parquet")
+export EXTRACT_PATH=$(echo "${S3_PATH}/$(echo $SOURCE | tr '[:upper:]' '[:lower:]')/$(date +%Y-%m-%d).parquet")
 
 # Generate output path for transform job
 export OUTPUT_PATH=${EXTRACT_PATH%.parquet}-converted.parquet
