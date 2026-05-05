@@ -11,6 +11,19 @@ spec:
       containers:
         - name: extract
           image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_ENDPOINT_URL
+              value: "$AWS_ENDPOINT_URL"
           command:
             - "python3"
             - "-u" # unbuffered, so logs are immediately flushed
@@ -18,7 +31,7 @@ spec:
             - "--temp-dir"
             - "/tmp/extract"
             - "--output"
-            - "$EXTRACT_PATH"
+            - "s3://$EXTRACT_PATH"
 ---
 apiVersion: batch/v1
 kind: Job
