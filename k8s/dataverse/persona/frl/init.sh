@@ -51,7 +51,7 @@ curl -X PUT $DATAVERSE_URL/api/admin/settings/:MaxEmbargoDurationInMonths -d -1
 echo
 
 echo "Configuring dataset summary fields"
-curl -X PUT $DATAVERSE_URL/api/admin/settings/:CustomDatasetSummaryFields -d 'dsDescription,author,datasetContact,subject,keyword,publication,grantNumber'
+curl -X PUT $DATAVERSE_URL/api/admin/settings/:CustomDatasetSummaryFields -d 'dsDescription,subject,keyword,publication,grantNumber'
 echo
 
 echo "Configuring ZIP download limit (10GB)"
