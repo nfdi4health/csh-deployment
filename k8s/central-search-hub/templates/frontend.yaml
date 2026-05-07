@@ -26,6 +26,8 @@ spec:
             value: {{ .Values.oidc.frontend.authority }}
           - name: KEYCLOAK_CLIENTID
             value: {{ .Values.oidc.frontend.clientid }}
+          - name: USERBACK_TOKEN
+            value: {{ .Values.frontend.userback_access_token }}
         ports:
           - containerPort: 80
 ---
