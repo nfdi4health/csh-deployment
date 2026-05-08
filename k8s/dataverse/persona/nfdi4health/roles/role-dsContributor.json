@@ -1,0 +1,9 @@
+{
+    "alias": "dsContributor",
+    "name": "Creator",
+    "description": "Can create new entries in this collection.",
+    "permissions": [
+        "AddDataset",
+        "LinkDataset"
+    ]
+}

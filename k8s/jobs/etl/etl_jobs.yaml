@@ -1,0 +1,229 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-job-extract-$PIPELINE_RUN_NAME
+  namespace: $NAMESPACE
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: OnFailure
+      containers:
+        - name: extract
+          image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_ENDPOINT_URL
+              value: "$AWS_ENDPOINT_URL"
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              if aws s3 ls s3://${EXTRACT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
+                echo "Parquet file already exists, skipping."
+                exit 0
+              fi;
+              python3 -u etljobs/extract/extract_ctis_data.py --temp-dir /tmp/extract --output s3://$EXTRACT_PATH
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-job-transform-$PIPELINE_RUN_NAME
+  namespace: $NAMESPACE
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-extract
+          image: amazon/aws-cli
+          envFrom:
+            - secretRef:
+                name: etl-job-credentials-$PIPELINE_RUN_NAME
+          command: ["sh", "-c", "until aws s3 ls s3://$EXTRACT_PATH/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10 && echo \"Waiting for s3://$EXTRACT_PATH...\"; done"]
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+          env:
+            - name: NO_PROXY
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: no_proxy
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_ENDPOINT_URL
+              value: "$AWS_ENDPOINT_URL"
+          resources:
+            requests:
+              memory: "8Gi"
+            limits:
+              memory: "8Gi"
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              if aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
+                echo "Parquet file already exists, skipping."
+                exit 0
+              fi;
+              /opt/spark/bin/spark-submit
+              --master
+              local[*]
+              --driver-memory
+              4G
+              --name
+              etl-job-transform-$PIPELINE_RUN_NAME
+              --conf
+              spark.jars.ivy=/tmp/.ivy
+              --conf
+              spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
+              --conf
+              spark.hadoop.fs.s3a.path.style.access=true
+              --conf
+              spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
+              --conf
+              spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
+              local:///src/etljobs/main.py
+              --job
+              job-$SOURCE
+              --job-args
+              s3a://$EXTRACT_PATH
+              s3a://$OUTPUT_PATH
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-job-load-$PIPELINE_RUN_NAME
+  namespace: $NAMESPACE
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-transform
+          image: amazon/aws-cli
+          envFrom:
+            - secretRef:
+                name: etl-job-credentials-$PIPELINE_RUN_NAME
+          command: ["sh", "-c", "until aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+          env:
+            - name: NO_PROXY
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: no_proxy
+              value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+            - name: DATAVERSE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: DATAVERSE_API_KEY
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_ENDPOINT_URL
+              value: "$AWS_ENDPOINT_URL"
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - >
+              /opt/spark/bin/spark-submit
+              --master
+              local[*]
+              --name
+              etl-job-load-$PIPELINE_RUN_NAME
+              --conf
+              spark.jars.ivy=/tmp/.ivy
+              --conf
+              spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
+              --conf
+              spark.hadoop.fs.s3a.path.style.access=true
+              --conf
+              spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
+              --conf
+              spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
+              --conf
+              spark.executorEnv.AWS_ACCESS_KEY_ID="$(AWS_ACCESS_KEY_ID)"
+              --conf
+              spark.executorEnv.AWS_SECRET_ACCESS_KEY="$(AWS_SECRET_ACCESS_KEY)"
+              --conf
+              spark.executorEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
+              local:///src/etljobs/main.py
+              --job
+              submit_dataverse
+              --job-args
+              s3a://${OUTPUT_PATH}
+              $DATAVERSE_HOST
+              $(DATAVERSE_API_KEY)
+              s3://$COLLECTIONS_PATH
+              --threads=8
+              --skip-collection-updates
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-job-publish-$PIPELINE_RUN_NAME
+  namespace: $NAMESPACE
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: OnFailure
+      initContainers:
+        - name: wait-for-transform
+          image: amazon/aws-cli
+          envFrom:
+            - secretRef:
+                name: etl-job-credentials-$PIPELINE_RUN_NAME
+          command: ["sh", "-c", "until aws s3 ls s3://${CHECKPOINT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done"]
+      containers:
+        - name: spark-submit
+          image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+          env:
+            - name: DATAVERSE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-job-credentials-$PIPELINE_RUN_NAME
+                  key: DATAVERSE_API_KEY
+          command:
+            - "python3"
+            - "-u" # unbuffered, so logs are immediately flushed
+            - "scripts/publish_all_datasets.py"
+            - "-d"
+            - "$DATAVERSE_HOST"
+            - "-k"
+            - "$(DATAVERSE_API_KEY)"
+            - "-t"
+            - "updatecurrent"
+            - "-c"
+            - "$SOURCE"

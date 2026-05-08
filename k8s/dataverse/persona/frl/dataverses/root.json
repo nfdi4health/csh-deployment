@@ -1,0 +1,12 @@
+{
+    "name": "ZB MED – Forschungsdatenrepositorium",
+    "alias": "rdr",
+    "dataverseContacts": [
+        {
+            "contactEmail": "forschungsdaten@zbmed.de"
+        }
+    ],
+    "affiliation": "ZB MED – Informationszentrum Lebenswissenschaften",
+    "description": "All research data records from ZB MED-FRL",
+    "dataverseType": "ORGANIZATIONS_INSTITUTIONS"
+}

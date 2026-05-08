@@ -75,33 +75,39 @@ spec:
         app.kubernetes.io/version: "9.5.0"
         app.kubernetes.io/component: solr
         app.kubernetes.io/part-of: dataverse
-      annotations:
-        kubectl.kubernetes.io/default-container: "solr"
     spec:
       securityContext:
         fsGroup: 8983
+      initContainers:
+        - name: dataverse-solr-config
+          image: {{ .Values.images.configbaker }}
+          command:
+            - /bin/bash
+            - -c
+            - |
+              set -e
+              mkdir -p /var/solr/data
+              /scripts/fix-fs-perms.sh solr
+              cp -a /template/* /solr-template
+              if [ -f /schema/schema.xml ]; then cp /schema/schema.xml /solr-template/conf/schema.xml; fi
+              if [ -f /schema/solrconfig.xml ]; then cp /schema/solrconfig.xml /solr-template/conf/solrconfig.xml; fi
+          volumeMounts:
+            - mountPath: /var/solr
+              name: solr-data
+            - mountPath: /solr-template
+              name: solr-template
+            - mountPath: /schema/
+              name: cfgmap
       containers:
-      - image: {{.Values.images.configbaker}}
-        name: dataverse-solr-config
-        env:
-          - name: DATAVERSE_SOLR_HOST
-            value: {{ .Release.Name }}-dataverse-solr-svc
-          - name: DATAVERSE_SOLR_PORT
-            value: "8983"
-          - name: DATAVERSE_HOSTNAME
-            value: {{ .Release.Name }}-dataverse-svc
-        command: [ "/bin/bash", "-c", 'mkdir -p /var/solr/data; /scripts/fix-fs-perms.sh solr; if [ -f "/solr-template/SETUP_DONE" ]; then echo "config already exits; no copy!"; else echo "copy template";cp -a /template/* /solr-template;echo "overwrite with configmap"; cp /schema/schema.xml /solr-template/conf/schema.xml; cp /schema/solrconfig.xml /solr-template/conf/solrconfig.xml; touch /solr-template/SETUP_DONE; fi;while true; do echo "LOOP and sleep for 600;Press CTRL+C to exit"; sleep 600; done' ]
-        volumeMounts:
-          - mountPath: /var/solr
-            name: solr-data
-          - mountPath: /solr-template
-            name: solr-template
-          - mountPath: /schema/
-            name: cfgmap
       - name: solr
         image: solr:9.8.0
         command: [ "/bin/bash", "-c" ]
-        args: [ "sleep 30; precreate-core collection1 /solr-template; solr-foreground -Djetty.host=0.0.0.0" ]
+        # Run Solr using configset in /solr-template
+        # (see https://solr.apache.org/guide/solr/latest/configuration-guide/config-sets.html)
+        # IMPORTANT: Solr doesn't track changes to the configset. It only copies it once on first start-up,
+        # so any later changes to schema.xml and solrconfig.xml will have NO EFFECT unless manually copied into
+        # /var/solr/data/collection1/conf/
+        args: [ "precreate-core collection1 /solr-template; solr-foreground -Djetty.host=0.0.0.0" ]
         env:
           - name: SOLR_JETTY_HOST
             value: "0.0.0.0"

@@ -1,0 +1,8 @@
+{
+    "alias": "dsLinker",
+    "name": "Collection Linker",
+    "description": "Can link entries to an additional collection where they should also appear.",
+    "permissions": [
+        "LinkDataset"
+    ]
+}
