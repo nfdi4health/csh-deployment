@@ -1,0 +1,33 @@
+# Default values for etl-pipeline.
+
+source: ""
+s3:
+  basePath: "s3://my-bucket"
+  endpointUrl: "https://s3.de-west-1.psmanaged.com"
+  collectionsPath: "s3://my-bucket/collections.json"
+  accessKeyId: ""
+  secretAccessKey: ""
+
+dataverse:
+  host: "http://my-dataverse-svc.default.svc.cluster.local:8080"
+  apiKey: ""
+
+image:
+  repository: ghcr.io/nfdi4health/csh-etl-pipeline
+  tag: latest
+  pullPolicy: IfNotPresent
+
+schedule: "00 07 * * *"
+timeZone: "Europe/Berlin"
+suspend: false
+
+resources:
+  transform:
+    requests:
+      memory: "8Gi"
+    limits:
+      memory: "8Gi"
+
+spark:
+  transform:
+    driverMemory: "4G"

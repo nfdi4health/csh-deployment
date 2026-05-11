@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: etl-job-extract-$JOB_NAME_SUFFIX
-  namespace: $NAMESPACE
+  name: {{ .Release.Name }}-extract-job
 spec:
-  schedule: "00 07 * * *"
-  timeZone: "Europe/Berlin"
+  schedule: {{ .Values.schedule | quote }}
+  timeZone: {{ .Values.timeZone | quote }}
+  suspend: {{ .Values.suspend }}
   jobTemplate:
     spec:
       template:
@@ -14,7 +14,8 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: extract
-              image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+              image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
               env:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
@@ -27,42 +28,34 @@ spec:
                       name: etl-job-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: AWS_ENDPOINT_URL
+                  value: {{ .Values.s3.endpointUrl | quote }}
                 - name: S3_PATH
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: S3_PATH
+                  value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
               command:
                 - /bin/sh
                 - -c
               args:
                 - >
-                  SOURCE_LOWER=$(echo $SOURCE | tr '[:upper:]' '[:lower:]');
-                  EXTRACT_PATH=$(echo "${S3_PATH}/${SOURCE_LOWER}/$(date +%Y-%m-%d).parquet");
+                  EXTRACT_PATH=$(echo "${S3_PATH}/$(date +%Y-%m-%d).parquet");
                   if aws s3 ls s3://${EXTRACT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
                     echo "Parquet file already exists, skipping."
                     exit 0
                   fi;
-                  python3 -u etljobs/extract/extract_ctis_data.py --temp-dir /tmp/extract --output s3://$EXTRACT_PATH
+                  python3 -u etljobs/extract/extract_{{ lower .Values.source }}_data.py --temp-dir /tmp/extract --output s3://$EXTRACT_PATH
 ---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: etl-job-transform-$JOB_NAME_SUFFIX
-  namespace: $NAMESPACE
+  name: {{ .Release.Name }}-transform-job
 spec:
-  schedule: "00 07 * * *"
-  timeZone: "Europe/Berlin"
+  schedule: {{ .Values.schedule | quote }}
+  timeZone: {{ .Values.timeZone | quote }}
+  suspend: {{ .Values.suspend }}
   jobTemplate:
     spec:
       template:
         spec:
           serviceAccountName: spark
-          restartPolicy: Never
           initContainers:
             - name: wait-for-extract
               image: amazon/aws-cli
@@ -78,27 +71,25 @@ spec:
                       name: etl-job-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: AWS_ENDPOINT_URL
+                  value: {{ .Values.s3.endpointUrl | quote }}
                 - name: S3_PATH
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: S3_PATH
+                  value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
               command: ["sh", "-c"]
               args:
                 - >
-                  SOURCE_LOWER=$(echo $SOURCE | tr '[:upper:]' '[:lower:]');
-                  EXTRACT_PATH="${S3_PATH}/${SOURCE_LOWER}/$(date +%Y-%m-%d).parquet";
+                  EXTRACT_PATH="${S3_PATH}/$(date +%Y-%m-%d).parquet";
                   echo "Waiting for s3://$EXTRACT_PATH...";
                   until aws s3 ls s3://$EXTRACT_PATH/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; 
                   do sleep 10; done
           containers:
             - name: spark-submit
-              image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+              image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
               env:
+                - name: SOURCE
+                  value: {{ .Values.source | quote }}
+                - name: S3_PATH
+                  value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
                 - name: NO_PROXY
                   value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
                 - name: no_proxy
@@ -114,23 +105,16 @@ spec:
                       name: etl-job-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
-                  valueFrom:
-                    configMapKeyRef:
-                      key: AWS_ENDPOINT_URL
-                      name: etl-job-config
+                  value: {{ .Values.s3.endpointUrl | quote }}
               resources:
-                requests:
-                  memory: "8Gi"
-                limits:
-                  memory: "8Gi"
+                {{- toYaml .Values.resources.transform | nindent 16 }}
               command:
                 - /bin/sh
                 - -c
               args:
                 - >
-                  SOURCE_LOWER=$(echo $SOURCE | tr '[:upper:]' '[:lower:]');
-                  EXTRACT_PATH="${S3_PATH}/${SOURCE_LOWER}/$(date +%Y-%m-%d).parquet";
-                  OUTPUT_PATH="${S3_PATH}/${SOURCE_LOWER}/$(date +%Y-%m-%d)-converted.parquet";
+                  EXTRACT_PATH="${S3_PATH}/$(date +%Y-%m-%d).parquet";
+                  OUTPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
                   if aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
                     echo "Parquet file already exists, skipping."
                     exit 0
@@ -139,7 +123,7 @@ spec:
                   --master
                   local[*]
                   --driver-memory
-                  4G
+                  {{ .Values.spark.transform.driverMemory | quote }}
                   --name
                   etl-job-transform-$SOURCE
                   --conf
@@ -162,137 +146,11 @@ spec:
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: etl-job-load-$JOB_NAME_SUFFIX
-  namespace: $NAMESPACE
+  name: {{ .Release.Name }}-load-job
 spec:
-  schedule: "00 07 * * *"
-  timeZone: "Europe/Berlin"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          serviceAccountName: spark
-          restartPolicy: Never
-          initContainers:
-            - name: wait-for-transform
-              image: amazon/aws-cli
-              env:
-                - name: AWS_ACCESS_KEY_ID
-                  valueFrom:
-                    secretKeyRef:
-                      name: etl-job-credentials
-                      key: AWS_ACCESS_KEY_ID
-                - name: AWS_SECRET_ACCESS_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: etl-job-credentials
-                      key: AWS_SECRET_ACCESS_KEY
-                - name: AWS_ENDPOINT_URL
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: AWS_ENDPOINT_URL
-                - name: S3_PATH
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: S3_PATH
-                - name: COLLECTIONS_PATH
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: COLLECTIONS_PATH
-              command: ["sh", "-c"]
-              args:
-                - >
-                  SOURCE_LOWER=$(echo $SOURCE | tr '[:upper:]' '[:lower:]');
-                  OUTPUT_PATH="${S3_PATH}/${SOURCE_LOWER}/$(date +%Y-%m-%d)-converted.parquet";
-                  until aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done
-          containers:
-            - name: spark-submit
-              image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
-              env:
-                - name: NO_PROXY
-                  value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
-                - name: no_proxy
-                  value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
-                - name: DATAVERSE_API_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: etl-job-credentials
-                      key: DATAVERSE_API_KEY
-                - name: AWS_ACCESS_KEY_ID
-                  valueFrom:
-                    secretKeyRef:
-                      name: etl-job-credentials
-                      key: AWS_ACCESS_KEY_ID
-                - name: AWS_SECRET_ACCESS_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: etl-job-credentials
-                      key: AWS_SECRET_ACCESS_KEY
-                - name: AWS_ENDPOINT_URL
-                  valueFrom:
-                    configMapKeyRef:
-                      key: AWS_ENDPOINT_URL
-                      name: etl-job-config
-                - name: COLLECTIONS_PATH
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: COLLECTIONS_PATH
-                - name: DATAVERSE_HOST
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: DATAVERSE_HOST
-              command:
-                - /bin/sh
-                - -c
-              args:
-                - >
-                  SOURCE_LOWER=$(echo $SOURCE | tr '[:upper:]' '[:lower:]');
-                  OUTPUT_PATH="${S3_PATH}/${SOURCE_LOWER}/$(date +%Y-%m-%d)-converted.parquet";
-                  /opt/spark/bin/spark-submit
-                  --master
-                  local[*]
-                  --name
-                  etl-job-load-$SOURCE
-                  --conf
-                  spark.jars.ivy=/tmp/.ivy
-                  --conf
-                  spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
-                  --conf
-                  spark.hadoop.fs.s3a.path.style.access=true
-                  --conf
-                  spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
-                  --conf
-                  spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
-                  --conf
-                  spark.executorEnv.AWS_ACCESS_KEY_ID="$(AWS_ACCESS_KEY_ID)"
-                  --conf
-                  spark.executorEnv.AWS_SECRET_ACCESS_KEY="$(AWS_SECRET_ACCESS_KEY)"
-                  --conf
-                  spark.executorEnv.AWS_ENDPOINT_URL="$AWS_ENDPOINT_URL"
-                  local:///src/etljobs/main.py
-                  --job
-                  submit_dataverse
-                  --job-args
-                  s3a://${OUTPUT_PATH}
-                  $DATAVERSE_HOST
-                  $(DATAVERSE_API_KEY)
-                  s3://$COLLECTIONS_PATH
-                  --threads=8
-                  --skip-collection-updates
----
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: etl-job-publish-$JOB_NAME_SUFFIX
-  namespace: $NAMESPACE
-spec:
-  schedule: "00 07 * * *"
-  timeZone: "Europe/Berlin"
+  schedule: {{ .Values.schedule | quote }}
+  timeZone: {{ .Values.timeZone | quote }}
+  suspend: {{ .Values.suspend }}
   jobTemplate:
     spec:
       template:
@@ -314,35 +172,134 @@ spec:
                       name: etl-job-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: AWS_ENDPOINT_URL
+                  value: {{ .Values.s3.endpointUrl | quote }}
                 - name: S3_PATH
-                  valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: S3_PATH
+                  value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
+                - name: COLLECTIONS_PATH
+                  value: {{ .Values.s3.collectionsPath | replace "s3://" "" | quote }}
               command: ["sh", "-c"]
               args:
                 - >
-                  SOURCE_LOWER=$(echo $SOURCE | tr '[:upper:]' '[:lower:]');
-                  CHECKPOINT_PATH="${S3_PATH}/${SOURCE_LOWER}/$(date +%Y-%m-%d)-checkpoint";
-                  until aws s3 ls s3://${CHECKPOINT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done
+                  OUTPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
+                  until aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done
           containers:
             - name: spark-submit
-              image: ghcr.io/nfdi4health/csh-etl-pipeline:${ETL_PIPELINE_IMAGE_TAG}
+              image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
               env:
+                - name: SOURCE
+                  value: {{ .Values.source | quote }}
+                - name: S3_PATH
+                  value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
+                - name: NO_PROXY
+                  value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+                - name: no_proxy
+                  value: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
                 - name: DATAVERSE_API_KEY
                   valueFrom:
                     secretKeyRef:
                       name: etl-job-credentials
                       key: DATAVERSE_API_KEY
-                - name: DATAVERSE_HOST
+                - name: AWS_ACCESS_KEY_ID
                   valueFrom:
-                    configMapKeyRef:
-                      name: etl-job-config
-                      key: DATAVERSE_HOST
+                    secretKeyRef:
+                      name: etl-job-credentials
+                      key: AWS_ACCESS_KEY_ID
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: etl-job-credentials
+                      key: AWS_SECRET_ACCESS_KEY
+                - name: AWS_ENDPOINT_URL
+                  value: {{ .Values.s3.endpointUrl | quote }}
+                - name: DATAVERSE_HOST
+                  value: {{ .Values.dataverse.host | quote }}
+                - name: COLLECTIONS_PATH
+                  value: {{ .Values.s3.collectionsPath | replace "s3://" "" | quote }}
+              resources:
+                {{- toYaml .Values.resources.load | nindent 16 }}
+              command:
+                - /bin/sh
+                - -c
+              args:
+                - >
+                  OUTPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
+                  /opt/spark/bin/spark-submit
+                  --master
+                  local[*]
+                  --name
+                  etl-job-load-$SOURCE
+                  --conf
+                  spark.jars.ivy=/tmp/.ivy
+                  --conf
+                  spark.hadoop.fs.s3a.endpoint="$AWS_ENDPOINT_URL"
+                  --conf
+                  spark.hadoop.fs.s3a.path.style.access=true
+                  --conf
+                  spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
+                  --conf
+                  spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
+                  local:///src/etljobs/main.py
+                  --job
+                  submit_dataverse
+                  --job-args
+                  s3a://$OUTPUT_PATH
+                  $DATAVERSE_HOST
+                  $(DATAVERSE_API_KEY)
+                  s3://$COLLECTIONS_PATH
+                  --threads=8
+                  --skip-collection-updates
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-publish-job
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  timeZone: {{ .Values.timeZone | quote }}
+  suspend: {{ .Values.suspend }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: spark
+          initContainers:
+            - name: wait-for-load
+              image: {{ printf "ghcr.io/nfdi4health/csh-etl-pipeline:%s" .Values.image.tag }}
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: etl-job-credentials
+                      key: AWS_ACCESS_KEY_ID
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: etl-job-credentials
+                      key: AWS_SECRET_ACCESS_KEY
+                - name: AWS_ENDPOINT_URL
+                  value: {{ .Values.s3.endpointUrl | quote }}
+                - name: S3_PATH
+                  value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
+              command: ["/bin/sh", "-c"]
+              args:
+                - >
+                  CHECKPOINT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-checkpoint";
+                  until aws s3 ls s3://${CHECKPOINT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done
+          containers:
+            - name: spark-submit
+              image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              env:
+                - name: SOURCE
+                  value: {{ .Values.source | quote }}
+                - name: DATAVERSE_HOST
+                  value: {{ .Values.dataverse.host | quote }}
+                - name: DATAVERSE_API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: etl-job-credentials
+                      key: DATAVERSE_API_KEY
               command:
                 - "python3"
                 - "-u" # unbuffered, so logs are immediately flushed
