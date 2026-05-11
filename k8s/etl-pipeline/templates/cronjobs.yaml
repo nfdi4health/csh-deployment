@@ -10,7 +10,6 @@ spec:
     spec:
       template:
         spec:
-          serviceAccountName: spark
           restartPolicy: OnFailure
           containers:
             - name: extract
@@ -55,7 +54,7 @@ spec:
     spec:
       template:
         spec:
-          serviceAccountName: spark
+          restartPolicy: OnFailure
           initContainers:
             - name: wait-for-extract
               image: amazon/aws-cli
@@ -155,7 +154,6 @@ spec:
     spec:
       template:
         spec:
-          serviceAccountName: spark
           restartPolicy: OnFailure
           initContainers:
             - name: wait-for-transform
@@ -262,7 +260,7 @@ spec:
     spec:
       template:
         spec:
-          serviceAccountName: spark
+          restartPolicy: OnFailure
           initContainers:
             - name: wait-for-load
               image: {{ printf "ghcr.io/nfdi4health/csh-etl-pipeline:%s" .Values.image.tag }}
