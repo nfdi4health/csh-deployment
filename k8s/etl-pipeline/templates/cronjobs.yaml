@@ -40,7 +40,13 @@ spec:
                     echo "Parquet file already exists, skipping."
                     exit 0
                   fi;
-                  python3 -u etljobs/extract/extract_{{ lower .Values.source }}_data.py --temp-dir /tmp/extract --output s3://$EXTRACT_PATH
+                  LAST_SUCCESS_DATE=$(aws s3 ls "s3://${S3_PATH}/" --recursive --endpoint-url=$AWS_ENDPOINT_URL | grep '/_SUCCESS$' | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}-checkpoint' | sort | tail -n 1 | cut -d'-' -f1-3);
+                  SINCE_ARG="";
+                  if [ -n "$LAST_SUCCESS_DATE" ]; then
+                    SINCE_ARG="--since $LAST_SUCCESS_DATE";
+                    echo "Found last successful load from $LAST_SUCCESS_DATE, using $SINCE_ARG";
+                  fi;
+                  python3 -u etljobs/extract/extract_{{ lower .Values.source }}_data.py --temp-dir /tmp/extract --output s3://$EXTRACT_PATH $SINCE_ARG
 ---
 apiVersion: batch/v1
 kind: CronJob
