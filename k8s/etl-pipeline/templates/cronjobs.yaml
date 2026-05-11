@@ -19,12 +19,12 @@ spec:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_ACCESS_KEY_ID
                 - name: AWS_SECRET_ACCESS_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
@@ -62,12 +62,12 @@ spec:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_ACCESS_KEY_ID
                 - name: AWS_SECRET_ACCESS_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
@@ -96,12 +96,12 @@ spec:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_ACCESS_KEY_ID
                 - name: AWS_SECRET_ACCESS_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
@@ -122,7 +122,7 @@ spec:
                   --master
                   local[*]
                   --driver-memory
-                  {{ .Values.spark.transform.driverMemory | quote }}
+                  {{ .Values.spark.resources.transform.driverMemory | quote }}
                   --name
                   etl-job-transform-$SOURCE
                   --conf
@@ -162,12 +162,12 @@ spec:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_ACCESS_KEY_ID
                 - name: AWS_SECRET_ACCESS_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
@@ -196,17 +196,17 @@ spec:
                 - name: DATAVERSE_API_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: DATAVERSE_API_KEY
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_ACCESS_KEY_ID
                 - name: AWS_SECRET_ACCESS_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
@@ -245,8 +245,10 @@ spec:
                   $DATAVERSE_HOST
                   $(DATAVERSE_API_KEY)
                   s3://$COLLECTIONS_PATH
-                  --threads=8
+                  --threads={{ .Values.spark.jobArguments.load.threads }}
+                  {{- if .Values.spark.jobArguments.load.skipCollectionUpdates }}
                   --skip-collection-updates
+                  {{- end }}
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -268,12 +270,12 @@ spec:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_ACCESS_KEY_ID
                 - name: AWS_SECRET_ACCESS_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
@@ -296,7 +298,7 @@ spec:
                 - name: DATAVERSE_API_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: etl-job-credentials
+                      name: {{ .Release.Name }}-credentials
                       key: DATAVERSE_API_KEY
               command:
                 - "python3"

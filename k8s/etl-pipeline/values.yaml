@@ -29,5 +29,10 @@ resources:
       memory: "8Gi"
 
 spark:
-  transform:
-    driverMemory: "4G"
+  resources:
+    transform:
+      driverMemory: "4G"
+  jobArguments:
+    load:
+      threads: 8
+      skipCollectionUpdates: true
