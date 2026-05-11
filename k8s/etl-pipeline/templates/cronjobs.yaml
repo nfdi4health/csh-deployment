@@ -248,7 +248,7 @@ spec:
                   submit_dataverse
                   --job-args
                   s3a://$OUTPUT_PATH
-                  $DATAVERSE_HOST
+                  $(DATAVERSE_HOST)
                   $(DATAVERSE_API_KEY)
                   s3://$COLLECTIONS_PATH
                   --threads={{ .Values.spark.jobArguments.load.threads }}
@@ -311,10 +311,10 @@ spec:
                 - "-u" # unbuffered, so logs are immediately flushed
                 - "scripts/publish_all_datasets.py"
                 - "-d"
-                - "$DATAVERSE_HOST"
+                - "$(DATAVERSE_HOST)"
                 - "-k"
                 - "$(DATAVERSE_API_KEY)"
                 - "-t"
                 - "updatecurrent"
                 - "-c"
-                - "$SOURCE"
+                - "$(SOURCE)"
