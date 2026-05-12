@@ -75,6 +75,36 @@ dataverse:
       label: "DRKS Permalink Provider"
       authority: "DRKS"
       permalink_base_url: "https://drks.de/search/de/trial/"
+    - name: ctis2022
+      type: "perma"
+      label: "CTIS Permalink Provider (2022)"
+      authority: "2022"
+      permalink_base_url: "https://euclinicaltrials.eu/search-for-clinical-trials/?lang=de&EUCT="
+      permalink_separator: "-"
+    - name: ctis2023
+      type: "perma"
+      label: "CTIS Permalink Provider (2023)"
+      authority: "2023"
+      permalink_base_url: "https://euclinicaltrials.eu/search-for-clinical-trials/?lang=de&EUCT="
+      permalink_separator: "-"
+    - name: ctis2024
+      type: "perma"
+      label: "CTIS Permalink Provider (2024)"
+      authority: "2024"
+      permalink_base_url: "https://euclinicaltrials.eu/search-for-clinical-trials/?lang=de&EUCT="
+      permalink_separator: "-"
+    - name: ctis2025
+      type: "perma"
+      label: "CTIS Permalink Provider (2025)"
+      authority: "2025"
+      permalink_base_url: "https://euclinicaltrials.eu/search-for-clinical-trials/?lang=de&EUCT="
+      permalink_separator: "-"
+    - name: ctis2026
+      type: "perma"
+      label: "CTIS Permalink Provider (2026)"
+      authority: "2026"
+      permalink_base_url: "https://euclinicaltrials.eu/search-for-clinical-trials/?lang=de&EUCT="
+      permalink_separator: "-"
   multiple_language_support:
     enabled: true
     languages:
