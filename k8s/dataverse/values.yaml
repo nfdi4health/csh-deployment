@@ -8,6 +8,8 @@ dataverse:
     secret_key:
     bucket_name:
     endpoint_url:
+  files:
+    hide_schema_dot_org_download_urls: false
   oidc:
     issuer:
     cliedid:
@@ -43,5 +45,5 @@ solr:
     requests:
       memory: "1Gi"
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.9-nfdi4health-v1
-  configbaker: gdcc/configbaker:6.9-noble
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.10.1-nfdi4health-v1
+  configbaker: gdcc/configbaker:6.10-noble

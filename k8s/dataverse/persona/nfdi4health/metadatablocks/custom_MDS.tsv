@@ -940,6 +940,7 @@
 	resource.idsAlternative.scheme	KonsortSWD	resource_RIS_6	6
 	resource.idsAlternative.scheme	MDM Portal	resource_RIS_7	7
 	resource.idsAlternative.scheme	Other	resource_RIS_8	8
+	resource.idsAlternative.scheme	CTIS	resource_RIS_9	9
 	resource.ids.scheme	DOI	resource_RIS_1_0	0
 	resource.ids.scheme	URL	resource_RIS_1_1	1
 	resource.ids.scheme	arXiv	resource_RIS_1_2	2
@@ -1060,3 +1061,4 @@
 	resource.provenance.dataSource	Automatically uploaded: MDM Portal	resource_RPD_3	3
 	resource.provenance.dataSource	Automatically uploaded: Other	resource_RPD_4	4
 	resource.provenance.dataSource	Manually collected	resource_RPD_5	5
+	resource.provenance.dataSource	Automatically uploaded: CTIS	resource_RPD_6	6
