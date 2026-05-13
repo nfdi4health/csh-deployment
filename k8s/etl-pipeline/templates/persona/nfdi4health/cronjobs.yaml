@@ -1,3 +1,4 @@
+{{- if eq .Values.persona "nfdi4health" -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -318,3 +319,4 @@ spec:
                 - "updatecurrent"
                 - "-c"
                 - "$(SOURCE)"
+{{- end -}}

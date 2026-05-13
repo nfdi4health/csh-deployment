@@ -1,5 +1,7 @@
 # Default values for etl-pipeline.
 
+persona: "" # For available personas, see "persona" directory
+
 source: ""
 s3:
   basePath: "s3://my-bucket"
