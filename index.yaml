@@ -913,6 +913,16 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/dataverse-0.1.2/dataverse-0.1.2.tgz
     version: 0.1.2
+  etl-pipeline:
+  - apiVersion: v2
+    created: "2026-05-13T09:46:55.935272361Z"
+    description: A Helm chart for the ETL pipeline cronjobs
+    digest: b5a69114d3224495edafb86c31fa9d9fd1d107f9e2be58c510f4a38b62d0456f
+    name: etl-pipeline
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/etl-pipeline-1.0.0/etl-pipeline-1.0.0.tgz
+    version: 1.0.0
   mica:
   - apiVersion: v2
     appVersion: 5.2.3
@@ -954,4 +964,4 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.1/mica-0.0.1.tgz
     version: 0.0.1
-generated: "2026-05-12T09:25:21.479654638Z"
+generated: "2026-05-13T09:46:55.935464841Z"
