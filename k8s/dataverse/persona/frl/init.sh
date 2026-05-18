@@ -58,6 +58,9 @@ echo "Configuring ZIP download limit (10GB)"
 curl -X PUT $DATAVERSE_URL/api/admin/settings/:ZipDownloadLimit -d 10000000000
 echo
 
+echo "Configuring footer"
+curl -X PUT $DATAVERSE_URL/api/admin/settings/:FooterCopyright -d " | <a href=\"https://www.zbmed.de/en/legal-notice\" target=\"_blank\">Legal notice</a> | <a href=\"https://www.zbmed.de/en/privacy-policy\" target=\"_blank\">Privacy policy</a>"
+
 # TODO Currently, the CSS file must be *manually* copied to /dv/branding and then configured via API
 #echo "Configuring custom CSS"
 #curl -X PUT -d '/dv/branding/style.css' $DATAVERSE_URL/api/admin/settings/:StyleCustomizationFile
