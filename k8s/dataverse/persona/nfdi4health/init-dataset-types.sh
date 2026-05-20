@@ -1,6 +1,6 @@
 curl -H "Content-Type: application/json" -X POST -d '{"name": "study", "displayName": "Study"}' $DATAVERSE_URL/api/datasets/datasetTypes
 curl -H "Content-Type: application/json" -X POST -d '{"name": "substudy", "displayName": "Substudy"}' $DATAVERSE_URL/api/datasets/datasetTypes
-curl -H "Content-Type: application/json" -X POST -d '{"name": "dataset", "displayName": "Dataset"}' $DATAVERSE_URL/api/datasets/datasetTypes
+#curl -H "Content-Type: application/json" -X POST -d '{"name": "dataset", "displayName": "Dataset"}' $DATAVERSE_URL/api/datasets/datasetTypes
 curl -H "Content-Type: application/json" -X POST -d '{"name": "studyProtocol", "displayName": "Study protocol"}' $DATAVERSE_URL/api/datasets/datasetTypes
 curl -H "Content-Type: application/json" -X POST -d '{"name": "dataDictionary", "displayName": "Data dictionary"}' $DATAVERSE_URL/api/datasets/datasetTypes
 curl -H "Content-Type: application/json" -X POST -d '{"name": "informedConsentForm", "displayName": "Informed consent form"}' $DATAVERSE_URL/api/datasets/datasetTypes
