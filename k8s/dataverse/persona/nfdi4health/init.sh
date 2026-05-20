@@ -193,7 +193,11 @@ echo "Configuring PID permalink generator function"
 PGPASSWORD=$DATAVERSE_DB_PASSWORD psql -h $DATAVERSE_DB_HOST -U $DATAVERSE_DB_USER < /scripts/bootstrap/nfdi4health/generate-permalink.sql
 echo
 
-echo "Configuring dataset relation types"
+echo "Creating dataset types"
+"${SELF_LOCATION}"/init-dataset-types.sh
+echo
+
+echo "Creating dataset relation types"
 "${SELF_LOCATION}"/init-dataset-relation-types.sh
 echo
 
