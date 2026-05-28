@@ -29,6 +29,8 @@ spec:
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
+                - name: TZ
+                  value: {{ .Values.timeZone | quote }}
                 - name: S3_PATH
                   value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
               command:
@@ -78,6 +80,8 @@ spec:
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
+                - name: TZ
+                  value: {{ .Values.timeZone | quote }}
                 - name: S3_PATH
                   value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
               command: ["sh", "-c"]
@@ -112,6 +116,8 @@ spec:
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
+                - name: TZ
+                  value: {{ .Values.timeZone | quote }}
               resources:
                 {{- toYaml .Values.resources.transform | nindent 16 }}
               command:
@@ -178,6 +184,8 @@ spec:
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
+                - name: TZ
+                  value: {{ .Values.timeZone | quote }}
                 - name: S3_PATH
                   value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
                 - name: COLLECTIONS_PATH
@@ -217,6 +225,8 @@ spec:
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
+                - name: TZ
+                  value: {{ .Values.timeZone | quote }}
                 - name: DATAVERSE_HOST
                   value: {{ .Values.dataverse.host | quote }}
                 - name: COLLECTIONS_PATH
@@ -286,6 +296,8 @@ spec:
                       key: AWS_SECRET_ACCESS_KEY
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.s3.endpointUrl | quote }}
+                - name: TZ
+                  value: {{ .Values.timeZone | quote }}
                 - name: S3_PATH
                   value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
               command: ["/bin/sh", "-c"]
@@ -307,6 +319,8 @@ spec:
                     secretKeyRef:
                       name: {{ .Release.Name }}-credentials
                       key: DATAVERSE_API_KEY
+                - name: TZ
+                  value: {{ .Values.timeZone | quote }}
               command:
                 - "python3"
                 - "-u" # unbuffered, so logs are immediately flushed
