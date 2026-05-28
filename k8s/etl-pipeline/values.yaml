@@ -38,3 +38,6 @@ spark:
     load:
       threads: 8
       skipCollectionUpdates: true
+
+extract:
+  limit: ""
