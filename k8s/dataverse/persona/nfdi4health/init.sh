@@ -193,6 +193,14 @@ echo "Configuring PID permalink generator function"
 PGPASSWORD=$DATAVERSE_DB_PASSWORD psql -h $DATAVERSE_DB_HOST -U $DATAVERSE_DB_USER < /scripts/bootstrap/nfdi4health/generate-permalink.sql
 echo
 
+echo "Creating dataset types"
+"${SELF_LOCATION}"/init-dataset-types.sh
+echo
+
+echo "Creating dataset relation types"
+"${SELF_LOCATION}"/init-dataset-relation-types.sh
+echo
+
 # Last step as existence of one block is the indicator for a complete bootstrapped installation
 echo "Load custom metadata blocks"
 #curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_HOST/api/admin/datasetfield/load --upload-file customMDS.tsv
