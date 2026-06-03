@@ -50,6 +50,17 @@ dataverse:
     blocked:
       endpoints: "admin,builtin-users"
       policy: "drop"
+  previewers:
+    enabled: false
+    provider:
+      image: trivadis/dataverse-previewers-provider:latest
+      port: 9080
+      versions: "v1.4"
+    register:
+      image: trivadis/dataverse-deploy-previewers:latest
+      include: ""
+      exclude: ""
+      remove_existing: true
 postgres:
   volume_size: "32Gi"
   number_instances: 2

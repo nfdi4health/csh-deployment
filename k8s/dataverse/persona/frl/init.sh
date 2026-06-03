@@ -38,10 +38,6 @@ if [ -f "${CONFIG_PATH}/cvoc_conf.json" ]; then
     echo
 fi
 
-echo "Setting up external tools"
-"${SELF_LOCATION}"/init-external-tools.sh
-echo
-
 echo "Enabling file-level embargoes"
 curl -X PUT $DATAVERSE_URL/api/admin/settings/:MaxEmbargoDurationInMonths -d -1
 echo

@@ -21,6 +21,11 @@ spec:
     - name: "8686"
       port: 8686
       targetPort: 8686
+{{- if .Values.dataverse.previewers.enabled }}
+    - name: "previewers"
+      port: {{ .Values.dataverse.previewers.provider.port }}
+      targetPort: {{ .Values.dataverse.previewers.provider.port }}
+{{- end }}
   selector:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
@@ -55,6 +60,19 @@ spec:
       securityContext:
         fsGroup: 1000
       containers:
+{{- if .Values.dataverse.previewers.enabled }}
+        - name: previewers-provider
+          image: {{ .Values.dataverse.previewers.provider.image }}
+          ports:
+            - containerPort: {{ .Values.dataverse.previewers.provider.port }}
+          env:
+            - name: NGINX_HTTP_PORT
+              value: {{ .Values.dataverse.previewers.provider.port | quote }}
+            - name: PREVIEWERS_PROVIDER_URL
+              value: "http://localhost:{{ .Values.dataverse.previewers.provider.port }}"
+            - name: VERSIONS
+              value: {{ .Values.dataverse.previewers.provider.versions | quote }}
+{{- end }}
         - image: {{ .Values.images.backend}}
           name: dataverse
           imagePullPolicy: Always
