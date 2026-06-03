@@ -333,7 +333,7 @@ spec:
           {{- $name := .Values.dataverse.static_assets.image.name | default (printf "dataverse-static-assets-%s" .Values.persona) }}
           {{- $tag := .Values.dataverse.static_assets.tag }}
           image: {{ printf "%s/%s:%s" $repository $name $tag }}
-          command: ["sh", "-c", "cp -rv /assets/* /dv/docroot/"]
+          command: ["sh", "-c", "cp -rv /assets/* /dv/"]
           volumeMounts:
             - mountPath: /dv
               name: dev-dataverse-claim0

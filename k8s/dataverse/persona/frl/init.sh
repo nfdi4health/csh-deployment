@@ -62,19 +62,21 @@ echo "Configuring footer"
 curl -X PUT $DATAVERSE_URL/api/admin/settings/:FooterCopyright -d " | <a href=\"https://www.zbmed.de/en/legal-notice\" target=\"_blank\">Legal notice</a> | <a href=\"https://www.zbmed.de/en/privacy-policy\" target=\"_blank\">Privacy policy</a>"
 
 
-# TODO Currently, the PDF file must be *manually* copied to /dv/docroot/guides and then configured via API
+# TODO Waiting for final version of guide
 #echo "Configuring user guide link"
 #curl -X PUT $DATAVERSE_URL/api/admin/settings/:NavbarGuidesUrl -d http://frl-test-dv.qa.km.k8s.zbmed.de/guides/User%20Manual_ZB%20MED%20LifeData_draft.pdf
 
-# TODO Currently, the CSS file must be *manually* copied to /dv/branding and then configured via API
-#echo "Configuring custom CSS"
-#curl -X PUT -d '/dv/branding/style.css' $DATAVERSE_URL/api/admin/settings/:StyleCustomizationFile
-#echo
+echo "Configuring custom CSS"
+curl -X PUT -d '/dv/branding/style.css' $DATAVERSE_URL/api/admin/settings/:StyleCustomizationFile
+echo
 
-# TODO Currently, the HTML file must be *manually* copied to /dv/branding and then configured via API
-#echo "Configuring custom analytics code"
-#curl -X PUT -d '/dv/branding/matomo.html' $DATAVERSE_URL/api/admin/settings/:WebAnalyticsCode
-#echo
+echo "Configuring custom analytics code"
+curl -X PUT -d '/dv/branding/matomo.html' $DATAVERSE_URL/api/admin/settings/:WebAnalyticsCode
+echo
+
+echo "Configuring custom navbar logo"
+curl -X PUT -d '/logos/navbar/logo.png' $DATAVERSE_URL/api/admin/settings/:LogoCustomizationFile
+echo
 
 echo "Upload licenses"
 LICENSES=$(find "${LICENSES_PATH}" -maxdepth 1 -iname 'license*.json')
