@@ -39,7 +39,7 @@ jobs:
           done
           
           # Output as JSON array for matrix
-          JSON_ARRAY=$(echo "${PERSONAS[@]}" | jq -R -s -c 'split(" ") | map(select(length > 0))')
+          JSON_ARRAY=$(printf '%s\n' "${PERSONAS[@]}" | jq -R . | jq -s -c '.')
           echo "personas=$JSON_ARRAY" >> $GITHUB_OUTPUT
 
   build-and-push:
