@@ -1,5 +1,4 @@
 persona: "nfdi4health"
-github_repository: "nfdi4health/csh-deployment"
 ingress:
   dns:
 dataverse:
@@ -41,7 +40,10 @@ dataverse:
   exporters: []
   static_assets:
     enabled: false
-    image: ""
+    image:
+      repository: "ghcr.io/nfdi4health/csh-deployment"
+      name: "" # default: "dataverse-static-assets-<PERSONA>"
+      tag: "latest"
   mail: {}
   api:
     blocked:

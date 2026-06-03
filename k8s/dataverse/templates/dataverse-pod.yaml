@@ -329,7 +329,10 @@ spec:
 {{- end }}
 {{- if .Values.dataverse.static_assets.enabled }}
         - name: load-static-assets
-          image: {{ .Values.dataverse.static_assets.image | default (printf "ghcr.io/%s/dataverse-static-assets-%s:latest" (lower .Values.github_repository) .Values.persona) }}
+          {{- $repository := .Values.dataverse.static_assets.image.repository }}
+          {{- $name := .Values.dataverse.static_assets.image.name | default (printf "dataverse-static-assets-%s" .Values.persona) }}
+          {{- $tag := .Values.dataverse.static_assets.tag }}
+          image: {{ printf "%s/%s:%s" $repository $name $tag }}
           command: ["sh", "-c", "cp -rv /assets/* /dv/docroot/"]
           volumeMounts:
             - mountPath: /dv
