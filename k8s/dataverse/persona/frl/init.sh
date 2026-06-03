@@ -87,6 +87,13 @@ done <<< "${LICENSES}"
 # Last step as existence of one block is the indicator for a complete bootstrapped installation
 # (see https://github.com/IQSS/dataverse/blob/v6.8/modules/container-configbaker/scripts/bootstrap.sh#L53-L58)
 echo "Load custom metadata blocks"
+# Load base metadata blocks
+for BLOCK in codemeta computational_workflow; do
+  echo "Loading base block ${BLOCK}:"
+  curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_URL/api/admin/datasetfield/load --upload-file "${BOOTSTRAP_DIR}/base/data/metadatablocks/${BLOCK}.tsv"
+  echo
+done
+
 # Find all TSV files
 TSVS=$(find "${METADATABLOCKS_PATH}" -maxdepth 1 -iname '*.tsv')
 # Load metadata blocks
@@ -97,7 +104,7 @@ while IFS= read -r TSV; do
 done <<< "${TSVS}"
 
 echo "Activating metadata blocks"
-curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/:root/metadatablocks -d "[\"citation\",\"geospatial\"]"
+curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/:root/metadatablocks -d "[\"citation\",\"geospatial\",\"codemeta\",\"computational_workflow\"]"
 echo
 
 echo
