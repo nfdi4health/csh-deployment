@@ -1,0 +1,10 @@
+You have successfully installed the etl-pipeline for source {{ .Values.source }}, running on the following schedule: {{ .Values.schedule }}.
+
+To delete the cronjobs, run:
+  helm uninstall {{ .Release.Name }}
+
+To suspend the cronjobs, run:
+  helm upgrade {{ .Release.Name }} . --reuse-values --set suspend=true
+
+To resume the cronjobs, run:
+  helm upgrade {{ .Release.Name }} . --reuse-values --set suspend=false

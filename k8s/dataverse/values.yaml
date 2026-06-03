@@ -1,5 +1,5 @@
 persona: "nfdi4health"
-githubRepository: "nfdi4health/csh-deployment"
+github_repository: "nfdi4health/csh-deployment"
 ingress:
   dns:
 dataverse:
@@ -14,6 +14,8 @@ dataverse:
     disable_tagging: false
     min_part_size:
     url_expiration_minutes:
+  files:
+    hide_schema_dot_org_download_urls: false
   oidc:
     issuer:
     cliedid:
@@ -37,7 +39,7 @@ dataverse:
   multiple_language_support:
     enabled: false
   exporters: []
-  staticAssets:
+  static_assets:
     enabled: false
     image: ""
   mail: {}
@@ -57,5 +59,5 @@ solr:
     requests:
       memory: "1Gi"
 images:
-  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.8-fork-v1
-  configbaker: gdcc/configbaker:6.8-noble
+  backend: ghcr.io/nfdi4health/csh-ui/dataverse:6.10.1-nfdi4health-v1
+  configbaker: gdcc/configbaker:6.10-noble
