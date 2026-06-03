@@ -37,6 +37,18 @@ jobs:
 
       - name: Identify Personas and Build Images
         run: |
+          # Determine the branch name and sanitize it for Docker tags
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BRANCH_NAME="${{ github.head_ref }}"
+            COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
+          else
+            BRANCH_NAME="${{ github.ref_name }}"
+            COMMIT_SHA="${{ github.sha }}"
+          fi
+          
+          # Sanitize branch name: replace / with - and other non-alphanumeric chars
+          SAFE_BRANCH_NAME=$(echo "$BRANCH_NAME" | tr '/' '-' | sed 's/[^a-zA-Z0-9.-]/-/g')
+
           for dockerfile in k8s/dataverse/persona/*/static/Dockerfile; do
             if [ -f "$dockerfile" ]; then
               PERSONA_DIR=$(dirname $(dirname "$dockerfile"))
@@ -48,11 +60,23 @@ jobs:
               IMAGE_ID=${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_PREFIX }}-$PERSONA
               IMAGE_ID=$(echo $IMAGE_ID | tr '[:upper:]' '[:lower:]')
               
-              VERSION=${{ github.event.pull_request.head.sha || github.sha }}
+              # Tags to build and push
+              TAGS=()
+              TAGS+=("$IMAGE_ID:$COMMIT_SHA")
+              TAGS+=("$IMAGE_ID:$SAFE_BRANCH_NAME")
               
-              echo "Building image $IMAGE_ID:$VERSION from $STATIC_DIR"
+              if [[ "$BRANCH_NAME" == "main" ]]; then
+                TAGS+=("$IMAGE_ID:latest")
+              fi
               
-              docker build "$STATIC_DIR" --tag "$IMAGE_ID:$VERSION"
-              docker push "$IMAGE_ID:$VERSION"
+              echo "Building image for tags: ${TAGS[*]}"
+              
+              # Build once
+              docker build "$STATIC_DIR" $(printf -- "--tag %s " "${TAGS[@]}")
+              
+              # Push all tags
+              for tag in "${TAGS[@]}"; do
+                docker push "$tag"
+              done
             fi
           done
