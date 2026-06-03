@@ -18,8 +18,38 @@ env:
   IMAGE_NAME_PREFIX: dataverse-static-assets
 
 jobs:
-  build-and-push:
+  find-personas:
     runs-on: ubuntu-latest
+    outputs:
+      personas: ${{ steps.set-personas.outputs.personas }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Identify Personas
+        id: set-personas
+        run: |
+          PERSONAS=()
+          for dockerfile in k8s/dataverse/persona/*/static/Dockerfile; do
+            if [ -f "$dockerfile" ]; then
+              PERSONA_DIR=$(dirname $(dirname "$dockerfile"))
+              PERSONA=$(basename "$PERSONA_DIR")
+              PERSONAS+=("$PERSONA")
+            fi
+          done
+          
+          # Output as JSON array for matrix
+          JSON_ARRAY=$(echo "${PERSONAS[@]}" | jq -R -s -c 'split(" ") | map(select(length > 0))')
+          echo "personas=$JSON_ARRAY" >> $GITHUB_OUTPUT
+
+  build-and-push:
+    needs: find-personas
+    runs-on: ubuntu-latest
+    if: needs.find-personas.outputs.personas != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        persona: ${{ fromJson(needs.find-personas.outputs.personas) }}
     permissions:
       contents: read
       packages: write
@@ -35,48 +65,26 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Identify Personas and Build Images
-        run: |
-          # Determine the branch name and sanitize it for Docker tags
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            BRANCH_NAME="${{ github.head_ref }}"
-            COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
-          else
-            BRANCH_NAME="${{ github.ref_name }}"
-            COMMIT_SHA="${{ github.sha }}"
-          fi
-          
-          # Sanitize branch name: replace / with - and other non-alphanumeric chars
-          SAFE_BRANCH_NAME=$(echo "$BRANCH_NAME" | tr '/' '-' | sed 's/[^a-zA-Z0-9.-]/-/g')
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_PREFIX }}-${{ matrix.persona }}
+          tags: |
+            type=sha,format=long,prefix=
+            type=ref,event=branch
+            type=ref,event=pr
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
 
-          for dockerfile in k8s/dataverse/persona/*/static/Dockerfile; do
-            if [ -f "$dockerfile" ]; then
-              PERSONA_DIR=$(dirname $(dirname "$dockerfile"))
-              PERSONA=$(basename "$PERSONA_DIR")
-              STATIC_DIR=$(dirname "$dockerfile")
-              
-              echo "Processing persona: $PERSONA"
-              
-              IMAGE_ID=${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_PREFIX }}-$PERSONA
-              IMAGE_ID=$(echo $IMAGE_ID | tr '[:upper:]' '[:lower:]')
-              
-              # Tags to build and push
-              TAGS=()
-              TAGS+=("$IMAGE_ID:$COMMIT_SHA")
-              TAGS+=("$IMAGE_ID:$SAFE_BRANCH_NAME")
-              
-              if [[ "$BRANCH_NAME" == "main" ]]; then
-                TAGS+=("$IMAGE_ID:latest")
-              fi
-              
-              echo "Building image for tags: ${TAGS[*]}"
-              
-              # Build once
-              docker build "$STATIC_DIR" $(printf -- "--tag %s " "${TAGS[@]}")
-              
-              # Push all tags
-              for tag in "${TAGS[@]}"; do
-                docker push "$tag"
-              done
-            fi
-          done
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: k8s/dataverse/persona/${{ matrix.persona }}/static
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
