@@ -38,10 +38,6 @@ if [ -f "${CONFIG_PATH}/cvoc_conf.json" ]; then
     echo
 fi
 
-echo "Setting up multiple languages"
-curl -X PUT $DATAVERSE_URL/api/admin/settings/:Languages -d '[{"locale":"en","title":"English"},{"locale":"de","title":"Deutsch"}]'
-echo
-
 echo "Setting up external tools"
 "${SELF_LOCATION}"/init-external-tools.sh
 echo
