@@ -1,4 +1,5 @@
 persona: "nfdi4health"
+githubRepository: "nfdi4health/csh-deployment"
 ingress:
   dns:
 dataverse:
@@ -36,6 +37,9 @@ dataverse:
   multiple_language_support:
     enabled: false
   exporters: []
+  staticAssets:
+    enabled: false
+    image: ""
   mail: {}
   api:
     blocked:

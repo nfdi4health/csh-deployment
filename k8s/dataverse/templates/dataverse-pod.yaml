@@ -326,6 +326,14 @@ spec:
             - mountPath: /dv
               name: dev-dataverse-claim0
 {{- end }}
+{{- if .Values.dataverse.staticAssets.enabled }}
+        - name: load-static-assets
+          image: {{ .Values.dataverse.staticAssets.image | default (printf "ghcr.io/%s/dataverse-static-assets-%s:latest" (lower .Values.githubRepository) .Values.persona) }}
+          command: ["sh", "-c", "cp -rv /assets/* /dv/docroot/"]
+          volumeMounts:
+            - mountPath: /dv
+              name: dev-dataverse-claim0
+{{- end }}
       volumes:
         - name: dev-dataverse-claim0
           persistentVolumeClaim:

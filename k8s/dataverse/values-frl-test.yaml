@@ -35,6 +35,8 @@ dataverse:
       sed -i '/^datasetfieldtype.grantNumberValue.title/c\datasetfieldtype.grantNumberValue.title=Project Identifier' /dv/lang/citation.properties
   exporters:
     - https://repo1.maven.org/maven2/io/gdcc/export/croissant/0.1.6/croissant-0.1.6.jar
+  staticAssets:
+    enabled: true
   mail:
     system_email: "<REPLACE_ME>"
     mta:

@@ -1,0 +1,58 @@
+name: Build and Push Dataverse Persona Static Assets
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'k8s/dataverse/persona/*/static/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'k8s/dataverse/persona/*/static/**'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME_PREFIX: dataverse-static-assets
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Identify Personas and Build Images
+        run: |
+          for dockerfile in k8s/dataverse/persona/*/static/Dockerfile; do
+            if [ -f "$dockerfile" ]; then
+              PERSONA_DIR=$(dirname $(dirname "$dockerfile"))
+              PERSONA=$(basename "$PERSONA_DIR")
+              STATIC_DIR=$(dirname "$dockerfile")
+              
+              echo "Processing persona: $PERSONA"
+              
+              IMAGE_ID=${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_PREFIX }}-$PERSONA
+              IMAGE_ID=$(echo $IMAGE_ID | tr '[:upper:]' '[:lower:]')
+              
+              VERSION=${{ github.event.pull_request.head.sha || github.sha }}
+              
+              echo "Building image $IMAGE_ID:$VERSION from $STATIC_DIR"
+              
+              docker build "$STATIC_DIR" --tag "$IMAGE_ID:$VERSION"
+              docker push "$IMAGE_ID:$VERSION"
+            fi
+          done
