@@ -8,6 +8,11 @@ dataverse:
     secret_key:
     bucket_name:
     endpoint_url:
+    direct_upload: false
+    direct_download: false
+    disable_tagging: false
+    min_part_size:
+    url_expiration_minutes:
   files:
     hide_schema_dot_org_download_urls: false
   oidc:
@@ -33,6 +38,29 @@ dataverse:
   multiple_language_support:
     enabled: false
   exporters: []
+  static_assets:
+    enabled: false
+    image:
+      repository: "ghcr.io/nfdi4health/csh-deployment"
+      name: "" # default: "dataverse-static-assets-<PERSONA>"
+      tag: "latest"
+      image_pull_policy: Always
+  mail: {}
+  api:
+    blocked:
+      endpoints: "admin,builtin-users"
+      policy: "drop"
+  previewers:
+    enabled: false
+    provider:
+      image: trivadis/dataverse-previewers-provider:latest
+      port: 9080
+      versions: "v1.4"
+    register:
+      image: trivadis/dataverse-deploy-previewers:latest
+      include: ""
+      exclude: ""
+      remove_existing: true
 postgres:
   volume_size: "32Gi"
   number_instances: 2

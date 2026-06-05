@@ -21,6 +21,11 @@ spec:
     - name: "8686"
       port: 8686
       targetPort: 8686
+{{- if .Values.dataverse.previewers.enabled }}
+    - name: "previewers"
+      port: {{ .Values.dataverse.previewers.provider.port }}
+      targetPort: {{ .Values.dataverse.previewers.provider.port }}
+{{- end }}
   selector:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
@@ -55,6 +60,19 @@ spec:
       securityContext:
         fsGroup: 1000
       containers:
+{{- if .Values.dataverse.previewers.enabled }}
+        - name: previewers-provider
+          image: {{ .Values.dataverse.previewers.provider.image }}
+          ports:
+            - containerPort: {{ .Values.dataverse.previewers.provider.port }}
+          env:
+            - name: NGINX_HTTP_PORT
+              value: {{ .Values.dataverse.previewers.provider.port | quote }}
+            - name: PREVIEWERS_PROVIDER_URL
+              value: "http://localhost:{{ .Values.dataverse.previewers.provider.port }}"
+            - name: VERSIONS
+              value: {{ .Values.dataverse.previewers.provider.versions | quote }}
+{{- end }}
         - image: {{ .Values.images.backend}}
           name: dataverse
           imagePullPolicy: Always
@@ -138,6 +156,10 @@ spec:
               value: "s3"
             - name: dataverse_files_s3_label
               value: "s3"
+{{- if not (empty .Values.dataverse.s3.min_part_size) }}
+            - name: DATAVERSE_FILES_S3_MIN_PART_SIZE
+              value: {{ .Values.dataverse.s3.min_part_size | quote }}
+{{- end }}
             - name: dataverse_files_storage__driver__id
               value: "s3"
             # Place temporary files related to data upload in /tmp, so they get cleared regularly
@@ -156,15 +178,63 @@ spec:
             # Set single allowed origin for CORS requests
             # Regarding multiple origins, see: https://github.com/IQSS/dataverse/pull/11745
             - name: DATAVERSE_CORS_ORIGIN
-              value: {{ coalesce .Values.dataverse.cors.origin .Values.dataverse.site_url }}
+              value: "{{ coalesce .Values.dataverse.cors.origin .Values.dataverse.site_url }}"
+{{ $jvm_args := "" -}}
 {{- if .Values.dataverse.multiple_language_support.enabled }}
+  {{- $jvm_args = cat $jvm_args "-Ddataverse.lang.directory=/dv/lang"}}
+{{- end }}
+{{- if .Values.dataverse.s3.direct_download }}
+  {{- $jvm_args = cat $jvm_args "-Ddataverse.files.s3.download-redirect=true"}}
+{{- end }}
+{{- if .Values.dataverse.s3.direct_upload }}
+  {{- $jvm_args = cat $jvm_args "-Ddataverse.files.s3.upload-redirect=true"}}
+{{- end }}
+{{- if .Values.dataverse.s3.disable_tagging }}
+  {{- $jvm_args = cat $jvm_args "-Ddataverse.files.s3.disable-tagging=true"}}
+{{- end }}
+{{- if not (empty .Values.dataverse.s3.url_expiration_minutes) }}
+  {{- $jvm_args = cat $jvm_args (printf "-Ddataverse.files.s3.url-expiration-minutes=%v" .Values.dataverse.s3.url_expiration_minutes)}}
+{{- end }}
+{{- if not (empty $jvm_args) }}
             - name: JVM_ARGS
-              value: -Ddataverse.lang.directory=/dv/lang
+              value: {{$jvm_args}}
 {{- end }}
 {{- if .Values.dataverse.exporters }}
             - name: DATAVERSE_SPI_EXPORTERS_DIRECTORY
               value: "/dv/exporters"
 {{- end }}
+{{- if not (empty .Values.dataverse.mail) }}
+            - name: DATAVERSE_MAIL_SYSTEM_EMAIL
+              value: {{.Values.dataverse.mail.system_email}}
+  {{- if not (empty .Values.dataverse.mail.support_email) }}
+            - name: DATAVERSE_MAIL_SUPPORT_EMAIL
+              value: {{.Values.dataverse.mail.support_email}}
+  {{- end }}
+  {{- if eq (dig "cc_support_on_contact_email" false .Values.dataverse.mail) true }}
+            - name: DATAVERSE_MAIL_CC_SUPPORT_ON_CONTACT_EMAIL
+              value: "true"
+  {{- end }}
+            - name: DATAVERSE_MAIL_MTA_HOST
+              value: {{.Values.dataverse.mail.mta.host}}
+            - name: DATAVERSE_MAIL_MTA_PORT
+              value: "{{.Values.dataverse.mail.mta.port}}"
+            - name: DATAVERSE_MAIL_MTA_AUTH
+              value: "{{.Values.dataverse.mail.mta.auth}}"
+            - name: DATAVERSE_MAIL_MTA_USER
+              value: {{.Values.dataverse.mail.mta.user}}
+{{- if eq (dig "ssl" "enable" false .Values.dataverse.mail.mta) true }}
+            - name: DATAVERSE_MAIL_MTA_SSL_ENABLE
+              value: "{{.Values.dataverse.mail.mta.ssl.enable}}"
+{{- end }}
+{{- if eq (dig "starttls" "enable" false .Values.dataverse.mail.mta) true }}
+            - name: DATAVERSE_MAIL_MTA_STARTTLS_ENABLE
+              value: "{{.Values.dataverse.mail.mta.starttls.enable}}"
+{{- end }}
+{{- end }}
+            - name: DATAVERSE_API_BLOCKED_ENDPOINTS
+              value: {{ .Values.dataverse.api.blocked.endpoints }}
+            - name: DATAVERSE_API_BLOCKED_POLICY
+              value: {{ .Values.dataverse.api.blocked.policy }}
           ports:
             - containerPort: 8080
             - containerPort: 4848
@@ -178,6 +248,15 @@ spec:
 {{/*            https://guides.dataverse.org/en/latest/container/base-image.html*/}}
             - mountPath: /dv
               name: dev-dataverse-claim0
+{{- if not (empty .Values.dataverse.mail) }}
+{{/* Using directory config source (default: /secrets), see https://docs.payara.fish/community/docs/Technical%20Documentation/MicroProfile/Config/Directory.html */}}
+            - mountPath: /secrets/dataverse/mail/mta
+              name: dataverse-mail-secret
+{{- end }}
+{{- if eq .Values.dataverse.api.blocked.policy "unblock-key" }}
+            - mountPath: /secrets/dataverse/api/blocked
+              name: dataverse-api-unblock-key-secret
+{{- end }}
           readinessProbe:
             httpGet:
               path: /api/info/version
@@ -241,6 +320,7 @@ spec:
               git clone https://github.com/GlobalDataverseCommunityConsortium/dataverse-language-packs.git /tmp/dataverse-language-packs
               cd /tmp/dataverse-language-packs
               git checkout dataverse-v6.9
+              rm -rf /dv/lang
               mkdir /dv/lang
               {{- range .Values.dataverse.multiple_language_support.languages }}
               cp {{ . }}/*.properties /dv/lang
@@ -266,10 +346,32 @@ spec:
             - mountPath: /dv
               name: dev-dataverse-claim0
 {{- end }}
+{{- if .Values.dataverse.static_assets.enabled }}
+        - name: load-static-assets
+          imagePullPolicy: {{ .Values.dataverse.static_assets.image.image_pull_policy }}
+          {{- $repository := .Values.dataverse.static_assets.image.repository }}
+          {{- $name := .Values.dataverse.static_assets.image.name | default (printf "dataverse-static-assets-%s" .Values.persona) }}
+          {{- $tag := .Values.dataverse.static_assets.tag }}
+          image: {{ printf "%s/%s:%s" $repository $name $tag }}
+          command: ["sh", "-c", "cp -rv /assets/* /dv/"]
+          volumeMounts:
+            - mountPath: /dv
+              name: dev-dataverse-claim0
+{{- end }}
       volumes:
         - name: dev-dataverse-claim0
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-dataverse-claim0
+{{- if not (empty .Values.dataverse.mail) }}
+        - name: dataverse-mail-secret
+          secret:
+            secretName: {{ .Release.Name }}-dataverse-mail-secret
+{{- end }}
+{{- if eq .Values.dataverse.api.blocked.policy "unblock-key" }}
+        - name: dataverse-api-unblock-key-secret
+          secret:
+            secretName: {{ .Release.Name }}-dataverse-api-unblock-key-secret
+{{- end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -301,3 +403,29 @@ data:
   {{ .name }}-datacite-password: {{ .datacite_password | b64enc | quote }}
     {{- end }}
   {{- end }}
+{{- if not (empty (dig "mail" "mta" "password" "" .Values.dataverse)) }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-dataverse-mail-secret
+type: Opaque
+stringData:
+  password: {{.Values.dataverse.mail.mta.password | quote }}
+{{- end }}
+{{- if eq .Values.dataverse.api.blocked.policy "unblock-key" }}
+  {{- $unblock_key_secret_name := printf "%s-dataverse-api-unblock-key-secret" .Release.Name }}
+  {{- $existing := lookup "v1" "Secret" .Release.Namespace $unblock_key_secret_name }}
+  {{- $unblock_key := randAlphaNum 32 }}
+  {{- if $existing }}
+    {{- $unblock_key = index $existing.data "key" | b64dec }}
+  {{- end }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-dataverse-api-unblock-key-secret
+type: Opaque
+stringData:
+  key: {{ $unblock_key | quote }}
+{{- end }}

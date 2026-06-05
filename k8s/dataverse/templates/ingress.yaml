@@ -19,4 +19,13 @@ spec:
               name: {{ .Release.Name }}-dataverse-svc
               port:
                 number: 8080
+{{- if .Values.dataverse.previewers.enabled }}
+        - path: /previewers
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Release.Name }}-dataverse-svc
+              port:
+                number: {{ .Values.dataverse.previewers.provider.port }}
+{{- end }}
 {{- end }}

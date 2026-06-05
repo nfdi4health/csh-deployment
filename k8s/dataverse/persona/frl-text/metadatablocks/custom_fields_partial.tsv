@@ -1,0 +1,13 @@
+#metadataBlock	name	dataverseAlias	displayName	blockURI												
+	partial		Partial Publication Metadata	https://dataverse.org/schema/partial/												
+#datasetField	name	title	description	watermark	 fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id	termURI
+	statusOfPublication	Publikationsstatus	Version des Werks. Informationen zu Preprint- und Postprint-Versionen finden Sie hier: https://www.publisso.de/open-access-beraten/faqs/preprint-und-postprint-version/		text	0		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE		partial	http://purl.org/dc/terms/publicationStatus
+	reviewStatus	Begutachtungsstatus	Prüfstatus des Werks. Über die jeweilige Verlagsseite oder das DOAJ (https://doaj.org/) erfahren Sie, welche Online-Zeitschriften ein Peer-Review-Verfahren durchführen. Informationen zum Peer Review finden Sie hier: https://www.publisso.de/open-access-beraten/faqs/peer-review		text	1		TRUE	TRUE	FALSE	TRUE	FALSE	FALSE		partial	http://purl.org/dc/terms/reviewStatus
+	publicationDateOnline	Online veröffentlicht	Frühestes Veröffentlichungsdatum im Internet	YYYY-MM-DD	date	2		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		partial	http://purl.org/dc/terms/publicationDateOnline
+	publicationDatePrint	Im Druck veröffentlicht	Frühestes Veröffentlichungsdatum im Druck	YYYY-MM-DD	date	3		TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		partial	http://purl.org/dc/terms/publicationDatePrint
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder												
+	statusOfPublication	Verlagsversion (Postprint)	PS0	0
+	statusOfPublication	Autor:innenmanuskript (Postprint)	PS1	1
+	statusOfPublication	Preprint	PS2	2
+	reviewStatus	begutachtet (peer-reviewed)	RS0	0												
+	reviewStatus	begutachtet (andere)	RS1	1												
