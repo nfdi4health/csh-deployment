@@ -1,4 +1,4 @@
-{{- if eq .Values.persona "nfdi4health" -}}
+{{- if and (eq .Values.persona "nfdi4health") .Values.stages.extract.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -49,8 +49,10 @@ spec:
                     SINCE_ARG="--since $LAST_SUCCESS_DATE";
                     echo "Found last successful load from $LAST_SUCCESS_DATE, using $SINCE_ARG";
                   fi;
-                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.extract.delay) "" }}--delay {{ .Values.extract.delay }} {{ end }} {{ if ne (print .Values.extract.workers) "" }}--workers {{ .Values.extract.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.extract.limit }}--limit {{ .Values.extract.limit }} {{ end }}$SINCE_ARG
+                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.stages.extract.arguments.delay) "" }}--delay {{ .Values.stages.extract.arguments.delay }} {{ end }} {{ if ne (print .Values.stages.extract.arguments.workers) "" }}--workers {{ .Values.stages.extract.arguments.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.stages.extract.arguments.limit }}--limit {{ .Values.stages.extract.arguments.limit }} {{ end }}$SINCE_ARG
 ---
+{{ end -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.transform.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -119,7 +121,7 @@ spec:
                 - name: TZ
                   value: {{ .Values.timeZone | quote }}
               resources:
-                {{- toYaml .Values.resources.transform | nindent 16 }}
+                {{ toYaml .Values.stages.transform.resources | nindent 16 }}
               command:
                 - /bin/sh
                 - -c
@@ -135,7 +137,7 @@ spec:
                   --master
                   local[*]
                   --driver-memory
-                  {{ .Values.spark.resources.transform.driverMemory | quote }}
+                  {{ .Values.stages.transform.spark.resources.driverMemory | quote }}
                   --name
                   etl-job-transform-$SOURCE
                   --conf
@@ -155,6 +157,8 @@ spec:
                   s3a://$EXTRACT_PATH
                   s3a://$OUTPUT_PATH
 ---
+{{ end -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -232,7 +236,7 @@ spec:
                 - name: COLLECTIONS_PATH
                   value: {{ .Values.s3.collectionsPath | replace "s3://" "" | quote }}
               resources:
-                {{- toYaml .Values.resources.load | nindent 16 }}
+                {{ toYaml .Values.stages.load.resources | nindent 16 }}
               command:
                 - /bin/sh
                 - -c
@@ -262,11 +266,13 @@ spec:
                   $(DATAVERSE_HOST)
                   $(DATAVERSE_API_KEY)
                   s3://$COLLECTIONS_PATH
-                  --threads={{ .Values.spark.jobArguments.load.threads }}
-                  {{- if .Values.spark.jobArguments.load.skipCollectionUpdates }}
+                  --threads={{ .Values.stages.load.arguments.threads }}
+                  {{- if .Values.stages.load.arguments.skipCollectionUpdates }}
                   --skip-collection-updates
                   {{- end }}
 ---
+{{ end -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.withPublish -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -282,7 +288,7 @@ spec:
           restartPolicy: OnFailure
           initContainers:
             - name: wait-for-load
-              image: {{ printf "ghcr.io/nfdi4health/csh-etl-pipeline:%s" .Values.image.tag }}
+              image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
               env:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:

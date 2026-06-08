@@ -23,23 +23,29 @@ schedule: "00 07 * * *"
 timeZone: "Europe/Berlin"
 suspend: false
 
-resources:
-  transform:
-    requests:
-      memory: "8Gi"
-    limits:
-      memory: "8Gi"
+stages:
+  extract:
+    enabled: true
+    arguments:
+      limit: ""
+      delay: ""
+      workers: ""
 
-spark:
-  resources:
-    transform:
-      driverMemory: "4G"
-  jobArguments:
-    load:
+  transform:
+    enabled: true
+    resources:
+      requests:
+        memory: "8Gi"
+      limits:
+        memory: "8Gi"
+    spark:
+      resources:
+        driverMemory: "4G"
+
+  load:
+    enabled: true
+    withPublish: true
+    resources: {}
+    arguments:
       threads: 8
       skipCollectionUpdates: true
-
-extract:
-  limit: ""
-  delay: ""
-  workers: ""
