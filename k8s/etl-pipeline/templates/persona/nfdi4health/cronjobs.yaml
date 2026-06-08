@@ -49,7 +49,7 @@ spec:
                     SINCE_ARG="--since $LAST_SUCCESS_DATE";
                     echo "Found last successful load from $LAST_SUCCESS_DATE, using $SINCE_ARG";
                   fi;
-                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.extract.delay) "" }}--delay {{ .Values.extract.delay }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.extract.limit }}--limit {{ .Values.extract.limit }} {{ end }}$SINCE_ARG
+                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.extract.delay) "" }}--delay {{ .Values.extract.delay }} {{ end }} {{ if ne (print .Values.extract.workers) "" }}--workers {{ .Values.extract.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.extract.limit }}--limit {{ .Values.extract.limit }} {{ end }}$SINCE_ARG
 ---
 apiVersion: batch/v1
 kind: CronJob

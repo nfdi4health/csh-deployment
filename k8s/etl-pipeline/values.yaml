@@ -42,3 +42,4 @@ spark:
 extract:
   limit: ""
   delay: ""
+  workers: ""
