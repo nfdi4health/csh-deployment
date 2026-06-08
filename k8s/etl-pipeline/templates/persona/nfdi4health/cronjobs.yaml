@@ -258,6 +258,8 @@ spec:
                   spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
                   --conf
                   spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
+                  --conf
+                  spark.sql.parquet.columnarReaderBatchSize=1024
                   local:///src/etljobs/main.py
                   --job
                   submit_dataverse
