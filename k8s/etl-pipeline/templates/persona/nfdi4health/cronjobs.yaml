@@ -158,7 +158,7 @@ spec:
                   s3a://$OUTPUT_PATH
 ---
 {{ end -}}
-{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.enabled -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.submit.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -236,7 +236,7 @@ spec:
                 - name: COLLECTIONS_PATH
                   value: {{ .Values.s3.collectionsPath | replace "s3://" "" | quote }}
               resources:
-                {{ toYaml .Values.stages.load.resources | nindent 16 }}
+                {{ toYaml .Values.stages.load.substages.submit.resources | nindent 16 }}
               command:
                 - /bin/sh
                 - -c
@@ -268,13 +268,13 @@ spec:
                   $(DATAVERSE_HOST)
                   $(DATAVERSE_API_KEY)
                   s3://$COLLECTIONS_PATH
-                  --threads={{ .Values.stages.load.arguments.threads }}
-                  {{- if .Values.stages.load.arguments.skipCollectionUpdates }}
+                  --threads={{ .Values.stages.load.substages.submit.arguments.threads }}
+                  {{- if .Values.stages.load.substages.submit.arguments.skipCollectionUpdates }}
                   --skip-collection-updates
                   {{- end }}
 ---
 {{ end -}}
-{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.withPublish -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.publish.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:

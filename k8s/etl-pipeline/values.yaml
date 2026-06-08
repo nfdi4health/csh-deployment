@@ -44,8 +44,12 @@ stages:
 
   load:
     enabled: true
-    withPublish: true
-    resources: {}
-    arguments:
-      threads: 8
-      skipCollectionUpdates: true
+    substages:
+      submit:
+        enabled: true
+        resources: {}
+        arguments:
+          threads: 1
+          skipCollectionUpdates: true
+      publish:
+        enabled: true
