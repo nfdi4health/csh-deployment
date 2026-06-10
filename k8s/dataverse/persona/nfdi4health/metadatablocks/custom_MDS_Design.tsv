@@ -339,7 +339,7 @@
 	resource.design.population.countries	Australia	resource.design_DPC_1_12	12
 	resource.design.population.countries	Austria	resource.design_DPC_1_13	13
 	resource.design.population.countries	Azerbaijan	resource.design_DPC_1_14	14
-	resource.design.population.countries	Bahamas	resource.design_DPC_1_15	15
+	resource.design.population.countries	Bahamas (The)	resource.design_DPC_1_15	15
 	resource.design.population.countries	Bahrain	resource.design_DPC_1_16	16
 	resource.design.population.countries	Bangladesh	resource.design_DPC_1_17	17
 	resource.design.population.countries	Barbados	resource.design_DPC_1_18	18
@@ -349,13 +349,13 @@
 	resource.design.population.countries	Benin	resource.design_DPC_1_22	22
 	resource.design.population.countries	Bermuda	resource.design_DPC_1_23	23
 	resource.design.population.countries	Bhutan	resource.design_DPC_1_24	24
-	resource.design.population.countries	Bolivia, Plurinational State of	resource.design_DPC_1_25	25
+	resource.design.population.countries	Bolivia  (Plurinational State of)	resource.design_DPC_1_25	25
 	resource.design.population.countries	Bonaire, Sint Eustatius and Saba	resource.design_DPC_1_26	26
 	resource.design.population.countries	Bosnia and Herzegovina	resource.design_DPC_1_27	27
 	resource.design.population.countries	Botswana	resource.design_DPC_1_28	28
 	resource.design.population.countries	Bouvet Island	resource.design_DPC_1_29	29
 	resource.design.population.countries	Brazil	resource.design_DPC_1_30	30
-	resource.design.population.countries	British Indian Ocean Territory	resource.design_DPC_1_31	31
+	resource.design.population.countries	British Indian Ocean Territory (the)	resource.design_DPC_1_31	31
 	resource.design.population.countries	Brunei Darussalam	resource.design_DPC_1_32	32
 	resource.design.population.countries	Bulgaria	resource.design_DPC_1_33	33
 	resource.design.population.countries	Burkina Faso	resource.design_DPC_1_34	34
@@ -364,18 +364,18 @@
 	resource.design.population.countries	Cambodia	resource.design_DPC_1_37	37
 	resource.design.population.countries	Cameroon	resource.design_DPC_1_38	38
 	resource.design.population.countries	Canada	resource.design_DPC_1_39	39
-	resource.design.population.countries	Cayman Islands	resource.design_DPC_1_40	40
-	resource.design.population.countries	Central African Republic	resource.design_DPC_1_41	41
+	resource.design.population.countries	Cayman Islands (the)	resource.design_DPC_1_40	40
+	resource.design.population.countries	Central African Republic (the)	resource.design_DPC_1_41	41
 	resource.design.population.countries	Chad	resource.design_DPC_1_42	42
 	resource.design.population.countries	Chile	resource.design_DPC_1_43	43
 	resource.design.population.countries	China	resource.design_DPC_1_44	44
 	resource.design.population.countries	Christmas Island	resource.design_DPC_1_45	45
-	resource.design.population.countries	Cocos (Keeling) Islands	resource.design_DPC_1_46	46
+	resource.design.population.countries	Cocos (Keeling) Islands (the)	resource.design_DPC_1_46	46
 	resource.design.population.countries	Colombia	resource.design_DPC_1_47	47
-	resource.design.population.countries	Comoros	resource.design_DPC_1_48	48
-	resource.design.population.countries	Congo	resource.design_DPC_1_49	49
-	resource.design.population.countries	Congo, Democratic Republic of the	resource.design_DPC_1_50	50
-	resource.design.population.countries	Cook Islands	resource.design_DPC_1_51	51
+	resource.design.population.countries	Comoros (the)	resource.design_DPC_1_48	48
+	resource.design.population.countries	Congo (the)	resource.design_DPC_1_49	49
+	resource.design.population.countries	Congo (the Democratic Republic of the)	resource.design_DPC_1_50	50
+	resource.design.population.countries	Cook Islands (the)	resource.design_DPC_1_51	51
 	resource.design.population.countries	Costa Rica	resource.design_DPC_1_52	52
 	resource.design.population.countries	Croatia	resource.design_DPC_1_53	53
 	resource.design.population.countries	Cuba	resource.design_DPC_1_54	54
@@ -386,7 +386,7 @@
 	resource.design.population.countries	Denmark	resource.design_DPC_1_59	59
 	resource.design.population.countries	Djibouti	resource.design_DPC_1_60	60
 	resource.design.population.countries	Dominica	resource.design_DPC_1_61	61
-	resource.design.population.countries	Dominican Republic	resource.design_DPC_1_62	62
+	resource.design.population.countries	Dominican Republic (the)	resource.design_DPC_1_62	62
 	resource.design.population.countries	Ecuador	resource.design_DPC_1_63	63
 	resource.design.population.countries	Egypt	resource.design_DPC_1_64	64
 	resource.design.population.countries	El Salvador	resource.design_DPC_1_65	65
@@ -395,16 +395,16 @@
 	resource.design.population.countries	Estonia	resource.design_DPC_1_68	68
 	resource.design.population.countries	Eswatini	resource.design_DPC_1_69	69
 	resource.design.population.countries	Ethiopia	resource.design_DPC_1_70	70
-	resource.design.population.countries	Falkland Islands (Malvinas)	resource.design_DPC_1_71	71
-	resource.design.population.countries	Faroe Islands	resource.design_DPC_1_72	72
+	resource.design.population.countries	Falkland Islands (the) [Malvinas]	resource.design_DPC_1_71	71
+	resource.design.population.countries	Faroe Islands (the)	resource.design_DPC_1_72	72
 	resource.design.population.countries	Fiji	resource.design_DPC_1_73	73
 	resource.design.population.countries	Finland	resource.design_DPC_1_74	74
 	resource.design.population.countries	France	resource.design_DPC_1_75	75
 	resource.design.population.countries	French Guiana	resource.design_DPC_1_76	76
 	resource.design.population.countries	French Polynesia	resource.design_DPC_1_77	77
-	resource.design.population.countries	French Southern Territories	resource.design_DPC_1_78	78
+	resource.design.population.countries	French Southern Territories (the)	resource.design_DPC_1_78	78
 	resource.design.population.countries	Gabon	resource.design_DPC_1_79	79
-	resource.design.population.countries	Gambia	resource.design_DPC_1_80	80
+	resource.design.population.countries	Gambia (the)	resource.design_DPC_1_80	80
 	resource.design.population.countries	Georgia	resource.design_DPC_1_81	81
 	resource.design.population.countries	Germany	resource.design_DPC_1_82	82
 	resource.design.population.countries	Ghana	resource.design_DPC_1_83	83
@@ -421,14 +421,14 @@
 	resource.design.population.countries	Guyana	resource.design_DPC_1_94	94
 	resource.design.population.countries	Haiti	resource.design_DPC_1_95	95
 	resource.design.population.countries	Heard Island and McDonald Islands	resource.design_DPC_1_96	96
-	resource.design.population.countries	Holy See	resource.design_DPC_1_97	97
+	resource.design.population.countries	Holy See (the)	resource.design_DPC_1_97	97
 	resource.design.population.countries	Honduras	resource.design_DPC_1_98	98
 	resource.design.population.countries	Hong Kong	resource.design_DPC_1_99	99
 	resource.design.population.countries	Hungary	resource.design_DPC_1_100	100
 	resource.design.population.countries	Iceland	resource.design_DPC_1_101	101
 	resource.design.population.countries	India	resource.design_DPC_1_102	102
 	resource.design.population.countries	Indonesia	resource.design_DPC_1_103	103
-	resource.design.population.countries	Iran, Islamic Republic of	resource.design_DPC_1_104	104
+	resource.design.population.countries	Iran (Islamic Republic of)	resource.design_DPC_1_104	104
 	resource.design.population.countries	Iraq	resource.design_DPC_1_105	105
 	resource.design.population.countries	Ireland	resource.design_DPC_1_106	106
 	resource.design.population.countries	Isle of Man	resource.design_DPC_1_107	107
@@ -441,11 +441,11 @@
 	resource.design.population.countries	Kazakhstan	resource.design_DPC_1_114	114
 	resource.design.population.countries	Kenya	resource.design_DPC_1_115	115
 	resource.design.population.countries	Kiribati	resource.design_DPC_1_116	116
-	resource.design.population.countries	Korea, Democratic People's Republic of	resource.design_DPC_1_117	117
-	resource.design.population.countries	Korea, Republic of	resource.design_DPC_1_118	118
+	resource.design.population.countries	Korea (the Democratic People's Republic of)	resource.design_DPC_1_117	117
+	resource.design.population.countries	Korea (the Republic of)	resource.design_DPC_1_118	118
 	resource.design.population.countries	Kuwait	resource.design_DPC_1_119	119
 	resource.design.population.countries	Kyrgyzstan	resource.design_DPC_1_120	120
-	resource.design.population.countries	Lao People's Democratic Republic	resource.design_DPC_1_121	121
+	resource.design.population.countries	Lao People's Democratic Republic (the)	resource.design_DPC_1_121	121
 	resource.design.population.countries	Latvia	resource.design_DPC_1_122	122
 	resource.design.population.countries	Lebanon	resource.design_DPC_1_123	123
 	resource.design.population.countries	Lesotho	resource.design_DPC_1_124	124
@@ -461,14 +461,14 @@
 	resource.design.population.countries	Maldives	resource.design_DPC_1_134	134
 	resource.design.population.countries	Mali	resource.design_DPC_1_135	135
 	resource.design.population.countries	Malta	resource.design_DPC_1_136	136
-	resource.design.population.countries	Marshall Islands	resource.design_DPC_1_137	137
+	resource.design.population.countries	Marshall Islands (the)	resource.design_DPC_1_137	137
 	resource.design.population.countries	Martinique	resource.design_DPC_1_138	138
 	resource.design.population.countries	Mauritania	resource.design_DPC_1_139	139
 	resource.design.population.countries	Mauritius	resource.design_DPC_1_140	140
 	resource.design.population.countries	Mayotte	resource.design_DPC_1_141	141
 	resource.design.population.countries	Mexico	resource.design_DPC_1_142	142
-	resource.design.population.countries	Micronesia, Federated States of	resource.design_DPC_1_143	143
-	resource.design.population.countries	Moldova, Republic of	resource.design_DPC_1_144	144
+	resource.design.population.countries	Micronesia (Federated States of)	resource.design_DPC_1_143	143
+	resource.design.population.countries	Moldova (the Republic of)	resource.design_DPC_1_144	144
 	resource.design.population.countries	Monaco	resource.design_DPC_1_145	145
 	resource.design.population.countries	Mongolia	resource.design_DPC_1_146	146
 	resource.design.population.countries	Montenegro	resource.design_DPC_1_147	147
@@ -479,7 +479,7 @@
 	resource.design.population.countries	Namibia	resource.design_DPC_1_152	152
 	resource.design.population.countries	Nauru	resource.design_DPC_1_153	153
 	resource.design.population.countries	Nepal	resource.design_DPC_1_154	154
-	resource.design.population.countries	Netherlands	resource.design_DPC_1_155	155
+	resource.design.population.countries	Netherlands (Kingdom of the)	resource.design_DPC_1_155	155
 	resource.design.population.countries	New Caledonia	resource.design_DPC_1_156	156
 	resource.design.population.countries	New Zealand	resource.design_DPC_1_157	157
 	resource.design.population.countries	Nicaragua	resource.design_DPC_1_158	158
@@ -488,7 +488,7 @@
 	resource.design.population.countries	Niue	resource.design_DPC_1_161	161
 	resource.design.population.countries	Norfolk Island	resource.design_DPC_1_162	162
 	resource.design.population.countries	North Macedonia	resource.design_DPC_1_163	163
-	resource.design.population.countries	Northern Mariana Islands	resource.design_DPC_1_164	164
+	resource.design.population.countries	Northern Mariana Islands (the)	resource.design_DPC_1_164	164
 	resource.design.population.countries	Norway	resource.design_DPC_1_165	165
 	resource.design.population.countries	Oman	resource.design_DPC_1_166	166
 	resource.design.population.countries	Pakistan	resource.design_DPC_1_167	167
@@ -498,21 +498,21 @@
 	resource.design.population.countries	Papua New Guinea	resource.design_DPC_1_171	171
 	resource.design.population.countries	Paraguay	resource.design_DPC_1_172	172
 	resource.design.population.countries	Peru	resource.design_DPC_1_173	173
-	resource.design.population.countries	Philippines	resource.design_DPC_1_174	174
+	resource.design.population.countries	Philippines (the)	resource.design_DPC_1_174	174
 	resource.design.population.countries	Pitcairn	resource.design_DPC_1_175	175
 	resource.design.population.countries	Poland	resource.design_DPC_1_176	176
 	resource.design.population.countries	Portugal	resource.design_DPC_1_177	177
 	resource.design.population.countries	Puerto Rico	resource.design_DPC_1_178	178
 	resource.design.population.countries	Qatar	resource.design_DPC_1_179	179
 	resource.design.population.countries	Romania	resource.design_DPC_1_180	180
-	resource.design.population.countries	Russian Federation	resource.design_DPC_1_181	181
+	resource.design.population.countries	Russian Federation (the)	resource.design_DPC_1_181	181
 	resource.design.population.countries	Rwanda	resource.design_DPC_1_182	182
 	resource.design.population.countries	Réunion	resource.design_DPC_1_183	183
 	resource.design.population.countries	Saint Barthélemy	resource.design_DPC_1_184	184
 	resource.design.population.countries	Saint Helena, Ascension and Tristan da Cunha	resource.design_DPC_1_185	185
 	resource.design.population.countries	Saint Kitts and Nevis	resource.design_DPC_1_186	186
 	resource.design.population.countries	Saint Lucia	resource.design_DPC_1_187	187
-	resource.design.population.countries	Saint Martin, (French part)	resource.design_DPC_1_188	188
+	resource.design.population.countries	Saint Martin (French part)	resource.design_DPC_1_188	188
 	resource.design.population.countries	Saint Pierre and Miquelon	resource.design_DPC_1_189	189
 	resource.design.population.countries	Saint Vincent and the Grenadines	resource.design_DPC_1_190	190
 	resource.design.population.countries	Samoa	resource.design_DPC_1_191	191
@@ -524,7 +524,7 @@
 	resource.design.population.countries	Seychelles	resource.design_DPC_1_197	197
 	resource.design.population.countries	Sierra Leone	resource.design_DPC_1_198	198
 	resource.design.population.countries	Singapore	resource.design_DPC_1_199	199
-	resource.design.population.countries	Sint Maarten, (Dutch part)	resource.design_DPC_1_200	200
+	resource.design.population.countries	Sint Maarten (Dutch part)	resource.design_DPC_1_200	200
 	resource.design.population.countries	Slovakia	resource.design_DPC_1_201	201
 	resource.design.population.countries	Slovenia	resource.design_DPC_1_202	202
 	resource.design.population.countries	Solomon Islands	resource.design_DPC_1_203	203
@@ -534,15 +534,15 @@
 	resource.design.population.countries	South Sudan	resource.design_DPC_1_207	207
 	resource.design.population.countries	Spain	resource.design_DPC_1_208	208
 	resource.design.population.countries	Sri Lanka	resource.design_DPC_1_209	209
-	resource.design.population.countries	Sudan	resource.design_DPC_1_210	210
+	resource.design.population.countries	Sudan (the)	resource.design_DPC_1_210	210
 	resource.design.population.countries	Suriname	resource.design_DPC_1_211	211
 	resource.design.population.countries	Svalbard and Jan Mayen	resource.design_DPC_1_212	212
 	resource.design.population.countries	Sweden	resource.design_DPC_1_213	213
 	resource.design.population.countries	Switzerland	resource.design_DPC_1_214	214
-	resource.design.population.countries	Syrian Arab Republic	resource.design_DPC_1_215	215
-	resource.design.population.countries	Taiwan, Province of China	resource.design_DPC_1_216	216
+	resource.design.population.countries	Syrian Arab Republic (the)	resource.design_DPC_1_215	215
+	resource.design.population.countries	Taiwan (Province of China)	resource.design_DPC_1_216	216
 	resource.design.population.countries	Tajikistan	resource.design_DPC_1_217	217
-	resource.design.population.countries	Tanzania, United Republic of	resource.design_DPC_1_218	218
+	resource.design.population.countries	Tanzania, the United Republic of	resource.design_DPC_1_218	218
 	resource.design.population.countries	Thailand	resource.design_DPC_1_219	219
 	resource.design.population.countries	Timor-Leste	resource.design_DPC_1_220	220
 	resource.design.population.countries	Togo	resource.design_DPC_1_221	221
@@ -551,22 +551,22 @@
 	resource.design.population.countries	Trinidad and Tobago	resource.design_DPC_1_224	224
 	resource.design.population.countries	Tunisia	resource.design_DPC_1_225	225
 	resource.design.population.countries	Turkmenistan	resource.design_DPC_1_226	226
-	resource.design.population.countries	Turks and Caicos Islands	resource.design_DPC_1_227	227
+	resource.design.population.countries	Turks and Caicos Islands (the)	resource.design_DPC_1_227	227
 	resource.design.population.countries	Tuvalu	resource.design_DPC_1_228	228
 	resource.design.population.countries	Türkiye	resource.design_DPC_1_229	229
 	resource.design.population.countries	Uganda	resource.design_DPC_1_230	230
 	resource.design.population.countries	Ukraine	resource.design_DPC_1_231	231
-	resource.design.population.countries	United Arab Emirates	resource.design_DPC_1_232	232
-	resource.design.population.countries	United Kingdom of Great Britain and Northern Ireland	resource.design_DPC_1_233	233
-	resource.design.population.countries	United States Minor Outlying Islands	resource.design_DPC_1_234	234
-	resource.design.population.countries	United States of America	resource.design_DPC_1_235	235
+	resource.design.population.countries	United Arab Emirates (the)	resource.design_DPC_1_232	232
+	resource.design.population.countries	United Kingdom of Great Britain and Northern Ireland (the)	resource.design_DPC_1_233	233
+	resource.design.population.countries	United States Minor Outlying Islands (the)	resource.design_DPC_1_234	234
+	resource.design.population.countries	United States of America (the)	resource.design_DPC_1_235	235
 	resource.design.population.countries	Uruguay	resource.design_DPC_1_236	236
 	resource.design.population.countries	Uzbekistan	resource.design_DPC_1_237	237
 	resource.design.population.countries	Vanuatu	resource.design_DPC_1_238	238
-	resource.design.population.countries	Venezuela, Bolivarian Republic of	resource.design_DPC_1_239	239
+	resource.design.population.countries	Venezuela (Bolivarian Republic of)	resource.design_DPC_1_239	239
 	resource.design.population.countries	Viet Nam	resource.design_DPC_1_240	240
-	resource.design.population.countries	Virgin Islands, British	resource.design_DPC_1_241	241
-	resource.design.population.countries	Virgin Islands, U.S.	resource.design_DPC_1_242	242
+	resource.design.population.countries	Virgin Islands (British)	resource.design_DPC_1_241	241
+	resource.design.population.countries	Virgin Islands (U.S.)	resource.design_DPC_1_242	242
 	resource.design.population.countries	Wallis and Futuna	resource.design_DPC_1_243	243
 	resource.design.population.countries	Western Sahara	resource.design_DPC_1_244	244
 	resource.design.population.countries	Yemen	resource.design_DPC_1_245	245
