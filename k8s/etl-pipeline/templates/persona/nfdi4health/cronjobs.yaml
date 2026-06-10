@@ -7,6 +7,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
@@ -61,6 +63,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
@@ -167,6 +171,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
@@ -283,6 +289,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
