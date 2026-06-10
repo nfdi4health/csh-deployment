@@ -1,4 +1,4 @@
-{{- if eq .Values.persona "nfdi4health" -}}
+{{- if and (eq .Values.persona "nfdi4health") .Values.stages.extract.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -7,6 +7,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
@@ -49,8 +51,10 @@ spec:
                     SINCE_ARG="--since $LAST_SUCCESS_DATE";
                     echo "Found last successful load from $LAST_SUCCESS_DATE, using $SINCE_ARG";
                   fi;
-                  python3 -u etljobs/extract/extract_{{ lower .Values.source }}_data.py --temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.extract.limit }}--limit {{ .Values.extract.limit }} {{ end }}$SINCE_ARG
+                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.stages.extract.arguments.delay) "" }}--delay {{ .Values.stages.extract.arguments.delay }} {{ end }} {{ if ne (print .Values.stages.extract.arguments.workers) "" }}--workers {{ .Values.stages.extract.arguments.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.stages.extract.arguments.limit }}--limit {{ .Values.stages.extract.arguments.limit }} {{ end }}$SINCE_ARG
 ---
+{{ end -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.transform.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -59,6 +63,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
@@ -119,7 +125,7 @@ spec:
                 - name: TZ
                   value: {{ .Values.timeZone | quote }}
               resources:
-                {{- toYaml .Values.resources.transform | nindent 16 }}
+                {{ toYaml .Values.stages.transform.resources | nindent 16 }}
               command:
                 - /bin/sh
                 - -c
@@ -135,7 +141,7 @@ spec:
                   --master
                   local[*]
                   --driver-memory
-                  {{ .Values.spark.resources.transform.driverMemory | quote }}
+                  {{ .Values.stages.transform.spark.resources.driverMemory | quote }}
                   --name
                   etl-job-transform-$SOURCE
                   --conf
@@ -155,6 +161,8 @@ spec:
                   s3a://$EXTRACT_PATH
                   s3a://$OUTPUT_PATH
 ---
+{{ end -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.submit.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -163,6 +171,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
@@ -232,7 +242,7 @@ spec:
                 - name: COLLECTIONS_PATH
                   value: {{ .Values.s3.collectionsPath | replace "s3://" "" | quote }}
               resources:
-                {{- toYaml .Values.resources.load | nindent 16 }}
+                {{ toYaml .Values.stages.load.substages.submit.resources | nindent 16 }}
               command:
                 - /bin/sh
                 - -c
@@ -254,6 +264,8 @@ spec:
                   spark.hadoop.fs.s3a.access.key="$(AWS_ACCESS_KEY_ID)"
                   --conf
                   spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
+                  --conf
+                  spark.sql.parquet.columnarReaderBatchSize=1024
                   local:///src/etljobs/main.py
                   --job
                   submit_dataverse
@@ -262,11 +274,13 @@ spec:
                   $(DATAVERSE_HOST)
                   $(DATAVERSE_API_KEY)
                   s3://$COLLECTIONS_PATH
-                  --threads={{ .Values.spark.jobArguments.load.threads }}
-                  {{- if .Values.spark.jobArguments.load.skipCollectionUpdates }}
+                  --threads={{ .Values.stages.load.substages.submit.arguments.threads }}
+                  {{- if .Values.stages.load.substages.submit.arguments.skipCollectionUpdates }}
                   --skip-collection-updates
                   {{- end }}
 ---
+{{ end -}}
+{{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.publish.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -275,6 +289,8 @@ spec:
   schedule: {{ .Values.schedule | quote }}
   timeZone: {{ .Values.timeZone | quote }}
   suspend: {{ .Values.suspend }}
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 14400 # Start missed jobs up to 4 hours late
   jobTemplate:
     spec:
       template:
@@ -282,7 +298,7 @@ spec:
           restartPolicy: OnFailure
           initContainers:
             - name: wait-for-load
-              image: {{ printf "ghcr.io/nfdi4health/csh-etl-pipeline:%s" .Values.image.tag }}
+              image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
               env:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
