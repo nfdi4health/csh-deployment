@@ -35,6 +35,9 @@ stages:
 
   transform:
     enabled: true
+    arguments:
+      inputPath: ""
+      outputPath: ""
     resources:
       requests:
         memory: "8Gi"
@@ -51,6 +54,7 @@ stages:
         enabled: true
         resources: {}
         arguments:
+          inputPath: ""
           threads: 1
           skipCollectionUpdates: true
       publish:
