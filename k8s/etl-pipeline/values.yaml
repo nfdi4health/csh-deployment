@@ -26,6 +26,7 @@ suspend: false
 stages:
   extract:
     enabled: true
+    incremental: true
     arguments:
       limit: ""
       delay: ""
