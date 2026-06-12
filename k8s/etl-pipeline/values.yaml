@@ -17,7 +17,7 @@ dataverse:
 image:
   repository: ghcr.io/nfdi4health/csh-etl-pipeline
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 schedule: "00 07 * * *"
 timeZone: "Europe/Berlin"
