@@ -79,7 +79,17 @@ echo "Syncing roles"
 mapfile -t LOCAL_ROLES < <(find "$ROLES_PATH" -maxdepth 1 -iname '*.json')
 
 # Collect aliases we will keep (for later cleanup)
-declare -A KEEP_ALIASES=()
+# We always keep dataverse's built-in roles
+declare -A KEEP_ALIASES=(
+  ["admin"]=1
+  ["contributor"]=1
+  ["curator"]=1
+  ["dsContributor"]=1
+  ["dvContributor"]=1
+  ["fullContributor"]=1
+  ["fileDownloader"]=1
+  ["member"]=1
+)
 
 for ROLE_FILE in "${LOCAL_ROLES[@]}"; do
   ALIAS=$(jq -r '.alias' "$ROLE_FILE")
@@ -128,7 +138,7 @@ for R in "${EXISTING[@]}"; do
   fi
 done
 
-if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
+if [ -n "$DATAVERSE_INSTALLATION_NAME" ]; then
     echo "Updating root dataverse name"
     curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
     echo
