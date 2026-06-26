@@ -57,5 +57,7 @@ stages:
           inputPath: ""
           threads: 1
           skipCollectionUpdates: true
+          columnarReaderBatchSize: 512
+          columnarReaderBatchSize: 512 # The larger the rows in your extracted parquet, the lower this value should be
       publish:
         enabled: true
