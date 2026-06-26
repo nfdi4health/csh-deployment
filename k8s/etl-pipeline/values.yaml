@@ -17,7 +17,7 @@ dataverse:
 image:
   repository: ghcr.io/nfdi4health/csh-etl-pipeline
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 schedule: "00 07 * * *"
 timeZone: "Europe/Berlin"
@@ -26,13 +26,18 @@ suspend: false
 stages:
   extract:
     enabled: true
+    incremental: true
     arguments:
+      since: ""
       limit: ""
       delay: ""
       workers: ""
 
   transform:
     enabled: true
+    arguments:
+      inputPath: ""
+      outputPath: ""
     resources:
       requests:
         memory: "8Gi"
@@ -49,6 +54,7 @@ stages:
         enabled: true
         resources: {}
         arguments:
+          inputPath: ""
           threads: 1
           skipCollectionUpdates: true
       publish:

@@ -45,12 +45,19 @@ spec:
                     echo "Parquet file already exists, skipping."
                     exit 0
                   fi;
-                  LAST_SUCCESS_DATE=$(aws s3 ls "s3://${S3_PATH}/" --recursive --endpoint-url=$AWS_ENDPOINT_URL | grep '/_SUCCESS$' | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}-checkpoint' | sort | tail -n 1 | cut -d'-' -f1-3);
                   SINCE_ARG="";
+                  {{- if .Values.stages.extract.arguments.since }}
+                  SINCE_ARG="--since {{ .Values.stages.extract.arguments.since }}";
+                  echo "Using hardcoded since argument: $SINCE_ARG";
+                  {{- else if .Values.stages.extract.incremental }}
+                  LAST_SUCCESS_DATE=$(aws s3 ls "s3://${S3_PATH}/" --recursive --endpoint-url=$AWS_ENDPOINT_URL | grep '/_SUCCESS$' | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}-checkpoint' | sort | tail -n 1 | cut -d'-' -f1-3);
                   if [ -n "$LAST_SUCCESS_DATE" ]; then
                     SINCE_ARG="--since $LAST_SUCCESS_DATE";
                     echo "Found last successful load from $LAST_SUCCESS_DATE, using $SINCE_ARG";
                   fi;
+                  {{- else }}
+                  echo "Incremental update disabled, running full extract.";
+                  {{- end }}
                   python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.stages.extract.arguments.delay) "" }}--delay {{ .Values.stages.extract.arguments.delay }} {{ end }} {{ if ne (print .Values.stages.extract.arguments.workers) "" }}--workers {{ .Values.stages.extract.arguments.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.stages.extract.arguments.limit }}--limit {{ .Values.stages.extract.arguments.limit }} {{ end }}$SINCE_ARG
 ---
 {{ end -}}
@@ -93,7 +100,11 @@ spec:
               command: ["sh", "-c"]
               args:
                 - >
+                  {{- if .Values.stages.transform.arguments.inputPath }}
+                  EXTRACT_PATH="${S3_PATH}/{{ .Values.stages.transform.arguments.inputPath }}";
+                  {{- else }}
                   EXTRACT_PATH="${S3_PATH}/$(date +%Y-%m-%d).parquet";
+                  {{- end }}
                   echo "Waiting for s3://$EXTRACT_PATH...";
                   until aws s3 ls s3://$EXTRACT_PATH/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; 
                   do sleep 10; done
@@ -131,9 +142,17 @@ spec:
                 - -c
               args:
                 - >
+                  {{- if .Values.stages.transform.arguments.inputPath }}
+                  EXTRACT_PATH="${S3_PATH}/{{ .Values.stages.transform.arguments.inputPath }}";
+                  {{- else }}
                   EXTRACT_PATH="${S3_PATH}/$(date +%Y-%m-%d).parquet";
-                  OUTPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
-                  if aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
+                  {{- end }}
+                  {{- if .Values.stages.transform.arguments.outputPath }}
+                  TRANSFORM_PATH="${S3_PATH}/{{ .Values.stages.transform.arguments.outputPath }}";
+                  {{- else }}
+                  TRANSFORM_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
+                  {{- end }}
+                  if aws s3 ls s3://${TRANSFORM_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
                     echo "Parquet file already exists, skipping."
                     exit 0
                   fi;
@@ -159,7 +178,7 @@ spec:
                   job-$SOURCE
                   --job-args
                   s3a://$EXTRACT_PATH
-                  s3a://$OUTPUT_PATH
+                  s3a://$TRANSFORM_PATH
 ---
 {{ end -}}
 {{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.submit.enabled -}}
@@ -203,8 +222,12 @@ spec:
               command: ["sh", "-c"]
               args:
                 - >
-                  OUTPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
-                  until aws s3 ls s3://${OUTPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do sleep 10; done
+                  {{- if .Values.stages.load.substages.submit.arguments.inputPath }}
+                  INPUT_PATH="${S3_PATH}/{{ .Values.stages.load.substages.submit.arguments.inputPath }}";
+                  {{- else }}
+                  INPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
+                  {{- end }}
+                  until aws s3 ls s3://${INPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do echo "Waiting for s3://${INPUT_PATH}/_SUCCESS and s3://${COLLECTIONS_PATH}..."; sleep 10; done
           containers:
             - name: spark-submit
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
@@ -248,7 +271,11 @@ spec:
                 - -c
               args:
                 - >
-                  OUTPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
+                  {{- if .Values.stages.load.substages.submit.arguments.inputPath }}
+                  INPUT_PATH="${S3_PATH}/{{ .Values.stages.load.substages.submit.arguments.inputPath }}";
+                  {{- else }}
+                  INPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
+                  {{- end }}
                   /opt/spark/bin/spark-submit
                   --master
                   local[*]
@@ -270,7 +297,7 @@ spec:
                   --job
                   submit_dataverse
                   --job-args
-                  s3a://$OUTPUT_PATH
+                  s3a://$INPUT_PATH
                   $(DATAVERSE_HOST)
                   $(DATAVERSE_API_KEY)
                   s3://$COLLECTIONS_PATH

@@ -2,4 +2,4 @@ apiVersion: v2
 name: etl-pipeline
 description: A Helm chart for the ETL pipeline cronjobs
 type: application
-version: 1.0.2
+version: 1.0.3
