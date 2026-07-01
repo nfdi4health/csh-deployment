@@ -13,7 +13,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           containers:
             - name: extract
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
@@ -76,7 +76,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           initContainers:
             - name: wait-for-extract
               image: amazon/aws-cli
@@ -196,7 +196,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           initContainers:
             - name: wait-for-transform
               image: amazon/aws-cli
@@ -305,6 +305,9 @@ spec:
                   {{- if .Values.stages.load.substages.submit.arguments.skipCollectionUpdates }}
                   --skip-collection-updates
                   {{- end }}
+                  {{- if .Values.stages.load.substages.submit.arguments.destroyFirst }}
+                  --destroy-first
+                  {{- end }}
 ---
 {{ end -}}
 {{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.publish.enabled -}}
@@ -322,7 +325,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           initContainers:
             - name: wait-for-load
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
