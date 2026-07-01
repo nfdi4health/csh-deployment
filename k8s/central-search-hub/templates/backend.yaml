@@ -31,6 +31,11 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}-backend-dv-admin-api-key-secret
                 key: token
+          - name: DATAVERSE_ADMIN_UNBLOCK_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-backend-dv-api-unblock-key-secret
+                key: token
           - name: API_TOKEN
             valueFrom:
               secretKeyRef:
@@ -80,3 +85,11 @@ metadata:
 type: Opaque
 data:
   token: {{ default "" .Values.api.dataverse_admin_api_key | b64enc | quote }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-backend-dv-api-unblock-key-secret
+type: Opaque
+data:
+  token: {{ default "" .Values.api.unblock_key | b64enc | quote }}
