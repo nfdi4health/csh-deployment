@@ -30,6 +30,17 @@ spec:
             value: {{ .Values.frontend.userback_access_token }}
         ports:
           - containerPort: 80
+{{- if not (empty .Values.frontend.basicAuth.htpasswd) }}
+        volumeMounts:
+          - mountPath: /etc/nginx/.htpasswd
+            name: frontend-basic-auth
+            subPath: .htpasswd
+            readOnly: true
+      volumes:
+        - name: frontend-basic-auth
+          secret:
+            secretName: {{ .Release.Name }}-frontend-basic-auth
+{{- end }}
 ---
 apiVersion: v1
 kind: Service
@@ -42,3 +53,13 @@ spec:
       targetPort: 80
   selector:
     name: {{ .Release.Name }}-frontend
+{{- if not (empty .Values.frontend.basicAuth.htpasswd) }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-frontend-basic-auth
+type: Opaque
+stringData:
+  .htpasswd: {{ .Values.frontend.basicAuth.htpasswd | quote }}
+{{- end }}
