@@ -147,6 +147,13 @@ spec:
                 - -c
               args:
                 - >
+{{ if eq .Values.source "DRKS" }}
+                  until curl -sf http://localhost:8070/ > /dev/null;
+                  do
+                    echo "Waiting for GROBID...";
+                    sleep 5;
+                  done;
+{{ end }}
                   {{- if .Values.stages.transform.arguments.inputPath }}
                   EXTRACT_PATH="${S3_PATH}/{{ .Values.stages.transform.arguments.inputPath }}";
                   {{- else }}
@@ -184,6 +191,28 @@ spec:
                   --job-args
                   s3a://$EXTRACT_PATH
                   s3a://$TRANSFORM_PATH
+{{ if eq .Values.source "DRKS" }}
+            - name: grobid
+              image: lfoppiano/grobid:0.7.2
+              env:
+                - name: JAVA_OPTS
+                  value: "-Xms1g -Xmx3g"
+              ports:
+                - containerPort: 8070
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: 8070
+                initialDelaySeconds: 15
+                periodSeconds: 5
+              resources:
+                requests:
+                  cpu: "1"
+                  memory: "4Gi"
+                limits:
+                  cpu: "2"
+                  memory: "6Gi"
+{{ end }}
 ---
 {{ end -}}
 {{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.submit.enabled -}}
