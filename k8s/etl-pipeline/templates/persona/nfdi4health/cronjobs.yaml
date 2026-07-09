@@ -113,6 +113,29 @@ spec:
                   echo "Waiting for s3://$EXTRACT_PATH...";
                   until aws s3 ls s3://$EXTRACT_PATH/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; 
                   do sleep 10; done
+{{ if eq .Values.source "DRKS" }}
+            - name: grobid
+              image: lfoppiano/grobid:0.7.2
+              restartPolicy: Always
+              env:
+                - name: JAVA_OPTS
+                  value: "-Xms1g -Xmx3g"
+              ports:
+                - containerPort: 8070
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: 8070
+                initialDelaySeconds: 15
+                periodSeconds: 5
+              resources:
+                requests:
+                  cpu: "1"
+                  memory: "4Gi"
+                limits:
+                  cpu: "2"
+                  memory: "6Gi"
+{{ end }}
           containers:
             - name: spark-submit
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
@@ -191,28 +214,6 @@ spec:
                   --job-args
                   s3a://$EXTRACT_PATH
                   s3a://$TRANSFORM_PATH
-{{ if eq .Values.source "DRKS" }}
-            - name: grobid
-              image: lfoppiano/grobid:0.7.2
-              env:
-                - name: JAVA_OPTS
-                  value: "-Xms1g -Xmx3g"
-              ports:
-                - containerPort: 8070
-              readinessProbe:
-                httpGet:
-                  path: /
-                  port: 8070
-                initialDelaySeconds: 15
-                periodSeconds: 5
-              resources:
-                requests:
-                  cpu: "1"
-                  memory: "4Gi"
-                limits:
-                  cpu: "2"
-                  memory: "6Gi"
-{{ end }}
 ---
 {{ end -}}
 {{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.submit.enabled -}}
