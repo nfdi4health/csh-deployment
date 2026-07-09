@@ -170,13 +170,6 @@ spec:
                 - -c
               args:
                 - >
-{{ if eq .Values.source "DRKS" }}
-                  until curl -sf http://localhost:8070/ > /dev/null;
-                  do
-                    echo "Waiting for GROBID...";
-                    sleep 5;
-                  done;
-{{ end }}
                   {{- if .Values.stages.transform.arguments.inputPath }}
                   EXTRACT_PATH="${S3_PATH}/{{ .Values.stages.transform.arguments.inputPath }}";
                   {{- else }}
@@ -191,6 +184,13 @@ spec:
                     echo "Parquet file already exists, skipping."
                     exit 0
                   fi;
+{{ if eq .Values.source "DRKS" }}
+                  until curl -sf http://localhost:8070/ > /dev/null;
+                  do
+                    echo "Waiting for GROBID...";
+                    sleep 5;
+                  done;
+{{ end }}
                   /opt/spark/bin/spark-submit
                   --master
                   local[*]
