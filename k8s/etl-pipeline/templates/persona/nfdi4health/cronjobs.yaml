@@ -58,7 +58,12 @@ spec:
                   {{- else }}
                   echo "Incremental update disabled, running full extract.";
                   {{- end }}
-                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.stages.extract.arguments.delay) "" }}--delay {{ .Values.stages.extract.arguments.delay }} {{ end }} {{ if ne (print .Values.stages.extract.arguments.workers) "" }}--workers {{ .Values.stages.extract.arguments.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.stages.extract.arguments.limit }}--limit {{ .Values.stages.extract.arguments.limit }} {{ end }}$SINCE_ARG
+                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.stages.extract.arguments.delay) "" }}--delay {{ .Values.stages.extract.arguments.delay }} {{ end }} {{ if ne (print .Values.stages.extract.arguments.workers) "" }}--workers {{ .Values.stages.extract.arguments.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.stages.extract.arguments.limit }}--limit {{ .Values.stages.extract.arguments.limit }} {{ end }}$SINCE_ARG;
+                  if aws s3 ls s3://${EXTRACT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
+                    exit 0
+                  else
+                    exit 1
+                  fi;
 ---
 {{ end -}}
 {{ if and (eq .Values.persona "nfdi4health") .Values.stages.transform.enabled -}}
