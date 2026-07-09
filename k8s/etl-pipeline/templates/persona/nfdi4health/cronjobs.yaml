@@ -58,7 +58,12 @@ spec:
                   {{- else }}
                   echo "Incremental update disabled, running full extract.";
                   {{- end }}
-                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.stages.extract.arguments.delay) "" }}--delay {{ .Values.stages.extract.arguments.delay }} {{ end }} {{ if ne (print .Values.stages.extract.arguments.workers) "" }}--workers {{ .Values.stages.extract.arguments.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.stages.extract.arguments.limit }}--limit {{ .Values.stages.extract.arguments.limit }} {{ end }}$SINCE_ARG
+                  python3 -u -m etljobs.extract.extract_data --data-source {{ lower .Values.source }} {{ if ne (print .Values.stages.extract.arguments.delay) "" }}--delay {{ .Values.stages.extract.arguments.delay }} {{ end }} {{ if ne (print .Values.stages.extract.arguments.workers) "" }}--workers {{ .Values.stages.extract.arguments.workers }} {{ end }}--temp-dir /tmp/extract --output s3://$EXTRACT_PATH {{ if .Values.stages.extract.arguments.limit }}--limit {{ .Values.stages.extract.arguments.limit }} {{ end }}$SINCE_ARG;
+                  if aws s3 ls s3://${EXTRACT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; then
+                    exit 0
+                  else
+                    exit 1
+                  fi;
 ---
 {{ end -}}
 {{ if and (eq .Values.persona "nfdi4health") .Values.stages.transform.enabled -}}
@@ -108,6 +113,29 @@ spec:
                   echo "Waiting for s3://$EXTRACT_PATH...";
                   until aws s3 ls s3://$EXTRACT_PATH/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; 
                   do sleep 10; done
+{{ if eq .Values.source "DRKS" }}
+            - name: grobid
+              image: lfoppiano/grobid:0.7.2
+              restartPolicy: Always
+              env:
+                - name: JAVA_OPTS
+                  value: "-Xms1g -Xmx3g"
+              ports:
+                - containerPort: 8070
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: 8070
+                initialDelaySeconds: 15
+                periodSeconds: 5
+              resources:
+                requests:
+                  cpu: "1"
+                  memory: "4Gi"
+                limits:
+                  cpu: "2"
+                  memory: "6Gi"
+{{ end }}
           containers:
             - name: spark-submit
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
@@ -156,6 +184,13 @@ spec:
                     echo "Parquet file already exists, skipping."
                     exit 0
                   fi;
+{{ if eq .Values.source "DRKS" }}
+                  until curl -sf http://localhost:8070/ > /dev/null;
+                  do
+                    echo "Waiting for GROBID...";
+                    sleep 5;
+                  done;
+{{ end }}
                   /opt/spark/bin/spark-submit
                   --master
                   local[*]
