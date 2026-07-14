@@ -11,12 +11,13 @@ frontend:
   seoRenderer:
     enabled: true
     replicaCount: 1
-    requests:
-      cpu: 50m
-      memory: 128Mi
-    limits:
-      cpu: 500m
-      memory: 256Mi
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 256Mi
 ingress:
   dns:
   enableSSL: false
