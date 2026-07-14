@@ -23,13 +23,20 @@ spec:
     - host: {{ .Values.ingress.dns }}
       http:
         paths:
-        - path: /api/
+        - path: /api
           pathType: Prefix
           backend:
             service:
               name: {{ .Release.Name }}-backend
               port:
                 number: 5000
+        - path: /resource
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Release.Name }}-frontend-seo
+              port:
+                number: 3000
         - path: /
           pathType: Prefix
           backend:
