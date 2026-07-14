@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-frontend-seo
+  name: {{ .Release.Name }}-frontend-seo-renderer
 spec:
   replicas: {{ .Values.frontend.seoRenderer.replicaCount }}
   selector:
     matchLabels:
-      name: {{ .Release.Name }}-frontend-seo
+      name: {{ .Release.Name }}-frontend-seo-renderer
   template:
     metadata:
       labels:
-        name: {{ .Release.Name }}-frontend-seo
+        name: {{ .Release.Name }}-frontend-seo-renderer
     spec:
       containers:
         - name: frontend-seo
@@ -24,6 +24,8 @@ spec:
               value: "3000"
             - name: INDEX_HTML_PATH
               value: "/app/build/index.html"
+            - name: DATAVERSE_API_BASE_URL
+              value: "http://{{ .Release.Name }}-backend:5000/api"
           readinessProbe:
             httpGet:
               path: /healthz
@@ -38,12 +40,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-frontend-seo
+  name: {{ .Release.Name }}-frontend-seo-renderer
 spec:
   ports:
     - name: http
       port: 3000
       targetPort: 3000
   selector:
-    name: {{ .Release.Name }}-frontend-seo
+    name: {{ .Release.Name }}-frontend-seo-renderer
 {{- end }}
