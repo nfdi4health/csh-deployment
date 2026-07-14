@@ -23,7 +23,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: csh-ui-blue-frontend-seo
+              name: csh-ui-blue-frontend-seo-renderer
               port:
                 number: 3000
         - path: /

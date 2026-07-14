@@ -34,7 +34,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: {{ .Release.Name }}-frontend-seo
+              name: {{ .Release.Name }}-frontend-seo-renderer
               port:
                 number: 3000
         - path: /
