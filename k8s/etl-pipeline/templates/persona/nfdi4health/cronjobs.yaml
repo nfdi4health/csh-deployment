@@ -13,7 +13,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           containers:
             - name: extract
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
@@ -81,7 +81,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           initContainers:
             - name: wait-for-extract
               image: amazon/aws-cli
@@ -231,7 +231,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           initContainers:
             - name: wait-for-transform
               image: amazon/aws-cli
@@ -327,7 +327,7 @@ spec:
                   --conf
                   spark.hadoop.fs.s3a.secret.key="$(AWS_SECRET_ACCESS_KEY)"
                   --conf
-                  spark.sql.parquet.columnarReaderBatchSize=1024
+                  spark.sql.parquet.columnarReaderBatchSize={{ .Values.stages.load.substages.submit.arguments.columnarReaderBatchSize }}
                   local:///src/etljobs/main.py
                   --job
                   submit_dataverse
@@ -357,7 +357,7 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           initContainers:
             - name: wait-for-load
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
