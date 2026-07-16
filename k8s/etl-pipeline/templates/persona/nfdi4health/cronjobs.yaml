@@ -305,9 +305,6 @@ spec:
                   {{- if .Values.stages.load.substages.submit.arguments.skipCollectionUpdates }}
                   --skip-collection-updates
                   {{- end }}
-                  {{- if .Values.stages.load.substages.submit.arguments.destroyFirst }}
-                  --destroy-first
-                  {{- end }}
 ---
 {{ end -}}
 {{ if and (eq .Values.persona "nfdi4health") .Values.stages.load.substages.publish.enabled -}}
