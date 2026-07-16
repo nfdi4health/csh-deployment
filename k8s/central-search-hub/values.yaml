@@ -6,6 +6,8 @@ api:
   unblock_key:
 frontend:
   userback_access_token:
+  basicAuth:
+    htpasswd:
 ingress:
   dns:
   enableSSL: false
