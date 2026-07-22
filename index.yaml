@@ -3,6 +3,16 @@ entries:
   central-search-hub:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-07-22T13:19:17.342339893Z"
+    description: A Helm chart to deploy the central search hub.
+    digest: cf1833e45e7f98a5a72ff78096f9bf412c3f7983a5e1db2e1bff7bd973c99ce3
+    name: central-search-hub
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/central-search-hub-0.9.0/central-search-hub-0.9.0.tgz
+    version: 0.9.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-07-06T09:04:49.577702435Z"
     description: A Helm chart to deploy the central search hub.
     digest: 82c9425def9bd2d1ee0e06961678c6f752a35531e6573246ffd80ac9555e8449
@@ -1030,4 +1040,4 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.1/mica-0.0.1.tgz
     version: 0.0.1
-generated: "2026-07-09T10:37:35.174054168Z"
+generated: "2026-07-22T13:19:17.563672568Z"
