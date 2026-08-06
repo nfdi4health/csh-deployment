@@ -252,8 +252,6 @@ spec:
                   value: {{ .Values.timeZone | quote }}
                 - name: S3_PATH
                   value: {{ printf "%s/%s" (.Values.s3.basePath | replace "s3://" "") (lower .Values.source) | quote }}
-                - name: COLLECTIONS_PATH
-                  value: {{ .Values.s3.collectionsPath | replace "s3://" "" | quote }}
               command: ["sh", "-c"]
               args:
                 - >
@@ -262,7 +260,7 @@ spec:
                   {{- else }}
                   INPUT_PATH="${S3_PATH}/$(date +%Y-%m-%d)-converted.parquet";
                   {{- end }}
-                  until aws s3 ls s3://${INPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL && aws s3 ls s3://$COLLECTIONS_PATH --endpoint-url=$AWS_ENDPOINT_URL; do echo "Waiting for s3://${INPUT_PATH}/_SUCCESS and s3://${COLLECTIONS_PATH}..."; sleep 10; done
+                  until aws s3 ls s3://${INPUT_PATH}/_SUCCESS --endpoint-url=$AWS_ENDPOINT_URL; do echo "Waiting for s3://${INPUT_PATH}/_SUCCESS..."; sleep 10; done
           containers:
             - name: spark-submit
               image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
@@ -297,8 +295,6 @@ spec:
                   value: {{ .Values.timeZone | quote }}
                 - name: DATAVERSE_HOST
                   value: {{ .Values.dataverse.host | quote }}
-                - name: COLLECTIONS_PATH
-                  value: {{ .Values.s3.collectionsPath | replace "s3://" "" | quote }}
               resources:
                 {{ toYaml .Values.stages.load.substages.submit.resources | nindent 16 }}
               command:
@@ -335,7 +331,6 @@ spec:
                   s3a://$INPUT_PATH
                   $(DATAVERSE_HOST)
                   $(DATAVERSE_API_KEY)
-                  s3://$COLLECTIONS_PATH
                   --threads={{ .Values.stages.load.substages.submit.arguments.threads }}
                   {{- if .Values.stages.load.substages.submit.arguments.skipCollectionUpdates }}
                   --skip-collection-updates
