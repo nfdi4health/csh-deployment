@@ -955,6 +955,15 @@ entries:
     version: 0.1.2
   etl-pipeline:
   - apiVersion: v2
+    created: "2026-08-06T09:25:51.887416834Z"
+    description: A Helm chart for the ETL pipeline cronjobs
+    digest: c7a3a86fc6c51212386a0a17bdb6e90cd6665122f1d710c9158dd6ce6ca6d84e
+    name: etl-pipeline
+    type: application
+    urls:
+    - https://github.com/nfdi4health/csh-deployment/releases/download/etl-pipeline-1.0.5/etl-pipeline-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
     created: "2026-07-09T10:37:35.173850435Z"
     description: A Helm chart for the ETL pipeline cronjobs
     digest: 571ba05b495d2b08252ed404ec22807c6fdd95afc22e30eb88710cf48a9b3d97
@@ -1040,4 +1049,4 @@ entries:
     urls:
     - https://github.com/nfdi4health/csh-deployment/releases/download/mica-0.0.1/mica-0.0.1.tgz
     version: 0.0.1
-generated: "2026-07-22T13:19:17.563672568Z"
+generated: "2026-08-06T09:25:51.887669256Z"
