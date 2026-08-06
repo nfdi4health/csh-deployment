@@ -6,7 +6,6 @@ source: ""
 s3:
   basePath: "s3://my-bucket"
   endpointUrl: "https://s3.de-west-1.psmanaged.com"
-  collectionsPath: "s3://my-bucket/collections.json"
   accessKeyId: ""
   secretAccessKey: ""
 
