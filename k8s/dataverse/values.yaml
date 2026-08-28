@@ -32,6 +32,10 @@ dataverse:
     origin:
   multiple_language_support:
     enabled: false
+    repository:
+      owner: "GlobalDataverseCommunityConsortium"
+      name: "dataverse-language-packs"
+      branch: "dataverse-v6.9"
   exporters: []
 postgres:
   volume_size: "32Gi"
