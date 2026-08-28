@@ -5,23 +5,115 @@ set -euo pipefail
 SKIP_POSTGRES=false
 SKIP_SOLR=false
 FORCE_SOLR_BACKUP=false
+SOLR_MODE=backup
+DATAVERSE_LOCAL_PORT=8086
+DATAVERSE_REMOTE_PORT=8080
+
+SOURCE_DATAVERSE_NAME=
+SOURCE_DATAVERSE_CONTEXT=prod
+SOURCE_DATAVERSE_NAMESPACE=nfdi4health
+DESTINATION_DATAVERSE_NAME=
+DESTINATION_DATAVERSE_CONTEXT=dev
+DESTINATION_DATAVERSE_NAMESPACE=nfdi4health
+
+LOGICAL_BACKUP_S3_BUCKET=
+LOGICAL_BACKUP_S3_BUCKET_PREFIX=
+LOGICAL_BACKUP_SCOPE=
+LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX=
+S3_CONFIG_FILE=
 
 usage () {
     cat <<EOF
 Usage: $(basename "$0") [OPTIONS]
 
-Restore the latest PostgreSQL and Solr backups to the configured destination.
+Restore the latest PostgreSQL and Solr backups from a source Dataverse to a destination Dataverse.
 
 Options:
-  --skip-postgres       Skip the PostgreSQL restore and Dataverse restart
-  --skip-solr           Skip the Solr backup and restore
-  --force-solr-backup   Create a new source Solr backup even if a recent one exists
-  -h, --help            Show this help
+  --source-name NAME              Source Dataverse release (required)
+  --source-context CONTEXT        Source Kubernetes context (default: $SOURCE_DATAVERSE_CONTEXT)
+  --source-namespace NAMESPACE    Source namespace (default: $SOURCE_DATAVERSE_NAMESPACE)
+  --destination-name NAME         Destination Dataverse release (required)
+  --destination-context CONTEXT   Destination Kubernetes context (default: $DESTINATION_DATAVERSE_CONTEXT)
+  --destination-namespace NS      Destination namespace (default: $DESTINATION_DATAVERSE_NAMESPACE)
+
+  --s3-bucket BUCKET              Override the bucket discovered from the backup CronJob
+  --s3-prefix PREFIX              Override the bucket prefix discovered from the backup CronJob
+  --s3-scope SCOPE                Override the scope discovered from the backup CronJob
+  --s3-scope-suffix SUFFIX        Override the scope suffix discovered from the backup CronJob
+  --s3-config-file PATH           Explicit s3cmd configuration file
+
+  --solr-mode MODE                Search-index strategy: load from backup or reindex (default: backup)
+  --reindex                       Shorthand for --solr-mode reindex
+  --dataverse-local-port PORT     Local reindex port (default: $DATAVERSE_LOCAL_PORT)
+  --dataverse-remote-port PORT    Dataverse pod port (default: $DATAVERSE_REMOTE_PORT)
+  --skip-postgres                 Skip the PostgreSQL restore and Dataverse restart
+  --skip-solr                     Skip Solr restore/reindex entirely
+  --force-solr-backup             Create a new source Solr backup even if a recent one exists
+  -h, --help                      Show this help
 EOF
 }
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        --source-name)
+            SOURCE_DATAVERSE_NAME=${2:?"--source-name requires a value"}
+            shift
+            ;;
+        --source-context)
+            SOURCE_DATAVERSE_CONTEXT=${2:?"--source-context requires a value"}
+            shift
+            ;;
+        --source-namespace)
+            SOURCE_DATAVERSE_NAMESPACE=${2:?"--source-namespace requires a value"}
+            shift
+            ;;
+        --destination-name)
+            DESTINATION_DATAVERSE_NAME=${2:?"--destination-name requires a value"}
+            shift
+            ;;
+        --destination-context)
+            DESTINATION_DATAVERSE_CONTEXT=${2:?"--destination-context requires a value"}
+            shift
+            ;;
+        --destination-namespace)
+            DESTINATION_DATAVERSE_NAMESPACE=${2:?"--destination-namespace requires a value"}
+            shift
+            ;;
+        --s3-bucket)
+            LOGICAL_BACKUP_S3_BUCKET=${2:?"--s3-bucket requires a value"}
+            shift
+            ;;
+        --s3-prefix)
+            LOGICAL_BACKUP_S3_BUCKET_PREFIX=${2:?"--s3-prefix requires a value"}
+            shift
+            ;;
+        --s3-scope)
+            LOGICAL_BACKUP_SCOPE=${2:?"--s3-scope requires a value"}
+            shift
+            ;;
+        --s3-scope-suffix)
+            LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX=${2:?"--s3-scope-suffix requires a value"}
+            shift
+            ;;
+        --s3-config-file)
+            S3_CONFIG_FILE=${2:?"--s3-config-file requires a value"}
+            shift
+            ;;
+        --solr-mode)
+            SOLR_MODE=${2:?"--solr-mode requires a value"}
+            shift
+            ;;
+        --reindex)
+            SOLR_MODE=reindex
+            ;;
+        --dataverse-local-port)
+            DATAVERSE_LOCAL_PORT=${2:?"--dataverse-local-port requires a value"}
+            shift
+            ;;
+        --dataverse-remote-port)
+            DATAVERSE_REMOTE_PORT=${2:?"--dataverse-remote-port requires a value"}
+            shift
+            ;;
         --skip-postgres)
             SKIP_POSTGRES=true
             ;;
@@ -44,31 +136,98 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-LOGICAL_BACKUP_S3_BUCKET=
-SCOPE=
-LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX=
-S3_CONFIG_FILE=
-SOURCE_DATAVERSE_NAME=
-SOURCE_DATAVERSE_CONTEXT=
-SOURCE_DATAVERSE_NAMESPACE=
-DESTINATION_DATAVERSE_NAME=
-DESTINATION_DATAVERSE_CONTEXT=
-DESTINATION_DATAVERSE_NAMESPACE=
+if [[ "$SOLR_MODE" != "backup" && "$SOLR_MODE" != "reindex" ]]; then
+    echo "Invalid --solr-mode: $SOLR_MODE (expected backup or reindex)" >&2
+    exit 2
+fi
+if [[ ! "$DATAVERSE_LOCAL_PORT" =~ ^[0-9]+$ || ! "$DATAVERSE_REMOTE_PORT" =~ ^[0-9]+$ ]]; then
+    echo "Dataverse ports must be integers." >&2
+    exit 2
+fi
+if [[ -z "$SOURCE_DATAVERSE_NAME" || -z "$DESTINATION_DATAVERSE_NAME" ]]; then
+    echo "--source-name and --destination-name are required." >&2
+    usage >&2
+    exit 2
+fi
 
-S3_CONFIG_FILE="${S3_CONFIG_FILE:-'~/.s3cfg'}"
+echo "Preparing Dataverse data restore:"
+echo "  Source:      $SOURCE_DATAVERSE_NAME (namespace: $SOURCE_DATAVERSE_NAMESPACE, context: $SOURCE_DATAVERSE_CONTEXT)"
+echo "  Destination: $DESTINATION_DATAVERSE_NAME (namespace: $DESTINATION_DATAVERSE_NAMESPACE, context: $DESTINATION_DATAVERSE_CONTEXT)"
+if [[ "$SKIP_POSTGRES" == true ]]; then
+    echo "  PostgreSQL:  skip"
+else
+    echo "  PostgreSQL:  restore from logical backup"
+fi
+if [[ "$SKIP_SOLR" == true ]]; then
+    echo "  Solr:        skip"
+elif [[ "$SOLR_MODE" == "reindex" ]]; then
+    echo "  Solr:        clear and reindex through Dataverse"
+else
+    echo "  Solr:        restore from snapshot"
+fi
+echo
 
 POSTGRES_POD_NAME=${DESTINATION_DATAVERSE_NAME}-dataverse-postgres-0
 DATAVERSE_POD_NAME=${DESTINATION_DATAVERSE_NAME}-dataverse-0
+SOURCE_POSTGRES_CLUSTER_NAME=${SOURCE_DATAVERSE_NAME}-dataverse-postgres
 SOURCE_SOLR_POD_NAME=${SOURCE_DATAVERSE_NAME}-dataverse-solr-0
 DESTINATION_SOLR_POD_NAME=${DESTINATION_DATAVERSE_NAME}-dataverse-solr-0
 SOLR_DATA_DIR=/var/solr/data/collection1/data
+
+discover_postgres_backup_location () {
+    local cronjobs_json
+    local cronjob_count
+
+    if [[ -n "$LOGICAL_BACKUP_S3_BUCKET" && -n "$LOGICAL_BACKUP_S3_BUCKET_PREFIX" && -n "$LOGICAL_BACKUP_SCOPE" && -n "$LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX" ]]; then
+        return
+    fi
+
+    echo "Discovering PostgreSQL backup location from the source logical-backup CronJob..."
+    cronjobs_json=$(kubectl get cronjob --context "$SOURCE_DATAVERSE_CONTEXT" -n "$SOURCE_DATAVERSE_NAMESPACE" -l "cluster-name=$SOURCE_POSTGRES_CLUSTER_NAME" -o json)
+    cronjob_count=$(printf '%s\n' "$cronjobs_json" | jq '.items | length')
+    if (( cronjob_count != 1 )); then
+        echo "Expected one logical-backup CronJob for cluster $SOURCE_POSTGRES_CLUSTER_NAME, found $cronjob_count." >&2
+        echo "Specify --s3-bucket, --s3-prefix, --s3-scope, and --s3-scope-suffix explicitly." >&2
+        return 1
+    fi
+
+    if [[ -z "$LOGICAL_BACKUP_S3_BUCKET" ]]; then
+        LOGICAL_BACKUP_S3_BUCKET=$(read_backup_cronjob_env "$cronjobs_json" LOGICAL_BACKUP_S3_BUCKET)
+    fi
+    if [[ -z "$LOGICAL_BACKUP_S3_BUCKET_PREFIX" ]]; then
+        LOGICAL_BACKUP_S3_BUCKET_PREFIX=$(read_backup_cronjob_env "$cronjobs_json" LOGICAL_BACKUP_S3_BUCKET_PREFIX)
+    fi
+    if [[ -z "$LOGICAL_BACKUP_SCOPE" ]]; then
+        LOGICAL_BACKUP_SCOPE=$(read_backup_cronjob_env "$cronjobs_json" SCOPE)
+    fi
+    if [[ -z "$LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX" ]]; then
+        LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX=$(read_backup_cronjob_env "$cronjobs_json" LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX)
+    fi
+}
+
+read_backup_cronjob_env () {
+    local cronjobs_json=$1
+    local variable_name=$2
+
+    printf '%s\n' "$cronjobs_json" | jq -er --arg variable_name "$variable_name" '
+        .items[0].spec.jobTemplate.spec.template.spec.containers
+        | map(.env[]? | select(.name == $variable_name) | .value)
+        | first
+    '
+}
 
 restore_postgres () {
     local last_backup_file
     local backup_basename
     local uncompressed_backup_basename
+    local -a s3_config_args=()
 
-    last_backup_file=$(s3cmd ls "s3://${LOGICAL_BACKUP_S3_BUCKET}/spilo/${SCOPE}${LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX}/logical_backups/" -c "$S3_CONFIG_FILE" | sort | tail -n 1 | awk '{print $4}')
+    discover_postgres_backup_location
+    if [[ -n "$S3_CONFIG_FILE" ]]; then
+        s3_config_args=(-c "$S3_CONFIG_FILE")
+    fi
+    echo "Using PostgreSQL backups at s3://${LOGICAL_BACKUP_S3_BUCKET}/${LOGICAL_BACKUP_S3_BUCKET_PREFIX}/${LOGICAL_BACKUP_SCOPE}${LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX}/logical_backups/."
+    last_backup_file=$(s3cmd ls "s3://${LOGICAL_BACKUP_S3_BUCKET}/${LOGICAL_BACKUP_S3_BUCKET_PREFIX}/${LOGICAL_BACKUP_SCOPE}${LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX}/logical_backups/" "${s3_config_args[@]}" | sort | tail -n 1 | awk '{print $4}')
     if [[ -z "$last_backup_file" ]]; then
         echo "No PostgreSQL backup found in S3." >&2
         return 1
@@ -77,7 +236,7 @@ restore_postgres () {
     uncompressed_backup_basename=$(basename "$last_backup_file" .gz)
 
     echo "Downloading backup from S3..."
-    s3cmd get "$last_backup_file" . -c "$S3_CONFIG_FILE" --skip-existing
+    s3cmd get "$last_backup_file" . "${s3_config_args[@]}" --skip-existing
 
     echo "Copying backup to postgres pod..."
     kubectl cp "$backup_basename" "$POSTGRES_POD_NAME:/tmp/" --context "$DESTINATION_DATAVERSE_CONTEXT" -n "$DESTINATION_DATAVERSE_NAMESPACE"
@@ -113,29 +272,44 @@ if [[ "$SKIP_POSTGRES" == true ]]; then
 else
     restore_postgres
 fi
-#
-## NOTE: The following block is commented out because it's no longer feasible time-wise to reindex Dataverse after
-# loading a backup. Since we have over 25,000 datasets, it takes too long.
-# Instead, we also load a backup for the Solr index.
-# Using port 8081 because 8080 is often already used if currently developing with Dataverse
-#DATAVERSE_LOCAL_PORT=8086
-#DATAVERSE_REMOTE_PORT=8080
-#
-#echo "Starting re-index..."
-#kubectl port-forward $DATAVERSE_POD_NAME $DATAVERSE_LOCAL_PORT:$DATAVERSE_REMOTE_PORT >/dev/null &
-#PORT_FORWARD_PID=$!
-## Kill the port-forward when this script exits
-#trap '{
-#    kill $PORT_FORWARD_PID 2>/dev/null
-#}' EXIT
-## Wait for port to be available
-#while ! nc -vz localhost $DATAVERSE_LOCAL_PORT >/dev/null 2>&1; do
-#    sleep 0.1
-#done
-#curl http://localhost:$DATAVERSE_LOCAL_PORT/api/admin/index/clear
-#echo
-#curl http://localhost:$DATAVERSE_LOCAL_PORT/api/admin/index
-#echo
+
+reindex_dataverse () {
+    local port_forward_pid
+    local attempt
+
+    echo "Starting Dataverse reindex through localhost:$DATAVERSE_LOCAL_PORT..."
+    kubectl port-forward "$DATAVERSE_POD_NAME" "$DATAVERSE_LOCAL_PORT:$DATAVERSE_REMOTE_PORT" --context "$DESTINATION_DATAVERSE_CONTEXT" -n "$DESTINATION_DATAVERSE_NAMESPACE" >/dev/null 2>&1 &
+    port_forward_pid=$!
+    trap 'kill '"$port_forward_pid"' 2>/dev/null || true' EXIT
+
+    for attempt in {1..600}; do
+        if nc -z localhost "$DATAVERSE_LOCAL_PORT" >/dev/null 2>&1; then
+            break
+        fi
+        if ! kill -0 "$port_forward_pid" 2>/dev/null; then
+            echo "Dataverse port-forward exited before becoming ready." >&2
+            wait "$port_forward_pid"
+            return 1
+        fi
+        sleep 0.1
+    done
+    if ! nc -z localhost "$DATAVERSE_LOCAL_PORT" >/dev/null 2>&1; then
+        echo "Timed out waiting for the Dataverse port-forward." >&2
+        return 1
+    fi
+
+    echo "Clearing the current Solr index..."
+    curl -sS --fail-with-body "http://localhost:$DATAVERSE_LOCAL_PORT/api/admin/index/clear"
+    echo
+    echo "Triggering Dataverse reindex..."
+    curl -sS --fail-with-body "http://localhost:$DATAVERSE_LOCAL_PORT/api/admin/index"
+    echo
+
+    kill "$port_forward_pid" 2>/dev/null || true
+    wait "$port_forward_pid" 2>/dev/null || true
+    trap - EXIT
+    echo "Dataverse reindex was triggered."
+}
 
 need_to_create_solr_backup () {
     echo "Checking age of latest backup of source Solr..."
@@ -315,7 +489,9 @@ restore_solr () {
 }
 
 if [[ "$SKIP_SOLR" == true ]]; then
-    echo "Skipping Solr restore."
+    echo "Skipping Solr restore/reindex."
+elif [[ "$SOLR_MODE" == "reindex" ]]; then
+    reindex_dataverse
 else
     restore_solr
 fi

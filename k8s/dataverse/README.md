@@ -12,24 +12,23 @@ Postgres is configured to automatically create and store a logical backup in S3.
 
 [1]: https://github.com/nfdi4health/csh-deployment/blob/main/scripts/load_dataverse_backup.sh
 
-Before running the script, you must set these env variables:
+The source and destination releases, Kubernetes contexts, namespaces, and local `s3cmd` configuration can be
+selected with command-line options. Run `scripts/load_dataverse_backup.sh --help` for the complete list. For example,
+to restore only the Solr backup after the PostgreSQL restore has already succeeded:
 
-- `SOURCE_DATAVERSE_NAME`, the deployment name of the source Dataverse
-- `SOURCE_DATAVERSE_CONTEXT`, the Kubernetes context name of the source Dataverse
-- `DESTINATION_DATAVERSE_NAME`, the deployment name of the destination Dataverse
-- `DESTINATION_DATAVERSE_CONTEXT`, the Kubernetes context name of the destination Dataverse
-- `LOGICAL_BACKUP_S3_BUCKET`, the S3 bucket where the backup is located
-- `SCOPE` and `LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX`, define the directory inside the S3 bucket where the backup is
-   located
-- (optional) `S3_CONFIG_FILE`, path to a s3cmd config file
+```shell
+scripts/load_dataverse_backup.sh --skip-postgres \
+  --source-name my-production-dataverse --source-context prod \
+  --destination-name my-development-dataverse --destination-context dev
+```
 
-The values for `LOGICAL_BACKUP_S3_BUCKET`, `SCOPE` and `LOGICAL_BACKUP_S3_BUCKET_SCOPE_SUFFIX` can be found using
-`kubectl describe pod` on one of the backup job pods.
+By default, the script discovers the PostgreSQL backup bucket, prefix, scope, and scope suffix from the source
+PostgreSQL cluster's logical-backup CronJob. They can be overridden with the corresponding `--s3-*` options.
+S3 credentials remain in the local `s3cmd` configuration selected with `--s3-config-file`.
 
 Since reindexing the entire Dataverse database into the Solr index may take a long time depending on the number of
-datasets, the script also creates and loads a backup of the Solr index instead.
-If you don't have a lot of datasets and prefer reindexing, you can comment out the script section responsible for
-Solr backup creation and loading, and comment in the section for reindexing.
+datasets, the script creates and loads a Solr backup by default. Use `--solr-mode reindex` (or `--reindex`) to clear
+the destination index and trigger a Dataverse reindex instead.
 
 ### Creating a database backup
 
