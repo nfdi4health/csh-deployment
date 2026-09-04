@@ -20,8 +20,15 @@ frontend:
         memory: 256Mi
 ingress:
   dns:
-  enableSSL: false
-  certIssuer:
+  tls:
+    enabled: false
+    # Additional DNS names to include in the TLS certificate. If empty, the
+    # ingress DNS name is used
+    hosts: []
+    # If empty, defaults to <release-name>-ssl-secret
+    secretName:
+    # Optional
+    certIssuer:
 oidc:
   frontend:
     clientid:
