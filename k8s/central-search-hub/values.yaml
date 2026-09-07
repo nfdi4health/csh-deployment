@@ -6,8 +6,6 @@ api:
   unblock_key:
 frontend:
   userback_access_token:
-  basicAuth:
-    htpasswd:
   seoRenderer:
     enabled: true
     replicaCount: 1
@@ -25,10 +23,14 @@ ingress:
     # Additional DNS names to include in the TLS certificate. If empty, the
     # ingress DNS name is used
     hosts: []
-    # If empty, defaults to <release-name>-ssl-secret
+    # If empty, defaults to <release-name>-tls-secret
     secretName:
     # Optional
     certIssuer:
+  basicAuth:
+    enabled: false
+    username:
+    password:
 oidc:
   frontend:
     clientid:

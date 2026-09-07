@@ -1,4 +1,4 @@
-{{- if and .Values.frontend.seoRenderer.enabled (empty .Values.frontend.basicAuth.htpasswd) }}
+{{- if .Values.frontend.seoRenderer.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
