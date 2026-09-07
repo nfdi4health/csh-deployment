@@ -2,7 +2,42 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-ingress
+  name: {{ .Release.Name }}-backend-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 12k
+    nginx.ingress.kubernetes.io/proxy-body-size: 5g
+    {{ if .Values.ingress.tls.enabled }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    {{ end }}
+spec:
+  {{ if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        {{- range (default (list .Values.ingress.dns) .Values.ingress.tls.hosts) }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ default (printf "%s-tls-secret" .Release.Name) .Values.ingress.tls.secretName | quote }}
+  {{ end }}
+  rules:
+    - host: {{ .Values.ingress.dns }}
+      http:
+        paths:
+        - path: /api
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Release.Name }}-backend
+              port:
+                number: 5000
+{{- end }}
+---
+{{- if .Values.ingress.dns }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-frontend-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/proxy-buffer-size: 12k
@@ -31,13 +66,6 @@ spec:
     - host: {{ .Values.ingress.dns }}
       http:
         paths:
-        - path: /api
-          pathType: Prefix
-          backend:
-            service:
-              name: {{ .Release.Name }}-backend
-              port:
-                number: 5000
 {{- if .Values.frontend.seoRenderer.enabled }}
         - path: /resource
           pathType: Prefix
@@ -65,5 +93,5 @@ metadata:
   name: {{ .Release.Name }}-basic-auth-secret
 type: Opaque
 stringData:
-  auth: {{ htpasswd .Values.ingress.basicAuth.username .Values.ingress.basicAuth.password | quote }}
+  auth: {{ htpasswd $username $password | quote }}
 {{- end }}
