@@ -195,9 +195,12 @@ spec:
 {{- if not (empty .Values.dataverse.s3.url_expiration_minutes) }}
   {{- $jvm_args = cat $jvm_args (printf "-Ddataverse.files.s3.url-expiration-minutes=%v" .Values.dataverse.s3.url_expiration_minutes)}}
 {{- end }}
+{{- range .Values.dataverse.jvm_args }}
+  {{- $jvm_args = cat $jvm_args . }}
+{{- end }}
 {{- if not (empty $jvm_args) }}
             - name: JVM_ARGS
-              value: {{$jvm_args}}
+              value: {{ $jvm_args | trim | quote }}
 {{- end }}
 {{- if .Values.dataverse.exporters }}
             - name: DATAVERSE_SPI_EXPORTERS_DIRECTORY

@@ -37,6 +37,7 @@ dataverse:
     origin:
   multiple_language_support:
     enabled: false
+  jvm_args: []
   exporters: []
   static_assets:
     enabled: false
