@@ -1,6 +1,29 @@
 # Install dataverse
 `helm install my-dataverse ./dataverse`
 
+# Configuration
+
+## Exporters
+
+Configure exporter JARs with `dataverse.exporters`. Additional JVM options can be provided through `dataverse.jvm_args`,
+with one complete JVM argument per list item.
+
+For example, the [DCAT exporter](https://github.com/gdcc/exporter-dcat3) requires its JAR, a JVM property pointing to
+its root configuration file, and static assets enabled so the configuration files are copied into the Dataverse volume:
+
+```yaml
+dataverse:
+  exporters:
+    - https://repo1.maven.org/maven2/io/gdcc/dcat-3/0.8.7/dcat-3-0.8.7.jar
+  jvm_args:
+    - -Ddataverse.dcat3.config=/dv/dcat3-config/dcat-root.properties
+  static_assets:
+    enabled: true
+```
+
+The static-assets image must contain `dcat3-config/dcat-root.properties` under `/assets`. An init container copies the
+contents of `/assets` to `/dv`, making the file available at `/dv/dcat3-config/dcat-root.properties`.
+
 # Backup & Restore
 
 ## Database
