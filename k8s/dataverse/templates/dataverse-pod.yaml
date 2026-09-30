@@ -231,10 +231,6 @@ spec:
               value: "{{.Values.dataverse.mail.mta.starttls.enable}}"
 {{- end }}
 {{- end }}
-            - name: DATAVERSE_API_BLOCKED_ENDPOINTS
-              value: {{ .Values.dataverse.api.blocked.endpoints }}
-            - name: DATAVERSE_API_BLOCKED_POLICY
-              value: {{ .Values.dataverse.api.blocked.policy }}
           ports:
             - containerPort: 8080
             - containerPort: 4848

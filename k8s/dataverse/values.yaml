@@ -53,7 +53,12 @@ dataverse:
   api:
     blocked:
       endpoints: "admin,builtin-users"
-      policy: "drop"
+      policy: "unblock-key"
+  bootstrap:
+    # Optional: existing Kubernetes Secret containing a reusable admin API token under the key "token".
+    # By default, this should be empty.
+    # The dataverseAdmin user will be created on first bootstrap and its token will be used.
+    admin_api_token_secret: ""
   previewers:
     enabled: false
     provider:

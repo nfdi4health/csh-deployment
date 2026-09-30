@@ -10,7 +10,6 @@ metadata:
     app.kubernetes.io/part-of: dataverse
   annotations:
     "helm.sh/hook": post-install
-    "helm.sh/hook-delete-policy": hook-succeeded
     "helm.sh/hook-weight": "-5"
 spec:
   template:
@@ -25,8 +24,13 @@ spec:
       containers:
         - image: {{ .Values.images.configbaker}}
           name: dataverse-configbaker
-          command: [ "bootstrap.sh", "-u", "http://{{ .Release.Name }}-dataverse-svc:8080","{{ .Values.persona }}" ]
+          command:
+            - "/scripts/bootstrap/{{ .Values.persona }}/init.sh"
           env:
+            - name: DATAVERSE_URL
+              value: "http://{{ .Release.Name }}-dataverse-svc:8080"
+            - name: PERSONA
+              value: "{{ .Values.persona }}"
             - name: DATAVERSE_INSTALLATION_NAME
               value: {{.Values.dataverse.installation_name}}
             - name: METADATABLOCKS_PATH
@@ -53,6 +57,10 @@ spec:
                 secretKeyRef:
                   name: dataverse.{{ .Release.Name }}-dataverse-postgres.credentials.postgresql.acid.zalan.do
                   key: username
+            - name: DATAVERSE_API_BLOCKED_POLICY
+              value: {{ .Values.dataverse.api.blocked.policy | quote }}
+            - name: DATAVERSE_API_BLOCKED_ENDPOINTS
+              value: {{ .Values.dataverse.api.blocked.endpoints | quote }}
           volumeMounts:
             - name: script
               mountPath: "/scripts/bootstrap/{{ .Values.persona }}"
@@ -68,6 +76,11 @@ spec:
               mountPath: "/users"
             - name: config
               mountPath: "/config"
+{{- if .Values.dataverse.bootstrap.admin_api_token_secret }}
+            - name: bootstrap-admin-token
+              mountPath: "/secrets/bootstrap-admin"
+              readOnly: true
+{{- end }}
       volumes:
         - name: script
           configMap:
@@ -91,6 +104,14 @@ spec:
         - name: config
           configMap:
             name: {{ .Release.Name }}-dataverse-bootstrap-config
+{{- if .Values.dataverse.bootstrap.admin_api_token_secret }}
+        - name: bootstrap-admin-token
+          secret:
+            secretName: {{ .Values.dataverse.bootstrap.admin_api_token_secret | quote }}
+            items:
+              - key: token
+                path: token
+{{- end }}
       restartPolicy: Never
       initContainers:
         - name: check-dataverse-ready

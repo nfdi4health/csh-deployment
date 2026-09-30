@@ -4,14 +4,24 @@ set -euo pipefail
 # Set some defaults as documented
 DATAVERSE_URL=${DATAVERSE_URL:-"http://dataverse:8080"}
 export DATAVERSE_URL
+DV_SU_PASSWORD="admin1"
 
 # get current dir location
 SELF_LOCATION=${BOOTSTRAP_DIR}/${PERSONA}/
 echo "SELF_LOCATION = $SELF_LOCATION"
 
-echo "Running base setup-all.sh (INSECURE MODE)"
-"${BOOTSTRAP_DIR}"/base/setup-all.sh --insecure -p=admin1 | tee /tmp/setup-all.sh.out
-API_TOKEN=$(grep apiToken "/tmp/setup-all.sh.out" | jq ".data.apiToken" | tr -d \")
+echo "Creating admin user"
+if [[ -s /secrets/bootstrap-admin/token ]]; then
+  echo "Using admin API token from mounted secret"
+  API_TOKEN=$(</secrets/bootstrap-admin/token)
+else
+  echo "No admin API token secret mounted; creating admin user"
+  curl -X PUT -d burrito "${DATAVERSE_URL}/api/admin/settings/:BuiltinUsersKey"
+  adminResp=$(curl -fsS -H "Content-type:application/json" -X POST -d @"$BOOTSTRAP_DIR"/base/data/user-admin.json "${DATAVERSE_URL}/api/builtin-users?password=$DV_SU_PASSWORD&key=burrito")
+  API_TOKEN=$(jq -er '.data.apiToken' <<< "$adminResp")
+  unset adminResp
+  curl -X DELETE "${DATAVERSE_URL}/api/admin/settings/:BuiltinUsersKey"
+fi
 export API_TOKEN
 
 # configure curl
@@ -22,19 +32,19 @@ echo "# hide progress meter
 # fail script on server error
 --fail-with-body" > ~/.curlrc
 
-echo "Setting superuser status"
+echo "Setting superuser status for admin user"
 curl -X PUT "${DATAVERSE_URL}/api/admin/superuser/dataverseAdmin" -d true
 echo
 
-echo "Publishing root dataverse"
-curl -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
+echo "Setting up default authentication provider"
+"${BOOTSTRAP_DIR}"/base/setup-identity-providers.sh
 echo
 
-echo "Set up OIDC provider"
+echo "Setting up OIDC provider"
 curl -X POST -H "Content-type: application/json" --upload-file $SELF_LOCATION/keycloak.json $DATAVERSE_URL/api/admin/authenticationProviders
 echo
 
-echo "Disable tabular file ingest"
+echo "Disabling tabular file ingest"
 curl -X PUT -d 0 "${DATAVERSE_URL}/api/admin/settings/:TabularIngestSizeLimit"
 echo
 
@@ -46,7 +56,7 @@ echo "Hiding email addresses from exports"
 curl -X PUT -d true "${DATAVERSE_URL}/api/admin/settings/:ExcludeEmailFromExport"
 echo
 
-echo "Upload licenses"
+echo "Uploading licenses"
 #curl -X POST -H "Content-Type: application/json" -H "X-Dataverse-key:$DATAVERSE_API_KEY" $DATAVERSE_HOST/api/licenses --upload-file license-CC0-1.0.json
 # Find all licence files
 TSVS=$(find "${LICENSES_PATH}" -maxdepth 1 -iname 'license*.json')
@@ -57,7 +67,7 @@ while IFS= read -r TSV; do
   echo
 done <<< "${TSVS}"
 
-echo "Disable custom terms of use"
+echo "Disabling custom terms of use"
 curl -X PUT -d false "${DATAVERSE_URL}/api/admin/settings/:AllowCustomTermsOfUse"
 echo
 
@@ -68,6 +78,10 @@ while IFS= read -r USER; do
   curl -X POST -H "Content-type:application/json" $DATAVERSE_URL/api/admin/authenticatedUsers --upload-file $USER
   echo
 done <<< "${USERS}"
+
+echo "Creating default roles"
+"${BOOTSTRAP_DIR}"/base/setup-builtin-roles.sh
+echo
 
 echo "Syncing roles"
 
@@ -125,12 +139,20 @@ for R in "${EXISTING[@]}"; do
 done
 
 if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
-    echo "Updating root dataverse name"
+    echo "Updating root collection name"
     curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
     echo
 fi
 
-echo "Create dataverses"
+echo "Creating root collection"
+curl -H "Content-type:application/json" -X POST -d @"$BOOTSTRAP_DIR"/base/data/dv-root.json "${DATAVERSE_URL}/api/dataverses"
+echo
+
+echo "Publishing root collection"
+curl -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
+echo
+
+echo "Creating custom collections"
 # NOTE Using POSIX C locale to force sorting by simple byte comparison. This sorts "." before "_". This is to ensure
 # parent dataverses are created before child dataverses, e.g. "nfdi4health.json" is created before
 # "nfdi4health_covid-19.json".
@@ -189,6 +211,11 @@ echo "Configuring PID permalink generator function"
 PGPASSWORD=$DATAVERSE_DB_PASSWORD psql -h $DATAVERSE_DB_HOST -U $DATAVERSE_DB_USER < /scripts/bootstrap/nfdi4health/generate-permalink.sql
 echo
 
+# Last step as existence of one block is the indicator for a complete bootstrapped installation
+echo "Loading default metadata blocks"
+"${BOOTSTRAP_DIR}"/base/setup-datasetfields.sh
+echo
+
 echo "Creating dataset types"
 "${SELF_LOCATION}"/init-dataset-types.sh
 echo
@@ -197,8 +224,7 @@ echo "Creating dataset relation types"
 "${SELF_LOCATION}"/init-dataset-relation-types.sh
 echo
 
-# Last step as existence of one block is the indicator for a complete bootstrapped installation
-echo "Load custom metadata blocks"
+echo "Loading custom metadata blocks"
 #curl -X POST -H "Content-type: text/tab-separated-values" $DATAVERSE_HOST/api/admin/datasetfield/load --upload-file customMDS.tsv
 # Find all TSV files
 TSVS=$(find "${METADATABLOCKS_PATH}" -maxdepth 1 -iname '*.tsv')
@@ -211,7 +237,14 @@ while IFS= read -r TSV; do
   METADATABLOCK_NAMES=(${METADATABLOCK_NAMES[@]} "$(awk -F'\t' 'NR==2 {print $2}' $TSV)")
 done <<< "${TSVS}"
 
-echo "Activating metadata blocks"
+echo "Activating metadata block for root collection"
+curl -X POST -H "Content-type:application/json" -d "[\"citation\"]" "${DATAVERSE_URL}/api/dataverses/:root/metadatablocks"
+echo
+echo "Setting default facets for root collection"
+curl -X POST -H "Content-type:application/json" -d "[\"authorName\",\"subject\",\"keywordValue\",\"dateOfDeposit\"]" "${DATAVERSE_URL}/api/dataverses/:root/facets"
+echo
+
+echo "Activating metadata blocks for custom collections"
 while IFS= read -r DATAVERSE; do
   DATAVERSE_ID=$(jq -r '.alias' $DATAVERSE)
   curl -X POST -H "Content-Type: application/json" $DATAVERSE_URL/api/dataverses/$DATAVERSE_ID/metadatablocks -d $(jq -c -n '$ARGS.positional' --args "${METADATABLOCK_NAMES[@]}")
@@ -220,6 +253,15 @@ done <<< "${DATAVERSES}"
 
 echo "Activating metadata field facets"
 curl "$DATAVERSE_URL/api/datasetfields/facetables" | jq ".data | map(.name)" | curl -X POST -H "Content-Type: application/json" -d @- "$DATAVERSE_URL/api/dataverses/root/facets"
+echo
+
+echo "Setting blocked API policy to ${DATAVERSE_API_BLOCKED_POLICY}"
+curl -X PUT -d "${DATAVERSE_API_BLOCKED_POLICY}" "${DATAVERSE_URL}/api/admin/settings/:BlockedApiPolicy"
+echo
+
+echo "Setting blocked API endpoints to ${DATAVERSE_API_BLOCKED_ENDPOINTS}"
+curl -X PUT -d "${DATAVERSE_API_BLOCKED_ENDPOINTS}" "${DATAVERSE_URL}/api/admin/settings/:BlockedApiEndpoints"
+echo
 
 echo
 echo
