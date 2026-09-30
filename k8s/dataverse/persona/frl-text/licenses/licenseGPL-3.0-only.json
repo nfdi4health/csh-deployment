@@ -1,0 +1,11 @@
+{
+    "name": "GPL-3.0",
+    "uri": "https://opensource.org/licenses/GPL-3.0",
+    "shortDescription": "GNU General Public License v3.0",
+    "active": true,
+    "sortOrder": 3,
+    "rightsIdentifier": "GPL-3.0-only",
+    "rightsIdentifierScheme": "SPDX",
+    "schemeUri": "https://spdx.org/licenses/",
+    "languageCode": "en"
+}

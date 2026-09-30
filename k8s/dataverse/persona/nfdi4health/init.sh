@@ -30,10 +30,6 @@ echo "Publishing root dataverse"
 curl -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
 echo
 
-#echo "Allow all API calls"
-##curl -X PUT -d allow $DATAVERSE_URL/api/admin/settings/:BlockedApiPolicy
-#curl -X PUT -d "admin,builtin-users,licenses" $DATAVERSE_URL/api/admin/settings/:BlockedApiEndpoints
-
 echo "Set up OIDC provider"
 curl -X POST -H "Content-type: application/json" --upload-file $SELF_LOCATION/keycloak.json $DATAVERSE_URL/api/admin/authenticationProviders
 echo

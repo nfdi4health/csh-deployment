@@ -1,0 +1,61 @@
+# Default values for etl-pipeline.
+
+persona: "" # For available personas, see "persona" directory
+
+source: ""
+s3:
+  basePath: "s3://my-bucket"
+  endpointUrl: "https://s3.de-west-1.psmanaged.com"
+  accessKeyId: ""
+  secretAccessKey: ""
+
+dataverse:
+  host: "http://my-dataverse-svc.default.svc.cluster.local:8080"
+  apiKey: ""
+
+image:
+  repository: ghcr.io/nfdi4health/csh-etl-pipeline
+  tag: latest
+  pullPolicy: Always
+
+schedule: "00 07 * * *"
+timeZone: "Europe/Berlin"
+suspend: false
+
+stages:
+  extract:
+    enabled: true
+    incremental: true
+    arguments:
+      since: ""
+      limit: ""
+      delay: ""
+      workers: ""
+
+  transform:
+    enabled: true
+    arguments:
+      inputPath: ""
+      outputPath: ""
+    resources:
+      requests:
+        memory: "8Gi"
+      limits:
+        memory: "8Gi"
+    spark:
+      resources:
+        driverMemory: "4G"
+
+  load:
+    enabled: true
+    substages:
+      submit:
+        enabled: true
+        resources: {}
+        arguments:
+          inputPath: ""
+          threads: 1
+          skipCollectionUpdates: true
+          columnarReaderBatchSize: 512 # The larger the rows in your extracted parquet, the lower this value should be
+      publish:
+        enabled: true

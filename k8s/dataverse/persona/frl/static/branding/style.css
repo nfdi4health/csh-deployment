@@ -1,0 +1,7 @@
+tr#author {
+  display: revert;
+}
+
+#title {
+  font-size: 26px !important;
+}

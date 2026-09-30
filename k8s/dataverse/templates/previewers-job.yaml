@@ -1,0 +1,51 @@
+{{- if .Values.dataverse.previewers.enabled -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-register-previewers
+  labels:
+    app.kubernetes.io/name: dataverse
+    app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+    app.kubernetes.io/component: register-previewers
+    app.kubernetes.io/part-of: dataverse
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: dataverse
+        app.kubernetes.io/instance: dataverse-{{ .Release.Name }}
+        app.kubernetes.io/component: register-previewers
+        app.kubernetes.io/part-of: dataverse
+    spec:
+      containers:
+        - name: register-previewers
+          image: {{ .Values.dataverse.previewers.register.image }}
+          env:
+            - name: DATAVERSE_URL
+              value: http://{{ .Release.Name }}-dataverse-svc:8080
+            - name: PREVIEWERS_PROVIDER_URL
+              # Use the external URL so the frontend (user browser) can reach the previewers
+              value: https://{{ .Values.ingress.dns }}
+            {{- if .Values.dataverse.previewers.register.include }}
+            - name: INCLUDE_PREVIEWERS
+              value: {{ .Values.dataverse.previewers.register.include | quote }}
+            {{- end }}
+            {{- if .Values.dataverse.previewers.register.exclude }}
+            - name: EXCLUDE_PREVIEWERS
+              value: {{ .Values.dataverse.previewers.register.exclude | quote }}
+            {{- end }}
+            - name: REMOVE_EXISTING
+              value: {{ .Values.dataverse.previewers.register.remove_existing | quote }}
+          args: ["deploy"]
+      restartPolicy: OnFailure
+      initContainers:
+        - name: check-dataverse-ready
+          image: giantswarm/tiny-tools
+          env:
+            - name: DATAVERSE_HOSTNAME
+              value: {{ .Release.Name }}-dataverse-svc
+          command: [ "/bin/sh","-c" ]
+          args: [ 'while [ $(curl -ksw "%{http_code}" http://$DATAVERSE_HOSTNAME:8080/api/info/version -o /dev/null) -ne 200 ]; do sleep 5; echo "health check failed . Waiting for the service..."; done' ]
+{{- end }}
