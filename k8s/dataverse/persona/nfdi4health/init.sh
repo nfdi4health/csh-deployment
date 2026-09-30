@@ -138,15 +138,15 @@ for R in "${EXISTING[@]}"; do
   fi
 done
 
+echo "Creating root collection"
+curl -H "Content-type:application/json" -X POST -d @"$BOOTSTRAP_DIR"/base/data/dv-root.json "${DATAVERSE_URL}/api/dataverses"
+echo
+
 if [ -z "$DATAVERSE_INSTALLATION_NAME" ]; then
     echo "Updating root collection name"
     curl -X PUT "$DATAVERSE_URL/api/dataverses/root/attribute/name?value=$DATAVERSE_INSTALLATION_NAME"
     echo
 fi
-
-echo "Creating root collection"
-curl -H "Content-type:application/json" -X POST -d @"$BOOTSTRAP_DIR"/base/data/dv-root.json "${DATAVERSE_URL}/api/dataverses"
-echo
 
 echo "Publishing root collection"
 curl -X POST "${DATAVERSE_URL}/api/dataverses/:root/actions/:publish"
