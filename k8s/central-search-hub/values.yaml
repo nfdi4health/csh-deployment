@@ -1,3 +1,4 @@
+persona: nfdi4health
 api:
   backend_mode:
   dataverse_oidc_id:

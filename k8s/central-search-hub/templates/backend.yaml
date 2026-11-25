@@ -20,6 +20,8 @@ spec:
           requests:
             memory: 100Mi
         env:
+          - name: APP_PERSONA
+            value: {{ .Values.persona | quote }}
           - name: DATAVERSE_HOST
             value: {{ .Values.api.dataverse_host }}
           - name: DATAVERSE_OIDC_ID
