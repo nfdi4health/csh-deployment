@@ -9,6 +9,7 @@ frontend:
   userback_access_token:
   seoRenderer:
     enabled: true
+    canonicalBaseUrl: ""
     replicaCount: 1
     resources:
       requests:

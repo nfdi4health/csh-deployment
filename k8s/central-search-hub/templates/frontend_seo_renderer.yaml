@@ -24,6 +24,8 @@ spec:
               value: "3000"
             - name: INDEX_HTML_PATH
               value: "/app/build/index.html"
+            - name: CANONICAL_BASE_URL
+              value: {{ required "frontend.seoRenderer.canonicalBaseUrl must be configured" .Values.frontend.seoRenderer.canonicalBaseUrl | quote }}
             - name: DATAVERSE_API_BASE_URL
               value: "http://{{ .Release.Name }}-backend:5000/api"
           readinessProbe:
